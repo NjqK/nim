@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: littlec-chat
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/chat?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+      username: root
+      password: 123456
+      min-idle: 5
+      max-active: 20
+
+mybatis:
+  mapper-locations: classpath*:com/example/dao/mappers/*.xml
+  type-aliases-package: com.example.connector.entity.domain
+
+#dubbo:
+#  chat:
+#    port : 18085
+#
+#zookeeper:
+#  url: zk:2181
+#
+#redis:
+#  cluster:
+#    nodes: redis:port
+#    password:
+#
+#kafka:
+#  cluster:
+#    nodes: kafka:port
+
