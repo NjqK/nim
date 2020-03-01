@@ -56,6 +56,7 @@ public class NettyTimeServer {
             ch.pipeline().addLast("timeServerHandler",
                     new NettyHelloWorldServerHandler());*/
             ch.pipeline().addLast(new NettyTimeServerHandler());
+                    //.addLast(new NettyChannelOutBoundHandlerTest());
         }
     }
 

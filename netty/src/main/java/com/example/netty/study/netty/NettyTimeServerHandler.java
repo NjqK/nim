@@ -33,6 +33,8 @@ public class NettyTimeServerHandler extends ChannelInboundHandlerAdapter {
         System.out.println("发送数据: " + currentTime);
         ByteBuf out = Unpooled.wrappedBuffer(currentTime.getBytes());
         ctx.write(out);
+        // 传到下一个channel
+        // ctx.fireChannelRead(msg);
     }
 
     @Override
