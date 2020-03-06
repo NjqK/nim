@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: chat
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/chat?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+      username: root
+      password: 123456
+      min-idle: 5
+      max-active: 20
+
+dubbo:
+  application:
+    name: chat
+  protocol:
+    name: dubbo
+    port: 20881
+    serialization: protobuf
+  registry:
+    address: zookeeper://127.0.0.1:2181
+    client: curator
+
+server:
+  port: 8081
+
+mybatis:
+  mapper-locations: classpath*:com/example/dao/mappers/*.xml
+  type-aliases-package: com.example.connector.entity.domain
+
+#dubbo:
+#  connector:
+#    port: 20880
+
+zookeeper:
+  url: 127.0.0.1:2181
+
+redis:
+  cluster:
+    nodes: 127.0.0.1:port
+    password:
+
+kafka:
+  cluster:
+    nodes: kafka:port
+
