@@ -139,7 +139,7 @@ public class MultiplexerTimeServer implements Runnable {
             writeBuffer.put(bytes);
             writeBuffer.flip();
             channel.write(writeBuffer);
-            System.out.println("相应客户端， \n" + JSON.toJSON(channel));
+            System.out.println("响应客户端， \n" + JSON.toJSON(channel));
         }
     }
 }

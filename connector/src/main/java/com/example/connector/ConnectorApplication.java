@@ -1,27 +1,40 @@
 package com.example.connector;
 
-import com.example.connector.service.DemoService;
 import lombok.extern.slf4j.Slf4j;
-import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import java.util.Date;
+import javax.annotation.PreDestroy;
 
 @Slf4j
-//@MapperScan("com.example.connector.dao.mybatis")
 @SpringBootApplication
 public class ConnectorApplication {
 
-    @Resource
-    private DemoService demoServiceImpl;
+    @Value("${zookeeper.url}")
+    private String zkUrl;
+
+    @Value("${redis.cluster.nodes}")
+    private String redisNodes;
+
+    @Value("${redis.cluster.password}")
+    private String redisPassword;
+
+    @Value("${spring.application.name}")
+    private String applicationName;
+
+    private String zkRootPath = "/app/";
 
     @PostConstruct
     private void onStart() {
-        log.info("Connector App starting on {}.", new Date().toString());
-        demoServiceImpl.talk();
+        System.out.println("start");
+    }
+
+    @PreDestroy
+    private void onDestroy() {
+        // TODO 删掉zk节点，释放netty资源，dubbo等
+        System.out.println("close");
     }
 
     public static void main(String[] args) {

@@ -70,7 +70,7 @@ proto_dir = python_dir + os.path.sep + "proto"
 proto_java_dir = python_dir + os.path.sep + "modules" + os.path.sep + "{}" + os.path.sep + "src" + os.path.sep + "main" + os.path.sep + "java"
 java_interface_dir = proto_java_dir + os.path.sep + "com" + os.path.sep + "example" + os.path.sep + "api"
 proto_common_dir = proto_dir + os.path.sep + "common"
-# proto_inner_dir = proto_dir + os.path.sep + "inner"
+proto_inner_dir = proto_dir + os.path.sep + "inner"
 # proto_mall_dir = proto_dir + os.path.sep + "mall"
 # proto_boss_dir = proto_dir + os.path.sep + "boss"
 # proto_erp_dir = proto_dir + os.path.sep + "erp"
@@ -370,6 +370,20 @@ def gen_proto():
         os.makedirs(java_out_path)
     exe_command(command)
     gen_interface("common", proto_files)
+
+    print
+    print "*******************************************************"
+    print "*   Generating protocol buffer files for inner...    *"
+    print "*******************************************************"
+    proto_files = work_dir(proto_inner_dir)
+    java_out_path = proto_java_dir.format("inner")
+    protobuf_args = "-I=" + proto_dir + " " + "--java_out=" + java_out_path
+    command=protobuf_exe + " " + protobuf_args + " " + " ".join(proto_files)
+    print "Command: " + command
+    if not os.path.exists(java_out_path):
+        os.makedirs(java_out_path)
+    exe_command(command)
+    gen_interface("inner", proto_files)
 
 
     # print

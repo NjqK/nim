@@ -2,10 +2,14 @@ package com.example.netty.study.netty;
 
 import com.example.netty.study.common.Constants;
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.ByteBufAllocator;
+import io.netty.buffer.ByteBufUtil;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
+import io.netty.channel.epoll.EpollEventLoopGroup;
+import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -26,13 +30,17 @@ public class NettyTimeServer {
      */
     public void bind(int port) throws Exception {
         // Reactor线程组，分别处理客户端连接和网络读写
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        // Epoll*** ONLY WORKS ON LINUX
+        EpollEventLoopGroup bossGroup = new EpollEventLoopGroup();
+        EpollEventLoopGroup workerGroup = new EpollEventLoopGroup();
+        //EventLoopGroup bossGroup = new NioEventLoopGroup();
+        //EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
             // 启动NIO服务端的辅助启动类
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
-                    .channel(NioServerSocketChannel.class)
+                    //.channel(NioServerSocketChannel.class)
+                    .channel(EpollServerSocketChannel.class)
                     .localAddress(new InetSocketAddress(port))
                     .option(ChannelOption.SO_BACKLOG, Constants.ONE_MB)
                     .childHandler(new MyServerInitializer());

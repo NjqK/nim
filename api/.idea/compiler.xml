@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel>
-      <module name="admin" target="1.8" />
-      <module name="common" target="1.8" />
-      <module name="littlec-api-admin" target="1.8" />
-      <module name="littlec-api-boss" target="1.8" />
-      <module name="littlec-api-common" target="1.8" />
-      <module name="littlec-api-core" target="1.8" />
-      <module name="littlec-api-css" target="1.8" />
-      <module name="littlec-api-erp" target="1.8" />
-      <module name="littlec-api-inner" target="1.8" />
-      <module name="littlec-api-mall" target="1.8" />
-      <module name="littlec-api-mdc" target="1.8" />
-      <module name="littlec-api-open" target="1.8" />
-      <module name="littlec-api-uc" target="1.8" />
-    </bytecodeTargetLevel>
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="admin" />
+        <module name="chat" />
+        <module name="common" />
+        <module name="connector" />
+        <module name="inner" />
+        <module name="netty" />
+        <module name="push" />
+      </profile>
+    </annotationProcessing>
   </component>
 </project>
