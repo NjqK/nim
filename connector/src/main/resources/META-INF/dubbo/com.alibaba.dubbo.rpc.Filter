@@ -1,0 +1,1 @@
+echoFilter=org.apache.dubbo.rpc.filter.EchoFilter
