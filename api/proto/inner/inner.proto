@@ -15,5 +15,6 @@ message GetNodeAddresssResp {
 }
 
 service ClusterNodeAddressService {
+    // 获取可用的connector节点信息
     rpc GetNodeAddress (GetNodeAddresssReq) returns (GetNodeAddresssResp);
 }

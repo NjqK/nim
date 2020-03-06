@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class MyController {
 
-    @Reference(version = "1.0.0", check = false)
+    @Reference(version = "1.0.0")
     private ClusterNodeAddressService clusterNodeAddressService;
 
     @GetMapping("/get")

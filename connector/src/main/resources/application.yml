@@ -30,17 +30,17 @@ mybatis:
   mapper-locations: classpath*:com/example/dao/mappers/*.xml
   type-aliases-package: com.example.connector.entity.domain
 
-#dubbo:
-#  connector:
-#    port: 20880
-
 zookeeper:
   url: 127.0.0.1:2181
 
 redis:
-  cluster:
-    nodes: 127.0.0.1:port
+  pool:
+    host: 127.0.0.1
+    port: 6379
     password:
+    maxTotal: 8
+    maxIdle: 8
+    maxWaitMillis: -1
 
 kafka:
   cluster:

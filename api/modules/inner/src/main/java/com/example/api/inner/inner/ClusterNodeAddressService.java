@@ -14,7 +14,7 @@ import com.example.proto.inner.inner.Inner.GetNodeAddresssResp;
 public interface ClusterNodeAddressService {
 
     /**
-     * The getNodeAddress
+     * 获取可用的connector节点信息
      *
      * @param getNodeAddresssReq the GetNodeAddresssReq
      * @return GetNodeAddresssResp
