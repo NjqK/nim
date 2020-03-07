@@ -190,68 +190,12 @@ public final class Common {
     MSG_CONTENT_NUL(0),
     /**
      * <pre>
-     * 静态图片消息
-     * </pre>
-     *
-     * <code>IMAGE = 1;</code>
-     */
-    IMAGE(1),
-    /**
-     * <pre>
-     *视频消息
-     * </pre>
-     *
-     * <code>VIDEO = 2;</code>
-     */
-    VIDEO(2),
-    /**
-     * <pre>
-     * 语音消息
-     * </pre>
-     *
-     * <code>AUDIO = 3;</code>
-     */
-    AUDIO(3),
-    /**
-     * <pre>
-     * 位置消息
-     * </pre>
-     *
-     * <code>LOCATION = 4;</code>
-     */
-    LOCATION(4),
-    /**
-     * <pre>
-     * 普通文件消息
-     * </pre>
-     *
-     * <code>FILE = 7;</code>
-     */
-    FILE(7),
-    /**
-     * <pre>
-     * 撤回消息
-     * </pre>
-     *
-     * <code>RETRACT = 8;</code>
-     */
-    RETRACT(8),
-    /**
-     * <pre>
-     *自定义消息
-     * </pre>
-     *
-     * <code>CUSTOM = 9;</code>
-     */
-    CUSTOM(9),
-    /**
-     * <pre>
      * 文本消息
      * </pre>
      *
-     * <code>TEXT = 10;</code>
+     * <code>TEXT = 1;</code>
      */
-    TEXT(10),
+    TEXT(1),
     UNRECOGNIZED(-1),
     ;
 
@@ -261,68 +205,12 @@ public final class Common {
     public static final int MSG_CONTENT_NUL_VALUE = 0;
     /**
      * <pre>
-     * 静态图片消息
-     * </pre>
-     *
-     * <code>IMAGE = 1;</code>
-     */
-    public static final int IMAGE_VALUE = 1;
-    /**
-     * <pre>
-     *视频消息
-     * </pre>
-     *
-     * <code>VIDEO = 2;</code>
-     */
-    public static final int VIDEO_VALUE = 2;
-    /**
-     * <pre>
-     * 语音消息
-     * </pre>
-     *
-     * <code>AUDIO = 3;</code>
-     */
-    public static final int AUDIO_VALUE = 3;
-    /**
-     * <pre>
-     * 位置消息
-     * </pre>
-     *
-     * <code>LOCATION = 4;</code>
-     */
-    public static final int LOCATION_VALUE = 4;
-    /**
-     * <pre>
-     * 普通文件消息
-     * </pre>
-     *
-     * <code>FILE = 7;</code>
-     */
-    public static final int FILE_VALUE = 7;
-    /**
-     * <pre>
-     * 撤回消息
-     * </pre>
-     *
-     * <code>RETRACT = 8;</code>
-     */
-    public static final int RETRACT_VALUE = 8;
-    /**
-     * <pre>
-     *自定义消息
-     * </pre>
-     *
-     * <code>CUSTOM = 9;</code>
-     */
-    public static final int CUSTOM_VALUE = 9;
-    /**
-     * <pre>
      * 文本消息
      * </pre>
      *
-     * <code>TEXT = 10;</code>
+     * <code>TEXT = 1;</code>
      */
-    public static final int TEXT_VALUE = 10;
+    public static final int TEXT_VALUE = 1;
 
 
     public final int getNumber() {
@@ -344,14 +232,7 @@ public final class Common {
     public static MsgContentType forNumber(int value) {
       switch (value) {
         case 0: return MSG_CONTENT_NUL;
-        case 1: return IMAGE;
-        case 2: return VIDEO;
-        case 3: return AUDIO;
-        case 4: return LOCATION;
-        case 7: return FILE;
-        case 8: return RETRACT;
-        case 9: return CUSTOM;
-        case 10: return TEXT;
+        case 1: return TEXT;
         default: return null;
       }
     }
@@ -4446,12 +4327,10 @@ public final class Common {
       "Report\030\007 \001(\005\022*\n\006extend\030\010 \003(\0132\032.common.co" +
       "mmon.ExtraHeader*V\n\007MsgType\022\020\n\014MSG_TYPE_" +
       "NUL\020\000\022\016\n\nHAND_SHAKE\020\001\022\016\n\nHEART_BEAT\020\002\022\010\n" +
-      "\004KICK\020\003\022\017\n\013SINGLE_CHAT\020\004*\201\001\n\016MsgContentT" +
-      "ype\022\023\n\017MSG_CONTENT_NUL\020\000\022\t\n\005IMAGE\020\001\022\t\n\005V" +
-      "IDEO\020\002\022\t\n\005AUDIO\020\003\022\014\n\010LOCATION\020\004\022\010\n\004FILE\020" +
-      "\007\022\013\n\007RETRACT\020\010\022\n\n\006CUSTOM\020\t\022\010\n\004TEXT\020\nB+\n\037" +
-      "com.example.proto.common.commonB\006CommonP" +
-      "\000b\006proto3"
+      "\004KICK\020\003\022\017\n\013SINGLE_CHAT\020\004*/\n\016MsgContentTy" +
+      "pe\022\023\n\017MSG_CONTENT_NUL\020\000\022\010\n\004TEXT\020\001B+\n\037com" +
+      ".example.proto.common.commonB\006CommonP\000b\006" +
+      "proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

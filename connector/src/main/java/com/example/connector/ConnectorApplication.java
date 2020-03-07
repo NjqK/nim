@@ -3,6 +3,7 @@ package com.example.connector;
 import com.example.connector.common.JedisUtil;
 import com.example.connector.dao.manager.ClusterNodeManager;
 import com.example.connector.entity.cluster.ClusterNode;
+import com.example.connector.netty.NettyServerManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -42,6 +43,8 @@ public class ConnectorApplication {
 
     private String zkRootPath = "/app/";
 
+    private String redisKey = null;
+
     @Autowired
     private ClusterNodeManager clusterNodeManager;
 
@@ -58,11 +61,18 @@ public class ConnectorApplication {
         // 作为netty的host和port
         ClusterNode localNode = clusterNodeManager.getLocalNode();
         log.info("get local node for netty:{}", localNode);
-        String key = applicationName + "_" + localNode.getIp() + "_" + localNode.getPort();
-        if (!JedisUtil.exists(key)) {
-            JedisUtil.set(key, "0");
+        // init netty
+        NettyServerManager instance = NettyServerManager.getInstance();
+        instance.init(localNode);
+        // create redis map of this netty node
+        createKey(localNode);
+        JedisUtil.hsetnx(redisKey, "node-info", localNode.toString());
+    }
+
+    private void createKey(ClusterNode localNode) {
+        if (redisKey == null && localNode != null) {
+            redisKey = applicationName + "_" + localNode.getIp() + "_" + localNode.getPort();
         }
-        System.out.println(JedisUtil.get(key));
     }
 
     private void initRedis() {
@@ -78,6 +88,8 @@ public class ConnectorApplication {
         // TODO 删掉zk节点，释放netty资源，dubbo等
 
         //JedisUtil.del();
+        JedisUtil.del(redisKey);
+        JedisUtil.close();
         System.out.println("close");
     }
 

@@ -20,6 +20,7 @@ public class ClusterNodeManagerImpl implements ClusterNodeManager {
 
     private ClusterNode localNode = null;
 
+    @Override
     public ClusterNode getLocalNode() {
         if (localNode == null) {
             localNode = getAvailablePort();
@@ -38,6 +39,7 @@ public class ClusterNodeManagerImpl implements ClusterNodeManager {
         try {
             //读取空闲的可用端口
             ServerSocket serverSocket =  new ServerSocket(0);
+            serverSocket.close();
             String port = String.valueOf(serverSocket.getLocalPort());
             String localHost = NetUtils.getLocalHost();
             return new ClusterNode(localHost, port);

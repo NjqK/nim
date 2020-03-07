@@ -31,18 +31,18 @@ public class NettyTimeServer {
     public void bind(int port) throws Exception {
         // Reactor线程组，分别处理客户端连接和网络读写
         // Epoll*** ONLY WORKS ON LINUX
-        EpollEventLoopGroup bossGroup = new EpollEventLoopGroup();
-        EpollEventLoopGroup workerGroup = new EpollEventLoopGroup();
-        //EventLoopGroup bossGroup = new NioEventLoopGroup();
-        //EventLoopGroup workerGroup = new NioEventLoopGroup();
+//        EpollEventLoopGroup bossGroup = new EpollEventLoopGroup();
+//        EpollEventLoopGroup workerGroup = new EpollEventLoopGroup();
+        EventLoopGroup bossGroup = new NioEventLoopGroup();
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
             // 启动NIO服务端的辅助启动类
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
-                    //.channel(NioServerSocketChannel.class)
-                    .channel(EpollServerSocketChannel.class)
+                    .channel(NioServerSocketChannel.class)
+                    //.channel(EpollServerSocketChannel.class)
                     .localAddress(new InetSocketAddress(port))
-                    .option(ChannelOption.SO_BACKLOG, Constants.ONE_MB)
+                    //.option(ChannelOption.SO_BACKLOG, Constants.ONE_MB)
                     .childHandler(new MyServerInitializer());
             // 绑定端口，同步等待成功
             ChannelFuture f = b.bind().sync();
