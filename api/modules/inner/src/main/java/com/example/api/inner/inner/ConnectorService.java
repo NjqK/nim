@@ -5,13 +5,13 @@ import com.example.proto.inner.inner.Inner.GetNodeAddresssReq;
 import com.example.proto.inner.inner.Inner.GetNodeAddresssResp;
 
 /**
- * @Type ClusterNodeAddressService.java
- * @Desc The ClusterNodeAddressService
+ * @Type ConnectorService.java
+ * @Desc The ConnectorService
  * @author jay
  * @date  12:00:00
  * @version
  */
-public interface ClusterNodeAddressService {
+public interface ConnectorService {
 
     /**
      * 获取可用的connector节点信息

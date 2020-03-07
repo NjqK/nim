@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date 20-3-7 下午3:12
  **/
 @Slf4j
-public class TestHandler extends ChannelInboundHandlerAdapter {
+public class BizHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {

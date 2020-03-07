@@ -1,6 +1,6 @@
 package com.example.connector.service.impl;
 
-import com.example.api.inner.inner.ClusterNodeAddressService;
+import com.example.api.inner.inner.ConnectorService;
 import com.example.connector.dao.manager.ClusterNodeManager;
 import com.example.connector.entity.cluster.ClusterNode;
 import com.example.proto.inner.inner.Inner;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Slf4j
 @Service(version = "1.0.0")
-public class ClusterNodeAddressServiceImpl implements ClusterNodeAddressService {
+public class ClusterNodeAddressServiceImpl implements ConnectorService {
 
     @Autowired
     private ClusterNodeManager clusterNodeManager;

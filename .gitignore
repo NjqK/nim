@@ -23,7 +23,7 @@
 hs_err_pid*
 
 */target/*
-**/.idea/*
+*/.idea/*
 *.iws
 *.iml
 *.ipr

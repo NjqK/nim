@@ -1,7 +1,8 @@
 package com.example.connector.netty;
 
 import com.example.connector.entity.cluster.ClusterNode;
-import com.example.connector.netty.handler.TestHandler;
+import com.example.connector.netty.handler.BizHandler;
+import com.example.connector.netty.handler.HeartBeatHandler;
 import com.example.proto.common.common.Common;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -16,6 +17,7 @@ import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
+import io.netty.handler.timeout.IdleStateHandler;
 import lombok.extern.slf4j.Slf4j;
 
 import java.net.InetSocketAddress;
@@ -60,6 +62,8 @@ public class NettyLauncher implements Runnable {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
+                            // 超过5s没有收到客户端消息，TODO 改为配置
+                            pipeline.addLast(new IdleStateHandler(30, 0, 0));
                             // 半包处理
                             pipeline.addLast(new ProtobufVarint32FrameDecoder());
                             // 解码的目标类
@@ -68,8 +72,9 @@ public class NettyLauncher implements Runnable {
                             pipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
                             // 编码器
                             pipeline.addLast(new ProtobufEncoder());
+                            pipeline.addLast(new HeartBeatHandler());
                             // 逻辑handler
-                            pipeline.addLast(new TestHandler());
+                            pipeline.addLast(new BizHandler());
                         }
                     });
             ChannelFuture future = b.bind().sync();

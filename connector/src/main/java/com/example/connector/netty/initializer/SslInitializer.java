@@ -28,7 +28,7 @@ public class SslInitializer extends ChannelInitializer<Channel> {
     protected void initChannel(Channel ch) throws Exception {
         SSLEngine sslEngine = sslContext.newEngine(ch.alloc());
         ChannelPipeline pipeline = ch.pipeline();
-        // add ssl handler
+        // add ssl handler，既是inbound也是outbound
         pipeline.addFirst("ssl", new SslHandler(sslEngine, startTls));
     }
 }

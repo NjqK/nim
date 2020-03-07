@@ -1142,11 +1142,11 @@ public final class Inner {
     java.lang.String[] descriptorData = {
       "\n\021inner/inner.proto\022\013inner.inner\"\024\n\022GetN" +
       "odeAddresssReq\"1\n\023GetNodeAddresssResp\022\014\n" +
-      "\004host\030\001 \001(\t\022\014\n\004port\030\002 \001(\t2p\n\031ClusterNode" +
-      "AddressService\022S\n\016GetNodeAddress\022\037.inner" +
-      ".inner.GetNodeAddresssReq\032 .inner.inner." +
-      "GetNodeAddresssRespB(\n\035com.example.proto" +
-      ".inner.innerB\005InnerP\000b\006proto3"
+      "\004host\030\001 \001(\t\022\014\n\004port\030\002 \001(\t2g\n\020ConnectorSe" +
+      "rvice\022S\n\016GetNodeAddress\022\037.inner.inner.Ge" +
+      "tNodeAddresssReq\032 .inner.inner.GetNodeAd" +
+      "dresssRespB(\n\035com.example.proto.inner.in" +
+      "nerB\005InnerP\000b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

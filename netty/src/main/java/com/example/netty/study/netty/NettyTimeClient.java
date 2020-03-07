@@ -1,6 +1,8 @@
 package com.example.netty.study.netty;
 
 import com.example.netty.study.common.Constants;
+import com.example.netty.study.netty.handler.ClientIdleStateTrigger;
+import com.example.netty.study.netty.handler.Pinger;
 import com.example.proto.common.common.Common;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
@@ -37,7 +39,7 @@ public class NettyTimeClient {
         try {
             Bootstrap b = new Bootstrap();
             b.group(group).channel(NioSocketChannel.class)
-                    .remoteAddress("192.168.129.137", 40623)
+                    .remoteAddress("192.168.129.137", 46245)
                     .option(ChannelOption.TCP_NODELAY, true)
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
@@ -50,6 +52,8 @@ public class NettyTimeClient {
                             pipeline.addLast(new ProtobufDecoder(Common.Msg.getDefaultInstance()));
                             pipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
                             pipeline.addLast(new ProtobufEncoder());
+                            pipeline.addLast(new ClientIdleStateTrigger());
+                            //pipeline.addLast(new Pinger());
                             pipeline.addLast(new ProtoTestHandler());
                         }
                     });
