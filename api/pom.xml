@@ -12,11 +12,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-
     <modules>
-        <module>modules/admin</module>
         <module>modules/common</module>
         <module>modules/inner</module>
+        <module>modules/outer</module>
     </modules>
 
     <dependencies>

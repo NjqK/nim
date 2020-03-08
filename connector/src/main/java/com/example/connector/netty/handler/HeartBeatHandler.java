@@ -38,7 +38,7 @@ public class HeartBeatHandler extends ChannelInboundHandlerAdapter {
         if (evt instanceof IdleStateEvent){
             IdleStateEvent event = (IdleStateEvent)evt;
             if (event.state()== IdleState.READER_IDLE){
-                log.info("Lost connection with the client which channel id is :{}", ctx.channel().id());
+                log.info("Lost connection with the client which channel id is :{}, then close it.", ctx.channel().id());
                 ctx.channel().close();
             }
         }else {

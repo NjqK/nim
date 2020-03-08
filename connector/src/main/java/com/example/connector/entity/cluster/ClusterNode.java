@@ -21,11 +21,12 @@ public class ClusterNode {
 
     @Override
     public String toString() {
-        return "ip_" + port;
+        return ip + "_" + port;
     }
 
     /**
      * 由toString返回的值生成
+     *
      * @return ClusterNode
      */
     public static ClusterNode getFromString(String s) {

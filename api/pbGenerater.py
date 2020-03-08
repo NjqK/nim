@@ -76,7 +76,7 @@ proto_inner_dir = proto_dir + os.path.sep + "inner"
 # proto_erp_dir = proto_dir + os.path.sep + "erp"
 # proto_open_dir = proto_dir + os.path.sep + "open"
 # proto_css_dir = proto_dir + os.path.sep + "css"
-proto_admin_dir = proto_dir + os.path.sep + "admin"
+proto_outer_dir = proto_dir + os.path.sep + "outer"
 # proto_core_dir = proto_dir + os.path.sep + "core"
 # proto_mdc_dir = proto_dir + os.path.sep + "mdc"
 # proto_uc_dir = proto_dir + os.path.sep + "uc"
@@ -491,11 +491,11 @@ def gen_proto():
 
     print
     print "*******************************************************"
-    print "*   Generating protocol buffer files for admin...     *"
+    print "*   Generating protocol buffer files for outer...     *"
     print "*******************************************************"
-    proto_files = work_dir(proto_admin_dir)
-    java_out_path = proto_java_dir.format("admin")
-    proto_files = remove_if_exist(proto_files, proto_admin_dir + os.path.sep + "grpc.proto")
+    proto_files = work_dir(proto_outer_dir)
+    java_out_path = proto_java_dir.format("outer")
+    proto_files = remove_if_exist(proto_files, proto_outer_dir + os.path.sep + "grpc.proto")
     protobuf_args = "-I=" + proto_dir + " " + "--java_out=" + java_out_path
     command=protobuf_exe + " " + protobuf_args + " " + " ".join(proto_files)
     print "Command: " + command
@@ -503,7 +503,7 @@ def gen_proto():
         os.makedirs(java_out_path)
     exe_command(command)
     # proto_files = remove_if_exist(proto_files, proto_admin_dir + os.path.sep + "connector.proto")
-    gen_interface("admin", proto_files)
+    gen_interface("outer", proto_files)
 
     # print
     # print "*******************************************************"

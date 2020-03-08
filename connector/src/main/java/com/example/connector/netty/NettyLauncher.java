@@ -62,7 +62,7 @@ public class NettyLauncher implements Runnable {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
-                            // 超过5s没有收到客户端消息，TODO 改为配置
+                            // 超过5s没有收到客户端消息，TODO 时间改为配置
                             pipeline.addLast(new IdleStateHandler(30, 0, 0));
                             // 半包处理
                             pipeline.addLast(new ProtobufVarint32FrameDecoder());

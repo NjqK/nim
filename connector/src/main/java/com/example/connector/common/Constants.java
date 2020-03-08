@@ -14,7 +14,6 @@ public class Constants {
     public static final Common.Msg PONG = Common.Msg.newBuilder()
             .setHead(Common.Head.newBuilder()
                     .setMsgType(Common.MsgType.HEART_BEAT)
-                    .setMsgContentType(Common.MsgContentType.TEXT)
                     .build())
             .build();
 

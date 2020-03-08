@@ -1,10 +1,11 @@
-package com.example.netty.study.netty.handler;
+package com.example.netty.study.newclient.handler;
 
-import com.example.proto.common.common.Common;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
+
+import static com.example.netty.study.common.Constants.PING;
 
 /**
  * @author kuro
@@ -12,15 +13,6 @@ import io.netty.handler.timeout.IdleStateEvent;
  * @date 20-3-7 下午9:30
  **/
 public class ClientIdleStateTrigger extends ChannelInboundHandlerAdapter {
-
-    /**
-     * TODO 移到Constants里
-     */
-    public static final Common.Msg HEART_BEAT = Common.Msg.newBuilder()
-                    .setHead(Common.Head.newBuilder()
-                            .setMsgType(Common.MsgType.HEART_BEAT)
-                            .build())
-                    .build();
 
     /**
      * 用于捕获{@link IdleState#WRITER_IDLE}事件（未在指定时间内向服务器发送数据），
@@ -35,7 +27,7 @@ public class ClientIdleStateTrigger extends ChannelInboundHandlerAdapter {
             IdleState state = ((IdleStateEvent) evt).state();
             if (state == IdleState.WRITER_IDLE) {
                 // write heartbeat to server
-                ctx.writeAndFlush(HEART_BEAT);
+                ctx.writeAndFlush(PING);
             }
         } else {
             super.userEventTriggered(ctx, evt);

@@ -1,5 +1,7 @@
 package com.example.netty.study.common;
 
+import com.example.proto.common.common.Common;
+
 /**
  * @author kuro
  * @version V1.0
@@ -12,4 +14,13 @@ public class Constants {
     public static final int DEFAULT_PORT = 8080;
     public static final String DEFAULT_HOST = "127.0.0.1";
     public static final int ONE_MB = 1024;
+
+    /**
+     * TODO 移到Constants里
+     */
+    public static final Common.Msg PING = Common.Msg.newBuilder()
+            .setHead(Common.Head.newBuilder()
+                    .setMsgType(Common.MsgType.HEART_BEAT)
+                    .build())
+            .build();
 }
