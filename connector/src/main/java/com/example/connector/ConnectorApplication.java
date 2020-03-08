@@ -1,6 +1,6 @@
 package com.example.connector;
 
-import com.example.connector.common.JedisUtil;
+import com.example.common.JedisUtil;
 import com.example.connector.dao.manager.ClusterNodeManager;
 import com.example.connector.entity.cluster.ClusterNode;
 import com.example.connector.netty.NettyServerManager;

@@ -1,4 +1,4 @@
-package com.example.connector.common;
+package com.example.common;
 
 import java.util.List;
 

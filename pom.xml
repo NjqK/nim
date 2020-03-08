@@ -13,6 +13,7 @@
         <module>chat</module>
         <module>push</module>
         <module>connector</module>
+        <module>common</module>
     </modules>
 
     <properties>

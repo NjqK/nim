@@ -1,7 +1,7 @@
 package com.example.connector.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.example.connector.common.ListUtil;
+import com.example.common.ListUtil;
 import com.example.connector.dao.mappers.AppVersionMapper;
 import com.example.connector.entity.domain.AppVersion;
 import com.example.connector.service.DemoService;

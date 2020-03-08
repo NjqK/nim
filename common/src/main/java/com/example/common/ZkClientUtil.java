@@ -1,4 +1,4 @@
-package com.example.connector.common;
+package com.example.common;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.zookeeper.KeeperException;
