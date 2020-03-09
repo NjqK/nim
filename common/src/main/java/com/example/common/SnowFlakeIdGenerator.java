@@ -1,17 +1,13 @@
 package com.example.common;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * @author kuro
  * @version v1.0
  * @date 20-3-9 下午7:29
  **/
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-/**
- * Created by xfyou 2018/6/8 14:01.
- */
 public class SnowFlakeIdGenerator {
     // The initial time(2017-01-01)
     private static final long INITIAL_TIME_STAMP = 1483200000000L;
@@ -90,20 +86,5 @@ public class SnowFlakeIdGenerator {
             timestamp = System.currentTimeMillis();
         }
         return timestamp;
-    }
-
-    public static void main(String[] args) {
-        SnowFlakeIdGenerator generator = new SnowFlakeIdGenerator(1, 1);
-        ExecutorService executorService = Executors.newCachedThreadPool();
-        for (int i = 0; i < 5; i++) {
-            executorService.execute(new Runnable() {
-                @Override
-                public void run() {
-                    long id = generator.nextId();
-                    System.out.println(id);
-                }
-            });
-        }
-        executorService.shutdown();
     }
 }
