@@ -10,9 +10,10 @@ import lombok.Data;
  **/
 @Data
 public class MsgInfoDto {
-
     private Long guid;
     private Long toUid;
     private Long fromUid;
-    private Common.Msg msg;
+    private Integer msgType;
+    private Integer msgContentType;
+    private Common.Body msgBody;
 }

@@ -41,9 +41,16 @@ public class ChatServiceImpl implements ChatService {
         log.info("sendMsgIndividually, req:{}", req);
         Outer.SendMsgIndividuallyResp.Builder builder = Outer.SendMsgIndividuallyResp.newBuilder();
         try {
-            if (StringUtils.isEmpty(req.getUid())) {
+            if (StringUtils.isEmpty(req.getToUid())) {
                 Common.ErrorMsg errorMsg = Common.ErrorMsg.newBuilder()
-                        .setErrorCode(Common.ErrCode.SEND_MSG_INDIVIDUALLY_UID_NUL)
+                        .setErrorCode(Common.ErrCode.SEND_MSG_INDIVIDUALLY_TO_UID_NUL)
+                        .setMsg("fuck*")
+                        .build();
+                return builder.setRet(errorMsg).build();
+            }
+            if (StringUtils.isEmpty(req.getFromUid())) {
+                Common.ErrorMsg errorMsg = Common.ErrorMsg.newBuilder()
+                        .setErrorCode(Common.ErrCode.SEND_MSG_INDIVIDUALLY_FROM_ID_NUL)
                         .setMsg("fuck*")
                         .build();
                 return builder.setRet(errorMsg).build();

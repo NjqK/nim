@@ -13,15 +13,15 @@ public class NettyChannelOutBoundHandlerTest extends ChannelOutboundHandlerAdapt
 
     @Override
     public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
-        System.out.println("got msg" + JSON.toJSON(msg));
+        System.out.println("got msgBody" + JSON.toJSON(msg));
         ctx.writeAndFlush(msg);
     }
 }
 //public class NettyChannelOutBoundHandlerTest extends ChannelInboundHandlerAdapter {
 //
 //    @Override
-//    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-//        super.channelRead(ctx, msg);
-//        System.out.println(JSON.toJSON(msg));
+//    public void channelRead(ChannelHandlerContext ctx, Object msgBody) throws Exception {
+//        super.channelRead(ctx, msgBody);
+//        System.out.println(JSON.toJSON(msgBody));
 //    }
 //}

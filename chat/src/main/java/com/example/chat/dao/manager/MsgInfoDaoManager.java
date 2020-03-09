@@ -15,4 +15,11 @@ public interface MsgInfoDaoManager {
      * @return
      */
     long addMsgInfo(MsgInfoDto msgInfo);
+
+    /**
+     * 通过guid找消息
+     * @param guid
+     * @return
+     */
+    MsgInfo getMsgById(long guid);
 }

@@ -3,38 +3,55 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <properties resource="application.yml"/>
-    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat"> <!--处理sql中的`符号-->
+    <!--targetRuntime MyBatis3Simple不生成example-->
+    <context id="Mysql" targetRuntime="MyBatis3" defaultModelType="flat"> <!--处理sql中的`符号-->
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
-        <!--分页插件 -->
-        <plugin type="org.mybatis.generator.plugins.PaginationPlugin"/>
-        <!--实现model example 以及内部类序列化插件 -->
-        <plugin type="org.mybatis.generator.plugins.SerializablePlugin2"/>
-        <!--重写equals 、 hashCode -->
-        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
-        <!--重写 toString -->
-        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
-        <!--&lt;!&ndash;添加自定义的继承接口&ndash;&gt;-->
-        <!--<plugin type="tk.mybatis.mapper.generator.MapperPlugin">-->
-            <!--<property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>-->
-        <!--</plugin> -->
-        <!--数据源配置-->
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <commentGenerator>
+            <property name="suppressDate" value="true" />
+            <property name="addRemarkComments" value="true" />
+            <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss" />
+        </commentGenerator>
+
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1:3306/chat"
                         userId="root"
                         password="123456">
         </jdbcConnection>
+
+        <!--指定生成的类型为java类型，避免数据库中number等类型字段 -->
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
         <!--model包路径-->
-        <javaModelGenerator targetPackage="com.example.chat.entity.domain" targetProject="src/main/java"/> <!--mapper.xml包路径-->
-        <sqlMapGenerator targetPackage="com.example.chat.dao.mappers" targetProject="src/main/resources"/>
+        <javaModelGenerator targetPackage="com.example.chat.entity.domain"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+            <property name="useActualColumnNames" value="true" />
+        </javaModelGenerator>
+        <!--mapper.xml包路径-->
+        <sqlMapGenerator targetPackage="com.example.chat.dao.mappers"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
         <!--mapper包路径-->
-        <javaClientGenerator targetPackage="com.example.chat.dao.mappers" targetProject="src/main/java" type="XMLMAPPER"/>
+        <javaClientGenerator targetPackage="com.example.chat.dao.mappers"
+                             targetProject="src/main/java"
+                             type="XMLMAPPER">
+
+        </javaClientGenerator>
         <!--表配置，tableName支持%，表示全部生成-->
-        <table tableName="t_user_info" domainObjectName="UserInfo" mapperName=""> <!--mysql 配置-->
+        <table tableName="t_user_info" domainObjectName="UserInfo"> <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
 
-        <table tableName="t_msg_info" domainObjectName="MsgInfo" mapperName=""> <!--mysql 配置-->
+        <table tableName="t_msg_info" domainObjectName="MsgInfo"> <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
     </context>

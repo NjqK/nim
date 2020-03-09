@@ -34,13 +34,13 @@ message ExtraHeader {
 }
 
 message Head {
-    string msgId = 1;// 消息id
-    MsgType msgType = 2;// 消息类型
-    MsgContentType msgContentType = 3;// 消息内容类型
-    string fromId = 4;// 消息发送者id
-    string toId = 5;// 消息接收者id
+    string msg_id = 1;// 消息id
+    MsgType msg_type = 2;// 消息类型
+    MsgContentType msg_content_type = 3;// 消息内容类型
+    string from_id = 4;// 消息发送者id
+    string to_id = 5;// 消息接收者id
     int64 timestamp = 6;// 消息时间戳
-    int32 statusReport = 7;// 状态报告
+    int32 status_report = 7;// 状态报告
     repeated ExtraHeader extend = 8;// 扩展字段，以key/value形式存放的json
 }
 
@@ -52,9 +52,11 @@ enum ErrCode {
     // 失败
     FAIL = -1;
     // 单发用户🆔id空
-    SEND_MSG_INDIVIDUALLY_UID_NUL = 101;
+    SEND_MSG_INDIVIDUALLY_TO_UID_NUL = 101;
     // 单发用户🆔id空
     SEND_MSG_INDIVIDUALLY_MSG_NUL = 102;
+    // 发送者id空
+    SEND_MSG_INDIVIDUALLY_FROM_ID_NUL = 103;
 }
 
 message ErrorMsg {

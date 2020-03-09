@@ -9,7 +9,7 @@ import com.example.proto.common.common.Common;
  **/
 public class Constants {
     /**
-     * Default Pong msg
+     * Default Pong msgBody
      */
     public static final Common.Msg PONG = Common.Msg.newBuilder()
             .setHead(Common.Head.newBuilder()

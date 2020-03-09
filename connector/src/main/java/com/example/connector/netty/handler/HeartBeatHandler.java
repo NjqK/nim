@@ -20,7 +20,7 @@ public class HeartBeatHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         Common.Msg message = (Common.Msg) msg;
         if (message.getHead().getMsgType().equals(Common.MsgType.HEART_BEAT)) {
-            log.info("received heart beat msg from channelID:{}", ctx.channel().id());
+            log.info("received heart beat msgBody from channelID:{}", ctx.channel().id());
             ctx.writeAndFlush(Constants.PONG);
         } else {
             ctx.fireChannelRead(msg);

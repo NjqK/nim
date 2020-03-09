@@ -16,7 +16,7 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         Common.Msg message = (Common.Msg) msg;
-        log.info(getClass().getName() + " got msg:{}", message);
+        log.info(getClass().getName() + " got msgBody:{}", message);
         ctx.writeAndFlush(defaultMsg());
     }
 
@@ -29,7 +29,7 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
                 .setStatusReport(1)
                 .build();
         Common.Body body = Common.Body.newBuilder()
-                .setContent("msg received")
+                .setContent("msgBody received")
                 .build();
         builder.setHead(header);
         builder.setBody(body);

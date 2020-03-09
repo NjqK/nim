@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `chat`.`t_user_info`;
 CREATE TABLE `chat`.`t_user_info` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `uid` BIGINT(16) NOT NULL COMMENT '用户id',

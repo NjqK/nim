@@ -1,4 +1,4 @@
-package com.example.common;
+package com.example.common.util;
 
 import lombok.extern.slf4j.Slf4j;
 import redis.clients.jedis.Jedis;

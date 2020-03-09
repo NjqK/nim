@@ -25,7 +25,7 @@ public class ClientBizHandler extends ChannelInboundHandlerAdapter {
 //                .setMsgContentType(Common.MsgContentType.TEXT)
 //                .build();
 //        Common.Body body = Common.Body.newBuilder()
-//                .setContent("msg received")
+//                .setContent("msgBody received")
 //                .build();
 //        builder.setHead(header);
 //        builder.setBody(body);
