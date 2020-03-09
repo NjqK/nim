@@ -1,6 +1,8 @@
 syntax = "proto3";
 package inner.inner;
 
+import "common/common.proto";
+
 option java_multiple_files = false;
 option java_package = "com.example.proto.inner.inner";
 option java_outer_classname = "Inner";
@@ -10,8 +12,12 @@ message GetNodeAddresssReq {
 }
 
 message GetNodeAddresssResp {
-    string host = 1;
-    string port = 2;
+    // 结果
+    common.common.ErrorMsg ret = 1;
+    // ip
+    string host = 2;
+    // port
+    string port = 3;
 }
 
 service ConnectorService {

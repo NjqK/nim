@@ -43,3 +43,23 @@ message Head {
     int32 statusReport = 7;// 状态报告
     repeated ExtraHeader extend = 8;// 扩展字段，以key/value形式存放的json
 }
+
+// 错误码
+enum ErrCode {
+    ERRORCODE_NULL = 0;
+    // 成功
+    SUCCESS = 1;
+    // 失败
+    FAIL = -1;
+    // 单发用户🆔id空
+    SEND_MSG_INDIVIDUALLY_UID_NUL = 101;
+    // 单发用户🆔id空
+    SEND_MSG_INDIVIDUALLY_MSG_NUL = 102;
+}
+
+message ErrorMsg {
+    // 错误码
+    ErrCode error_code = 1;
+    // 错误信息
+    string msg = 2;
+}

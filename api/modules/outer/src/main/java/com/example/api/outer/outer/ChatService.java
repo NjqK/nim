@@ -1,6 +1,8 @@
 
 package com.example.api.outer.outer;
 
+import com.example.proto.outer.outer.Outer.DoGroupSendingReq;
+import com.example.proto.outer.outer.Outer.DoGroupSendingResp;
 import com.example.proto.outer.outer.Outer.SendMsgIndividuallyReq;
 import com.example.proto.outer.outer.Outer.SendMsgIndividuallyResp;
 
@@ -16,10 +18,10 @@ public interface ChatService {
     /**
      * 群发
      *
-     * @param sendMsgIndividuallyReq the SendMsgIndividuallyReq
-     * @return SendMsgIndividuallyResp
+     * @param doGroupSendingReq the DoGroupSendingReq
+     * @return DoGroupSendingResp
      */
-    SendMsgIndividuallyResp doGroupSending(SendMsgIndividuallyReq sendMsgIndividuallyReq);
+    DoGroupSendingResp doGroupSending(DoGroupSendingReq doGroupSendingReq);
 
     /**
      * 单发消息

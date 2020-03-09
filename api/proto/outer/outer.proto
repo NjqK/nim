@@ -1,33 +1,43 @@
 syntax = "proto3";
 package outer.outer;
 
+import "common/common.proto";
+
 option java_multiple_files = false;
 option java_package = "com.example.proto.outer.outer";
 option java_outer_classname = "Outer";
 
 // 单聊消息请求
 message SendMsgIndividuallyReq {
-    // nul
+    // 用户id
+    string uid = 1;
+    // 消息
+    string msg_content = 2;
 }
 
 // 单聊消息响应
 message SendMsgIndividuallyResp {
-
+    // 结果
+    common.common.ErrorMsg ret = 1;
 }
 
 // 群发请求
 message DoGroupSendingReq {
-
+    // 用户id
+    repeated string uid = 1;
+    // 消息
+    string msg_content = 2;
 }
 
 // 群发响应
 message DoGroupSendingResp {
-
+    // 结果
+    common.common.ErrorMsg ret = 1;
 }
 
 service ChatService {
     // 单发消息
     rpc SendMsgIndividually (SendMsgIndividuallyReq) returns (SendMsgIndividuallyResp);
     // 群发
-    rpc DoGroupSending (SendMsgIndividuallyReq) returns (SendMsgIndividuallyResp);
+    rpc DoGroupSending (DoGroupSendingReq) returns (DoGroupSendingResp);
 }

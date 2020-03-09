@@ -38,6 +38,13 @@ public final class Inner {
     }
 
     @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetNodeAddresssReq();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -61,7 +68,7 @@ public final class Inner {
               done = true;
               break;
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -130,9 +137,8 @@ public final class Inner {
       }
       com.example.proto.inner.inner.Inner.GetNodeAddresssReq other = (com.example.proto.inner.inner.Inner.GetNodeAddresssReq) obj;
 
-      boolean result = true;
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -311,35 +317,35 @@ public final class Inner {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -384,7 +390,7 @@ public final class Inner {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -439,21 +445,68 @@ public final class Inner {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string host = 1;</code>
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return Whether the ret field is set.
+     */
+    boolean hasRet();
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return The ret.
+     */
+    com.example.proto.common.common.Common.ErrorMsg getRet();
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     */
+    com.example.proto.common.common.Common.ErrorMsgOrBuilder getRetOrBuilder();
+
+    /**
+     * <pre>
+     * ip
+     * </pre>
+     *
+     * <code>string host = 2;</code>
+     * @return The host.
      */
     java.lang.String getHost();
     /**
-     * <code>string host = 1;</code>
+     * <pre>
+     * ip
+     * </pre>
+     *
+     * <code>string host = 2;</code>
+     * @return The bytes for host.
      */
     com.google.protobuf.ByteString
         getHostBytes();
 
     /**
-     * <code>string port = 2;</code>
+     * <pre>
+     * port
+     * </pre>
+     *
+     * <code>string port = 3;</code>
+     * @return The port.
      */
     java.lang.String getPort();
     /**
-     * <code>string port = 2;</code>
+     * <pre>
+     * port
+     * </pre>
+     *
+     * <code>string port = 3;</code>
+     * @return The bytes for port.
      */
     com.google.protobuf.ByteString
         getPortBytes();
@@ -476,6 +529,13 @@ public final class Inner {
     }
 
     @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetNodeAddresssResp();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -488,7 +548,6 @@ public final class Inner {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -500,19 +559,32 @@ public final class Inner {
               done = true;
               break;
             case 10: {
+              com.example.proto.common.common.Common.ErrorMsg.Builder subBuilder = null;
+              if (ret_ != null) {
+                subBuilder = ret_.toBuilder();
+              }
+              ret_ = input.readMessage(com.example.proto.common.common.Common.ErrorMsg.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(ret_);
+                ret_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
               host_ = s;
               break;
             }
-            case 18: {
+            case 26: {
               java.lang.String s = input.readStringRequireUtf8();
 
               port_ = s;
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -543,10 +615,50 @@ public final class Inner {
               com.example.proto.inner.inner.Inner.GetNodeAddresssResp.class, com.example.proto.inner.inner.Inner.GetNodeAddresssResp.Builder.class);
     }
 
-    public static final int HOST_FIELD_NUMBER = 1;
+    public static final int RET_FIELD_NUMBER = 1;
+    private com.example.proto.common.common.Common.ErrorMsg ret_;
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return Whether the ret field is set.
+     */
+    public boolean hasRet() {
+      return ret_ != null;
+    }
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return The ret.
+     */
+    public com.example.proto.common.common.Common.ErrorMsg getRet() {
+      return ret_ == null ? com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
+    }
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     */
+    public com.example.proto.common.common.Common.ErrorMsgOrBuilder getRetOrBuilder() {
+      return getRet();
+    }
+
+    public static final int HOST_FIELD_NUMBER = 2;
     private volatile java.lang.Object host_;
     /**
-     * <code>string host = 1;</code>
+     * <pre>
+     * ip
+     * </pre>
+     *
+     * <code>string host = 2;</code>
+     * @return The host.
      */
     public java.lang.String getHost() {
       java.lang.Object ref = host_;
@@ -561,7 +673,12 @@ public final class Inner {
       }
     }
     /**
-     * <code>string host = 1;</code>
+     * <pre>
+     * ip
+     * </pre>
+     *
+     * <code>string host = 2;</code>
+     * @return The bytes for host.
      */
     public com.google.protobuf.ByteString
         getHostBytes() {
@@ -577,10 +694,15 @@ public final class Inner {
       }
     }
 
-    public static final int PORT_FIELD_NUMBER = 2;
+    public static final int PORT_FIELD_NUMBER = 3;
     private volatile java.lang.Object port_;
     /**
-     * <code>string port = 2;</code>
+     * <pre>
+     * port
+     * </pre>
+     *
+     * <code>string port = 3;</code>
+     * @return The port.
      */
     public java.lang.String getPort() {
       java.lang.Object ref = port_;
@@ -595,7 +717,12 @@ public final class Inner {
       }
     }
     /**
-     * <code>string port = 2;</code>
+     * <pre>
+     * port
+     * </pre>
+     *
+     * <code>string port = 3;</code>
+     * @return The bytes for port.
      */
     public com.google.protobuf.ByteString
         getPortBytes() {
@@ -625,11 +752,14 @@ public final class Inner {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (ret_ != null) {
+        output.writeMessage(1, getRet());
+      }
       if (!getHostBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, host_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, host_);
       }
       if (!getPortBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, port_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, port_);
       }
       unknownFields.writeTo(output);
     }
@@ -640,11 +770,15 @@ public final class Inner {
       if (size != -1) return size;
 
       size = 0;
+      if (ret_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getRet());
+      }
       if (!getHostBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, host_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, host_);
       }
       if (!getPortBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, port_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, port_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -661,13 +795,17 @@ public final class Inner {
       }
       com.example.proto.inner.inner.Inner.GetNodeAddresssResp other = (com.example.proto.inner.inner.Inner.GetNodeAddresssResp) obj;
 
-      boolean result = true;
-      result = result && getHost()
-          .equals(other.getHost());
-      result = result && getPort()
-          .equals(other.getPort());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (hasRet() != other.hasRet()) return false;
+      if (hasRet()) {
+        if (!getRet()
+            .equals(other.getRet())) return false;
+      }
+      if (!getHost()
+          .equals(other.getHost())) return false;
+      if (!getPort()
+          .equals(other.getPort())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -677,6 +815,10 @@ public final class Inner {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasRet()) {
+        hash = (37 * hash) + RET_FIELD_NUMBER;
+        hash = (53 * hash) + getRet().hashCode();
+      }
       hash = (37 * hash) + HOST_FIELD_NUMBER;
       hash = (53 * hash) + getHost().hashCode();
       hash = (37 * hash) + PORT_FIELD_NUMBER;
@@ -814,6 +956,12 @@ public final class Inner {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        if (retBuilder_ == null) {
+          ret_ = null;
+        } else {
+          ret_ = null;
+          retBuilder_ = null;
+        }
         host_ = "";
 
         port_ = "";
@@ -844,6 +992,11 @@ public final class Inner {
       @java.lang.Override
       public com.example.proto.inner.inner.Inner.GetNodeAddresssResp buildPartial() {
         com.example.proto.inner.inner.Inner.GetNodeAddresssResp result = new com.example.proto.inner.inner.Inner.GetNodeAddresssResp(this);
+        if (retBuilder_ == null) {
+          result.ret_ = ret_;
+        } else {
+          result.ret_ = retBuilder_.build();
+        }
         result.host_ = host_;
         result.port_ = port_;
         onBuilt();
@@ -852,35 +1005,35 @@ public final class Inner {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -894,6 +1047,9 @@ public final class Inner {
 
       public Builder mergeFrom(com.example.proto.inner.inner.Inner.GetNodeAddresssResp other) {
         if (other == com.example.proto.inner.inner.Inner.GetNodeAddresssResp.getDefaultInstance()) return this;
+        if (other.hasRet()) {
+          mergeRet(other.getRet());
+        }
         if (!other.getHost().isEmpty()) {
           host_ = other.host_;
           onChanged();
@@ -931,9 +1087,169 @@ public final class Inner {
         return this;
       }
 
+      private com.example.proto.common.common.Common.ErrorMsg ret_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder> retBuilder_;
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       * @return Whether the ret field is set.
+       */
+      public boolean hasRet() {
+        return retBuilder_ != null || ret_ != null;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       * @return The ret.
+       */
+      public com.example.proto.common.common.Common.ErrorMsg getRet() {
+        if (retBuilder_ == null) {
+          return ret_ == null ? com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
+        } else {
+          return retBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public Builder setRet(com.example.proto.common.common.Common.ErrorMsg value) {
+        if (retBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ret_ = value;
+          onChanged();
+        } else {
+          retBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public Builder setRet(
+          com.example.proto.common.common.Common.ErrorMsg.Builder builderForValue) {
+        if (retBuilder_ == null) {
+          ret_ = builderForValue.build();
+          onChanged();
+        } else {
+          retBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public Builder mergeRet(com.example.proto.common.common.Common.ErrorMsg value) {
+        if (retBuilder_ == null) {
+          if (ret_ != null) {
+            ret_ =
+              com.example.proto.common.common.Common.ErrorMsg.newBuilder(ret_).mergeFrom(value).buildPartial();
+          } else {
+            ret_ = value;
+          }
+          onChanged();
+        } else {
+          retBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public Builder clearRet() {
+        if (retBuilder_ == null) {
+          ret_ = null;
+          onChanged();
+        } else {
+          ret_ = null;
+          retBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public com.example.proto.common.common.Common.ErrorMsg.Builder getRetBuilder() {
+        
+        onChanged();
+        return getRetFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public com.example.proto.common.common.Common.ErrorMsgOrBuilder getRetOrBuilder() {
+        if (retBuilder_ != null) {
+          return retBuilder_.getMessageOrBuilder();
+        } else {
+          return ret_ == null ?
+              com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
+        }
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder> 
+          getRetFieldBuilder() {
+        if (retBuilder_ == null) {
+          retBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder>(
+                  getRet(),
+                  getParentForChildren(),
+                  isClean());
+          ret_ = null;
+        }
+        return retBuilder_;
+      }
+
       private java.lang.Object host_ = "";
       /**
-       * <code>string host = 1;</code>
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string host = 2;</code>
+       * @return The host.
        */
       public java.lang.String getHost() {
         java.lang.Object ref = host_;
@@ -948,7 +1264,12 @@ public final class Inner {
         }
       }
       /**
-       * <code>string host = 1;</code>
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string host = 2;</code>
+       * @return The bytes for host.
        */
       public com.google.protobuf.ByteString
           getHostBytes() {
@@ -964,7 +1285,13 @@ public final class Inner {
         }
       }
       /**
-       * <code>string host = 1;</code>
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string host = 2;</code>
+       * @param value The host to set.
+       * @return This builder for chaining.
        */
       public Builder setHost(
           java.lang.String value) {
@@ -977,7 +1304,12 @@ public final class Inner {
         return this;
       }
       /**
-       * <code>string host = 1;</code>
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string host = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearHost() {
         
@@ -986,7 +1318,13 @@ public final class Inner {
         return this;
       }
       /**
-       * <code>string host = 1;</code>
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string host = 2;</code>
+       * @param value The bytes for host to set.
+       * @return This builder for chaining.
        */
       public Builder setHostBytes(
           com.google.protobuf.ByteString value) {
@@ -1002,7 +1340,12 @@ public final class Inner {
 
       private java.lang.Object port_ = "";
       /**
-       * <code>string port = 2;</code>
+       * <pre>
+       * port
+       * </pre>
+       *
+       * <code>string port = 3;</code>
+       * @return The port.
        */
       public java.lang.String getPort() {
         java.lang.Object ref = port_;
@@ -1017,7 +1360,12 @@ public final class Inner {
         }
       }
       /**
-       * <code>string port = 2;</code>
+       * <pre>
+       * port
+       * </pre>
+       *
+       * <code>string port = 3;</code>
+       * @return The bytes for port.
        */
       public com.google.protobuf.ByteString
           getPortBytes() {
@@ -1033,7 +1381,13 @@ public final class Inner {
         }
       }
       /**
-       * <code>string port = 2;</code>
+       * <pre>
+       * port
+       * </pre>
+       *
+       * <code>string port = 3;</code>
+       * @param value The port to set.
+       * @return This builder for chaining.
        */
       public Builder setPort(
           java.lang.String value) {
@@ -1046,7 +1400,12 @@ public final class Inner {
         return this;
       }
       /**
-       * <code>string port = 2;</code>
+       * <pre>
+       * port
+       * </pre>
+       *
+       * <code>string port = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPort() {
         
@@ -1055,7 +1414,13 @@ public final class Inner {
         return this;
       }
       /**
-       * <code>string port = 2;</code>
+       * <pre>
+       * port
+       * </pre>
+       *
+       * <code>string port = 3;</code>
+       * @param value The bytes for port to set.
+       * @return This builder for chaining.
        */
       public Builder setPortBytes(
           com.google.protobuf.ByteString value) {
@@ -1071,7 +1436,7 @@ public final class Inner {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -1140,26 +1505,20 @@ public final class Inner {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\021inner/inner.proto\022\013inner.inner\"\024\n\022GetN" +
-      "odeAddresssReq\"1\n\023GetNodeAddresssResp\022\014\n" +
-      "\004host\030\001 \001(\t\022\014\n\004port\030\002 \001(\t2g\n\020ConnectorSe" +
-      "rvice\022S\n\016GetNodeAddress\022\037.inner.inner.Ge" +
-      "tNodeAddresssReq\032 .inner.inner.GetNodeAd" +
-      "dresssRespB(\n\035com.example.proto.inner.in" +
-      "nerB\005InnerP\000b\006proto3"
+      "\n\021inner/inner.proto\022\013inner.inner\032\023common" +
+      "/common.proto\"\024\n\022GetNodeAddresssReq\"W\n\023G" +
+      "etNodeAddresssResp\022$\n\003ret\030\001 \001(\0132\027.common" +
+      ".common.ErrorMsg\022\014\n\004host\030\002 \001(\t\022\014\n\004port\030\003" +
+      " \001(\t2g\n\020ConnectorService\022S\n\016GetNodeAddre" +
+      "ss\022\037.inner.inner.GetNodeAddresssReq\032 .in" +
+      "ner.inner.GetNodeAddresssRespB(\n\035com.exa" +
+      "mple.proto.inner.innerB\005InnerP\000b\006proto3"
     };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
-        };
-    com.google.protobuf.Descriptors.FileDescriptor
+    descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-        }, assigner);
+          com.example.proto.common.common.Common.getDescriptor(),
+        });
     internal_static_inner_inner_GetNodeAddresssReq_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_inner_inner_GetNodeAddresssReq_fieldAccessorTable = new
@@ -1171,7 +1530,8 @@ public final class Inner {
     internal_static_inner_inner_GetNodeAddresssResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_inner_inner_GetNodeAddresssResp_descriptor,
-        new java.lang.String[] { "Host", "Port", });
+        new java.lang.String[] { "Ret", "Host", "Port", });
+    com.example.proto.common.common.Common.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

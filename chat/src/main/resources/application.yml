@@ -28,8 +28,8 @@ server:
   port: 8082
 
 mybatis:
-  mapper-locations: classpath*:com/example/dao/mappers/*.xml
-  type-aliases-package: com.example.connector.entity.domain
+  mapper-locations: classpath*:com/example/chat/dao/mappers/*.xml
+  type-aliases-package: com.example.chat.entity.domain
 
 #dubbo:
 #  connector:
