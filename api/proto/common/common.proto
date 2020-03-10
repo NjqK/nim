@@ -16,7 +16,6 @@ enum MsgType {
     KICK = 3;
     // 单聊
     SINGLE_CHAT = 4;
-    // ...
 }
 
 enum MsgContentType {
@@ -57,7 +56,7 @@ message Head {
     // 状态报告
     int32 status_report = 7;
     // 扩展字段，以key/value形式存放的json
-    map<string, string> extend = 8;
+    repeated ExtraHeader extends = 8;
 }
 
 // 错误码

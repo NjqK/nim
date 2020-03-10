@@ -7,6 +7,18 @@ option java_multiple_files = false;
 option java_package = "com.example.proto.inner.inner";
 option java_outer_classname = "Inner";
 
+message RouteMsgReq {
+    // 目标id
+    string to_uid = 1;
+    // 消息
+    common.common.Msg msg = 2;
+}
+
+message RouteMsgResp {
+    // 结果
+    common.common.ErrorMsg ret = 1;
+}
+
 message GetNodeAddresssReq {
     // nul
 }
@@ -18,18 +30,6 @@ message GetNodeAddresssResp {
     string host = 2;
     // port
     string port = 3;
-}
-
-message RouteMsgReq {
-    // 目标id
-    string to_uid = 1;
-    // 消息
-    common.common.Msg msg = 2;
-}
-
-message RouteMsgResp {
-    // 结果
-    common.common.ErrorMsg ret = 1;
 }
 
 service ConnectorService {

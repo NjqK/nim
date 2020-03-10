@@ -19,5 +19,5 @@ public class CommonConstants {
 
     public static final String USERS_REDIS_KEY = "users";
 
-    public static final String CONNECTOR_REDIS_KEY = "connector";
+    public static final String CONNECTOR_KAFKA_TOPIC = "connector";
 }

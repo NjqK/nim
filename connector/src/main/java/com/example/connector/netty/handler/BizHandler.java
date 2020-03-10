@@ -1,24 +1,19 @@
 package com.example.connector.netty.handler;
 
 import com.example.common.CommonConstants;
-import com.example.common.util.JedisUtil;
+import com.example.common.redis.JedisUtil;
 import com.example.common.util.ListUtil;
 import com.example.connector.common.RedisKeyUtil;
 import com.example.connector.common.SpringUtil;
 import com.example.connector.dao.manager.SessionManager;
 import com.example.proto.common.common.Common;
 import io.netty.channel.Channel;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.handler.timeout.IdleState;
-import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.Attribute;
 import io.netty.util.AttributeKey;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -41,7 +36,7 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
         Common.Msg message = (Common.Msg) msg;
         log.info("BizHandler got msgBody:{}", message);
         if (message.getHead().getMsgType().equals(Common.MsgType.HAND_SHAKE)) {
-            String uid = message.getHead().getExtendMap().get("uid");
+            String uid = getValue(message, "uid");
             if (uid != null) {
                 log.info("create redis session, uid:{}", uid);
                 if (JedisUtil.hset(CommonConstants.USERS_REDIS_KEY, uid, RedisKeyUtil.getApplicationRedisKey()) > 0) {
@@ -51,10 +46,26 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
                         ctx.channel().attr(key).set(uid);
                     }
                 }
+            } else {
+                ctx.close();
             }
         } else {
             ctx.writeAndFlush(defaultMsg());
         }
+    }
+
+    private String getValue(Common.Msg message, String key) {
+        List<Common.ExtraHeader> extendsList = message.getHead().getExtendsList();
+        if (ListUtil.isEmpty(extendsList)) {
+            log.error("握手的消息包有误.");
+            return null;
+        }
+        for (Common.ExtraHeader extraHeader : extendsList) {
+            if (extraHeader.getKey().equals(key)) {
+                return extraHeader.getValue();
+            }
+        }
+        return null;
     }
 
     @Override

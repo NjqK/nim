@@ -43,6 +43,6 @@ redis:
     maxWaitMillis: -1
 
 kafka:
-  cluster:
-    nodes: kafka:port
+  nodes: 127.0.0.1:9092
+  group: push_task_group
 

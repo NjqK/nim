@@ -45,7 +45,6 @@
 // flag "--${NAME}_out" is passed to protoc.
 
 syntax = "proto2";
-
 package google.protobuf.compiler;
 option java_package = "com.google.protobuf.compiler";
 option java_outer_classname = "PluginProtos";
@@ -81,7 +80,7 @@ message CodeGeneratorRequest {
   // protoc guarantees that all proto_files will be written after
   // the fields above, even though this is not technically guaranteed by the
   // protobuf wire format.  This theoretically could allow a plugin to stream
-  // in the FileDescriptorProtos and handle them one by one rather than read
+  // in the FileDescriptorProtos and handler them one by one rather than read
   // the entire set into memory at once.  However, as of this writing, this
   // is not similarly optimized on protoc's end -- it will store all fields in
   // memory at once before sending them to the plugin.

@@ -24,7 +24,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string to_uid = 1;</code>
-     * @return The toUid.
      */
     java.lang.String getToUid();
     /**
@@ -33,7 +32,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string to_uid = 1;</code>
-     * @return The bytes for toUid.
      */
     com.google.protobuf.ByteString
         getToUidBytes();
@@ -44,7 +42,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string from_uid = 2;</code>
-     * @return The fromUid.
      */
     java.lang.String getFromUid();
     /**
@@ -53,7 +50,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string from_uid = 2;</code>
-     * @return The bytes for fromUid.
      */
     com.google.protobuf.ByteString
         getFromUidBytes();
@@ -64,7 +60,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string msg_content = 3;</code>
-     * @return The msgContent.
      */
     java.lang.String getMsgContent();
     /**
@@ -73,7 +68,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string msg_content = 3;</code>
-     * @return The bytes for msgContent.
      */
     com.google.protobuf.ByteString
         getMsgContentBytes();
@@ -84,7 +78,6 @@ public final class Outer {
      * </pre>
      *
      * <code>.common.common.MsgType msg_type = 4;</code>
-     * @return The enum numeric value on the wire for msgType.
      */
     int getMsgTypeValue();
     /**
@@ -93,7 +86,6 @@ public final class Outer {
      * </pre>
      *
      * <code>.common.common.MsgType msg_type = 4;</code>
-     * @return The msgType.
      */
     com.example.proto.common.common.Common.MsgType getMsgType();
 
@@ -103,7 +95,6 @@ public final class Outer {
      * </pre>
      *
      * <code>.common.common.MsgContentType msg_content_type = 5;</code>
-     * @return The enum numeric value on the wire for msgContentType.
      */
     int getMsgContentTypeValue();
     /**
@@ -112,7 +103,6 @@ public final class Outer {
      * </pre>
      *
      * <code>.common.common.MsgContentType msg_content_type = 5;</code>
-     * @return The msgContentType.
      */
     com.example.proto.common.common.Common.MsgContentType getMsgContentType();
   }
@@ -141,13 +131,6 @@ public final class Outer {
     }
 
     @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new SendMsgIndividuallyReq();
-    }
-
-    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -160,6 +143,7 @@ public final class Outer {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -201,7 +185,7 @@ public final class Outer {
               break;
             }
             default: {
-              if (!parseUnknownField(
+              if (!parseUnknownFieldProto3(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -240,7 +224,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string to_uid = 1;</code>
-     * @return The toUid.
      */
     public java.lang.String getToUid() {
       java.lang.Object ref = toUid_;
@@ -260,7 +243,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string to_uid = 1;</code>
-     * @return The bytes for toUid.
      */
     public com.google.protobuf.ByteString
         getToUidBytes() {
@@ -284,7 +266,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string from_uid = 2;</code>
-     * @return The fromUid.
      */
     public java.lang.String getFromUid() {
       java.lang.Object ref = fromUid_;
@@ -304,7 +285,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string from_uid = 2;</code>
-     * @return The bytes for fromUid.
      */
     public com.google.protobuf.ByteString
         getFromUidBytes() {
@@ -328,7 +308,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string msg_content = 3;</code>
-     * @return The msgContent.
      */
     public java.lang.String getMsgContent() {
       java.lang.Object ref = msgContent_;
@@ -348,7 +327,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string msg_content = 3;</code>
-     * @return The bytes for msgContent.
      */
     public com.google.protobuf.ByteString
         getMsgContentBytes() {
@@ -372,7 +350,6 @@ public final class Outer {
      * </pre>
      *
      * <code>.common.common.MsgType msg_type = 4;</code>
-     * @return The enum numeric value on the wire for msgType.
      */
     public int getMsgTypeValue() {
       return msgType_;
@@ -383,7 +360,6 @@ public final class Outer {
      * </pre>
      *
      * <code>.common.common.MsgType msg_type = 4;</code>
-     * @return The msgType.
      */
     public com.example.proto.common.common.Common.MsgType getMsgType() {
       @SuppressWarnings("deprecation")
@@ -399,7 +375,6 @@ public final class Outer {
      * </pre>
      *
      * <code>.common.common.MsgContentType msg_content_type = 5;</code>
-     * @return The enum numeric value on the wire for msgContentType.
      */
     public int getMsgContentTypeValue() {
       return msgContentType_;
@@ -410,7 +385,6 @@ public final class Outer {
      * </pre>
      *
      * <code>.common.common.MsgContentType msg_content_type = 5;</code>
-     * @return The msgContentType.
      */
     public com.example.proto.common.common.Common.MsgContentType getMsgContentType() {
       @SuppressWarnings("deprecation")
@@ -488,16 +462,17 @@ public final class Outer {
       }
       com.example.proto.outer.outer.Outer.SendMsgIndividuallyReq other = (com.example.proto.outer.outer.Outer.SendMsgIndividuallyReq) obj;
 
-      if (!getToUid()
-          .equals(other.getToUid())) return false;
-      if (!getFromUid()
-          .equals(other.getFromUid())) return false;
-      if (!getMsgContent()
-          .equals(other.getMsgContent())) return false;
-      if (msgType_ != other.msgType_) return false;
-      if (msgContentType_ != other.msgContentType_) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+      boolean result = true;
+      result = result && getToUid()
+          .equals(other.getToUid());
+      result = result && getFromUid()
+          .equals(other.getFromUid());
+      result = result && getMsgContent()
+          .equals(other.getMsgContent());
+      result = result && msgType_ == other.msgType_;
+      result = result && msgContentType_ == other.msgContentType_;
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
     }
 
     @java.lang.Override
@@ -701,35 +676,35 @@ public final class Outer {
 
       @java.lang.Override
       public Builder clone() {
-        return super.clone();
+        return (Builder) super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -797,7 +772,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string to_uid = 1;</code>
-       * @return The toUid.
        */
       public java.lang.String getToUid() {
         java.lang.Object ref = toUid_;
@@ -817,7 +791,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string to_uid = 1;</code>
-       * @return The bytes for toUid.
        */
       public com.google.protobuf.ByteString
           getToUidBytes() {
@@ -838,8 +811,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string to_uid = 1;</code>
-       * @param value The toUid to set.
-       * @return This builder for chaining.
        */
       public Builder setToUid(
           java.lang.String value) {
@@ -857,7 +828,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string to_uid = 1;</code>
-       * @return This builder for chaining.
        */
       public Builder clearToUid() {
         
@@ -871,8 +841,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string to_uid = 1;</code>
-       * @param value The bytes for toUid to set.
-       * @return This builder for chaining.
        */
       public Builder setToUidBytes(
           com.google.protobuf.ByteString value) {
@@ -893,7 +861,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string from_uid = 2;</code>
-       * @return The fromUid.
        */
       public java.lang.String getFromUid() {
         java.lang.Object ref = fromUid_;
@@ -913,7 +880,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string from_uid = 2;</code>
-       * @return The bytes for fromUid.
        */
       public com.google.protobuf.ByteString
           getFromUidBytes() {
@@ -934,8 +900,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string from_uid = 2;</code>
-       * @param value The fromUid to set.
-       * @return This builder for chaining.
        */
       public Builder setFromUid(
           java.lang.String value) {
@@ -953,7 +917,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string from_uid = 2;</code>
-       * @return This builder for chaining.
        */
       public Builder clearFromUid() {
         
@@ -967,8 +930,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string from_uid = 2;</code>
-       * @param value The bytes for fromUid to set.
-       * @return This builder for chaining.
        */
       public Builder setFromUidBytes(
           com.google.protobuf.ByteString value) {
@@ -989,7 +950,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string msg_content = 3;</code>
-       * @return The msgContent.
        */
       public java.lang.String getMsgContent() {
         java.lang.Object ref = msgContent_;
@@ -1009,7 +969,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string msg_content = 3;</code>
-       * @return The bytes for msgContent.
        */
       public com.google.protobuf.ByteString
           getMsgContentBytes() {
@@ -1030,8 +989,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string msg_content = 3;</code>
-       * @param value The msgContent to set.
-       * @return This builder for chaining.
        */
       public Builder setMsgContent(
           java.lang.String value) {
@@ -1049,7 +1006,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string msg_content = 3;</code>
-       * @return This builder for chaining.
        */
       public Builder clearMsgContent() {
         
@@ -1063,8 +1019,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string msg_content = 3;</code>
-       * @param value The bytes for msgContent to set.
-       * @return This builder for chaining.
        */
       public Builder setMsgContentBytes(
           com.google.protobuf.ByteString value) {
@@ -1085,7 +1039,6 @@ public final class Outer {
        * </pre>
        *
        * <code>.common.common.MsgType msg_type = 4;</code>
-       * @return The enum numeric value on the wire for msgType.
        */
       public int getMsgTypeValue() {
         return msgType_;
@@ -1096,8 +1049,6 @@ public final class Outer {
        * </pre>
        *
        * <code>.common.common.MsgType msg_type = 4;</code>
-       * @param value The enum numeric value on the wire for msgType to set.
-       * @return This builder for chaining.
        */
       public Builder setMsgTypeValue(int value) {
         msgType_ = value;
@@ -1110,7 +1061,6 @@ public final class Outer {
        * </pre>
        *
        * <code>.common.common.MsgType msg_type = 4;</code>
-       * @return The msgType.
        */
       public com.example.proto.common.common.Common.MsgType getMsgType() {
         @SuppressWarnings("deprecation")
@@ -1123,8 +1073,6 @@ public final class Outer {
        * </pre>
        *
        * <code>.common.common.MsgType msg_type = 4;</code>
-       * @param value The msgType to set.
-       * @return This builder for chaining.
        */
       public Builder setMsgType(com.example.proto.common.common.Common.MsgType value) {
         if (value == null) {
@@ -1141,7 +1089,6 @@ public final class Outer {
        * </pre>
        *
        * <code>.common.common.MsgType msg_type = 4;</code>
-       * @return This builder for chaining.
        */
       public Builder clearMsgType() {
         
@@ -1157,7 +1104,6 @@ public final class Outer {
        * </pre>
        *
        * <code>.common.common.MsgContentType msg_content_type = 5;</code>
-       * @return The enum numeric value on the wire for msgContentType.
        */
       public int getMsgContentTypeValue() {
         return msgContentType_;
@@ -1168,8 +1114,6 @@ public final class Outer {
        * </pre>
        *
        * <code>.common.common.MsgContentType msg_content_type = 5;</code>
-       * @param value The enum numeric value on the wire for msgContentType to set.
-       * @return This builder for chaining.
        */
       public Builder setMsgContentTypeValue(int value) {
         msgContentType_ = value;
@@ -1182,7 +1126,6 @@ public final class Outer {
        * </pre>
        *
        * <code>.common.common.MsgContentType msg_content_type = 5;</code>
-       * @return The msgContentType.
        */
       public com.example.proto.common.common.Common.MsgContentType getMsgContentType() {
         @SuppressWarnings("deprecation")
@@ -1195,8 +1138,6 @@ public final class Outer {
        * </pre>
        *
        * <code>.common.common.MsgContentType msg_content_type = 5;</code>
-       * @param value The msgContentType to set.
-       * @return This builder for chaining.
        */
       public Builder setMsgContentType(com.example.proto.common.common.Common.MsgContentType value) {
         if (value == null) {
@@ -1213,7 +1154,6 @@ public final class Outer {
        * </pre>
        *
        * <code>.common.common.MsgContentType msg_content_type = 5;</code>
-       * @return This builder for chaining.
        */
       public Builder clearMsgContentType() {
         
@@ -1224,7 +1164,7 @@ public final class Outer {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       @java.lang.Override
@@ -1284,7 +1224,6 @@ public final class Outer {
      * </pre>
      *
      * <code>.common.common.ErrorMsg ret = 1;</code>
-     * @return Whether the ret field is set.
      */
     boolean hasRet();
     /**
@@ -1293,7 +1232,6 @@ public final class Outer {
      * </pre>
      *
      * <code>.common.common.ErrorMsg ret = 1;</code>
-     * @return The ret.
      */
     com.example.proto.common.common.Common.ErrorMsg getRet();
     /**
@@ -1325,13 +1263,6 @@ public final class Outer {
     }
 
     @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new SendMsgIndividuallyResp();
-    }
-
-    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -1344,6 +1275,7 @@ public final class Outer {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -1368,7 +1300,7 @@ public final class Outer {
               break;
             }
             default: {
-              if (!parseUnknownField(
+              if (!parseUnknownFieldProto3(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -1407,7 +1339,6 @@ public final class Outer {
      * </pre>
      *
      * <code>.common.common.ErrorMsg ret = 1;</code>
-     * @return Whether the ret field is set.
      */
     public boolean hasRet() {
       return ret_ != null;
@@ -1418,7 +1349,6 @@ public final class Outer {
      * </pre>
      *
      * <code>.common.common.ErrorMsg ret = 1;</code>
-     * @return The ret.
      */
     public com.example.proto.common.common.Common.ErrorMsg getRet() {
       return ret_ == null ? com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
@@ -1479,13 +1409,14 @@ public final class Outer {
       }
       com.example.proto.outer.outer.Outer.SendMsgIndividuallyResp other = (com.example.proto.outer.outer.Outer.SendMsgIndividuallyResp) obj;
 
-      if (hasRet() != other.hasRet()) return false;
+      boolean result = true;
+      result = result && (hasRet() == other.hasRet());
       if (hasRet()) {
-        if (!getRet()
-            .equals(other.getRet())) return false;
+        result = result && getRet()
+            .equals(other.getRet());
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
     }
 
     @java.lang.Override
@@ -1679,35 +1610,35 @@ public final class Outer {
 
       @java.lang.Override
       public Builder clone() {
-        return super.clone();
+        return (Builder) super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1753,7 +1684,7 @@ public final class Outer {
         return this;
       }
 
-      private com.example.proto.common.common.Common.ErrorMsg ret_;
+      private com.example.proto.common.common.Common.ErrorMsg ret_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder> retBuilder_;
       /**
@@ -1762,7 +1693,6 @@ public final class Outer {
        * </pre>
        *
        * <code>.common.common.ErrorMsg ret = 1;</code>
-       * @return Whether the ret field is set.
        */
       public boolean hasRet() {
         return retBuilder_ != null || ret_ != null;
@@ -1773,7 +1703,6 @@ public final class Outer {
        * </pre>
        *
        * <code>.common.common.ErrorMsg ret = 1;</code>
-       * @return The ret.
        */
       public com.example.proto.common.common.Common.ErrorMsg getRet() {
         if (retBuilder_ == null) {
@@ -1910,7 +1839,7 @@ public final class Outer {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       @java.lang.Override
@@ -1970,7 +1899,6 @@ public final class Outer {
      * </pre>
      *
      * <code>repeated string to_uids = 1;</code>
-     * @return A list containing the toUids.
      */
     java.util.List<java.lang.String>
         getToUidsList();
@@ -1980,7 +1908,6 @@ public final class Outer {
      * </pre>
      *
      * <code>repeated string to_uids = 1;</code>
-     * @return The count of toUids.
      */
     int getToUidsCount();
     /**
@@ -1989,8 +1916,6 @@ public final class Outer {
      * </pre>
      *
      * <code>repeated string to_uids = 1;</code>
-     * @param index The index of the element to return.
-     * @return The toUids at the given index.
      */
     java.lang.String getToUids(int index);
     /**
@@ -1999,8 +1924,6 @@ public final class Outer {
      * </pre>
      *
      * <code>repeated string to_uids = 1;</code>
-     * @param index The index of the value to return.
-     * @return The bytes of the toUids at the given index.
      */
     com.google.protobuf.ByteString
         getToUidsBytes(int index);
@@ -2011,7 +1934,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string from_uid = 2;</code>
-     * @return The fromUid.
      */
     java.lang.String getFromUid();
     /**
@@ -2020,7 +1942,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string from_uid = 2;</code>
-     * @return The bytes for fromUid.
      */
     com.google.protobuf.ByteString
         getFromUidBytes();
@@ -2031,7 +1952,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string msg_content = 3;</code>
-     * @return The msgContent.
      */
     java.lang.String getMsgContent();
     /**
@@ -2040,7 +1960,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string msg_content = 3;</code>
-     * @return The bytes for msgContent.
      */
     com.google.protobuf.ByteString
         getMsgContentBytes();
@@ -2065,13 +1984,6 @@ public final class Outer {
       toUids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       fromUid_ = "";
       msgContent_ = "";
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new DoGroupSendingReq();
     }
 
     @java.lang.Override
@@ -2100,7 +2012,7 @@ public final class Outer {
               break;
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
                 toUids_ = new com.google.protobuf.LazyStringArrayList();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -2120,7 +2032,7 @@ public final class Outer {
               break;
             }
             default: {
-              if (!parseUnknownField(
+              if (!parseUnknownFieldProto3(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -2134,7 +2046,7 @@ public final class Outer {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           toUids_ = toUids_.getUnmodifiableView();
         }
         this.unknownFields = unknownFields.build();
@@ -2154,6 +2066,7 @@ public final class Outer {
               com.example.proto.outer.outer.Outer.DoGroupSendingReq.class, com.example.proto.outer.outer.Outer.DoGroupSendingReq.Builder.class);
     }
 
+    private int bitField0_;
     public static final int TO_UIDS_FIELD_NUMBER = 1;
     private com.google.protobuf.LazyStringList toUids_;
     /**
@@ -2162,7 +2075,6 @@ public final class Outer {
      * </pre>
      *
      * <code>repeated string to_uids = 1;</code>
-     * @return A list containing the toUids.
      */
     public com.google.protobuf.ProtocolStringList
         getToUidsList() {
@@ -2174,7 +2086,6 @@ public final class Outer {
      * </pre>
      *
      * <code>repeated string to_uids = 1;</code>
-     * @return The count of toUids.
      */
     public int getToUidsCount() {
       return toUids_.size();
@@ -2185,8 +2096,6 @@ public final class Outer {
      * </pre>
      *
      * <code>repeated string to_uids = 1;</code>
-     * @param index The index of the element to return.
-     * @return The toUids at the given index.
      */
     public java.lang.String getToUids(int index) {
       return toUids_.get(index);
@@ -2197,8 +2106,6 @@ public final class Outer {
      * </pre>
      *
      * <code>repeated string to_uids = 1;</code>
-     * @param index The index of the value to return.
-     * @return The bytes of the toUids at the given index.
      */
     public com.google.protobuf.ByteString
         getToUidsBytes(int index) {
@@ -2213,7 +2120,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string from_uid = 2;</code>
-     * @return The fromUid.
      */
     public java.lang.String getFromUid() {
       java.lang.Object ref = fromUid_;
@@ -2233,7 +2139,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string from_uid = 2;</code>
-     * @return The bytes for fromUid.
      */
     public com.google.protobuf.ByteString
         getFromUidBytes() {
@@ -2257,7 +2162,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string msg_content = 3;</code>
-     * @return The msgContent.
      */
     public java.lang.String getMsgContent() {
       java.lang.Object ref = msgContent_;
@@ -2277,7 +2181,6 @@ public final class Outer {
      * </pre>
      *
      * <code>string msg_content = 3;</code>
-     * @return The bytes for msgContent.
      */
     public com.google.protobuf.ByteString
         getMsgContentBytes() {
@@ -2354,14 +2257,15 @@ public final class Outer {
       }
       com.example.proto.outer.outer.Outer.DoGroupSendingReq other = (com.example.proto.outer.outer.Outer.DoGroupSendingReq) obj;
 
-      if (!getToUidsList()
-          .equals(other.getToUidsList())) return false;
-      if (!getFromUid()
-          .equals(other.getFromUid())) return false;
-      if (!getMsgContent()
-          .equals(other.getMsgContent())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+      boolean result = true;
+      result = result && getToUidsList()
+          .equals(other.getToUidsList());
+      result = result && getFromUid()
+          .equals(other.getFromUid());
+      result = result && getMsgContent()
+          .equals(other.getMsgContent());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
     }
 
     @java.lang.Override
@@ -2549,48 +2453,50 @@ public final class Outer {
       public com.example.proto.outer.outer.Outer.DoGroupSendingReq buildPartial() {
         com.example.proto.outer.outer.Outer.DoGroupSendingReq result = new com.example.proto.outer.outer.Outer.DoGroupSendingReq(this);
         int from_bitField0_ = bitField0_;
-        if (((bitField0_ & 0x00000001) != 0)) {
+        int to_bitField0_ = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
           toUids_ = toUids_.getUnmodifiableView();
           bitField0_ = (bitField0_ & ~0x00000001);
         }
         result.toUids_ = toUids_;
         result.fromUid_ = fromUid_;
         result.msgContent_ = msgContent_;
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return super.clone();
+        return (Builder) super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2654,7 +2560,7 @@ public final class Outer {
 
       private com.google.protobuf.LazyStringList toUids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensureToUidsIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
           toUids_ = new com.google.protobuf.LazyStringArrayList(toUids_);
           bitField0_ |= 0x00000001;
          }
@@ -2665,7 +2571,6 @@ public final class Outer {
        * </pre>
        *
        * <code>repeated string to_uids = 1;</code>
-       * @return A list containing the toUids.
        */
       public com.google.protobuf.ProtocolStringList
           getToUidsList() {
@@ -2677,7 +2582,6 @@ public final class Outer {
        * </pre>
        *
        * <code>repeated string to_uids = 1;</code>
-       * @return The count of toUids.
        */
       public int getToUidsCount() {
         return toUids_.size();
@@ -2688,8 +2592,6 @@ public final class Outer {
        * </pre>
        *
        * <code>repeated string to_uids = 1;</code>
-       * @param index The index of the element to return.
-       * @return The toUids at the given index.
        */
       public java.lang.String getToUids(int index) {
         return toUids_.get(index);
@@ -2700,8 +2602,6 @@ public final class Outer {
        * </pre>
        *
        * <code>repeated string to_uids = 1;</code>
-       * @param index The index of the value to return.
-       * @return The bytes of the toUids at the given index.
        */
       public com.google.protobuf.ByteString
           getToUidsBytes(int index) {
@@ -2713,9 +2613,6 @@ public final class Outer {
        * </pre>
        *
        * <code>repeated string to_uids = 1;</code>
-       * @param index The index to set the value at.
-       * @param value The toUids to set.
-       * @return This builder for chaining.
        */
       public Builder setToUids(
           int index, java.lang.String value) {
@@ -2733,8 +2630,6 @@ public final class Outer {
        * </pre>
        *
        * <code>repeated string to_uids = 1;</code>
-       * @param value The toUids to add.
-       * @return This builder for chaining.
        */
       public Builder addToUids(
           java.lang.String value) {
@@ -2752,8 +2647,6 @@ public final class Outer {
        * </pre>
        *
        * <code>repeated string to_uids = 1;</code>
-       * @param values The toUids to add.
-       * @return This builder for chaining.
        */
       public Builder addAllToUids(
           java.lang.Iterable<java.lang.String> values) {
@@ -2769,7 +2662,6 @@ public final class Outer {
        * </pre>
        *
        * <code>repeated string to_uids = 1;</code>
-       * @return This builder for chaining.
        */
       public Builder clearToUids() {
         toUids_ = com.google.protobuf.LazyStringArrayList.EMPTY;
@@ -2783,8 +2675,6 @@ public final class Outer {
        * </pre>
        *
        * <code>repeated string to_uids = 1;</code>
-       * @param value The bytes of the toUids to add.
-       * @return This builder for chaining.
        */
       public Builder addToUidsBytes(
           com.google.protobuf.ByteString value) {
@@ -2805,7 +2695,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string from_uid = 2;</code>
-       * @return The fromUid.
        */
       public java.lang.String getFromUid() {
         java.lang.Object ref = fromUid_;
@@ -2825,7 +2714,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string from_uid = 2;</code>
-       * @return The bytes for fromUid.
        */
       public com.google.protobuf.ByteString
           getFromUidBytes() {
@@ -2846,8 +2734,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string from_uid = 2;</code>
-       * @param value The fromUid to set.
-       * @return This builder for chaining.
        */
       public Builder setFromUid(
           java.lang.String value) {
@@ -2865,7 +2751,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string from_uid = 2;</code>
-       * @return This builder for chaining.
        */
       public Builder clearFromUid() {
         
@@ -2879,8 +2764,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string from_uid = 2;</code>
-       * @param value The bytes for fromUid to set.
-       * @return This builder for chaining.
        */
       public Builder setFromUidBytes(
           com.google.protobuf.ByteString value) {
@@ -2901,7 +2784,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string msg_content = 3;</code>
-       * @return The msgContent.
        */
       public java.lang.String getMsgContent() {
         java.lang.Object ref = msgContent_;
@@ -2921,7 +2803,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string msg_content = 3;</code>
-       * @return The bytes for msgContent.
        */
       public com.google.protobuf.ByteString
           getMsgContentBytes() {
@@ -2942,8 +2823,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string msg_content = 3;</code>
-       * @param value The msgContent to set.
-       * @return This builder for chaining.
        */
       public Builder setMsgContent(
           java.lang.String value) {
@@ -2961,7 +2840,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string msg_content = 3;</code>
-       * @return This builder for chaining.
        */
       public Builder clearMsgContent() {
         
@@ -2975,8 +2853,6 @@ public final class Outer {
        * </pre>
        *
        * <code>string msg_content = 3;</code>
-       * @param value The bytes for msgContent to set.
-       * @return This builder for chaining.
        */
       public Builder setMsgContentBytes(
           com.google.protobuf.ByteString value) {
@@ -2992,7 +2868,7 @@ public final class Outer {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       @java.lang.Override
@@ -3052,7 +2928,6 @@ public final class Outer {
      * </pre>
      *
      * <code>.common.common.ErrorMsg ret = 1;</code>
-     * @return Whether the ret field is set.
      */
     boolean hasRet();
     /**
@@ -3061,7 +2936,6 @@ public final class Outer {
      * </pre>
      *
      * <code>.common.common.ErrorMsg ret = 1;</code>
-     * @return The ret.
      */
     com.example.proto.common.common.Common.ErrorMsg getRet();
     /**
@@ -3093,13 +2967,6 @@ public final class Outer {
     }
 
     @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new DoGroupSendingResp();
-    }
-
-    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -3112,6 +2979,7 @@ public final class Outer {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -3136,7 +3004,7 @@ public final class Outer {
               break;
             }
             default: {
-              if (!parseUnknownField(
+              if (!parseUnknownFieldProto3(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -3175,7 +3043,6 @@ public final class Outer {
      * </pre>
      *
      * <code>.common.common.ErrorMsg ret = 1;</code>
-     * @return Whether the ret field is set.
      */
     public boolean hasRet() {
       return ret_ != null;
@@ -3186,7 +3053,6 @@ public final class Outer {
      * </pre>
      *
      * <code>.common.common.ErrorMsg ret = 1;</code>
-     * @return The ret.
      */
     public com.example.proto.common.common.Common.ErrorMsg getRet() {
       return ret_ == null ? com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
@@ -3247,13 +3113,14 @@ public final class Outer {
       }
       com.example.proto.outer.outer.Outer.DoGroupSendingResp other = (com.example.proto.outer.outer.Outer.DoGroupSendingResp) obj;
 
-      if (hasRet() != other.hasRet()) return false;
+      boolean result = true;
+      result = result && (hasRet() == other.hasRet());
       if (hasRet()) {
-        if (!getRet()
-            .equals(other.getRet())) return false;
+        result = result && getRet()
+            .equals(other.getRet());
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
     }
 
     @java.lang.Override
@@ -3447,35 +3314,35 @@ public final class Outer {
 
       @java.lang.Override
       public Builder clone() {
-        return super.clone();
+        return (Builder) super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -3521,7 +3388,7 @@ public final class Outer {
         return this;
       }
 
-      private com.example.proto.common.common.Common.ErrorMsg ret_;
+      private com.example.proto.common.common.Common.ErrorMsg ret_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder> retBuilder_;
       /**
@@ -3530,7 +3397,6 @@ public final class Outer {
        * </pre>
        *
        * <code>.common.common.ErrorMsg ret = 1;</code>
-       * @return Whether the ret field is set.
        */
       public boolean hasRet() {
         return retBuilder_ != null || ret_ != null;
@@ -3541,7 +3407,6 @@ public final class Outer {
        * </pre>
        *
        * <code>.common.common.ErrorMsg ret = 1;</code>
-       * @return The ret.
        */
       public com.example.proto.common.common.Common.ErrorMsg getRet() {
         if (retBuilder_ == null) {
@@ -3678,7 +3543,7 @@ public final class Outer {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       @java.lang.Override
@@ -3776,11 +3641,19 @@ public final class Outer {
       ".example.proto.outer.outerB\005OuterP\000b\006pro" +
       "to3"
     };
-    descriptor = com.google.protobuf.Descriptors.FileDescriptor
+    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
+        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
+          public com.google.protobuf.ExtensionRegistry assignDescriptors(
+              com.google.protobuf.Descriptors.FileDescriptor root) {
+            descriptor = root;
+            return null;
+          }
+        };
+    com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.example.proto.common.common.Common.getDescriptor(),
-        });
+        }, assigner);
     internal_static_outer_outer_SendMsgIndividuallyReq_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_outer_outer_SendMsgIndividuallyReq_fieldAccessorTable = new

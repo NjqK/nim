@@ -5,14 +5,14 @@ import com.example.chat.dao.manager.MsgInfoDaoManager;
 import com.example.chat.entity.dto.MsgInfoDto;
 import com.example.chat.manager.ChatServiceManager;
 import com.example.common.CommonConstants;
-import com.example.common.util.UuidGenUtil;
+import com.example.common.guid.UuidGenUtil;
 import com.example.proto.common.common.Common;
 import com.example.proto.inner.inner.Inner;
 import com.example.proto.outer.outer.Outer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * @author kuro
@@ -20,13 +20,13 @@ import org.springframework.stereotype.Service;
  * @date 20-3-9 下午1:19
  **/
 @Slf4j
-@Service
+@Component
 public class ChatServiceManagerImpl implements ChatServiceManager {
 
     @Autowired
     private MsgInfoDaoManager msgInfoDaoManager;
 
-    @Reference(version = "1.0.0", async = true)
+    @Reference(version = "1.0.0")
     private PushService pushService;
 
     @Override
@@ -50,11 +50,12 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
                 .build());
         if (msgInfoDaoManager.addMsgInfo(msgInfoDto) != 1) {
             // TODO return fail
-            Outer.SendMsgIndividuallyResp.newBuilder().setRet(CommonConstants.FAIL).build();
+            return Outer.SendMsgIndividuallyResp.newBuilder().setRet(CommonConstants.FAIL).build();
         }
         // TODO 转发给push
         Inner.RouteMsgReq routeMsgReq = buildPushReq(req, uuid);
         // TODO Asynchronously invoke the push service
+        log.info("route req:{}", req);
         pushService.routeMsg(routeMsgReq);
         return Outer.SendMsgIndividuallyResp.newBuilder().setRet(CommonConstants.SUCCESS).build();
     }
@@ -76,4 +77,11 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
                         .build())
                 .build();
     }
+
+//    public String send() {
+//        Inner.RouteMsgReq req = Inner.RouteMsgReq.newBuilder()
+//                .setToUid("1")
+//                .build();
+//        return pushService.routeMsg(req).toString();
+//    }
 }

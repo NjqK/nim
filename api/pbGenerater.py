@@ -1,6 +1,6 @@
 #!/usr/bin/env python2.7
 # coding=utf-8
-# description: generate protocol buffer classes and dubbo interface for fingo server
+# description: generate protocol buffer classes and dubbo dinterface for fingo server
 # author: wanghuizhou
 # last modify:20160726
 # version: v1.0.0
@@ -168,9 +168,9 @@ def get_commit_info(proto_file):
     # commit_info["commit_time"] = str(commit_time)
     # commit_info["commit_date"] = str(commit_date)
 
-    commit_info["commit_author"] = "jay"
+    commit_info["commit_author"] = "kuro"
     commit_info["commit_time"] = " 12:00:00"
-    commit_info["commit_date"] = "2019-08-08"
+    commit_info["commit_date"] = "2020-03-08"
     return commit_info
 
 
@@ -185,7 +185,7 @@ def gen_interface_impl(module_path, output_package, proto_file):
     # get service information
     # proto_service_list = re.findall(r"^service\s*(\w+)\s*{?\s*$", proto_code_content, re.M)
     # if len(proto_service_list) == 0:
-        # print "No need to generate interface for " + proto_file
+        # print "No need to generate dinterface for " + proto_file
         # return
     # elif len(proto_service_list) != 1:
         # print "There are too many service definition in " + proto_file + "!"
@@ -307,7 +307,7 @@ def write_java_interface_class(module_path, method_req_res_type, pb_service, out
     f.write(fingo_class_info_w)
     f.write("\n")
 
-    # write interface name
+    # write dinterface name
     f.write("public interface " + service_if[0] + " {\n")
 
     # write method information
@@ -318,7 +318,7 @@ def write_java_interface_class(module_path, method_req_res_type, pb_service, out
         f.write("\n" + fingo_method_info_w + "\n")
         f.write(" " * 4 + method_w)
 
-    # end of interface
+    # end of dinterface
     f.write("\n}\n")
 
     # write  end information

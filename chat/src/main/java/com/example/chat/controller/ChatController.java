@@ -1,8 +1,12 @@
 package com.example.chat.controller;
 
 import com.example.api.inner.inner.ConnectorService;
+import com.example.api.inner.inner.PushService;
 import com.example.api.outer.outer.ChatService;
-import com.example.common.util.UuidGenUtil;
+import com.example.chat.manager.ChatServiceManager;
+import com.example.chat.manager.impl.ChatServiceManagerImpl;
+import com.example.chat.service.impl.ChatServiceImpl;
+import com.example.common.guid.UuidGenUtil;
 import com.example.proto.common.common.Common;
 import com.example.proto.inner.inner.Inner;
 import com.example.proto.outer.outer.Outer;
@@ -11,7 +15,6 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -29,6 +32,12 @@ public class ChatController {
 
     @Autowired
     private ChatService chatService;
+
+//    @Reference(version = "1.0.0")
+//    private PushService pushService;
+
+//    @Autowired
+//    private ChatServiceManagerImpl chatServiceManager;
 
     @GetMapping("/getAvailableNode")
     public String getHostInfo() {
@@ -57,4 +66,24 @@ public class ChatController {
     public String gen() {
         return String.valueOf(UuidGenUtil.getUUID());
     }
+
+//    @GetMapping("/send")
+//    public String send() {
+//        Inner.RouteMsgReq req = Inner.RouteMsgReq.newBuilder()
+//                .setToUid("1")
+//                .build();
+//        return pushService.routeMsg(req).toString();
+//    }
+//
+//    @GetMapping("/send1")
+//    public String send1() {
+//        return chatService.send();
+//    }
+//
+//    @GetMapping("/send2")
+//    public String send2() {
+//        return chatServiceManager.send();
+//    }
+
+
 }

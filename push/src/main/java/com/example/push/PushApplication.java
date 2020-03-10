@@ -1,6 +1,7 @@
 package com.example.push;
 
-import com.example.common.util.JedisUtil;
+import com.example.common.kafka.KafkaProducerUtil;
+import com.example.common.redis.JedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -12,9 +13,6 @@ import javax.annotation.PreDestroy;
 @Slf4j
 @SpringBootApplication
 public class PushApplication {
-
-//    @Value("${zookeeper.url}")
-//    private String zkUrl;
 
     @Value("${spring.application.name}")
     private String applicationName;
@@ -37,10 +35,18 @@ public class PushApplication {
     @Value("${redis.pool.maxWaitMillis}")
     private String redisMaxWaitMillis;
 
+    @Value(("${kafka.nodes}"))
+    private String kafkaNodes;
+
     @PostConstruct
     private void onStart() {
         log.info(applicationName + " starting...");
         initRedis();
+        initKafka();
+    }
+
+    private void initKafka() {
+        KafkaProducerUtil.init(kafkaNodes, applicationName, null);
     }
 
     private void initRedis() {
@@ -54,11 +60,12 @@ public class PushApplication {
     @PreDestroy
     private void onDestroy() {
         JedisUtil.close();
+        KafkaProducerUtil.close();
         // TODO 添加dubbo优雅停机
         System.out.println("close");
     }
+
     public static void main(String[] args) {
         SpringApplication.run(PushApplication.class, args);
     }
-
 }

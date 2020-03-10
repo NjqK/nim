@@ -113,8 +113,6 @@ public final class Common {
     }
 
     /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @java.lang.Deprecated
@@ -122,10 +120,6 @@ public final class Common {
       return forNumber(value);
     }
 
-    /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
-     */
     public static MsgType forNumber(int value) {
       switch (value) {
         case 0: return MSG_TYPE_NUL;
@@ -228,8 +222,6 @@ public final class Common {
     }
 
     /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @java.lang.Deprecated
@@ -237,10 +229,6 @@ public final class Common {
       return forNumber(value);
     }
 
-    /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
-     */
     public static MsgContentType forNumber(int value) {
       switch (value) {
         case 0: return MSG_CONTENT_NUL;
@@ -408,8 +396,6 @@ public final class Common {
     }
 
     /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @java.lang.Deprecated
@@ -417,10 +403,6 @@ public final class Common {
       return forNumber(value);
     }
 
-    /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
-     */
     public static ErrCode forNumber(int value) {
       switch (value) {
         case 0: return ERRORCODE_NULL;
@@ -491,7 +473,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.Head head = 1;</code>
-     * @return Whether the head field is set.
      */
     boolean hasHead();
     /**
@@ -500,7 +481,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.Head head = 1;</code>
-     * @return The head.
      */
     com.example.proto.common.common.Common.Head getHead();
     /**
@@ -518,7 +498,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.Body body = 2;</code>
-     * @return Whether the body field is set.
      */
     boolean hasBody();
     /**
@@ -527,7 +506,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.Body body = 2;</code>
-     * @return The body.
      */
     com.example.proto.common.common.Common.Body getBody();
     /**
@@ -555,13 +533,6 @@ public final class Common {
     }
 
     @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new Msg();
-    }
-
-    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -574,6 +545,7 @@ public final class Common {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -611,7 +583,7 @@ public final class Common {
               break;
             }
             default: {
-              if (!parseUnknownField(
+              if (!parseUnknownFieldProto3(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -650,7 +622,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.Head head = 1;</code>
-     * @return Whether the head field is set.
      */
     public boolean hasHead() {
       return head_ != null;
@@ -661,7 +632,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.Head head = 1;</code>
-     * @return The head.
      */
     public com.example.proto.common.common.Common.Head getHead() {
       return head_ == null ? com.example.proto.common.common.Common.Head.getDefaultInstance() : head_;
@@ -685,7 +655,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.Body body = 2;</code>
-     * @return Whether the body field is set.
      */
     public boolean hasBody() {
       return body_ != null;
@@ -696,7 +665,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.Body body = 2;</code>
-     * @return The body.
      */
     public com.example.proto.common.common.Common.Body getBody() {
       return body_ == null ? com.example.proto.common.common.Common.Body.getDefaultInstance() : body_;
@@ -764,18 +732,19 @@ public final class Common {
       }
       com.example.proto.common.common.Common.Msg other = (com.example.proto.common.common.Common.Msg) obj;
 
-      if (hasHead() != other.hasHead()) return false;
+      boolean result = true;
+      result = result && (hasHead() == other.hasHead());
       if (hasHead()) {
-        if (!getHead()
-            .equals(other.getHead())) return false;
+        result = result && getHead()
+            .equals(other.getHead());
       }
-      if (hasBody() != other.hasBody()) return false;
+      result = result && (hasBody() == other.hasBody());
       if (hasBody()) {
-        if (!getBody()
-            .equals(other.getBody())) return false;
+        result = result && getBody()
+            .equals(other.getBody());
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
     }
 
     @java.lang.Override
@@ -980,35 +949,35 @@ public final class Common {
 
       @java.lang.Override
       public Builder clone() {
-        return super.clone();
+        return (Builder) super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1057,7 +1026,7 @@ public final class Common {
         return this;
       }
 
-      private com.example.proto.common.common.Common.Head head_;
+      private com.example.proto.common.common.Common.Head head_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.example.proto.common.common.Common.Head, com.example.proto.common.common.Common.Head.Builder, com.example.proto.common.common.Common.HeadOrBuilder> headBuilder_;
       /**
@@ -1066,7 +1035,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.Head head = 1;</code>
-       * @return Whether the head field is set.
        */
       public boolean hasHead() {
         return headBuilder_ != null || head_ != null;
@@ -1077,7 +1045,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.Head head = 1;</code>
-       * @return The head.
        */
       public com.example.proto.common.common.Common.Head getHead() {
         if (headBuilder_ == null) {
@@ -1212,7 +1179,7 @@ public final class Common {
         return headBuilder_;
       }
 
-      private com.example.proto.common.common.Common.Body body_;
+      private com.example.proto.common.common.Common.Body body_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.example.proto.common.common.Common.Body, com.example.proto.common.common.Common.Body.Builder, com.example.proto.common.common.Common.BodyOrBuilder> bodyBuilder_;
       /**
@@ -1221,7 +1188,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.Body body = 2;</code>
-       * @return Whether the body field is set.
        */
       public boolean hasBody() {
         return bodyBuilder_ != null || body_ != null;
@@ -1232,7 +1198,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.Body body = 2;</code>
-       * @return The body.
        */
       public com.example.proto.common.common.Common.Body getBody() {
         if (bodyBuilder_ == null) {
@@ -1369,7 +1334,7 @@ public final class Common {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       @java.lang.Override
@@ -1425,12 +1390,10 @@ public final class Common {
 
     /**
      * <code>string content = 1;</code>
-     * @return The content.
      */
     java.lang.String getContent();
     /**
      * <code>string content = 1;</code>
-     * @return The bytes for content.
      */
     com.google.protobuf.ByteString
         getContentBytes();
@@ -1452,13 +1415,6 @@ public final class Common {
     }
 
     @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new Body();
-    }
-
-    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -1471,6 +1427,7 @@ public final class Common {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -1488,7 +1445,7 @@ public final class Common {
               break;
             }
             default: {
-              if (!parseUnknownField(
+              if (!parseUnknownFieldProto3(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -1523,7 +1480,6 @@ public final class Common {
     private volatile java.lang.Object content_;
     /**
      * <code>string content = 1;</code>
-     * @return The content.
      */
     public java.lang.String getContent() {
       java.lang.Object ref = content_;
@@ -1539,7 +1495,6 @@ public final class Common {
     }
     /**
      * <code>string content = 1;</code>
-     * @return The bytes for content.
      */
     public com.google.protobuf.ByteString
         getContentBytes() {
@@ -1599,10 +1554,11 @@ public final class Common {
       }
       com.example.proto.common.common.Common.Body other = (com.example.proto.common.common.Common.Body) obj;
 
-      if (!getContent()
-          .equals(other.getContent())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+      boolean result = true;
+      result = result && getContent()
+          .equals(other.getContent());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
     }
 
     @java.lang.Override
@@ -1782,35 +1738,35 @@ public final class Common {
 
       @java.lang.Override
       public Builder clone() {
-        return super.clone();
+        return (Builder) super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1860,7 +1816,6 @@ public final class Common {
       private java.lang.Object content_ = "";
       /**
        * <code>string content = 1;</code>
-       * @return The content.
        */
       public java.lang.String getContent() {
         java.lang.Object ref = content_;
@@ -1876,7 +1831,6 @@ public final class Common {
       }
       /**
        * <code>string content = 1;</code>
-       * @return The bytes for content.
        */
       public com.google.protobuf.ByteString
           getContentBytes() {
@@ -1893,8 +1847,6 @@ public final class Common {
       }
       /**
        * <code>string content = 1;</code>
-       * @param value The content to set.
-       * @return This builder for chaining.
        */
       public Builder setContent(
           java.lang.String value) {
@@ -1908,7 +1860,6 @@ public final class Common {
       }
       /**
        * <code>string content = 1;</code>
-       * @return This builder for chaining.
        */
       public Builder clearContent() {
         
@@ -1918,8 +1869,6 @@ public final class Common {
       }
       /**
        * <code>string content = 1;</code>
-       * @param value The bytes for content to set.
-       * @return This builder for chaining.
        */
       public Builder setContentBytes(
           com.google.protobuf.ByteString value) {
@@ -1935,7 +1884,7 @@ public final class Common {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       @java.lang.Override
@@ -1991,24 +1940,20 @@ public final class Common {
 
     /**
      * <code>string key = 1;</code>
-     * @return The key.
      */
     java.lang.String getKey();
     /**
      * <code>string key = 1;</code>
-     * @return The bytes for key.
      */
     com.google.protobuf.ByteString
         getKeyBytes();
 
     /**
      * <code>string value = 2;</code>
-     * @return The value.
      */
     java.lang.String getValue();
     /**
      * <code>string value = 2;</code>
-     * @return The bytes for value.
      */
     com.google.protobuf.ByteString
         getValueBytes();
@@ -2031,13 +1976,6 @@ public final class Common {
     }
 
     @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new ExtraHeader();
-    }
-
-    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -2050,6 +1988,7 @@ public final class Common {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -2073,7 +2012,7 @@ public final class Common {
               break;
             }
             default: {
-              if (!parseUnknownField(
+              if (!parseUnknownFieldProto3(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -2108,7 +2047,6 @@ public final class Common {
     private volatile java.lang.Object key_;
     /**
      * <code>string key = 1;</code>
-     * @return The key.
      */
     public java.lang.String getKey() {
       java.lang.Object ref = key_;
@@ -2124,7 +2062,6 @@ public final class Common {
     }
     /**
      * <code>string key = 1;</code>
-     * @return The bytes for key.
      */
     public com.google.protobuf.ByteString
         getKeyBytes() {
@@ -2144,7 +2081,6 @@ public final class Common {
     private volatile java.lang.Object value_;
     /**
      * <code>string value = 2;</code>
-     * @return The value.
      */
     public java.lang.String getValue() {
       java.lang.Object ref = value_;
@@ -2160,7 +2096,6 @@ public final class Common {
     }
     /**
      * <code>string value = 2;</code>
-     * @return The bytes for value.
      */
     public com.google.protobuf.ByteString
         getValueBytes() {
@@ -2226,12 +2161,13 @@ public final class Common {
       }
       com.example.proto.common.common.Common.ExtraHeader other = (com.example.proto.common.common.Common.ExtraHeader) obj;
 
-      if (!getKey()
-          .equals(other.getKey())) return false;
-      if (!getValue()
-          .equals(other.getValue())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+      boolean result = true;
+      result = result && getKey()
+          .equals(other.getKey());
+      result = result && getValue()
+          .equals(other.getValue());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
     }
 
     @java.lang.Override
@@ -2416,35 +2352,35 @@ public final class Common {
 
       @java.lang.Override
       public Builder clone() {
-        return super.clone();
+        return (Builder) super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2498,7 +2434,6 @@ public final class Common {
       private java.lang.Object key_ = "";
       /**
        * <code>string key = 1;</code>
-       * @return The key.
        */
       public java.lang.String getKey() {
         java.lang.Object ref = key_;
@@ -2514,7 +2449,6 @@ public final class Common {
       }
       /**
        * <code>string key = 1;</code>
-       * @return The bytes for key.
        */
       public com.google.protobuf.ByteString
           getKeyBytes() {
@@ -2531,8 +2465,6 @@ public final class Common {
       }
       /**
        * <code>string key = 1;</code>
-       * @param value The key to set.
-       * @return This builder for chaining.
        */
       public Builder setKey(
           java.lang.String value) {
@@ -2546,7 +2478,6 @@ public final class Common {
       }
       /**
        * <code>string key = 1;</code>
-       * @return This builder for chaining.
        */
       public Builder clearKey() {
         
@@ -2556,8 +2487,6 @@ public final class Common {
       }
       /**
        * <code>string key = 1;</code>
-       * @param value The bytes for key to set.
-       * @return This builder for chaining.
        */
       public Builder setKeyBytes(
           com.google.protobuf.ByteString value) {
@@ -2574,7 +2503,6 @@ public final class Common {
       private java.lang.Object value_ = "";
       /**
        * <code>string value = 2;</code>
-       * @return The value.
        */
       public java.lang.String getValue() {
         java.lang.Object ref = value_;
@@ -2590,7 +2518,6 @@ public final class Common {
       }
       /**
        * <code>string value = 2;</code>
-       * @return The bytes for value.
        */
       public com.google.protobuf.ByteString
           getValueBytes() {
@@ -2607,8 +2534,6 @@ public final class Common {
       }
       /**
        * <code>string value = 2;</code>
-       * @param value The value to set.
-       * @return This builder for chaining.
        */
       public Builder setValue(
           java.lang.String value) {
@@ -2622,7 +2547,6 @@ public final class Common {
       }
       /**
        * <code>string value = 2;</code>
-       * @return This builder for chaining.
        */
       public Builder clearValue() {
         
@@ -2632,8 +2556,6 @@ public final class Common {
       }
       /**
        * <code>string value = 2;</code>
-       * @param value The bytes for value to set.
-       * @return This builder for chaining.
        */
       public Builder setValueBytes(
           com.google.protobuf.ByteString value) {
@@ -2649,7 +2571,7 @@ public final class Common {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       @java.lang.Override
@@ -2709,7 +2631,6 @@ public final class Common {
      * </pre>
      *
      * <code>int64 msg_id = 1;</code>
-     * @return The msgId.
      */
     long getMsgId();
 
@@ -2719,7 +2640,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.MsgType msg_type = 2;</code>
-     * @return The enum numeric value on the wire for msgType.
      */
     int getMsgTypeValue();
     /**
@@ -2728,7 +2648,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.MsgType msg_type = 2;</code>
-     * @return The msgType.
      */
     com.example.proto.common.common.Common.MsgType getMsgType();
 
@@ -2738,7 +2657,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.MsgContentType msg_content_type = 3;</code>
-     * @return The enum numeric value on the wire for msgContentType.
      */
     int getMsgContentTypeValue();
     /**
@@ -2747,7 +2665,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.MsgContentType msg_content_type = 3;</code>
-     * @return The msgContentType.
      */
     com.example.proto.common.common.Common.MsgContentType getMsgContentType();
 
@@ -2757,7 +2674,6 @@ public final class Common {
      * </pre>
      *
      * <code>int64 from_id = 4;</code>
-     * @return The fromId.
      */
     long getFromId();
 
@@ -2767,7 +2683,6 @@ public final class Common {
      * </pre>
      *
      * <code>int64 to_id = 5;</code>
-     * @return The toId.
      */
     long getToId();
 
@@ -2777,7 +2692,6 @@ public final class Common {
      * </pre>
      *
      * <code>int64 timestamp = 6;</code>
-     * @return The timestamp.
      */
     long getTimestamp();
 
@@ -2787,7 +2701,6 @@ public final class Common {
      * </pre>
      *
      * <code>int32 status_report = 7;</code>
-     * @return The statusReport.
      */
     int getStatusReport();
 
@@ -2796,54 +2709,44 @@ public final class Common {
      * 扩展字段，以key/value形式存放的json
      * </pre>
      *
-     * <code>map&lt;string, string&gt; extend = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
      */
-    int getExtendCount();
+    java.util.List<com.example.proto.common.common.Common.ExtraHeader> 
+        getExtendsList();
     /**
      * <pre>
      * 扩展字段，以key/value形式存放的json
      * </pre>
      *
-     * <code>map&lt;string, string&gt; extend = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
      */
-    boolean containsExtend(
-        java.lang.String key);
-    /**
-     * Use {@link #getExtendMap()} instead.
-     */
-    @java.lang.Deprecated
-    java.util.Map<java.lang.String, java.lang.String>
-    getExtend();
+    com.example.proto.common.common.Common.ExtraHeader getExtends(int index);
     /**
      * <pre>
      * 扩展字段，以key/value形式存放的json
      * </pre>
      *
-     * <code>map&lt;string, string&gt; extend = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
      */
-    java.util.Map<java.lang.String, java.lang.String>
-    getExtendMap();
+    int getExtendsCount();
     /**
      * <pre>
      * 扩展字段，以key/value形式存放的json
      * </pre>
      *
-     * <code>map&lt;string, string&gt; extend = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
      */
-
-    java.lang.String getExtendOrDefault(
-        java.lang.String key,
-        java.lang.String defaultValue);
+    java.util.List<? extends com.example.proto.common.common.Common.ExtraHeaderOrBuilder> 
+        getExtendsOrBuilderList();
     /**
      * <pre>
      * 扩展字段，以key/value形式存放的json
      * </pre>
      *
-     * <code>map&lt;string, string&gt; extend = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
      */
-
-    java.lang.String getExtendOrThrow(
-        java.lang.String key);
+    com.example.proto.common.common.Common.ExtraHeaderOrBuilder getExtendsOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code common.common.Head}
@@ -2858,15 +2761,14 @@ public final class Common {
       super(builder);
     }
     private Head() {
+      msgId_ = 0L;
       msgType_ = 0;
       msgContentType_ = 0;
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new Head();
+      fromId_ = 0L;
+      toId_ = 0L;
+      timestamp_ = 0L;
+      statusReport_ = 0;
+      extends_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -2931,20 +2833,16 @@ public final class Common {
               break;
             }
             case 66: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                extend_ = com.google.protobuf.MapField.newMapField(
-                    ExtendDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000001;
+              if (!((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
+                extends_ = new java.util.ArrayList<com.example.proto.common.common.Common.ExtraHeader>();
+                mutable_bitField0_ |= 0x00000080;
               }
-              com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-              extend__ = input.readMessage(
-                  ExtendDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              extend_.getMutableMap().put(
-                  extend__.getKey(), extend__.getValue());
+              extends_.add(
+                  input.readMessage(com.example.proto.common.common.Common.ExtraHeader.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownField(
+              if (!parseUnknownFieldProto3(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -2958,6 +2856,9 @@ public final class Common {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
+          extends_ = java.util.Collections.unmodifiableList(extends_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -2967,18 +2868,6 @@ public final class Common {
       return com.example.proto.common.common.Common.internal_static_common_common_Head_descriptor;
     }
 
-    @SuppressWarnings({"rawtypes"})
-    @java.lang.Override
-    protected com.google.protobuf.MapField internalGetMapField(
-        int number) {
-      switch (number) {
-        case 8:
-          return internalGetExtend();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
-    }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
@@ -2987,6 +2876,7 @@ public final class Common {
               com.example.proto.common.common.Common.Head.class, com.example.proto.common.common.Common.Head.Builder.class);
     }
 
+    private int bitField0_;
     public static final int MSG_ID_FIELD_NUMBER = 1;
     private long msgId_;
     /**
@@ -2995,7 +2885,6 @@ public final class Common {
      * </pre>
      *
      * <code>int64 msg_id = 1;</code>
-     * @return The msgId.
      */
     public long getMsgId() {
       return msgId_;
@@ -3009,7 +2898,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.MsgType msg_type = 2;</code>
-     * @return The enum numeric value on the wire for msgType.
      */
     public int getMsgTypeValue() {
       return msgType_;
@@ -3020,7 +2908,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.MsgType msg_type = 2;</code>
-     * @return The msgType.
      */
     public com.example.proto.common.common.Common.MsgType getMsgType() {
       @SuppressWarnings("deprecation")
@@ -3036,7 +2923,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.MsgContentType msg_content_type = 3;</code>
-     * @return The enum numeric value on the wire for msgContentType.
      */
     public int getMsgContentTypeValue() {
       return msgContentType_;
@@ -3047,7 +2933,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.MsgContentType msg_content_type = 3;</code>
-     * @return The msgContentType.
      */
     public com.example.proto.common.common.Common.MsgContentType getMsgContentType() {
       @SuppressWarnings("deprecation")
@@ -3063,7 +2948,6 @@ public final class Common {
      * </pre>
      *
      * <code>int64 from_id = 4;</code>
-     * @return The fromId.
      */
     public long getFromId() {
       return fromId_;
@@ -3077,7 +2961,6 @@ public final class Common {
      * </pre>
      *
      * <code>int64 to_id = 5;</code>
-     * @return The toId.
      */
     public long getToId() {
       return toId_;
@@ -3091,7 +2974,6 @@ public final class Common {
      * </pre>
      *
      * <code>int64 timestamp = 6;</code>
-     * @return The timestamp.
      */
     public long getTimestamp() {
       return timestamp_;
@@ -3105,102 +2987,64 @@ public final class Common {
      * </pre>
      *
      * <code>int32 status_report = 7;</code>
-     * @return The statusReport.
      */
     public int getStatusReport() {
       return statusReport_;
     }
 
-    public static final int EXTEND_FIELD_NUMBER = 8;
-    private static final class ExtendDefaultEntryHolder {
-      static final com.google.protobuf.MapEntry<
-          java.lang.String, java.lang.String> defaultEntry =
-              com.google.protobuf.MapEntry
-              .<java.lang.String, java.lang.String>newDefaultInstance(
-                  com.example.proto.common.common.Common.internal_static_common_common_Head_ExtendEntry_descriptor, 
-                  com.google.protobuf.WireFormat.FieldType.STRING,
-                  "",
-                  com.google.protobuf.WireFormat.FieldType.STRING,
-                  "");
-    }
-    private com.google.protobuf.MapField<
-        java.lang.String, java.lang.String> extend_;
-    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-    internalGetExtend() {
-      if (extend_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            ExtendDefaultEntryHolder.defaultEntry);
-      }
-      return extend_;
-    }
-
-    public int getExtendCount() {
-      return internalGetExtend().getMap().size();
+    public static final int EXTENDS_FIELD_NUMBER = 8;
+    private java.util.List<com.example.proto.common.common.Common.ExtraHeader> extends_;
+    /**
+     * <pre>
+     * 扩展字段，以key/value形式存放的json
+     * </pre>
+     *
+     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+     */
+    public java.util.List<com.example.proto.common.common.Common.ExtraHeader> getExtendsList() {
+      return extends_;
     }
     /**
      * <pre>
      * 扩展字段，以key/value形式存放的json
      * </pre>
      *
-     * <code>map&lt;string, string&gt; extend = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
      */
-
-    public boolean containsExtend(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      return internalGetExtend().getMap().containsKey(key);
-    }
-    /**
-     * Use {@link #getExtendMap()} instead.
-     */
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, java.lang.String> getExtend() {
-      return getExtendMap();
+    public java.util.List<? extends com.example.proto.common.common.Common.ExtraHeaderOrBuilder> 
+        getExtendsOrBuilderList() {
+      return extends_;
     }
     /**
      * <pre>
      * 扩展字段，以key/value形式存放的json
      * </pre>
      *
-     * <code>map&lt;string, string&gt; extend = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
      */
-
-    public java.util.Map<java.lang.String, java.lang.String> getExtendMap() {
-      return internalGetExtend().getMap();
+    public int getExtendsCount() {
+      return extends_.size();
     }
     /**
      * <pre>
      * 扩展字段，以key/value形式存放的json
      * </pre>
      *
-     * <code>map&lt;string, string&gt; extend = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
      */
-
-    public java.lang.String getExtendOrDefault(
-        java.lang.String key,
-        java.lang.String defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetExtend().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
+    public com.example.proto.common.common.Common.ExtraHeader getExtends(int index) {
+      return extends_.get(index);
     }
     /**
      * <pre>
      * 扩展字段，以key/value形式存放的json
      * </pre>
      *
-     * <code>map&lt;string, string&gt; extend = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
      */
-
-    public java.lang.String getExtendOrThrow(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetExtend().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return map.get(key);
+    public com.example.proto.common.common.Common.ExtraHeaderOrBuilder getExtendsOrBuilder(
+        int index) {
+      return extends_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -3238,12 +3082,9 @@ public final class Common {
       if (statusReport_ != 0) {
         output.writeInt32(7, statusReport_);
       }
-      com.google.protobuf.GeneratedMessageV3
-        .serializeStringMapTo(
-          output,
-          internalGetExtend(),
-          ExtendDefaultEntryHolder.defaultEntry,
-          8);
+      for (int i = 0; i < extends_.size(); i++) {
+        output.writeMessage(8, extends_.get(i));
+      }
       unknownFields.writeTo(output);
     }
 
@@ -3281,15 +3122,9 @@ public final class Common {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(7, statusReport_);
       }
-      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
-           : internalGetExtend().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-        extend__ = ExtendDefaultEntryHolder.defaultEntry.newBuilderForType()
-            .setKey(entry.getKey())
-            .setValue(entry.getValue())
-            .build();
+      for (int i = 0; i < extends_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(8, extend__);
+          .computeMessageSize(8, extends_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3306,22 +3141,23 @@ public final class Common {
       }
       com.example.proto.common.common.Common.Head other = (com.example.proto.common.common.Common.Head) obj;
 
-      if (getMsgId()
-          != other.getMsgId()) return false;
-      if (msgType_ != other.msgType_) return false;
-      if (msgContentType_ != other.msgContentType_) return false;
-      if (getFromId()
-          != other.getFromId()) return false;
-      if (getToId()
-          != other.getToId()) return false;
-      if (getTimestamp()
-          != other.getTimestamp()) return false;
-      if (getStatusReport()
-          != other.getStatusReport()) return false;
-      if (!internalGetExtend().equals(
-          other.internalGetExtend())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+      boolean result = true;
+      result = result && (getMsgId()
+          == other.getMsgId());
+      result = result && msgType_ == other.msgType_;
+      result = result && msgContentType_ == other.msgContentType_;
+      result = result && (getFromId()
+          == other.getFromId());
+      result = result && (getToId()
+          == other.getToId());
+      result = result && (getTimestamp()
+          == other.getTimestamp());
+      result = result && (getStatusReport()
+          == other.getStatusReport());
+      result = result && getExtendsList()
+          .equals(other.getExtendsList());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
     }
 
     @java.lang.Override
@@ -3349,9 +3185,9 @@ public final class Common {
           getTimestamp());
       hash = (37 * hash) + STATUS_REPORT_FIELD_NUMBER;
       hash = (53 * hash) + getStatusReport();
-      if (!internalGetExtend().getMap().isEmpty()) {
-        hash = (37 * hash) + EXTEND_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetExtend().hashCode();
+      if (getExtendsCount() > 0) {
+        hash = (37 * hash) + EXTENDS_FIELD_NUMBER;
+        hash = (53 * hash) + getExtendsList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -3460,28 +3296,6 @@ public final class Common {
         return com.example.proto.common.common.Common.internal_static_common_common_Head_descriptor;
       }
 
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMapField(
-          int number) {
-        switch (number) {
-          case 8:
-            return internalGetExtend();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
-      }
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMutableMapField(
-          int number) {
-        switch (number) {
-          case 8:
-            return internalGetMutableExtend();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
-        }
-      }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
@@ -3503,6 +3317,7 @@ public final class Common {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getExtendsFieldBuilder();
         }
       }
       @java.lang.Override
@@ -3522,7 +3337,12 @@ public final class Common {
 
         statusReport_ = 0;
 
-        internalGetMutableExtend().clear();
+        if (extendsBuilder_ == null) {
+          extends_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000080);
+        } else {
+          extendsBuilder_.clear();
+        }
         return this;
       }
 
@@ -3550,6 +3370,7 @@ public final class Common {
       public com.example.proto.common.common.Common.Head buildPartial() {
         com.example.proto.common.common.Common.Head result = new com.example.proto.common.common.Common.Head(this);
         int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         result.msgId_ = msgId_;
         result.msgType_ = msgType_;
         result.msgContentType_ = msgContentType_;
@@ -3557,43 +3378,51 @@ public final class Common {
         result.toId_ = toId_;
         result.timestamp_ = timestamp_;
         result.statusReport_ = statusReport_;
-        result.extend_ = internalGetExtend();
-        result.extend_.makeImmutable();
+        if (extendsBuilder_ == null) {
+          if (((bitField0_ & 0x00000080) == 0x00000080)) {
+            extends_ = java.util.Collections.unmodifiableList(extends_);
+            bitField0_ = (bitField0_ & ~0x00000080);
+          }
+          result.extends_ = extends_;
+        } else {
+          result.extends_ = extendsBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return super.clone();
+        return (Builder) super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -3628,8 +3457,32 @@ public final class Common {
         if (other.getStatusReport() != 0) {
           setStatusReport(other.getStatusReport());
         }
-        internalGetMutableExtend().mergeFrom(
-            other.internalGetExtend());
+        if (extendsBuilder_ == null) {
+          if (!other.extends_.isEmpty()) {
+            if (extends_.isEmpty()) {
+              extends_ = other.extends_;
+              bitField0_ = (bitField0_ & ~0x00000080);
+            } else {
+              ensureExtendsIsMutable();
+              extends_.addAll(other.extends_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.extends_.isEmpty()) {
+            if (extendsBuilder_.isEmpty()) {
+              extendsBuilder_.dispose();
+              extendsBuilder_ = null;
+              extends_ = other.extends_;
+              bitField0_ = (bitField0_ & ~0x00000080);
+              extendsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getExtendsFieldBuilder() : null;
+            } else {
+              extendsBuilder_.addAllMessages(other.extends_);
+            }
+          }
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -3667,7 +3520,6 @@ public final class Common {
        * </pre>
        *
        * <code>int64 msg_id = 1;</code>
-       * @return The msgId.
        */
       public long getMsgId() {
         return msgId_;
@@ -3678,8 +3530,6 @@ public final class Common {
        * </pre>
        *
        * <code>int64 msg_id = 1;</code>
-       * @param value The msgId to set.
-       * @return This builder for chaining.
        */
       public Builder setMsgId(long value) {
         
@@ -3693,7 +3543,6 @@ public final class Common {
        * </pre>
        *
        * <code>int64 msg_id = 1;</code>
-       * @return This builder for chaining.
        */
       public Builder clearMsgId() {
         
@@ -3709,7 +3558,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.MsgType msg_type = 2;</code>
-       * @return The enum numeric value on the wire for msgType.
        */
       public int getMsgTypeValue() {
         return msgType_;
@@ -3720,8 +3568,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.MsgType msg_type = 2;</code>
-       * @param value The enum numeric value on the wire for msgType to set.
-       * @return This builder for chaining.
        */
       public Builder setMsgTypeValue(int value) {
         msgType_ = value;
@@ -3734,7 +3580,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.MsgType msg_type = 2;</code>
-       * @return The msgType.
        */
       public com.example.proto.common.common.Common.MsgType getMsgType() {
         @SuppressWarnings("deprecation")
@@ -3747,8 +3592,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.MsgType msg_type = 2;</code>
-       * @param value The msgType to set.
-       * @return This builder for chaining.
        */
       public Builder setMsgType(com.example.proto.common.common.Common.MsgType value) {
         if (value == null) {
@@ -3765,7 +3608,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.MsgType msg_type = 2;</code>
-       * @return This builder for chaining.
        */
       public Builder clearMsgType() {
         
@@ -3781,7 +3623,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.MsgContentType msg_content_type = 3;</code>
-       * @return The enum numeric value on the wire for msgContentType.
        */
       public int getMsgContentTypeValue() {
         return msgContentType_;
@@ -3792,8 +3633,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.MsgContentType msg_content_type = 3;</code>
-       * @param value The enum numeric value on the wire for msgContentType to set.
-       * @return This builder for chaining.
        */
       public Builder setMsgContentTypeValue(int value) {
         msgContentType_ = value;
@@ -3806,7 +3645,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.MsgContentType msg_content_type = 3;</code>
-       * @return The msgContentType.
        */
       public com.example.proto.common.common.Common.MsgContentType getMsgContentType() {
         @SuppressWarnings("deprecation")
@@ -3819,8 +3657,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.MsgContentType msg_content_type = 3;</code>
-       * @param value The msgContentType to set.
-       * @return This builder for chaining.
        */
       public Builder setMsgContentType(com.example.proto.common.common.Common.MsgContentType value) {
         if (value == null) {
@@ -3837,7 +3673,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.MsgContentType msg_content_type = 3;</code>
-       * @return This builder for chaining.
        */
       public Builder clearMsgContentType() {
         
@@ -3853,7 +3688,6 @@ public final class Common {
        * </pre>
        *
        * <code>int64 from_id = 4;</code>
-       * @return The fromId.
        */
       public long getFromId() {
         return fromId_;
@@ -3864,8 +3698,6 @@ public final class Common {
        * </pre>
        *
        * <code>int64 from_id = 4;</code>
-       * @param value The fromId to set.
-       * @return This builder for chaining.
        */
       public Builder setFromId(long value) {
         
@@ -3879,7 +3711,6 @@ public final class Common {
        * </pre>
        *
        * <code>int64 from_id = 4;</code>
-       * @return This builder for chaining.
        */
       public Builder clearFromId() {
         
@@ -3895,7 +3726,6 @@ public final class Common {
        * </pre>
        *
        * <code>int64 to_id = 5;</code>
-       * @return The toId.
        */
       public long getToId() {
         return toId_;
@@ -3906,8 +3736,6 @@ public final class Common {
        * </pre>
        *
        * <code>int64 to_id = 5;</code>
-       * @param value The toId to set.
-       * @return This builder for chaining.
        */
       public Builder setToId(long value) {
         
@@ -3921,7 +3749,6 @@ public final class Common {
        * </pre>
        *
        * <code>int64 to_id = 5;</code>
-       * @return This builder for chaining.
        */
       public Builder clearToId() {
         
@@ -3937,7 +3764,6 @@ public final class Common {
        * </pre>
        *
        * <code>int64 timestamp = 6;</code>
-       * @return The timestamp.
        */
       public long getTimestamp() {
         return timestamp_;
@@ -3948,8 +3774,6 @@ public final class Common {
        * </pre>
        *
        * <code>int64 timestamp = 6;</code>
-       * @param value The timestamp to set.
-       * @return This builder for chaining.
        */
       public Builder setTimestamp(long value) {
         
@@ -3963,7 +3787,6 @@ public final class Common {
        * </pre>
        *
        * <code>int64 timestamp = 6;</code>
-       * @return This builder for chaining.
        */
       public Builder clearTimestamp() {
         
@@ -3979,7 +3802,6 @@ public final class Common {
        * </pre>
        *
        * <code>int32 status_report = 7;</code>
-       * @return The statusReport.
        */
       public int getStatusReport() {
         return statusReport_;
@@ -3990,8 +3812,6 @@ public final class Common {
        * </pre>
        *
        * <code>int32 status_report = 7;</code>
-       * @param value The statusReport to set.
-       * @return This builder for chaining.
        */
       public Builder setStatusReport(int value) {
         
@@ -4005,7 +3825,6 @@ public final class Common {
        * </pre>
        *
        * <code>int32 status_report = 7;</code>
-       * @return This builder for chaining.
        */
       public Builder clearStatusReport() {
         
@@ -4014,101 +3833,79 @@ public final class Common {
         return this;
       }
 
-      private com.google.protobuf.MapField<
-          java.lang.String, java.lang.String> extend_;
-      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetExtend() {
-        if (extend_ == null) {
-          return com.google.protobuf.MapField.emptyMapField(
-              ExtendDefaultEntryHolder.defaultEntry);
-        }
-        return extend_;
-      }
-      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetMutableExtend() {
-        onChanged();;
-        if (extend_ == null) {
-          extend_ = com.google.protobuf.MapField.newMapField(
-              ExtendDefaultEntryHolder.defaultEntry);
-        }
-        if (!extend_.isMutable()) {
-          extend_ = extend_.copy();
-        }
-        return extend_;
+      private java.util.List<com.example.proto.common.common.Common.ExtraHeader> extends_ =
+        java.util.Collections.emptyList();
+      private void ensureExtendsIsMutable() {
+        if (!((bitField0_ & 0x00000080) == 0x00000080)) {
+          extends_ = new java.util.ArrayList<com.example.proto.common.common.Common.ExtraHeader>(extends_);
+          bitField0_ |= 0x00000080;
+         }
       }
 
-      public int getExtendCount() {
-        return internalGetExtend().getMap().size();
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.proto.common.common.Common.ExtraHeader, com.example.proto.common.common.Common.ExtraHeader.Builder, com.example.proto.common.common.Common.ExtraHeaderOrBuilder> extendsBuilder_;
+
+      /**
+       * <pre>
+       * 扩展字段，以key/value形式存放的json
+       * </pre>
+       *
+       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       */
+      public java.util.List<com.example.proto.common.common.Common.ExtraHeader> getExtendsList() {
+        if (extendsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(extends_);
+        } else {
+          return extendsBuilder_.getMessageList();
+        }
       }
       /**
        * <pre>
        * 扩展字段，以key/value形式存放的json
        * </pre>
        *
-       * <code>map&lt;string, string&gt; extend = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
        */
-
-      public boolean containsExtend(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        return internalGetExtend().getMap().containsKey(key);
-      }
-      /**
-       * Use {@link #getExtendMap()} instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.String> getExtend() {
-        return getExtendMap();
-      }
-      /**
-       * <pre>
-       * 扩展字段，以key/value形式存放的json
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; extend = 8;</code>
-       */
-
-      public java.util.Map<java.lang.String, java.lang.String> getExtendMap() {
-        return internalGetExtend().getMap();
-      }
-      /**
-       * <pre>
-       * 扩展字段，以key/value形式存放的json
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; extend = 8;</code>
-       */
-
-      public java.lang.String getExtendOrDefault(
-          java.lang.String key,
-          java.lang.String defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.String> map =
-            internalGetExtend().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <pre>
-       * 扩展字段，以key/value形式存放的json
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; extend = 8;</code>
-       */
-
-      public java.lang.String getExtendOrThrow(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.String> map =
-            internalGetExtend().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
+      public int getExtendsCount() {
+        if (extendsBuilder_ == null) {
+          return extends_.size();
+        } else {
+          return extendsBuilder_.getCount();
         }
-        return map.get(key);
       }
-
-      public Builder clearExtend() {
-        internalGetMutableExtend().getMutableMap()
-            .clear();
+      /**
+       * <pre>
+       * 扩展字段，以key/value形式存放的json
+       * </pre>
+       *
+       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       */
+      public com.example.proto.common.common.Common.ExtraHeader getExtends(int index) {
+        if (extendsBuilder_ == null) {
+          return extends_.get(index);
+        } else {
+          return extendsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <pre>
+       * 扩展字段，以key/value形式存放的json
+       * </pre>
+       *
+       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       */
+      public Builder setExtends(
+          int index, com.example.proto.common.common.Common.ExtraHeader value) {
+        if (extendsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureExtendsIsMutable();
+          extends_.set(index, value);
+          onChanged();
+        } else {
+          extendsBuilder_.setMessage(index, value);
+        }
         return this;
       }
       /**
@@ -4116,38 +3913,17 @@ public final class Common {
        * 扩展字段，以key/value形式存放的json
        * </pre>
        *
-       * <code>map&lt;string, string&gt; extend = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
        */
-
-      public Builder removeExtend(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        internalGetMutableExtend().getMutableMap()
-            .remove(key);
-        return this;
-      }
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.String>
-      getMutableExtend() {
-        return internalGetMutableExtend().getMutableMap();
-      }
-      /**
-       * <pre>
-       * 扩展字段，以key/value形式存放的json
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; extend = 8;</code>
-       */
-      public Builder putExtend(
-          java.lang.String key,
-          java.lang.String value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
-        internalGetMutableExtend().getMutableMap()
-            .put(key, value);
+      public Builder setExtends(
+          int index, com.example.proto.common.common.Common.ExtraHeader.Builder builderForValue) {
+        if (extendsBuilder_ == null) {
+          ensureExtendsIsMutable();
+          extends_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          extendsBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
@@ -4155,19 +3931,223 @@ public final class Common {
        * 扩展字段，以key/value形式存放的json
        * </pre>
        *
-       * <code>map&lt;string, string&gt; extend = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
        */
-
-      public Builder putAllExtend(
-          java.util.Map<java.lang.String, java.lang.String> values) {
-        internalGetMutableExtend().getMutableMap()
-            .putAll(values);
+      public Builder addExtends(com.example.proto.common.common.Common.ExtraHeader value) {
+        if (extendsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureExtendsIsMutable();
+          extends_.add(value);
+          onChanged();
+        } else {
+          extendsBuilder_.addMessage(value);
+        }
         return this;
+      }
+      /**
+       * <pre>
+       * 扩展字段，以key/value形式存放的json
+       * </pre>
+       *
+       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       */
+      public Builder addExtends(
+          int index, com.example.proto.common.common.Common.ExtraHeader value) {
+        if (extendsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureExtendsIsMutable();
+          extends_.add(index, value);
+          onChanged();
+        } else {
+          extendsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 扩展字段，以key/value形式存放的json
+       * </pre>
+       *
+       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       */
+      public Builder addExtends(
+          com.example.proto.common.common.Common.ExtraHeader.Builder builderForValue) {
+        if (extendsBuilder_ == null) {
+          ensureExtendsIsMutable();
+          extends_.add(builderForValue.build());
+          onChanged();
+        } else {
+          extendsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 扩展字段，以key/value形式存放的json
+       * </pre>
+       *
+       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       */
+      public Builder addExtends(
+          int index, com.example.proto.common.common.Common.ExtraHeader.Builder builderForValue) {
+        if (extendsBuilder_ == null) {
+          ensureExtendsIsMutable();
+          extends_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          extendsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 扩展字段，以key/value形式存放的json
+       * </pre>
+       *
+       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       */
+      public Builder addAllExtends(
+          java.lang.Iterable<? extends com.example.proto.common.common.Common.ExtraHeader> values) {
+        if (extendsBuilder_ == null) {
+          ensureExtendsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, extends_);
+          onChanged();
+        } else {
+          extendsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 扩展字段，以key/value形式存放的json
+       * </pre>
+       *
+       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       */
+      public Builder clearExtends() {
+        if (extendsBuilder_ == null) {
+          extends_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000080);
+          onChanged();
+        } else {
+          extendsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 扩展字段，以key/value形式存放的json
+       * </pre>
+       *
+       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       */
+      public Builder removeExtends(int index) {
+        if (extendsBuilder_ == null) {
+          ensureExtendsIsMutable();
+          extends_.remove(index);
+          onChanged();
+        } else {
+          extendsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 扩展字段，以key/value形式存放的json
+       * </pre>
+       *
+       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       */
+      public com.example.proto.common.common.Common.ExtraHeader.Builder getExtendsBuilder(
+          int index) {
+        return getExtendsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       * 扩展字段，以key/value形式存放的json
+       * </pre>
+       *
+       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       */
+      public com.example.proto.common.common.Common.ExtraHeaderOrBuilder getExtendsOrBuilder(
+          int index) {
+        if (extendsBuilder_ == null) {
+          return extends_.get(index);  } else {
+          return extendsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       * 扩展字段，以key/value形式存放的json
+       * </pre>
+       *
+       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       */
+      public java.util.List<? extends com.example.proto.common.common.Common.ExtraHeaderOrBuilder> 
+           getExtendsOrBuilderList() {
+        if (extendsBuilder_ != null) {
+          return extendsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(extends_);
+        }
+      }
+      /**
+       * <pre>
+       * 扩展字段，以key/value形式存放的json
+       * </pre>
+       *
+       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       */
+      public com.example.proto.common.common.Common.ExtraHeader.Builder addExtendsBuilder() {
+        return getExtendsFieldBuilder().addBuilder(
+            com.example.proto.common.common.Common.ExtraHeader.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * 扩展字段，以key/value形式存放的json
+       * </pre>
+       *
+       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       */
+      public com.example.proto.common.common.Common.ExtraHeader.Builder addExtendsBuilder(
+          int index) {
+        return getExtendsFieldBuilder().addBuilder(
+            index, com.example.proto.common.common.Common.ExtraHeader.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * 扩展字段，以key/value形式存放的json
+       * </pre>
+       *
+       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       */
+      public java.util.List<com.example.proto.common.common.Common.ExtraHeader.Builder> 
+           getExtendsBuilderList() {
+        return getExtendsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.proto.common.common.Common.ExtraHeader, com.example.proto.common.common.Common.ExtraHeader.Builder, com.example.proto.common.common.Common.ExtraHeaderOrBuilder> 
+          getExtendsFieldBuilder() {
+        if (extendsBuilder_ == null) {
+          extendsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.example.proto.common.common.Common.ExtraHeader, com.example.proto.common.common.Common.ExtraHeader.Builder, com.example.proto.common.common.Common.ExtraHeaderOrBuilder>(
+                  extends_,
+                  ((bitField0_ & 0x00000080) == 0x00000080),
+                  getParentForChildren(),
+                  isClean());
+          extends_ = null;
+        }
+        return extendsBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       @java.lang.Override
@@ -4227,7 +4207,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.ErrCode error_code = 1;</code>
-     * @return The enum numeric value on the wire for errorCode.
      */
     int getErrorCodeValue();
     /**
@@ -4236,7 +4215,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.ErrCode error_code = 1;</code>
-     * @return The errorCode.
      */
     com.example.proto.common.common.Common.ErrCode getErrorCode();
 
@@ -4246,7 +4224,6 @@ public final class Common {
      * </pre>
      *
      * <code>string msg = 2;</code>
-     * @return The msg.
      */
     java.lang.String getMsg();
     /**
@@ -4255,7 +4232,6 @@ public final class Common {
      * </pre>
      *
      * <code>string msg = 2;</code>
-     * @return The bytes for msg.
      */
     com.google.protobuf.ByteString
         getMsgBytes();
@@ -4278,13 +4254,6 @@ public final class Common {
     }
 
     @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new ErrorMsg();
-    }
-
-    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -4297,6 +4266,7 @@ public final class Common {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -4320,7 +4290,7 @@ public final class Common {
               break;
             }
             default: {
-              if (!parseUnknownField(
+              if (!parseUnknownFieldProto3(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -4359,7 +4329,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.ErrCode error_code = 1;</code>
-     * @return The enum numeric value on the wire for errorCode.
      */
     public int getErrorCodeValue() {
       return errorCode_;
@@ -4370,7 +4339,6 @@ public final class Common {
      * </pre>
      *
      * <code>.common.common.ErrCode error_code = 1;</code>
-     * @return The errorCode.
      */
     public com.example.proto.common.common.Common.ErrCode getErrorCode() {
       @SuppressWarnings("deprecation")
@@ -4386,7 +4354,6 @@ public final class Common {
      * </pre>
      *
      * <code>string msg = 2;</code>
-     * @return The msg.
      */
     public java.lang.String getMsg() {
       java.lang.Object ref = msg_;
@@ -4406,7 +4373,6 @@ public final class Common {
      * </pre>
      *
      * <code>string msg = 2;</code>
-     * @return The bytes for msg.
      */
     public com.google.protobuf.ByteString
         getMsgBytes() {
@@ -4473,11 +4439,12 @@ public final class Common {
       }
       com.example.proto.common.common.Common.ErrorMsg other = (com.example.proto.common.common.Common.ErrorMsg) obj;
 
-      if (errorCode_ != other.errorCode_) return false;
-      if (!getMsg()
-          .equals(other.getMsg())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+      boolean result = true;
+      result = result && errorCode_ == other.errorCode_;
+      result = result && getMsg()
+          .equals(other.getMsg());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
     }
 
     @java.lang.Override
@@ -4662,35 +4629,35 @@ public final class Common {
 
       @java.lang.Override
       public Builder clone() {
-        return super.clone();
+        return (Builder) super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -4747,7 +4714,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.ErrCode error_code = 1;</code>
-       * @return The enum numeric value on the wire for errorCode.
        */
       public int getErrorCodeValue() {
         return errorCode_;
@@ -4758,8 +4724,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.ErrCode error_code = 1;</code>
-       * @param value The enum numeric value on the wire for errorCode to set.
-       * @return This builder for chaining.
        */
       public Builder setErrorCodeValue(int value) {
         errorCode_ = value;
@@ -4772,7 +4736,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.ErrCode error_code = 1;</code>
-       * @return The errorCode.
        */
       public com.example.proto.common.common.Common.ErrCode getErrorCode() {
         @SuppressWarnings("deprecation")
@@ -4785,8 +4748,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.ErrCode error_code = 1;</code>
-       * @param value The errorCode to set.
-       * @return This builder for chaining.
        */
       public Builder setErrorCode(com.example.proto.common.common.Common.ErrCode value) {
         if (value == null) {
@@ -4803,7 +4764,6 @@ public final class Common {
        * </pre>
        *
        * <code>.common.common.ErrCode error_code = 1;</code>
-       * @return This builder for chaining.
        */
       public Builder clearErrorCode() {
         
@@ -4819,7 +4779,6 @@ public final class Common {
        * </pre>
        *
        * <code>string msg = 2;</code>
-       * @return The msg.
        */
       public java.lang.String getMsg() {
         java.lang.Object ref = msg_;
@@ -4839,7 +4798,6 @@ public final class Common {
        * </pre>
        *
        * <code>string msg = 2;</code>
-       * @return The bytes for msg.
        */
       public com.google.protobuf.ByteString
           getMsgBytes() {
@@ -4860,8 +4818,6 @@ public final class Common {
        * </pre>
        *
        * <code>string msg = 2;</code>
-       * @param value The msg to set.
-       * @return This builder for chaining.
        */
       public Builder setMsg(
           java.lang.String value) {
@@ -4879,7 +4835,6 @@ public final class Common {
        * </pre>
        *
        * <code>string msg = 2;</code>
-       * @return This builder for chaining.
        */
       public Builder clearMsg() {
         
@@ -4893,8 +4848,6 @@ public final class Common {
        * </pre>
        *
        * <code>string msg = 2;</code>
-       * @param value The bytes for msg to set.
-       * @return This builder for chaining.
        */
       public Builder setMsgBytes(
           com.google.protobuf.ByteString value) {
@@ -4910,7 +4863,7 @@ public final class Common {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return super.setUnknownFieldsProto3(unknownFields);
       }
 
       @java.lang.Override
@@ -4981,11 +4934,6 @@ public final class Common {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_common_common_Head_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_common_common_Head_ExtendEntry_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_common_common_Head_ExtendEntry_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_common_common_ErrorMsg_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -5003,30 +4951,37 @@ public final class Common {
       "Msg\022!\n\004head\030\001 \001(\0132\023.common.common.Head\022!" +
       "\n\004body\030\002 \001(\0132\023.common.common.Body\"\027\n\004Bod" +
       "y\022\017\n\007content\030\001 \001(\t\")\n\013ExtraHeader\022\013\n\003key" +
-      "\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"\243\002\n\004Head\022\016\n\006msg_id" +
+      "\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"\360\001\n\004Head\022\016\n\006msg_id" +
       "\030\001 \001(\003\022(\n\010msg_type\030\002 \001(\0162\026.common.common" +
       ".MsgType\0227\n\020msg_content_type\030\003 \001(\0162\035.com" +
       "mon.common.MsgContentType\022\017\n\007from_id\030\004 \001" +
       "(\003\022\r\n\005to_id\030\005 \001(\003\022\021\n\ttimestamp\030\006 \001(\003\022\025\n\r" +
-      "status_report\030\007 \001(\005\022/\n\006extend\030\010 \003(\0132\037.co" +
-      "mmon.common.Head.ExtendEntry\032-\n\013ExtendEn" +
-      "try\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"C\n\010E" +
-      "rrorMsg\022*\n\nerror_code\030\001 \001(\0162\026.common.com" +
-      "mon.ErrCode\022\013\n\003msg\030\002 \001(\t*V\n\007MsgType\022\020\n\014M" +
-      "SG_TYPE_NUL\020\000\022\016\n\nHAND_SHAKE\020\001\022\016\n\nHEART_B" +
-      "EAT\020\002\022\010\n\004KICK\020\003\022\017\n\013SINGLE_CHAT\020\004*/\n\016MsgC" +
-      "ontentType\022\023\n\017MSG_CONTENT_NUL\020\000\022\010\n\004TEXT\020" +
-      "\001*\255\001\n\007ErrCode\022\022\n\016ERRORCODE_NULL\020\000\022\013\n\007SUC" +
-      "CESS\020\001\022\021\n\004FAIL\020\377\377\377\377\377\377\377\377\377\001\022$\n SEND_MSG_IN" +
-      "DIVIDUALLY_TO_UID_NUL\020e\022!\n\035SEND_MSG_INDI" +
-      "VIDUALLY_MSG_NUL\020f\022%\n!SEND_MSG_INDIVIDUA" +
-      "LLY_FROM_ID_NUL\020gB+\n\037com.example.proto.c" +
-      "ommon.commonB\006CommonP\000b\006proto3"
+      "status_report\030\007 \001(\005\022+\n\007extends\030\010 \003(\0132\032.c" +
+      "ommon.common.ExtraHeader\"C\n\010ErrorMsg\022*\n\n" +
+      "error_code\030\001 \001(\0162\026.common.common.ErrCode" +
+      "\022\013\n\003msg\030\002 \001(\t*V\n\007MsgType\022\020\n\014MSG_TYPE_NUL" +
+      "\020\000\022\016\n\nHAND_SHAKE\020\001\022\016\n\nHEART_BEAT\020\002\022\010\n\004KI" +
+      "CK\020\003\022\017\n\013SINGLE_CHAT\020\004*/\n\016MsgContentType\022" +
+      "\023\n\017MSG_CONTENT_NUL\020\000\022\010\n\004TEXT\020\001*\255\001\n\007ErrCo" +
+      "de\022\022\n\016ERRORCODE_NULL\020\000\022\013\n\007SUCCESS\020\001\022\021\n\004F" +
+      "AIL\020\377\377\377\377\377\377\377\377\377\001\022$\n SEND_MSG_INDIVIDUALLY_" +
+      "TO_UID_NUL\020e\022!\n\035SEND_MSG_INDIVIDUALLY_MS" +
+      "G_NUL\020f\022%\n!SEND_MSG_INDIVIDUALLY_FROM_ID" +
+      "_NUL\020gB+\n\037com.example.proto.common.commo" +
+      "nB\006CommonP\000b\006proto3"
     };
-    descriptor = com.google.protobuf.Descriptors.FileDescriptor
+    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
+        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
+          public com.google.protobuf.ExtensionRegistry assignDescriptors(
+              com.google.protobuf.Descriptors.FileDescriptor root) {
+            descriptor = root;
+            return null;
+          }
+        };
+    com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-        });
+        }, assigner);
     internal_static_common_common_Msg_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_common_common_Msg_fieldAccessorTable = new
@@ -5050,13 +5005,7 @@ public final class Common {
     internal_static_common_common_Head_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_common_common_Head_descriptor,
-        new java.lang.String[] { "MsgId", "MsgType", "MsgContentType", "FromId", "ToId", "Timestamp", "StatusReport", "Extend", });
-    internal_static_common_common_Head_ExtendEntry_descriptor =
-      internal_static_common_common_Head_descriptor.getNestedTypes().get(0);
-    internal_static_common_common_Head_ExtendEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_common_common_Head_ExtendEntry_descriptor,
-        new java.lang.String[] { "Key", "Value", });
+        new java.lang.String[] { "MsgId", "MsgType", "MsgContentType", "FromId", "ToId", "Timestamp", "StatusReport", "Extends", });
     internal_static_common_common_ErrorMsg_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_common_common_ErrorMsg_fieldAccessorTable = new

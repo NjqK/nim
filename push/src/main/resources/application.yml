@@ -21,9 +21,7 @@ dubbo:
     address: zookeeper://127.0.0.1:2181
     client: curator
   scan:
-      base-packages: com.example.push.service
-  consumer:
-    check: false
+    base-packages: com.example.push.service
 
 server:
   port: 8083
@@ -36,6 +34,11 @@ redis:
     maxTotal: 8
     maxIdle: 8
     maxWaitMillis: -1
+
+kafka:
+  nodes: 127.0.0.1:9092
+  group: push_task_group
+
 
 
 

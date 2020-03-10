@@ -7,7 +7,7 @@ import com.example.proto.inner.inner.Inner.GetNodeAddresssResp;
 /**
  * @Type ConnectorService.java
  * @Desc The ConnectorService
- * @author jay
+ * @author kuro
  * @date  12:00:00
  * @version
  */
@@ -29,5 +29,5 @@ public interface ConnectorService {
  *
  * Date Author Note
  * -------------------------------------------------------------------------
- * 2019-08-08 jay create
+ * 2020-03-08 kuro create
  */

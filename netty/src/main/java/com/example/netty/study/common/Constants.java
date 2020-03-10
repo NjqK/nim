@@ -2,6 +2,8 @@ package com.example.netty.study.common;
 
 import com.example.proto.common.common.Common;
 
+import java.util.ArrayList;
+
 /**
  * @author kuro
  * @version V1.0
@@ -30,7 +32,7 @@ public class Constants {
     public static final Common.Msg HAND_SHAKE = Common.Msg.newBuilder()
             .setHead(Common.Head.newBuilder()
                     .setMsgType(Common.MsgType.HAND_SHAKE)
-                    .putExtend("uid", "1110")
+                    .addExtends(Common.ExtraHeader.newBuilder().setKey("uid").setValue("1").build())
                     .build())
             .build();
 }

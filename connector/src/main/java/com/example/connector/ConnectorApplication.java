@@ -1,13 +1,14 @@
 package com.example.connector;
 
 import com.example.common.CommonConstants;
-import com.example.common.util.JedisUtil;
+import com.example.common.kafka.KafkaConsumerUtil;
+import com.example.common.redis.JedisUtil;
 import com.example.connector.common.RedisKeyUtil;
 import com.example.connector.dao.manager.ClusterNodeManager;
+import com.example.connector.dao.manager.impl.ConnectorProcessor;
 import com.example.connector.entity.cluster.ClusterNode;
 import com.example.connector.netty.NettyServerManager;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.DubboShutdownHook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +16,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @SpringBootApplication
@@ -46,6 +49,12 @@ public class ConnectorApplication {
 
     private String zkRootPath = "/app/";
 
+    @Value(("${kafka.nodes}"))
+    private String kafkaNodes;
+
+    @Value("${kafka.group}")
+    private String kafkaGroup;
+
     @Autowired
     private ClusterNodeManager clusterNodeManager;
 
@@ -55,6 +64,13 @@ public class ConnectorApplication {
         initRedis();
         initNetty();
         // 用这个clusterNode在redis李建立一个map，并创建ServerBootstrap
+        initKafka();
+    }
+
+    private void initKafka() {
+        List<String> kafkaTopics = new ArrayList<>();
+        kafkaTopics.add(CommonConstants.CONNECTOR_KAFKA_TOPIC);
+        KafkaConsumerUtil.init(kafkaNodes, kafkaGroup, kafkaTopics, new ConnectorProcessor());
     }
 
     private void initNetty() {
@@ -64,10 +80,7 @@ public class ConnectorApplication {
         // init netty
         NettyServerManager instance = NettyServerManager.getInstance();
         instance.init(localNode);
-        // create redis map of this netty node
-        String key = RedisKeyUtil.createApplicationRedisKey(applicationName, localNode);
-        String kafkaTopic = localNode.toString();
-        JedisUtil.hsetnx(CommonConstants.CONNECTOR_REDIS_KEY, key, kafkaTopic);
+        RedisKeyUtil.createApplicationRedisKey(applicationName, localNode);
     }
 
 
@@ -82,8 +95,8 @@ public class ConnectorApplication {
     @PreDestroy
     private void onDestroy() {
         // TODO 删掉zk节点，释放netty资源，dubbo等
-        JedisUtil.hdel(CommonConstants.CONNECTOR_REDIS_KEY, RedisKeyUtil.getApplicationRedisKey());
         JedisUtil.close();
+        KafkaConsumerUtil.destory();
         // TODO 添加dubbo优雅停机
         System.out.println("close");
     }

@@ -1,12 +1,16 @@
 package com.example.chat.service.impl;
 
+import com.example.api.inner.inner.ConnectorService;
+import com.example.api.inner.inner.PushService;
 import com.example.api.outer.outer.ChatService;
 import com.example.chat.manager.ChatServiceManager;
 import com.example.common.CommonConstants;
 import com.example.proto.common.common.Common;
+import com.example.proto.inner.inner.Inner;
 import com.example.proto.outer.outer.Outer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +25,9 @@ public class ChatServiceImpl implements ChatService {
 
     @Autowired
     private ChatServiceManager chatServiceManager;
+
+    @Reference(version = "1.0.0")
+    private PushService pushService;
 
     @Override
     public Outer.DoGroupSendingResp doGroupSending(Outer.DoGroupSendingReq req) {
@@ -71,4 +78,11 @@ public class ChatServiceImpl implements ChatService {
             return builder.setRet(CommonConstants.FAIL).build();
         }
     }
+
+//    public String send() {
+//        Inner.RouteMsgReq req = Inner.RouteMsgReq.newBuilder()
+//                .setToUid("1")
+//                .build();
+//        return pushService.routeMsg(req).toString();
+//    }
 }

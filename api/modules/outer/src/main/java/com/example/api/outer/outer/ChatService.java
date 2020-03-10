@@ -9,7 +9,7 @@ import com.example.proto.outer.outer.Outer.SendMsgIndividuallyResp;
 /**
  * @Type ChatService.java
  * @Desc The ChatService
- * @author jay
+ * @author kuro
  * @date  12:00:00
  * @version
  */
@@ -39,5 +39,5 @@ public interface ChatService {
  *
  * Date Author Note
  * -------------------------------------------------------------------------
- * 2019-08-08 jay create
+ * 2020-03-08 kuro create
  */
