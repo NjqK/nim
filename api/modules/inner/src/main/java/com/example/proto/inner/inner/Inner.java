@@ -1486,6 +1486,1546 @@ public final class Inner {
 
   }
 
+  public interface RouteMsgReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:inner.inner.RouteMsgReq)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 目标id
+     * </pre>
+     *
+     * <code>string to_uid = 1;</code>
+     * @return The toUid.
+     */
+    java.lang.String getToUid();
+    /**
+     * <pre>
+     * 目标id
+     * </pre>
+     *
+     * <code>string to_uid = 1;</code>
+     * @return The bytes for toUid.
+     */
+    com.google.protobuf.ByteString
+        getToUidBytes();
+
+    /**
+     * <pre>
+     * 消息
+     * </pre>
+     *
+     * <code>.common.common.Msg msg = 2;</code>
+     * @return Whether the msg field is set.
+     */
+    boolean hasMsg();
+    /**
+     * <pre>
+     * 消息
+     * </pre>
+     *
+     * <code>.common.common.Msg msg = 2;</code>
+     * @return The msg.
+     */
+    com.example.proto.common.common.Common.Msg getMsg();
+    /**
+     * <pre>
+     * 消息
+     * </pre>
+     *
+     * <code>.common.common.Msg msg = 2;</code>
+     */
+    com.example.proto.common.common.Common.MsgOrBuilder getMsgOrBuilder();
+  }
+  /**
+   * Protobuf type {@code inner.inner.RouteMsgReq}
+   */
+  public  static final class RouteMsgReq extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:inner.inner.RouteMsgReq)
+      RouteMsgReqOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use RouteMsgReq.newBuilder() to construct.
+    private RouteMsgReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private RouteMsgReq() {
+      toUid_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RouteMsgReq();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private RouteMsgReq(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              toUid_ = s;
+              break;
+            }
+            case 18: {
+              com.example.proto.common.common.Common.Msg.Builder subBuilder = null;
+              if (msg_ != null) {
+                subBuilder = msg_.toBuilder();
+              }
+              msg_ = input.readMessage(com.example.proto.common.common.Common.Msg.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(msg_);
+                msg_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RouteMsgReq_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RouteMsgReq_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.proto.inner.inner.Inner.RouteMsgReq.class, com.example.proto.inner.inner.Inner.RouteMsgReq.Builder.class);
+    }
+
+    public static final int TO_UID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object toUid_;
+    /**
+     * <pre>
+     * 目标id
+     * </pre>
+     *
+     * <code>string to_uid = 1;</code>
+     * @return The toUid.
+     */
+    public java.lang.String getToUid() {
+      java.lang.Object ref = toUid_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        toUid_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 目标id
+     * </pre>
+     *
+     * <code>string to_uid = 1;</code>
+     * @return The bytes for toUid.
+     */
+    public com.google.protobuf.ByteString
+        getToUidBytes() {
+      java.lang.Object ref = toUid_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        toUid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int MSG_FIELD_NUMBER = 2;
+    private com.example.proto.common.common.Common.Msg msg_;
+    /**
+     * <pre>
+     * 消息
+     * </pre>
+     *
+     * <code>.common.common.Msg msg = 2;</code>
+     * @return Whether the msg field is set.
+     */
+    public boolean hasMsg() {
+      return msg_ != null;
+    }
+    /**
+     * <pre>
+     * 消息
+     * </pre>
+     *
+     * <code>.common.common.Msg msg = 2;</code>
+     * @return The msg.
+     */
+    public com.example.proto.common.common.Common.Msg getMsg() {
+      return msg_ == null ? com.example.proto.common.common.Common.Msg.getDefaultInstance() : msg_;
+    }
+    /**
+     * <pre>
+     * 消息
+     * </pre>
+     *
+     * <code>.common.common.Msg msg = 2;</code>
+     */
+    public com.example.proto.common.common.Common.MsgOrBuilder getMsgOrBuilder() {
+      return getMsg();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getToUidBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, toUid_);
+      }
+      if (msg_ != null) {
+        output.writeMessage(2, getMsg());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getToUidBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, toUid_);
+      }
+      if (msg_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getMsg());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.proto.inner.inner.Inner.RouteMsgReq)) {
+        return super.equals(obj);
+      }
+      com.example.proto.inner.inner.Inner.RouteMsgReq other = (com.example.proto.inner.inner.Inner.RouteMsgReq) obj;
+
+      if (!getToUid()
+          .equals(other.getToUid())) return false;
+      if (hasMsg() != other.hasMsg()) return false;
+      if (hasMsg()) {
+        if (!getMsg()
+            .equals(other.getMsg())) return false;
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TO_UID_FIELD_NUMBER;
+      hash = (53 * hash) + getToUid().hashCode();
+      if (hasMsg()) {
+        hash = (37 * hash) + MSG_FIELD_NUMBER;
+        hash = (53 * hash) + getMsg().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.proto.inner.inner.Inner.RouteMsgReq parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgReq parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgReq parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgReq parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgReq parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgReq parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgReq parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgReq parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgReq parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgReq parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgReq parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgReq parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.proto.inner.inner.Inner.RouteMsgReq prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code inner.inner.RouteMsgReq}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:inner.inner.RouteMsgReq)
+        com.example.proto.inner.inner.Inner.RouteMsgReqOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RouteMsgReq_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RouteMsgReq_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.proto.inner.inner.Inner.RouteMsgReq.class, com.example.proto.inner.inner.Inner.RouteMsgReq.Builder.class);
+      }
+
+      // Construct using com.example.proto.inner.inner.Inner.RouteMsgReq.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        toUid_ = "";
+
+        if (msgBuilder_ == null) {
+          msg_ = null;
+        } else {
+          msg_ = null;
+          msgBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RouteMsgReq_descriptor;
+      }
+
+      @java.lang.Override
+      public com.example.proto.inner.inner.Inner.RouteMsgReq getDefaultInstanceForType() {
+        return com.example.proto.inner.inner.Inner.RouteMsgReq.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.example.proto.inner.inner.Inner.RouteMsgReq build() {
+        com.example.proto.inner.inner.Inner.RouteMsgReq result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.example.proto.inner.inner.Inner.RouteMsgReq buildPartial() {
+        com.example.proto.inner.inner.Inner.RouteMsgReq result = new com.example.proto.inner.inner.Inner.RouteMsgReq(this);
+        result.toUid_ = toUid_;
+        if (msgBuilder_ == null) {
+          result.msg_ = msg_;
+        } else {
+          result.msg_ = msgBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.proto.inner.inner.Inner.RouteMsgReq) {
+          return mergeFrom((com.example.proto.inner.inner.Inner.RouteMsgReq)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.proto.inner.inner.Inner.RouteMsgReq other) {
+        if (other == com.example.proto.inner.inner.Inner.RouteMsgReq.getDefaultInstance()) return this;
+        if (!other.getToUid().isEmpty()) {
+          toUid_ = other.toUid_;
+          onChanged();
+        }
+        if (other.hasMsg()) {
+          mergeMsg(other.getMsg());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.proto.inner.inner.Inner.RouteMsgReq parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.proto.inner.inner.Inner.RouteMsgReq) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object toUid_ = "";
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>string to_uid = 1;</code>
+       * @return The toUid.
+       */
+      public java.lang.String getToUid() {
+        java.lang.Object ref = toUid_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          toUid_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>string to_uid = 1;</code>
+       * @return The bytes for toUid.
+       */
+      public com.google.protobuf.ByteString
+          getToUidBytes() {
+        java.lang.Object ref = toUid_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          toUid_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>string to_uid = 1;</code>
+       * @param value The toUid to set.
+       * @return This builder for chaining.
+       */
+      public Builder setToUid(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        toUid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>string to_uid = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearToUid() {
+        
+        toUid_ = getDefaultInstance().getToUid();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>string to_uid = 1;</code>
+       * @param value The bytes for toUid to set.
+       * @return This builder for chaining.
+       */
+      public Builder setToUidBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        toUid_ = value;
+        onChanged();
+        return this;
+      }
+
+      private com.example.proto.common.common.Common.Msg msg_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.proto.common.common.Common.Msg, com.example.proto.common.common.Common.Msg.Builder, com.example.proto.common.common.Common.MsgOrBuilder> msgBuilder_;
+      /**
+       * <pre>
+       * 消息
+       * </pre>
+       *
+       * <code>.common.common.Msg msg = 2;</code>
+       * @return Whether the msg field is set.
+       */
+      public boolean hasMsg() {
+        return msgBuilder_ != null || msg_ != null;
+      }
+      /**
+       * <pre>
+       * 消息
+       * </pre>
+       *
+       * <code>.common.common.Msg msg = 2;</code>
+       * @return The msg.
+       */
+      public com.example.proto.common.common.Common.Msg getMsg() {
+        if (msgBuilder_ == null) {
+          return msg_ == null ? com.example.proto.common.common.Common.Msg.getDefaultInstance() : msg_;
+        } else {
+          return msgBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * 消息
+       * </pre>
+       *
+       * <code>.common.common.Msg msg = 2;</code>
+       */
+      public Builder setMsg(com.example.proto.common.common.Common.Msg value) {
+        if (msgBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          msg_ = value;
+          onChanged();
+        } else {
+          msgBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 消息
+       * </pre>
+       *
+       * <code>.common.common.Msg msg = 2;</code>
+       */
+      public Builder setMsg(
+          com.example.proto.common.common.Common.Msg.Builder builderForValue) {
+        if (msgBuilder_ == null) {
+          msg_ = builderForValue.build();
+          onChanged();
+        } else {
+          msgBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 消息
+       * </pre>
+       *
+       * <code>.common.common.Msg msg = 2;</code>
+       */
+      public Builder mergeMsg(com.example.proto.common.common.Common.Msg value) {
+        if (msgBuilder_ == null) {
+          if (msg_ != null) {
+            msg_ =
+              com.example.proto.common.common.Common.Msg.newBuilder(msg_).mergeFrom(value).buildPartial();
+          } else {
+            msg_ = value;
+          }
+          onChanged();
+        } else {
+          msgBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 消息
+       * </pre>
+       *
+       * <code>.common.common.Msg msg = 2;</code>
+       */
+      public Builder clearMsg() {
+        if (msgBuilder_ == null) {
+          msg_ = null;
+          onChanged();
+        } else {
+          msg_ = null;
+          msgBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 消息
+       * </pre>
+       *
+       * <code>.common.common.Msg msg = 2;</code>
+       */
+      public com.example.proto.common.common.Common.Msg.Builder getMsgBuilder() {
+        
+        onChanged();
+        return getMsgFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * 消息
+       * </pre>
+       *
+       * <code>.common.common.Msg msg = 2;</code>
+       */
+      public com.example.proto.common.common.Common.MsgOrBuilder getMsgOrBuilder() {
+        if (msgBuilder_ != null) {
+          return msgBuilder_.getMessageOrBuilder();
+        } else {
+          return msg_ == null ?
+              com.example.proto.common.common.Common.Msg.getDefaultInstance() : msg_;
+        }
+      }
+      /**
+       * <pre>
+       * 消息
+       * </pre>
+       *
+       * <code>.common.common.Msg msg = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.proto.common.common.Common.Msg, com.example.proto.common.common.Common.Msg.Builder, com.example.proto.common.common.Common.MsgOrBuilder> 
+          getMsgFieldBuilder() {
+        if (msgBuilder_ == null) {
+          msgBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.proto.common.common.Common.Msg, com.example.proto.common.common.Common.Msg.Builder, com.example.proto.common.common.Common.MsgOrBuilder>(
+                  getMsg(),
+                  getParentForChildren(),
+                  isClean());
+          msg_ = null;
+        }
+        return msgBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:inner.inner.RouteMsgReq)
+    }
+
+    // @@protoc_insertion_point(class_scope:inner.inner.RouteMsgReq)
+    private static final com.example.proto.inner.inner.Inner.RouteMsgReq DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.proto.inner.inner.Inner.RouteMsgReq();
+    }
+
+    public static com.example.proto.inner.inner.Inner.RouteMsgReq getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RouteMsgReq>
+        PARSER = new com.google.protobuf.AbstractParser<RouteMsgReq>() {
+      @java.lang.Override
+      public RouteMsgReq parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new RouteMsgReq(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<RouteMsgReq> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<RouteMsgReq> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.example.proto.inner.inner.Inner.RouteMsgReq getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface RouteMsgRespOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:inner.inner.RouteMsgResp)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return Whether the ret field is set.
+     */
+    boolean hasRet();
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return The ret.
+     */
+    com.example.proto.common.common.Common.ErrorMsg getRet();
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     */
+    com.example.proto.common.common.Common.ErrorMsgOrBuilder getRetOrBuilder();
+  }
+  /**
+   * Protobuf type {@code inner.inner.RouteMsgResp}
+   */
+  public  static final class RouteMsgResp extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:inner.inner.RouteMsgResp)
+      RouteMsgRespOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use RouteMsgResp.newBuilder() to construct.
+    private RouteMsgResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private RouteMsgResp() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RouteMsgResp();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private RouteMsgResp(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              com.example.proto.common.common.Common.ErrorMsg.Builder subBuilder = null;
+              if (ret_ != null) {
+                subBuilder = ret_.toBuilder();
+              }
+              ret_ = input.readMessage(com.example.proto.common.common.Common.ErrorMsg.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(ret_);
+                ret_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RouteMsgResp_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RouteMsgResp_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.proto.inner.inner.Inner.RouteMsgResp.class, com.example.proto.inner.inner.Inner.RouteMsgResp.Builder.class);
+    }
+
+    public static final int RET_FIELD_NUMBER = 1;
+    private com.example.proto.common.common.Common.ErrorMsg ret_;
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return Whether the ret field is set.
+     */
+    public boolean hasRet() {
+      return ret_ != null;
+    }
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return The ret.
+     */
+    public com.example.proto.common.common.Common.ErrorMsg getRet() {
+      return ret_ == null ? com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
+    }
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     */
+    public com.example.proto.common.common.Common.ErrorMsgOrBuilder getRetOrBuilder() {
+      return getRet();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (ret_ != null) {
+        output.writeMessage(1, getRet());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (ret_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getRet());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.proto.inner.inner.Inner.RouteMsgResp)) {
+        return super.equals(obj);
+      }
+      com.example.proto.inner.inner.Inner.RouteMsgResp other = (com.example.proto.inner.inner.Inner.RouteMsgResp) obj;
+
+      if (hasRet() != other.hasRet()) return false;
+      if (hasRet()) {
+        if (!getRet()
+            .equals(other.getRet())) return false;
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasRet()) {
+        hash = (37 * hash) + RET_FIELD_NUMBER;
+        hash = (53 * hash) + getRet().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.proto.inner.inner.Inner.RouteMsgResp parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgResp parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgResp parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgResp parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgResp parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgResp parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgResp parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgResp parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgResp parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgResp parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgResp parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.proto.inner.inner.Inner.RouteMsgResp parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.proto.inner.inner.Inner.RouteMsgResp prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code inner.inner.RouteMsgResp}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:inner.inner.RouteMsgResp)
+        com.example.proto.inner.inner.Inner.RouteMsgRespOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RouteMsgResp_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RouteMsgResp_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.proto.inner.inner.Inner.RouteMsgResp.class, com.example.proto.inner.inner.Inner.RouteMsgResp.Builder.class);
+      }
+
+      // Construct using com.example.proto.inner.inner.Inner.RouteMsgResp.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (retBuilder_ == null) {
+          ret_ = null;
+        } else {
+          ret_ = null;
+          retBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RouteMsgResp_descriptor;
+      }
+
+      @java.lang.Override
+      public com.example.proto.inner.inner.Inner.RouteMsgResp getDefaultInstanceForType() {
+        return com.example.proto.inner.inner.Inner.RouteMsgResp.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.example.proto.inner.inner.Inner.RouteMsgResp build() {
+        com.example.proto.inner.inner.Inner.RouteMsgResp result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.example.proto.inner.inner.Inner.RouteMsgResp buildPartial() {
+        com.example.proto.inner.inner.Inner.RouteMsgResp result = new com.example.proto.inner.inner.Inner.RouteMsgResp(this);
+        if (retBuilder_ == null) {
+          result.ret_ = ret_;
+        } else {
+          result.ret_ = retBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.proto.inner.inner.Inner.RouteMsgResp) {
+          return mergeFrom((com.example.proto.inner.inner.Inner.RouteMsgResp)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.proto.inner.inner.Inner.RouteMsgResp other) {
+        if (other == com.example.proto.inner.inner.Inner.RouteMsgResp.getDefaultInstance()) return this;
+        if (other.hasRet()) {
+          mergeRet(other.getRet());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.proto.inner.inner.Inner.RouteMsgResp parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.proto.inner.inner.Inner.RouteMsgResp) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.example.proto.common.common.Common.ErrorMsg ret_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder> retBuilder_;
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       * @return Whether the ret field is set.
+       */
+      public boolean hasRet() {
+        return retBuilder_ != null || ret_ != null;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       * @return The ret.
+       */
+      public com.example.proto.common.common.Common.ErrorMsg getRet() {
+        if (retBuilder_ == null) {
+          return ret_ == null ? com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
+        } else {
+          return retBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public Builder setRet(com.example.proto.common.common.Common.ErrorMsg value) {
+        if (retBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ret_ = value;
+          onChanged();
+        } else {
+          retBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public Builder setRet(
+          com.example.proto.common.common.Common.ErrorMsg.Builder builderForValue) {
+        if (retBuilder_ == null) {
+          ret_ = builderForValue.build();
+          onChanged();
+        } else {
+          retBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public Builder mergeRet(com.example.proto.common.common.Common.ErrorMsg value) {
+        if (retBuilder_ == null) {
+          if (ret_ != null) {
+            ret_ =
+              com.example.proto.common.common.Common.ErrorMsg.newBuilder(ret_).mergeFrom(value).buildPartial();
+          } else {
+            ret_ = value;
+          }
+          onChanged();
+        } else {
+          retBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public Builder clearRet() {
+        if (retBuilder_ == null) {
+          ret_ = null;
+          onChanged();
+        } else {
+          ret_ = null;
+          retBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public com.example.proto.common.common.Common.ErrorMsg.Builder getRetBuilder() {
+        
+        onChanged();
+        return getRetFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public com.example.proto.common.common.Common.ErrorMsgOrBuilder getRetOrBuilder() {
+        if (retBuilder_ != null) {
+          return retBuilder_.getMessageOrBuilder();
+        } else {
+          return ret_ == null ?
+              com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
+        }
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder> 
+          getRetFieldBuilder() {
+        if (retBuilder_ == null) {
+          retBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder>(
+                  getRet(),
+                  getParentForChildren(),
+                  isClean());
+          ret_ = null;
+        }
+        return retBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:inner.inner.RouteMsgResp)
+    }
+
+    // @@protoc_insertion_point(class_scope:inner.inner.RouteMsgResp)
+    private static final com.example.proto.inner.inner.Inner.RouteMsgResp DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.proto.inner.inner.Inner.RouteMsgResp();
+    }
+
+    public static com.example.proto.inner.inner.Inner.RouteMsgResp getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RouteMsgResp>
+        PARSER = new com.google.protobuf.AbstractParser<RouteMsgResp>() {
+      @java.lang.Override
+      public RouteMsgResp parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new RouteMsgResp(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<RouteMsgResp> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<RouteMsgResp> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.example.proto.inner.inner.Inner.RouteMsgResp getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_inner_inner_GetNodeAddresssReq_descriptor;
   private static final 
@@ -1496,6 +3036,16 @@ public final class Inner {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_inner_inner_GetNodeAddresssResp_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_inner_inner_RouteMsgReq_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_inner_inner_RouteMsgReq_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_inner_inner_RouteMsgResp_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_inner_inner_RouteMsgResp_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1509,10 +3059,15 @@ public final class Inner {
       "/common.proto\"\024\n\022GetNodeAddresssReq\"W\n\023G" +
       "etNodeAddresssResp\022$\n\003ret\030\001 \001(\0132\027.common" +
       ".common.ErrorMsg\022\014\n\004host\030\002 \001(\t\022\014\n\004port\030\003" +
-      " \001(\t2g\n\020ConnectorService\022S\n\016GetNodeAddre" +
-      "ss\022\037.inner.inner.GetNodeAddresssReq\032 .in" +
-      "ner.inner.GetNodeAddresssRespB(\n\035com.exa" +
-      "mple.proto.inner.innerB\005InnerP\000b\006proto3"
+      " \001(\t\">\n\013RouteMsgReq\022\016\n\006to_uid\030\001 \001(\t\022\037\n\003m" +
+      "sg\030\002 \001(\0132\022.common.common.Msg\"4\n\014RouteMsg" +
+      "Resp\022$\n\003ret\030\001 \001(\0132\027.common.common.ErrorM" +
+      "sg2g\n\020ConnectorService\022S\n\016GetNodeAddress" +
+      "\022\037.inner.inner.GetNodeAddresssReq\032 .inne" +
+      "r.inner.GetNodeAddresssResp2N\n\013PushServi" +
+      "ce\022?\n\010RouteMsg\022\030.inner.inner.RouteMsgReq" +
+      "\032\031.inner.inner.RouteMsgRespB(\n\035com.examp" +
+      "le.proto.inner.innerB\005InnerP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1531,6 +3086,18 @@ public final class Inner {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_inner_inner_GetNodeAddresssResp_descriptor,
         new java.lang.String[] { "Ret", "Host", "Port", });
+    internal_static_inner_inner_RouteMsgReq_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_inner_inner_RouteMsgReq_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_inner_inner_RouteMsgReq_descriptor,
+        new java.lang.String[] { "ToUid", "Msg", });
+    internal_static_inner_inner_RouteMsgResp_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_inner_inner_RouteMsgResp_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_inner_inner_RouteMsgResp_descriptor,
+        new java.lang.String[] { "Ret", });
     com.example.proto.common.common.Common.getDescriptor();
   }
 

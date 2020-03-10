@@ -2,10 +2,13 @@ package com.example.connector.netty.handler;
 
 import com.example.connector.common.Constants;
 import com.example.proto.common.common.Common;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
+import io.netty.util.AttributeKey;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -14,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date 20-3-7 下午9:16
  **/
 @Slf4j
+@ChannelHandler.Sharable
 public class HeartBeatHandler extends ChannelInboundHandlerAdapter {
 
     @Override
@@ -24,26 +28,6 @@ public class HeartBeatHandler extends ChannelInboundHandlerAdapter {
             ctx.writeAndFlush(Constants.PONG);
         } else {
             ctx.fireChannelRead(msg);
-        }
-    }
-
-    /**
-     * 服务端设置多少秒没收到客户端的消息，就关闭channel
-     * @param ctx
-     * @param evt
-     * @throws Exception
-     */
-    @Override
-    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
-        if (evt instanceof IdleStateEvent){
-            IdleStateEvent event = (IdleStateEvent)evt;
-            if (event.state()== IdleState.READER_IDLE){
-                log.info("Lost connection with the client which channel id is :{}, then close it.", ctx.channel().id());
-                ctx.channel().close();
-            }
-        }else {
-            // 如果不是超过ReadIdle的事件，传给别的感兴趣的handler
-            super.userEventTriggered(ctx,evt);
         }
     }
 }

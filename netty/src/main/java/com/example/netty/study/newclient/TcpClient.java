@@ -116,7 +116,7 @@ public class TcpClient {
     }
 
     public static void main(String[] args) {
-        TcpClient tcpClient = new TcpClient("192.168.129.137", 44635);
+        TcpClient tcpClient = new TcpClient("192.168.129.128", 33857);
         tcpClient.connect();
     }
 

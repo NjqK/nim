@@ -16,4 +16,8 @@ public class CommonConstants {
     public static final Common.ErrorMsg FAIL = Common.ErrorMsg.newBuilder()
             .setErrorCode(Common.ErrCode.FAIL)
             .setMsg("FAIL").build();
+
+    public static final String USERS_REDIS_KEY = "users";
+
+    public static final String CONNECTOR_REDIS_KEY = "connector";
 }

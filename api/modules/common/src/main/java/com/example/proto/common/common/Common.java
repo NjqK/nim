@@ -2708,20 +2708,10 @@ public final class Common {
      * 消息id
      * </pre>
      *
-     * <code>string msg_id = 1;</code>
+     * <code>int64 msg_id = 1;</code>
      * @return The msgId.
      */
-    java.lang.String getMsgId();
-    /**
-     * <pre>
-     * 消息id
-     * </pre>
-     *
-     * <code>string msg_id = 1;</code>
-     * @return The bytes for msgId.
-     */
-    com.google.protobuf.ByteString
-        getMsgIdBytes();
+    long getMsgId();
 
     /**
      * <pre>
@@ -2766,40 +2756,20 @@ public final class Common {
      * 消息发送者id
      * </pre>
      *
-     * <code>string from_id = 4;</code>
+     * <code>int64 from_id = 4;</code>
      * @return The fromId.
      */
-    java.lang.String getFromId();
-    /**
-     * <pre>
-     * 消息发送者id
-     * </pre>
-     *
-     * <code>string from_id = 4;</code>
-     * @return The bytes for fromId.
-     */
-    com.google.protobuf.ByteString
-        getFromIdBytes();
+    long getFromId();
 
     /**
      * <pre>
      * 消息接收者id
      * </pre>
      *
-     * <code>string to_id = 5;</code>
+     * <code>int64 to_id = 5;</code>
      * @return The toId.
      */
-    java.lang.String getToId();
-    /**
-     * <pre>
-     * 消息接收者id
-     * </pre>
-     *
-     * <code>string to_id = 5;</code>
-     * @return The bytes for toId.
-     */
-    com.google.protobuf.ByteString
-        getToIdBytes();
+    long getToId();
 
     /**
      * <pre>
@@ -2826,24 +2796,7 @@ public final class Common {
      * 扩展字段，以key/value形式存放的json
      * </pre>
      *
-     * <code>repeated .common.common.ExtraHeader extend = 8;</code>
-     */
-    java.util.List<com.example.proto.common.common.Common.ExtraHeader> 
-        getExtendList();
-    /**
-     * <pre>
-     * 扩展字段，以key/value形式存放的json
-     * </pre>
-     *
-     * <code>repeated .common.common.ExtraHeader extend = 8;</code>
-     */
-    com.example.proto.common.common.Common.ExtraHeader getExtend(int index);
-    /**
-     * <pre>
-     * 扩展字段，以key/value形式存放的json
-     * </pre>
-     *
-     * <code>repeated .common.common.ExtraHeader extend = 8;</code>
+     * <code>map&lt;string, string&gt; extend = 8;</code>
      */
     int getExtendCount();
     /**
@@ -2851,19 +2804,46 @@ public final class Common {
      * 扩展字段，以key/value形式存放的json
      * </pre>
      *
-     * <code>repeated .common.common.ExtraHeader extend = 8;</code>
+     * <code>map&lt;string, string&gt; extend = 8;</code>
      */
-    java.util.List<? extends com.example.proto.common.common.Common.ExtraHeaderOrBuilder> 
-        getExtendOrBuilderList();
+    boolean containsExtend(
+        java.lang.String key);
+    /**
+     * Use {@link #getExtendMap()} instead.
+     */
+    @java.lang.Deprecated
+    java.util.Map<java.lang.String, java.lang.String>
+    getExtend();
     /**
      * <pre>
      * 扩展字段，以key/value形式存放的json
      * </pre>
      *
-     * <code>repeated .common.common.ExtraHeader extend = 8;</code>
+     * <code>map&lt;string, string&gt; extend = 8;</code>
      */
-    com.example.proto.common.common.Common.ExtraHeaderOrBuilder getExtendOrBuilder(
-        int index);
+    java.util.Map<java.lang.String, java.lang.String>
+    getExtendMap();
+    /**
+     * <pre>
+     * 扩展字段，以key/value形式存放的json
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; extend = 8;</code>
+     */
+
+    java.lang.String getExtendOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue);
+    /**
+     * <pre>
+     * 扩展字段，以key/value形式存放的json
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; extend = 8;</code>
+     */
+
+    java.lang.String getExtendOrThrow(
+        java.lang.String key);
   }
   /**
    * Protobuf type {@code common.common.Head}
@@ -2878,12 +2858,8 @@ public final class Common {
       super(builder);
     }
     private Head() {
-      msgId_ = "";
       msgType_ = 0;
       msgContentType_ = 0;
-      fromId_ = "";
-      toId_ = "";
-      extend_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -2917,10 +2893,9 @@ public final class Common {
             case 0:
               done = true;
               break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 8: {
 
-              msgId_ = s;
+              msgId_ = input.readInt64();
               break;
             }
             case 16: {
@@ -2935,16 +2910,14 @@ public final class Common {
               msgContentType_ = rawValue;
               break;
             }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 32: {
 
-              fromId_ = s;
+              fromId_ = input.readInt64();
               break;
             }
-            case 42: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 40: {
 
-              toId_ = s;
+              toId_ = input.readInt64();
               break;
             }
             case 48: {
@@ -2959,11 +2932,15 @@ public final class Common {
             }
             case 66: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                extend_ = new java.util.ArrayList<com.example.proto.common.common.Common.ExtraHeader>();
+                extend_ = com.google.protobuf.MapField.newMapField(
+                    ExtendDefaultEntryHolder.defaultEntry);
                 mutable_bitField0_ |= 0x00000001;
               }
-              extend_.add(
-                  input.readMessage(com.example.proto.common.common.Common.ExtraHeader.parser(), extensionRegistry));
+              com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+              extend__ = input.readMessage(
+                  ExtendDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+              extend_.getMutableMap().put(
+                  extend__.getKey(), extend__.getValue());
               break;
             }
             default: {
@@ -2981,9 +2958,6 @@ public final class Common {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          extend_ = java.util.Collections.unmodifiableList(extend_);
-        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -2993,6 +2967,18 @@ public final class Common {
       return com.example.proto.common.common.Common.internal_static_common_common_Head_descriptor;
     }
 
+    @SuppressWarnings({"rawtypes"})
+    @java.lang.Override
+    protected com.google.protobuf.MapField internalGetMapField(
+        int number) {
+      switch (number) {
+        case 8:
+          return internalGetExtend();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
@@ -3002,47 +2988,17 @@ public final class Common {
     }
 
     public static final int MSG_ID_FIELD_NUMBER = 1;
-    private volatile java.lang.Object msgId_;
+    private long msgId_;
     /**
      * <pre>
      * 消息id
      * </pre>
      *
-     * <code>string msg_id = 1;</code>
+     * <code>int64 msg_id = 1;</code>
      * @return The msgId.
      */
-    public java.lang.String getMsgId() {
-      java.lang.Object ref = msgId_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        msgId_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * 消息id
-     * </pre>
-     *
-     * <code>string msg_id = 1;</code>
-     * @return The bytes for msgId.
-     */
-    public com.google.protobuf.ByteString
-        getMsgIdBytes() {
-      java.lang.Object ref = msgId_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        msgId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public long getMsgId() {
+      return msgId_;
     }
 
     public static final int MSG_TYPE_FIELD_NUMBER = 2;
@@ -3100,91 +3056,31 @@ public final class Common {
     }
 
     public static final int FROM_ID_FIELD_NUMBER = 4;
-    private volatile java.lang.Object fromId_;
+    private long fromId_;
     /**
      * <pre>
      * 消息发送者id
      * </pre>
      *
-     * <code>string from_id = 4;</code>
+     * <code>int64 from_id = 4;</code>
      * @return The fromId.
      */
-    public java.lang.String getFromId() {
-      java.lang.Object ref = fromId_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        fromId_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * 消息发送者id
-     * </pre>
-     *
-     * <code>string from_id = 4;</code>
-     * @return The bytes for fromId.
-     */
-    public com.google.protobuf.ByteString
-        getFromIdBytes() {
-      java.lang.Object ref = fromId_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        fromId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public long getFromId() {
+      return fromId_;
     }
 
     public static final int TO_ID_FIELD_NUMBER = 5;
-    private volatile java.lang.Object toId_;
+    private long toId_;
     /**
      * <pre>
      * 消息接收者id
      * </pre>
      *
-     * <code>string to_id = 5;</code>
+     * <code>int64 to_id = 5;</code>
      * @return The toId.
      */
-    public java.lang.String getToId() {
-      java.lang.Object ref = toId_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        toId_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * 消息接收者id
-     * </pre>
-     *
-     * <code>string to_id = 5;</code>
-     * @return The bytes for toId.
-     */
-    public com.google.protobuf.ByteString
-        getToIdBytes() {
-      java.lang.Object ref = toId_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        toId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public long getToId() {
+      return toId_;
     }
 
     public static final int TIMESTAMP_FIELD_NUMBER = 6;
@@ -3216,58 +3112,95 @@ public final class Common {
     }
 
     public static final int EXTEND_FIELD_NUMBER = 8;
-    private java.util.List<com.example.proto.common.common.Common.ExtraHeader> extend_;
-    /**
-     * <pre>
-     * 扩展字段，以key/value形式存放的json
-     * </pre>
-     *
-     * <code>repeated .common.common.ExtraHeader extend = 8;</code>
-     */
-    public java.util.List<com.example.proto.common.common.Common.ExtraHeader> getExtendList() {
+    private static final class ExtendDefaultEntryHolder {
+      static final com.google.protobuf.MapEntry<
+          java.lang.String, java.lang.String> defaultEntry =
+              com.google.protobuf.MapEntry
+              .<java.lang.String, java.lang.String>newDefaultInstance(
+                  com.example.proto.common.common.Common.internal_static_common_common_Head_ExtendEntry_descriptor, 
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "",
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "");
+    }
+    private com.google.protobuf.MapField<
+        java.lang.String, java.lang.String> extend_;
+    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+    internalGetExtend() {
+      if (extend_ == null) {
+        return com.google.protobuf.MapField.emptyMapField(
+            ExtendDefaultEntryHolder.defaultEntry);
+      }
       return extend_;
     }
-    /**
-     * <pre>
-     * 扩展字段，以key/value形式存放的json
-     * </pre>
-     *
-     * <code>repeated .common.common.ExtraHeader extend = 8;</code>
-     */
-    public java.util.List<? extends com.example.proto.common.common.Common.ExtraHeaderOrBuilder> 
-        getExtendOrBuilderList() {
-      return extend_;
-    }
-    /**
-     * <pre>
-     * 扩展字段，以key/value形式存放的json
-     * </pre>
-     *
-     * <code>repeated .common.common.ExtraHeader extend = 8;</code>
-     */
+
     public int getExtendCount() {
-      return extend_.size();
+      return internalGetExtend().getMap().size();
     }
     /**
      * <pre>
      * 扩展字段，以key/value形式存放的json
      * </pre>
      *
-     * <code>repeated .common.common.ExtraHeader extend = 8;</code>
+     * <code>map&lt;string, string&gt; extend = 8;</code>
      */
-    public com.example.proto.common.common.Common.ExtraHeader getExtend(int index) {
-      return extend_.get(index);
+
+    public boolean containsExtend(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      return internalGetExtend().getMap().containsKey(key);
+    }
+    /**
+     * Use {@link #getExtendMap()} instead.
+     */
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.String> getExtend() {
+      return getExtendMap();
     }
     /**
      * <pre>
      * 扩展字段，以key/value形式存放的json
      * </pre>
      *
-     * <code>repeated .common.common.ExtraHeader extend = 8;</code>
+     * <code>map&lt;string, string&gt; extend = 8;</code>
      */
-    public com.example.proto.common.common.Common.ExtraHeaderOrBuilder getExtendOrBuilder(
-        int index) {
-      return extend_.get(index);
+
+    public java.util.Map<java.lang.String, java.lang.String> getExtendMap() {
+      return internalGetExtend().getMap();
+    }
+    /**
+     * <pre>
+     * 扩展字段，以key/value形式存放的json
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; extend = 8;</code>
+     */
+
+    public java.lang.String getExtendOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetExtend().getMap();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <pre>
+     * 扩展字段，以key/value形式存放的json
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; extend = 8;</code>
+     */
+
+    public java.lang.String getExtendOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetExtend().getMap();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return map.get(key);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -3284,8 +3217,8 @@ public final class Common {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getMsgIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, msgId_);
+      if (msgId_ != 0L) {
+        output.writeInt64(1, msgId_);
       }
       if (msgType_ != com.example.proto.common.common.Common.MsgType.MSG_TYPE_NUL.getNumber()) {
         output.writeEnum(2, msgType_);
@@ -3293,11 +3226,11 @@ public final class Common {
       if (msgContentType_ != com.example.proto.common.common.Common.MsgContentType.MSG_CONTENT_NUL.getNumber()) {
         output.writeEnum(3, msgContentType_);
       }
-      if (!getFromIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, fromId_);
+      if (fromId_ != 0L) {
+        output.writeInt64(4, fromId_);
       }
-      if (!getToIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, toId_);
+      if (toId_ != 0L) {
+        output.writeInt64(5, toId_);
       }
       if (timestamp_ != 0L) {
         output.writeInt64(6, timestamp_);
@@ -3305,9 +3238,12 @@ public final class Common {
       if (statusReport_ != 0) {
         output.writeInt32(7, statusReport_);
       }
-      for (int i = 0; i < extend_.size(); i++) {
-        output.writeMessage(8, extend_.get(i));
-      }
+      com.google.protobuf.GeneratedMessageV3
+        .serializeStringMapTo(
+          output,
+          internalGetExtend(),
+          ExtendDefaultEntryHolder.defaultEntry,
+          8);
       unknownFields.writeTo(output);
     }
 
@@ -3317,8 +3253,9 @@ public final class Common {
       if (size != -1) return size;
 
       size = 0;
-      if (!getMsgIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, msgId_);
+      if (msgId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, msgId_);
       }
       if (msgType_ != com.example.proto.common.common.Common.MsgType.MSG_TYPE_NUL.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
@@ -3328,11 +3265,13 @@ public final class Common {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(3, msgContentType_);
       }
-      if (!getFromIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, fromId_);
+      if (fromId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, fromId_);
       }
-      if (!getToIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, toId_);
+      if (toId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, toId_);
       }
       if (timestamp_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
@@ -3342,9 +3281,15 @@ public final class Common {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(7, statusReport_);
       }
-      for (int i = 0; i < extend_.size(); i++) {
+      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
+           : internalGetExtend().getMap().entrySet()) {
+        com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+        extend__ = ExtendDefaultEntryHolder.defaultEntry.newBuilderForType()
+            .setKey(entry.getKey())
+            .setValue(entry.getValue())
+            .build();
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, extend_.get(i));
+            .computeMessageSize(8, extend__);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3361,20 +3306,20 @@ public final class Common {
       }
       com.example.proto.common.common.Common.Head other = (com.example.proto.common.common.Common.Head) obj;
 
-      if (!getMsgId()
-          .equals(other.getMsgId())) return false;
+      if (getMsgId()
+          != other.getMsgId()) return false;
       if (msgType_ != other.msgType_) return false;
       if (msgContentType_ != other.msgContentType_) return false;
-      if (!getFromId()
-          .equals(other.getFromId())) return false;
-      if (!getToId()
-          .equals(other.getToId())) return false;
+      if (getFromId()
+          != other.getFromId()) return false;
+      if (getToId()
+          != other.getToId()) return false;
       if (getTimestamp()
           != other.getTimestamp()) return false;
       if (getStatusReport()
           != other.getStatusReport()) return false;
-      if (!getExtendList()
-          .equals(other.getExtendList())) return false;
+      if (!internalGetExtend().equals(
+          other.internalGetExtend())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -3387,23 +3332,26 @@ public final class Common {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + MSG_ID_FIELD_NUMBER;
-      hash = (53 * hash) + getMsgId().hashCode();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getMsgId());
       hash = (37 * hash) + MSG_TYPE_FIELD_NUMBER;
       hash = (53 * hash) + msgType_;
       hash = (37 * hash) + MSG_CONTENT_TYPE_FIELD_NUMBER;
       hash = (53 * hash) + msgContentType_;
       hash = (37 * hash) + FROM_ID_FIELD_NUMBER;
-      hash = (53 * hash) + getFromId().hashCode();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getFromId());
       hash = (37 * hash) + TO_ID_FIELD_NUMBER;
-      hash = (53 * hash) + getToId().hashCode();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getToId());
       hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getTimestamp());
       hash = (37 * hash) + STATUS_REPORT_FIELD_NUMBER;
       hash = (53 * hash) + getStatusReport();
-      if (getExtendCount() > 0) {
+      if (!internalGetExtend().getMap().isEmpty()) {
         hash = (37 * hash) + EXTEND_FIELD_NUMBER;
-        hash = (53 * hash) + getExtendList().hashCode();
+        hash = (53 * hash) + internalGetExtend().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -3512,6 +3460,28 @@ public final class Common {
         return com.example.proto.common.common.Common.internal_static_common_common_Head_descriptor;
       }
 
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMapField(
+          int number) {
+        switch (number) {
+          case 8:
+            return internalGetExtend();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMutableMapField(
+          int number) {
+        switch (number) {
+          case 8:
+            return internalGetMutableExtend();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
@@ -3533,32 +3503,26 @@ public final class Common {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getExtendFieldBuilder();
         }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        msgId_ = "";
+        msgId_ = 0L;
 
         msgType_ = 0;
 
         msgContentType_ = 0;
 
-        fromId_ = "";
+        fromId_ = 0L;
 
-        toId_ = "";
+        toId_ = 0L;
 
         timestamp_ = 0L;
 
         statusReport_ = 0;
 
-        if (extendBuilder_ == null) {
-          extend_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          extendBuilder_.clear();
-        }
+        internalGetMutableExtend().clear();
         return this;
       }
 
@@ -3593,15 +3557,8 @@ public final class Common {
         result.toId_ = toId_;
         result.timestamp_ = timestamp_;
         result.statusReport_ = statusReport_;
-        if (extendBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            extend_ = java.util.Collections.unmodifiableList(extend_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.extend_ = extend_;
-        } else {
-          result.extend_ = extendBuilder_.build();
-        }
+        result.extend_ = internalGetExtend();
+        result.extend_.makeImmutable();
         onBuilt();
         return result;
       }
@@ -3650,9 +3607,8 @@ public final class Common {
 
       public Builder mergeFrom(com.example.proto.common.common.Common.Head other) {
         if (other == com.example.proto.common.common.Common.Head.getDefaultInstance()) return this;
-        if (!other.getMsgId().isEmpty()) {
-          msgId_ = other.msgId_;
-          onChanged();
+        if (other.getMsgId() != 0L) {
+          setMsgId(other.getMsgId());
         }
         if (other.msgType_ != 0) {
           setMsgTypeValue(other.getMsgTypeValue());
@@ -3660,13 +3616,11 @@ public final class Common {
         if (other.msgContentType_ != 0) {
           setMsgContentTypeValue(other.getMsgContentTypeValue());
         }
-        if (!other.getFromId().isEmpty()) {
-          fromId_ = other.fromId_;
-          onChanged();
+        if (other.getFromId() != 0L) {
+          setFromId(other.getFromId());
         }
-        if (!other.getToId().isEmpty()) {
-          toId_ = other.toId_;
-          onChanged();
+        if (other.getToId() != 0L) {
+          setToId(other.getToId());
         }
         if (other.getTimestamp() != 0L) {
           setTimestamp(other.getTimestamp());
@@ -3674,32 +3628,8 @@ public final class Common {
         if (other.getStatusReport() != 0) {
           setStatusReport(other.getStatusReport());
         }
-        if (extendBuilder_ == null) {
-          if (!other.extend_.isEmpty()) {
-            if (extend_.isEmpty()) {
-              extend_ = other.extend_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureExtendIsMutable();
-              extend_.addAll(other.extend_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.extend_.isEmpty()) {
-            if (extendBuilder_.isEmpty()) {
-              extendBuilder_.dispose();
-              extendBuilder_ = null;
-              extend_ = other.extend_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              extendBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getExtendFieldBuilder() : null;
-            } else {
-              extendBuilder_.addAllMessages(other.extend_);
-            }
-          }
-        }
+        internalGetMutableExtend().mergeFrom(
+            other.internalGetExtend());
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -3730,63 +3660,29 @@ public final class Common {
       }
       private int bitField0_;
 
-      private java.lang.Object msgId_ = "";
+      private long msgId_ ;
       /**
        * <pre>
        * 消息id
        * </pre>
        *
-       * <code>string msg_id = 1;</code>
+       * <code>int64 msg_id = 1;</code>
        * @return The msgId.
        */
-      public java.lang.String getMsgId() {
-        java.lang.Object ref = msgId_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          msgId_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      public long getMsgId() {
+        return msgId_;
       }
       /**
        * <pre>
        * 消息id
        * </pre>
        *
-       * <code>string msg_id = 1;</code>
-       * @return The bytes for msgId.
-       */
-      public com.google.protobuf.ByteString
-          getMsgIdBytes() {
-        java.lang.Object ref = msgId_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          msgId_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * 消息id
-       * </pre>
-       *
-       * <code>string msg_id = 1;</code>
+       * <code>int64 msg_id = 1;</code>
        * @param value The msgId to set.
        * @return This builder for chaining.
        */
-      public Builder setMsgId(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      public Builder setMsgId(long value) {
+        
         msgId_ = value;
         onChanged();
         return this;
@@ -3796,32 +3692,12 @@ public final class Common {
        * 消息id
        * </pre>
        *
-       * <code>string msg_id = 1;</code>
+       * <code>int64 msg_id = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearMsgId() {
         
-        msgId_ = getDefaultInstance().getMsgId();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 消息id
-       * </pre>
-       *
-       * <code>string msg_id = 1;</code>
-       * @param value The bytes for msgId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMsgIdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        msgId_ = value;
+        msgId_ = 0L;
         onChanged();
         return this;
       }
@@ -3970,63 +3846,29 @@ public final class Common {
         return this;
       }
 
-      private java.lang.Object fromId_ = "";
+      private long fromId_ ;
       /**
        * <pre>
        * 消息发送者id
        * </pre>
        *
-       * <code>string from_id = 4;</code>
+       * <code>int64 from_id = 4;</code>
        * @return The fromId.
        */
-      public java.lang.String getFromId() {
-        java.lang.Object ref = fromId_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          fromId_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      public long getFromId() {
+        return fromId_;
       }
       /**
        * <pre>
        * 消息发送者id
        * </pre>
        *
-       * <code>string from_id = 4;</code>
-       * @return The bytes for fromId.
-       */
-      public com.google.protobuf.ByteString
-          getFromIdBytes() {
-        java.lang.Object ref = fromId_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          fromId_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * 消息发送者id
-       * </pre>
-       *
-       * <code>string from_id = 4;</code>
+       * <code>int64 from_id = 4;</code>
        * @param value The fromId to set.
        * @return This builder for chaining.
        */
-      public Builder setFromId(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      public Builder setFromId(long value) {
+        
         fromId_ = value;
         onChanged();
         return this;
@@ -4036,93 +3878,39 @@ public final class Common {
        * 消息发送者id
        * </pre>
        *
-       * <code>string from_id = 4;</code>
+       * <code>int64 from_id = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearFromId() {
         
-        fromId_ = getDefaultInstance().getFromId();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 消息发送者id
-       * </pre>
-       *
-       * <code>string from_id = 4;</code>
-       * @param value The bytes for fromId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setFromIdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        fromId_ = value;
+        fromId_ = 0L;
         onChanged();
         return this;
       }
 
-      private java.lang.Object toId_ = "";
+      private long toId_ ;
       /**
        * <pre>
        * 消息接收者id
        * </pre>
        *
-       * <code>string to_id = 5;</code>
+       * <code>int64 to_id = 5;</code>
        * @return The toId.
        */
-      public java.lang.String getToId() {
-        java.lang.Object ref = toId_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          toId_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      public long getToId() {
+        return toId_;
       }
       /**
        * <pre>
        * 消息接收者id
        * </pre>
        *
-       * <code>string to_id = 5;</code>
-       * @return The bytes for toId.
-       */
-      public com.google.protobuf.ByteString
-          getToIdBytes() {
-        java.lang.Object ref = toId_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          toId_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * 消息接收者id
-       * </pre>
-       *
-       * <code>string to_id = 5;</code>
+       * <code>int64 to_id = 5;</code>
        * @param value The toId to set.
        * @return This builder for chaining.
        */
-      public Builder setToId(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      public Builder setToId(long value) {
+        
         toId_ = value;
         onChanged();
         return this;
@@ -4132,32 +3920,12 @@ public final class Common {
        * 消息接收者id
        * </pre>
        *
-       * <code>string to_id = 5;</code>
+       * <code>int64 to_id = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearToId() {
         
-        toId_ = getDefaultInstance().getToId();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 消息接收者id
-       * </pre>
-       *
-       * <code>string to_id = 5;</code>
-       * @param value The bytes for toId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setToIdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        toId_ = value;
+        toId_ = 0L;
         onChanged();
         return this;
       }
@@ -4246,210 +4014,101 @@ public final class Common {
         return this;
       }
 
-      private java.util.List<com.example.proto.common.common.Common.ExtraHeader> extend_ =
-        java.util.Collections.emptyList();
-      private void ensureExtendIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          extend_ = new java.util.ArrayList<com.example.proto.common.common.Common.ExtraHeader>(extend_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.example.proto.common.common.Common.ExtraHeader, com.example.proto.common.common.Common.ExtraHeader.Builder, com.example.proto.common.common.Common.ExtraHeaderOrBuilder> extendBuilder_;
-
-      /**
-       * <pre>
-       * 扩展字段，以key/value形式存放的json
-       * </pre>
-       *
-       * <code>repeated .common.common.ExtraHeader extend = 8;</code>
-       */
-      public java.util.List<com.example.proto.common.common.Common.ExtraHeader> getExtendList() {
-        if (extendBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(extend_);
-        } else {
-          return extendBuilder_.getMessageList();
+      private com.google.protobuf.MapField<
+          java.lang.String, java.lang.String> extend_;
+      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+      internalGetExtend() {
+        if (extend_ == null) {
+          return com.google.protobuf.MapField.emptyMapField(
+              ExtendDefaultEntryHolder.defaultEntry);
         }
+        return extend_;
       }
-      /**
-       * <pre>
-       * 扩展字段，以key/value形式存放的json
-       * </pre>
-       *
-       * <code>repeated .common.common.ExtraHeader extend = 8;</code>
-       */
+      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+      internalGetMutableExtend() {
+        onChanged();;
+        if (extend_ == null) {
+          extend_ = com.google.protobuf.MapField.newMapField(
+              ExtendDefaultEntryHolder.defaultEntry);
+        }
+        if (!extend_.isMutable()) {
+          extend_ = extend_.copy();
+        }
+        return extend_;
+      }
+
       public int getExtendCount() {
-        if (extendBuilder_ == null) {
-          return extend_.size();
-        } else {
-          return extendBuilder_.getCount();
-        }
+        return internalGetExtend().getMap().size();
       }
       /**
        * <pre>
        * 扩展字段，以key/value形式存放的json
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extend = 8;</code>
+       * <code>map&lt;string, string&gt; extend = 8;</code>
        */
-      public com.example.proto.common.common.Common.ExtraHeader getExtend(int index) {
-        if (extendBuilder_ == null) {
-          return extend_.get(index);
-        } else {
-          return extendBuilder_.getMessage(index);
-        }
+
+      public boolean containsExtend(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        return internalGetExtend().getMap().containsKey(key);
+      }
+      /**
+       * Use {@link #getExtendMap()} instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.String> getExtend() {
+        return getExtendMap();
       }
       /**
        * <pre>
        * 扩展字段，以key/value形式存放的json
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extend = 8;</code>
+       * <code>map&lt;string, string&gt; extend = 8;</code>
        */
-      public Builder setExtend(
-          int index, com.example.proto.common.common.Common.ExtraHeader value) {
-        if (extendBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureExtendIsMutable();
-          extend_.set(index, value);
-          onChanged();
-        } else {
-          extendBuilder_.setMessage(index, value);
-        }
-        return this;
+
+      public java.util.Map<java.lang.String, java.lang.String> getExtendMap() {
+        return internalGetExtend().getMap();
       }
       /**
        * <pre>
        * 扩展字段，以key/value形式存放的json
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extend = 8;</code>
+       * <code>map&lt;string, string&gt; extend = 8;</code>
        */
-      public Builder setExtend(
-          int index, com.example.proto.common.common.Common.ExtraHeader.Builder builderForValue) {
-        if (extendBuilder_ == null) {
-          ensureExtendIsMutable();
-          extend_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          extendBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
+
+      public java.lang.String getExtendOrDefault(
+          java.lang.String key,
+          java.lang.String defaultValue) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, java.lang.String> map =
+            internalGetExtend().getMap();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
        * <pre>
        * 扩展字段，以key/value形式存放的json
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extend = 8;</code>
+       * <code>map&lt;string, string&gt; extend = 8;</code>
        */
-      public Builder addExtend(com.example.proto.common.common.Common.ExtraHeader value) {
-        if (extendBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureExtendIsMutable();
-          extend_.add(value);
-          onChanged();
-        } else {
-          extendBuilder_.addMessage(value);
+
+      public java.lang.String getExtendOrThrow(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, java.lang.String> map =
+            internalGetExtend().getMap();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
         }
-        return this;
+        return map.get(key);
       }
-      /**
-       * <pre>
-       * 扩展字段，以key/value形式存放的json
-       * </pre>
-       *
-       * <code>repeated .common.common.ExtraHeader extend = 8;</code>
-       */
-      public Builder addExtend(
-          int index, com.example.proto.common.common.Common.ExtraHeader value) {
-        if (extendBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureExtendIsMutable();
-          extend_.add(index, value);
-          onChanged();
-        } else {
-          extendBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       * 扩展字段，以key/value形式存放的json
-       * </pre>
-       *
-       * <code>repeated .common.common.ExtraHeader extend = 8;</code>
-       */
-      public Builder addExtend(
-          com.example.proto.common.common.Common.ExtraHeader.Builder builderForValue) {
-        if (extendBuilder_ == null) {
-          ensureExtendIsMutable();
-          extend_.add(builderForValue.build());
-          onChanged();
-        } else {
-          extendBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       * 扩展字段，以key/value形式存放的json
-       * </pre>
-       *
-       * <code>repeated .common.common.ExtraHeader extend = 8;</code>
-       */
-      public Builder addExtend(
-          int index, com.example.proto.common.common.Common.ExtraHeader.Builder builderForValue) {
-        if (extendBuilder_ == null) {
-          ensureExtendIsMutable();
-          extend_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          extendBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       * 扩展字段，以key/value形式存放的json
-       * </pre>
-       *
-       * <code>repeated .common.common.ExtraHeader extend = 8;</code>
-       */
-      public Builder addAllExtend(
-          java.lang.Iterable<? extends com.example.proto.common.common.Common.ExtraHeader> values) {
-        if (extendBuilder_ == null) {
-          ensureExtendIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, extend_);
-          onChanged();
-        } else {
-          extendBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       * 扩展字段，以key/value形式存放的json
-       * </pre>
-       *
-       * <code>repeated .common.common.ExtraHeader extend = 8;</code>
-       */
+
       public Builder clearExtend() {
-        if (extendBuilder_ == null) {
-          extend_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          extendBuilder_.clear();
-        }
+        internalGetMutableExtend().getMutableMap()
+            .clear();
         return this;
       }
       /**
@@ -4457,16 +4116,38 @@ public final class Common {
        * 扩展字段，以key/value形式存放的json
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extend = 8;</code>
+       * <code>map&lt;string, string&gt; extend = 8;</code>
        */
-      public Builder removeExtend(int index) {
-        if (extendBuilder_ == null) {
-          ensureExtendIsMutable();
-          extend_.remove(index);
-          onChanged();
-        } else {
-          extendBuilder_.remove(index);
-        }
+
+      public Builder removeExtend(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        internalGetMutableExtend().getMutableMap()
+            .remove(key);
+        return this;
+      }
+      /**
+       * Use alternate mutation accessors instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.String>
+      getMutableExtend() {
+        return internalGetMutableExtend().getMutableMap();
+      }
+      /**
+       * <pre>
+       * 扩展字段，以key/value形式存放的json
+       * </pre>
+       *
+       * <code>map&lt;string, string&gt; extend = 8;</code>
+       */
+      public Builder putExtend(
+          java.lang.String key,
+          java.lang.String value) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (value == null) { throw new java.lang.NullPointerException(); }
+        internalGetMutableExtend().getMutableMap()
+            .put(key, value);
         return this;
       }
       /**
@@ -4474,88 +4155,14 @@ public final class Common {
        * 扩展字段，以key/value形式存放的json
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extend = 8;</code>
+       * <code>map&lt;string, string&gt; extend = 8;</code>
        */
-      public com.example.proto.common.common.Common.ExtraHeader.Builder getExtendBuilder(
-          int index) {
-        return getExtendFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <pre>
-       * 扩展字段，以key/value形式存放的json
-       * </pre>
-       *
-       * <code>repeated .common.common.ExtraHeader extend = 8;</code>
-       */
-      public com.example.proto.common.common.Common.ExtraHeaderOrBuilder getExtendOrBuilder(
-          int index) {
-        if (extendBuilder_ == null) {
-          return extend_.get(index);  } else {
-          return extendBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <pre>
-       * 扩展字段，以key/value形式存放的json
-       * </pre>
-       *
-       * <code>repeated .common.common.ExtraHeader extend = 8;</code>
-       */
-      public java.util.List<? extends com.example.proto.common.common.Common.ExtraHeaderOrBuilder> 
-           getExtendOrBuilderList() {
-        if (extendBuilder_ != null) {
-          return extendBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(extend_);
-        }
-      }
-      /**
-       * <pre>
-       * 扩展字段，以key/value形式存放的json
-       * </pre>
-       *
-       * <code>repeated .common.common.ExtraHeader extend = 8;</code>
-       */
-      public com.example.proto.common.common.Common.ExtraHeader.Builder addExtendBuilder() {
-        return getExtendFieldBuilder().addBuilder(
-            com.example.proto.common.common.Common.ExtraHeader.getDefaultInstance());
-      }
-      /**
-       * <pre>
-       * 扩展字段，以key/value形式存放的json
-       * </pre>
-       *
-       * <code>repeated .common.common.ExtraHeader extend = 8;</code>
-       */
-      public com.example.proto.common.common.Common.ExtraHeader.Builder addExtendBuilder(
-          int index) {
-        return getExtendFieldBuilder().addBuilder(
-            index, com.example.proto.common.common.Common.ExtraHeader.getDefaultInstance());
-      }
-      /**
-       * <pre>
-       * 扩展字段，以key/value形式存放的json
-       * </pre>
-       *
-       * <code>repeated .common.common.ExtraHeader extend = 8;</code>
-       */
-      public java.util.List<com.example.proto.common.common.Common.ExtraHeader.Builder> 
-           getExtendBuilderList() {
-        return getExtendFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.example.proto.common.common.Common.ExtraHeader, com.example.proto.common.common.Common.ExtraHeader.Builder, com.example.proto.common.common.Common.ExtraHeaderOrBuilder> 
-          getExtendFieldBuilder() {
-        if (extendBuilder_ == null) {
-          extendBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.example.proto.common.common.Common.ExtraHeader, com.example.proto.common.common.Common.ExtraHeader.Builder, com.example.proto.common.common.Common.ExtraHeaderOrBuilder>(
-                  extend_,
-                  ((bitField0_ & 0x00000001) != 0),
-                  getParentForChildren(),
-                  isClean());
-          extend_ = null;
-        }
-        return extendBuilder_;
+
+      public Builder putAllExtend(
+          java.util.Map<java.lang.String, java.lang.String> values) {
+        internalGetMutableExtend().getMutableMap()
+            .putAll(values);
+        return this;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -5374,6 +4981,11 @@ public final class Common {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_common_common_Head_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_common_common_Head_ExtendEntry_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_common_common_Head_ExtendEntry_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_common_common_ErrorMsg_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -5391,24 +5003,25 @@ public final class Common {
       "Msg\022!\n\004head\030\001 \001(\0132\023.common.common.Head\022!" +
       "\n\004body\030\002 \001(\0132\023.common.common.Body\"\027\n\004Bod" +
       "y\022\017\n\007content\030\001 \001(\t\")\n\013ExtraHeader\022\013\n\003key" +
-      "\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"\357\001\n\004Head\022\016\n\006msg_id" +
-      "\030\001 \001(\t\022(\n\010msg_type\030\002 \001(\0162\026.common.common" +
+      "\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"\243\002\n\004Head\022\016\n\006msg_id" +
+      "\030\001 \001(\003\022(\n\010msg_type\030\002 \001(\0162\026.common.common" +
       ".MsgType\0227\n\020msg_content_type\030\003 \001(\0162\035.com" +
       "mon.common.MsgContentType\022\017\n\007from_id\030\004 \001" +
-      "(\t\022\r\n\005to_id\030\005 \001(\t\022\021\n\ttimestamp\030\006 \001(\003\022\025\n\r" +
-      "status_report\030\007 \001(\005\022*\n\006extend\030\010 \003(\0132\032.co" +
-      "mmon.common.ExtraHeader\"C\n\010ErrorMsg\022*\n\ne" +
-      "rror_code\030\001 \001(\0162\026.common.common.ErrCode\022" +
-      "\013\n\003msg\030\002 \001(\t*V\n\007MsgType\022\020\n\014MSG_TYPE_NUL\020" +
-      "\000\022\016\n\nHAND_SHAKE\020\001\022\016\n\nHEART_BEAT\020\002\022\010\n\004KIC" +
-      "K\020\003\022\017\n\013SINGLE_CHAT\020\004*/\n\016MsgContentType\022\023" +
-      "\n\017MSG_CONTENT_NUL\020\000\022\010\n\004TEXT\020\001*\255\001\n\007ErrCod" +
-      "e\022\022\n\016ERRORCODE_NULL\020\000\022\013\n\007SUCCESS\020\001\022\021\n\004FA" +
-      "IL\020\377\377\377\377\377\377\377\377\377\001\022$\n SEND_MSG_INDIVIDUALLY_T" +
-      "O_UID_NUL\020e\022!\n\035SEND_MSG_INDIVIDUALLY_MSG" +
-      "_NUL\020f\022%\n!SEND_MSG_INDIVIDUALLY_FROM_ID_" +
-      "NUL\020gB+\n\037com.example.proto.common.common" +
-      "B\006CommonP\000b\006proto3"
+      "(\003\022\r\n\005to_id\030\005 \001(\003\022\021\n\ttimestamp\030\006 \001(\003\022\025\n\r" +
+      "status_report\030\007 \001(\005\022/\n\006extend\030\010 \003(\0132\037.co" +
+      "mmon.common.Head.ExtendEntry\032-\n\013ExtendEn" +
+      "try\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"C\n\010E" +
+      "rrorMsg\022*\n\nerror_code\030\001 \001(\0162\026.common.com" +
+      "mon.ErrCode\022\013\n\003msg\030\002 \001(\t*V\n\007MsgType\022\020\n\014M" +
+      "SG_TYPE_NUL\020\000\022\016\n\nHAND_SHAKE\020\001\022\016\n\nHEART_B" +
+      "EAT\020\002\022\010\n\004KICK\020\003\022\017\n\013SINGLE_CHAT\020\004*/\n\016MsgC" +
+      "ontentType\022\023\n\017MSG_CONTENT_NUL\020\000\022\010\n\004TEXT\020" +
+      "\001*\255\001\n\007ErrCode\022\022\n\016ERRORCODE_NULL\020\000\022\013\n\007SUC" +
+      "CESS\020\001\022\021\n\004FAIL\020\377\377\377\377\377\377\377\377\377\001\022$\n SEND_MSG_IN" +
+      "DIVIDUALLY_TO_UID_NUL\020e\022!\n\035SEND_MSG_INDI" +
+      "VIDUALLY_MSG_NUL\020f\022%\n!SEND_MSG_INDIVIDUA" +
+      "LLY_FROM_ID_NUL\020gB+\n\037com.example.proto.c" +
+      "ommon.commonB\006CommonP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -5438,6 +5051,12 @@ public final class Common {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_common_common_Head_descriptor,
         new java.lang.String[] { "MsgId", "MsgType", "MsgContentType", "FromId", "ToId", "Timestamp", "StatusReport", "Extend", });
+    internal_static_common_common_Head_ExtendEntry_descriptor =
+      internal_static_common_common_Head_descriptor.getNestedTypes().get(0);
+    internal_static_common_common_Head_ExtendEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_common_common_Head_ExtendEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
     internal_static_common_common_ErrorMsg_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_common_common_ErrorMsg_fieldAccessorTable = new

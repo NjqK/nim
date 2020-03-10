@@ -1,7 +1,9 @@
 package com.example.netty.study.newclient.handler;
 
+import com.example.netty.study.common.Constants;
 import com.example.netty.study.newclient.TcpClient;
 import com.example.netty.study.newclient.policy.RetryPolicy;
+import com.example.proto.common.common.Common;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -30,8 +32,9 @@ public class ReconnectHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        log.error("active");
         retries = 0;
+        // TODO 发送确认连接的消息，携带用户id
+        ctx.writeAndFlush(Constants.HAND_SHAKE);
         ctx.fireChannelActive();
     }
 

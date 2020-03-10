@@ -6,22 +6,30 @@ option java_package = "com.example.proto.common.common";
 option java_outer_classname = "Common";
 
 enum MsgType {
-    MSG_TYPE_NUL = 0; // NULL
-    HAND_SHAKE = 1; // 握手
-    HEART_BEAT = 2; // 心跳
-    KICK = 3; // 抢占线
-    SINGLE_CHAT = 4; // 单聊
+    // NULL
+    MSG_TYPE_NUL = 0;
+    // 握手
+    HAND_SHAKE = 1;
+    // 心跳
+    HEART_BEAT = 2;
+    // 抢占线
+    KICK = 3;
+    // 单聊
+    SINGLE_CHAT = 4;
     // ...
 }
 
 enum MsgContentType {
     MSG_CONTENT_NUL = 0;
-    TEXT = 1; // 文本消息
+    // 文本消息
+    TEXT = 1;
 }
 
 message Msg {
-    Head head = 1;// 消息头
-    Body body = 2;// 消息体
+    // 消息头
+    Head head = 1;
+    // 消息体
+    Body body = 2;
 }
 
 message Body {
@@ -34,14 +42,22 @@ message ExtraHeader {
 }
 
 message Head {
-    string msg_id = 1;// 消息id
-    MsgType msg_type = 2;// 消息类型
-    MsgContentType msg_content_type = 3;// 消息内容类型
-    string from_id = 4;// 消息发送者id
-    string to_id = 5;// 消息接收者id
-    int64 timestamp = 6;// 消息时间戳
-    int32 status_report = 7;// 状态报告
-    repeated ExtraHeader extend = 8;// 扩展字段，以key/value形式存放的json
+    // 消息id
+    int64 msg_id = 1;
+    // 消息类型
+    MsgType msg_type = 2;
+    // 消息内容类型
+    MsgContentType msg_content_type = 3;
+    // 消息发送者id
+    int64 from_id = 4;
+    // 消息接收者id
+    int64 to_id = 5;
+    // 消息时间戳
+    int64 timestamp = 6;
+    // 状态报告
+    int32 status_report = 7;
+    // 扩展字段，以key/value形式存放的json
+    map<string, string> extend = 8;
 }
 
 // 错误码

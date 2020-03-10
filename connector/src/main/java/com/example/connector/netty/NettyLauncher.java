@@ -3,6 +3,7 @@ package com.example.connector.netty;
 import com.example.connector.entity.cluster.ClusterNode;
 import com.example.connector.netty.handler.BizHandler;
 import com.example.connector.netty.handler.HeartBeatHandler;
+import com.example.connector.netty.handler.IdleTrigger;
 import com.example.proto.common.common.Common;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -35,7 +36,7 @@ public class NettyLauncher implements Runnable {
     /**
      * netty绑定完成
      */
-    private boolean start = false;
+    private volatile boolean start = false;
 
     public NettyLauncher(ClusterNode localNode) {
         this.localNode = localNode;
@@ -63,18 +64,19 @@ public class NettyLauncher implements Runnable {
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
                             // 超过5s没有收到客户端消息，TODO 时间改为配置
-                            pipeline.addLast(new IdleStateHandler(30, 0, 0));
+                            pipeline.addLast(new IdleStateHandler(10, 0, 0));
+                            pipeline.addLast("IdleTriggerHandler", new IdleTrigger());
                             // 半包处理
                             pipeline.addLast(new ProtobufVarint32FrameDecoder());
                             // 解码的目标类
-                            pipeline.addLast(new ProtobufDecoder(Common.Msg.getDefaultInstance()));
+                            pipeline.addLast("decoder", new ProtobufDecoder(Common.Msg.getDefaultInstance()));
                             // 必修要在encoder前
                             pipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
                             // 编码器
-                            pipeline.addLast(new ProtobufEncoder());
-                            pipeline.addLast(new HeartBeatHandler());
+                            pipeline.addLast("encode", new ProtobufEncoder());
+                            pipeline.addLast("HeartBeatHandler", new HeartBeatHandler());
                             // 逻辑handler
-                            pipeline.addLast(new BizHandler());
+                            pipeline.addLast("BizHandler", new BizHandler());
                         }
                     });
             ChannelFuture future = b.bind().sync();

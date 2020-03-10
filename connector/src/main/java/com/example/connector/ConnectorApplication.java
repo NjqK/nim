@@ -1,10 +1,13 @@
 package com.example.connector;
 
+import com.example.common.CommonConstants;
 import com.example.common.util.JedisUtil;
+import com.example.connector.common.RedisKeyUtil;
 import com.example.connector.dao.manager.ClusterNodeManager;
 import com.example.connector.entity.cluster.ClusterNode;
 import com.example.connector.netty.NettyServerManager;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.DubboShutdownHook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -43,8 +46,6 @@ public class ConnectorApplication {
 
     private String zkRootPath = "/app/";
 
-    private String redisKey = null;
-
     @Autowired
     private ClusterNodeManager clusterNodeManager;
 
@@ -53,7 +54,6 @@ public class ConnectorApplication {
         log.info(applicationName + " starting...");
         initRedis();
         initNetty();
-
         // 用这个clusterNode在redis李建立一个map，并创建ServerBootstrap
     }
 
@@ -65,15 +65,11 @@ public class ConnectorApplication {
         NettyServerManager instance = NettyServerManager.getInstance();
         instance.init(localNode);
         // create redis map of this netty node
-        createKey(localNode);
-        JedisUtil.hsetnx(redisKey, "node-info", localNode.toString());
+        String key = RedisKeyUtil.createApplicationRedisKey(applicationName, localNode);
+        String kafkaTopic = localNode.toString();
+        JedisUtil.hsetnx(CommonConstants.CONNECTOR_REDIS_KEY, key, kafkaTopic);
     }
 
-    private void createKey(ClusterNode localNode) {
-        if (redisKey == null && localNode != null) {
-            redisKey = applicationName + "_" + localNode.getIp() + "_" + localNode.getPort();
-        }
-    }
 
     private void initRedis() {
         int port = Integer.parseInt(redisPort);
@@ -86,10 +82,9 @@ public class ConnectorApplication {
     @PreDestroy
     private void onDestroy() {
         // TODO 删掉zk节点，释放netty资源，dubbo等
-
-        //JedisUtil.del();
-        JedisUtil.del(redisKey);
+        JedisUtil.hdel(CommonConstants.CONNECTOR_REDIS_KEY, RedisKeyUtil.getApplicationRedisKey());
         JedisUtil.close();
+        // TODO 添加dubbo优雅停机
         System.out.println("close");
     }
 

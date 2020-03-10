@@ -272,6 +272,7 @@ public class JedisUtil {
      * @return
      */
     public static Long hset(String key, String field, String value) {
+        log.info("hset:" + key + "_" + field + "_" + value);
         Jedis jedis = getJedis();
         return jedis.hset(key, field, value);
     }
@@ -368,6 +369,9 @@ public class JedisUtil {
      * @return
      */
     public static Long hdel(String key, String... fields) {
+        for (String f : fields) {
+            log.info("hset:" + key + ", fields: " + f);
+        }
         Jedis jedis = getJedis();
         return jedis.hdel(key, fields);
     }

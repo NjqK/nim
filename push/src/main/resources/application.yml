@@ -10,23 +10,32 @@ spring:
       min-idle: 5
       max-active: 20
 
-mybatis:
-  mapper-locations: classpath*:com/example/dao/mappers/*.xml
-  type-aliases-package: com.example.connector.entity.domain
+dubbo:
+  application:
+    name: push
+  protocol:
+    name: dubbo
+    port: 20883
+    serialization: protostuff
+  registry:
+    address: zookeeper://127.0.0.1:2181
+    client: curator
+  scan:
+      base-packages: com.example.push.service
+  consumer:
+    check: false
 
-#dubbo:
-#  chat:
-#    port : 18085
-#
-#zookeeper:
-#  url: zk:2181
-#
-#redis:
-#  cluster:
-#    nodes: redis:port
-#    password:
-#
-#kafka:
-#  cluster:
-#    nodes: kafka:port
+server:
+  port: 8083
+
+redis:
+  pool:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    maxTotal: 8
+    maxIdle: 8
+    maxWaitMillis: -1
+
+
 

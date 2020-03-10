@@ -23,4 +23,14 @@ public class Constants {
                     .setMsgType(Common.MsgType.HEART_BEAT)
                     .build())
             .build();
+
+    /**
+     * TODO 移到Constants里
+     */
+    public static final Common.Msg HAND_SHAKE = Common.Msg.newBuilder()
+            .setHead(Common.Head.newBuilder()
+                    .setMsgType(Common.MsgType.HAND_SHAKE)
+                    .putExtend("uid", "1110")
+                    .build())
+            .build();
 }
