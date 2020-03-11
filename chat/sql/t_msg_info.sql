@@ -7,6 +7,7 @@ CREATE TABLE `chat`.`t_msg_info` (
   `msg_type` INT NOT NULL COMMENT '消息类型',
   `msg_content_type` INT NOT NULL COMMENT '消息内容类型',
   `msg_data` BLOB NOT NULL COMMENT '消息数据',
+  `read_status` INT NOT NULL DEFAULT '0' COMMENT '0未读 1已读',
   `is_delete` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0未删除 1已删除',
   `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',

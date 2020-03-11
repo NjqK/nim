@@ -39,7 +39,7 @@ public class KafkaConsumerUtil<K, V> {
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, group);
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        //自动更新offset
+        //自动更新offset，虽然不推荐
         properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
         Instance.instance.consumer = new KafkaConsumer<>(properties);
         if ("false".equals(properties.getProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG))) {

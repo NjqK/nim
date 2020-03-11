@@ -26,6 +26,13 @@ enum MsgContentType {
     TEXT = 1;
 }
 
+enum ReadStatus {
+    // 未读
+    UNREAD = 0;
+    // 已读
+    READ = 1;
+}
+
 message Msg {
     // 消息头
     Head head = 1;

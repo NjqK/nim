@@ -26,7 +26,7 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
     @Autowired
     private MsgInfoDaoManager msgInfoDaoManager;
 
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", async = true)
     private PushService pushService;
 
     @Override
