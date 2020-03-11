@@ -5,6 +5,7 @@ import com.example.common.CommonConstants;
 import com.example.common.kafka.KafkaProducerUtil;
 import com.example.common.redis.JedisUtil;
 import com.example.proto.inner.inner.Inner;
+import com.google.protobuf.util.JsonFormat;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;
 
@@ -24,12 +25,14 @@ public class PushServiceImpl implements PushService {
         try {
             // TODO 找到netty，放到对应的kafka节点
             String nettyNodeInfo = JedisUtil.hget(CommonConstants.USERS_REDIS_KEY, req.getToUid());
+            // TODO 删除下线的用户
             if (nettyNodeInfo == null) {
                 log.error("用户不在线.");
                 return builder.setRet(CommonConstants.FAIL).build();
             }
             // TODO 把消息放到对应的kafka
-            KafkaProducerUtil.sendSingle(CommonConstants.CONNECTOR_KAFKA_TOPIC, req.getMsg(), true);
+            String msgJson = JsonFormat.printer().print(req.getMsg());
+            KafkaProducerUtil.sendSingle(CommonConstants.CONNECTOR_KAFKA_TOPIC, msgJson, true);
             Inner.RouteMsgResp resp = builder.setRet(CommonConstants.SUCCESS).build();
             log.info("Inner.RouteMsgResp routeMsg, resp:{}", resp);
             return resp;

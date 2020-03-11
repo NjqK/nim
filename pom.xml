@@ -119,6 +119,17 @@
                 <version>${fastjson.version}</version>
             </dependency>
             <!--protostuff 序列化工具-->
+            <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java-util -->
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java-util</artifactId>
+                <version>${protobuf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>${protobuf.version}</version>
+            </dependency>
             <dependency>
                 <groupId>io.protostuff</groupId>
                 <artifactId>protostuff-runtime</artifactId>
@@ -133,12 +144,6 @@
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
                 <version>${jedis.version}</version>
-            </dependency>
-            <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java-util -->
-            <dependency>
-                <groupId>com.google.protobuf</groupId>
-                <artifactId>protobuf-java-util</artifactId>
-                <version>${protobuf.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
