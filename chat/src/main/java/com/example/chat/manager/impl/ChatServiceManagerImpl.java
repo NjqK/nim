@@ -63,6 +63,7 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
     private Inner.RouteMsgReq buildPushReq(Outer.SendMsgIndividuallyReq req, long guid) {
         Common.Head header = Common.Head.newBuilder()
                 .setMsgId(guid)
+                .setToId(Long.parseLong(req.getToUid()))
                 .setMsgType(req.getMsgType())
                 .setMsgContentType(req.getMsgContentType())
                 .build();

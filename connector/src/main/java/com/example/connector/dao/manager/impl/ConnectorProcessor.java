@@ -1,9 +1,13 @@
 package com.example.connector.dao.manager.impl;
 
 import com.example.common.kafka.ReceiveMessageCallback;
+import com.example.connector.common.SpringUtil;
+import com.example.connector.dao.manager.SessionManager;
+import com.example.connector.netty.NettyServerManager;
 import com.example.proto.common.common.Common;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
+import io.netty.channel.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -15,6 +19,21 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
  **/
 @Slf4j
 public class ConnectorProcessor implements ReceiveMessageCallback<String, String> {
+
+    /**
+     * 发送消息用的
+     */
+    private NettyServerManager nettyServerManager;
+
+    /**
+     * session manager, 管理uid和channel
+     */
+    private SessionManager sessionManager;
+
+    public ConnectorProcessor(NettyServerManager nettyServerManager, SessionManager sessionManager) {
+        this.nettyServerManager = nettyServerManager;
+        this.sessionManager = sessionManager;
+    }
 
     /**
      * 消费消息
@@ -38,7 +57,19 @@ public class ConnectorProcessor implements ReceiveMessageCallback<String, String
             }
             try {
                 // TODO 具体长连接发送逻辑
-
+                String uid = String.valueOf(builder.getHead().getToId());
+                log.info("start to send msg, uid:{}", uid);
+                if (sessionManager.isOnline(uid)) {
+                    // online
+                    Channel channel = sessionManager.getChannel(uid);
+                    boolean b = nettyServerManager.sendMsg(channel, builder.build());
+                    if (!b) {
+                        log.error("发送消息失败,uid:{},msgId:{}", uid, builder.getHead().getMsgId());
+                        // TODO 发送消息失败的逻辑
+                    }
+                } else {
+                    log.error("用户uid:{}不在线...", uid);
+                }
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }

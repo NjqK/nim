@@ -5,6 +5,7 @@ import com.example.common.kafka.KafkaConsumerUtil;
 import com.example.common.redis.JedisUtil;
 import com.example.connector.common.RedisKeyUtil;
 import com.example.connector.dao.manager.ClusterNodeManager;
+import com.example.connector.dao.manager.SessionManager;
 import com.example.connector.dao.manager.impl.ConnectorProcessor;
 import com.example.connector.entity.cluster.ClusterNode;
 import com.example.connector.netty.NettyServerManager;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -58,6 +60,9 @@ public class ConnectorApplication {
     @Autowired
     private ClusterNodeManager clusterNodeManager;
 
+    @Autowired
+    private SessionManager sessionManager;
+
     @PostConstruct
     private void onStart() {
         log.info(applicationName + " starting...");
@@ -70,7 +75,8 @@ public class ConnectorApplication {
     private void initKafka() {
         List<String> kafkaTopics = new ArrayList<>();
         kafkaTopics.add(CommonConstants.CONNECTOR_KAFKA_TOPIC);
-        KafkaConsumerUtil.init(kafkaNodes, kafkaGroup, kafkaTopics, new ConnectorProcessor());
+        KafkaConsumerUtil.init(kafkaNodes, kafkaGroup, kafkaTopics
+                , new ConnectorProcessor(NettyServerManager.getInstance(), sessionManager));
     }
 
     private void initNetty() {
@@ -94,6 +100,8 @@ public class ConnectorApplication {
 
     @PreDestroy
     private void onDestroy() {
+        // TODO 删除这个节点在线的客户端在redis里的记录
+        sessionManager.serverDown();
         // TODO 删掉zk节点，释放netty资源，dubbo等
         JedisUtil.close();
         KafkaConsumerUtil.destory();

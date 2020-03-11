@@ -1,10 +1,13 @@
 package com.example.connector.dao.manager.impl;
 
+import com.example.common.CommonConstants;
+import com.example.common.redis.JedisUtil;
 import com.example.connector.dao.manager.SessionManager;
 import io.netty.channel.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -76,6 +79,32 @@ public class SessionManagerImpl implements SessionManager {
         } else {
             log.error("updateSession, uid is null");
             return false;
+        }
+    }
+
+    @Override
+    public synchronized void serverDown() {
+        log.error("session:{}", session);
+        int batchWorks = 0;
+        int size = session.size();
+        if (size == 0) {
+            return;
+        }
+        String[] uids;
+        if (size < 500) {
+            batchWorks = size;
+        } else {
+            batchWorks = 500;
+        }
+        uids = new String[batchWorks];
+        int index = 0;
+        for (String uid : session.keySet()) {
+            uids[index % batchWorks] = uid;
+            if (index == (batchWorks - 1)) {
+                // send
+                JedisUtil.hdel(CommonConstants.USERS_REDIS_KEY, uids);
+                uids = new String[batchWorks];
+            }
         }
     }
 }

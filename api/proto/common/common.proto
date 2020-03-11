@@ -16,6 +16,8 @@ enum MsgType {
     KICK = 3;
     // 单聊
     SINGLE_CHAT = 4;
+    // 挥手
+    BYE = 5;
 }
 
 enum MsgContentType {

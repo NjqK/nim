@@ -2,6 +2,11 @@ package com.example.connector.netty;
 
 import com.example.connector.common.ExecutorFactory;
 import com.example.connector.entity.cluster.ClusterNode;
+import com.example.connector.netty.listener.SendMsgListener;
+import com.example.proto.common.common.Common;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.*;
@@ -35,12 +40,20 @@ public class NettyServerManager {
     }
 
     /**
-     * method sample
-     * @param userId
+     * 发送消息
+     *
+     * @param channel
+     * @param msg
      * @return
      */
-    public boolean sendMsg(String userId) {
+    public boolean sendMsg(Channel channel, Common.Msg msg) {
         if (canOpt()) {
+            if (channel == null || msg == null) {
+                log.error("发送消息失败，channel或者msg为空.");
+                return false;
+            }
+            ChannelFuture channelFuture = channel.writeAndFlush(msg);
+            channelFuture.addListener(new SendMsgListener(msg.getHead().getMsgId()));
             return true;
         }
         return false;

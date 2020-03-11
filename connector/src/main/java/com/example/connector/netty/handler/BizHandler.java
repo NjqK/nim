@@ -39,7 +39,7 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
             String uid = getValue(message, "uid");
             if (uid != null) {
                 log.info("create redis session, uid:{}", uid);
-                if (JedisUtil.hset(CommonConstants.USERS_REDIS_KEY, uid, RedisKeyUtil.getApplicationRedisKey()) > 0) {
+                if (JedisUtil.hset(CommonConstants.USERS_REDIS_KEY, uid, RedisKeyUtil.getApplicationRedisKey()) >= 0) {
                     if (sessionManager.createSession(uid, ctx.channel())) {
                         // 绑定uid
                         AttributeKey<String> key = AttributeKey.valueOf("uid");
@@ -73,10 +73,12 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
         Channel channel = ctx.channel();
         Attribute<String> attr = channel.attr(AttributeKey.<String>valueOf("uid"));
         String uid = attr.get();
-        log.info("delete redis session, uid:{}", uid);
-        JedisUtil.hdel(CommonConstants.USERS_REDIS_KEY, uid);
-        if (!sessionManager.destroySession(uid)) {
-            log.error("deleting session is failed, uid:{}", uid);
+        if (uid != null) {
+            log.info("delete redis session, uid:{}", uid);
+            JedisUtil.hdel(CommonConstants.USERS_REDIS_KEY, uid);
+            if (!sessionManager.destroySession(uid)) {
+                log.error("deleting session is failed, uid:{}", uid);
+            }
         }
         channel.close();
     }

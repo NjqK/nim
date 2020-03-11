@@ -14,7 +14,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -49,10 +51,10 @@ public class ChatController {
     }
 
     @GetMapping("/sendMsg")
-    public String sendMsg() {
+    public String sendMsg(@RequestParam("uid") String uid) {
         // TODO 转化对象
         Outer.SendMsgIndividuallyReq req = Outer.SendMsgIndividuallyReq.newBuilder()
-                .setToUid("1")
+                .setToUid(uid)
                 .setFromUid("2")
                 .setMsgType(Common.MsgType.SINGLE_CHAT)
                 .setMsgContentType(Common.MsgContentType.TEXT)

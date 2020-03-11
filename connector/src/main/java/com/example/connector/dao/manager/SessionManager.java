@@ -46,4 +46,9 @@ public interface SessionManager {
      * @return
      */
     boolean updateSession(String uid, Channel channel);
+
+    /**
+     * 服务下线删除所有session
+     */
+    void serverDown();
 }
