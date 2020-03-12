@@ -43,7 +43,7 @@ public class MsgInfoDaoManagerImpl implements MsgInfoDaoManager {
     }
 
     @Override
-    public MsgInfo getMsgById(long guid) {
+    public List<MsgInfo> getMsgById(long uid, long maxGuid) {
         MsgInfoExample msgInfoExample = new MsgInfoExample();
         MsgInfoExample.Criteria criteria = getCriteria(msgInfoExample);
         criteria.andGuidEqualTo(guid);

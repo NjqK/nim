@@ -469,6 +469,14 @@ public final class Common {
      * <code>SEND_MSG_INDIVIDUALLY_FROM_ID_NUL = 103;</code>
      */
     SEND_MSG_INDIVIDUALLY_FROM_ID_NUL(103),
+    /**
+     * <pre>
+     * 获取未读消息用户id空
+     * </pre>
+     *
+     * <code>GET_UNREAD_MSG_USER_ID_NUL = 150;</code>
+     */
+    GET_UNREAD_MSG_USER_ID_NUL(150),
     UNRECOGNIZED(-1),
     ;
 
@@ -516,6 +524,14 @@ public final class Common {
      * <code>SEND_MSG_INDIVIDUALLY_FROM_ID_NUL = 103;</code>
      */
     public static final int SEND_MSG_INDIVIDUALLY_FROM_ID_NUL_VALUE = 103;
+    /**
+     * <pre>
+     * 获取未读消息用户id空
+     * </pre>
+     *
+     * <code>GET_UNREAD_MSG_USER_ID_NUL = 150;</code>
+     */
+    public static final int GET_UNREAD_MSG_USER_ID_NUL_VALUE = 150;
 
 
     public final int getNumber() {
@@ -542,6 +558,7 @@ public final class Common {
         case 101: return SEND_MSG_INDIVIDUALLY_TO_UID_NUL;
         case 102: return SEND_MSG_INDIVIDUALLY_MSG_NUL;
         case 103: return SEND_MSG_INDIVIDUALLY_FROM_ID_NUL;
+        case 150: return GET_UNREAD_MSG_USER_ID_NUL;
         default: return null;
       }
     }
@@ -5094,13 +5111,14 @@ public final class Common {
       "\020\000\022\016\n\nHAND_SHAKE\020\001\022\016\n\nHEART_BEAT\020\002\022\010\n\004KI" +
       "CK\020\003\022\017\n\013SINGLE_CHAT\020\004\022\007\n\003BYE\020\005*/\n\016MsgCon" +
       "tentType\022\023\n\017MSG_CONTENT_NUL\020\000\022\010\n\004TEXT\020\001*" +
-      "\"\n\nReadStatus\022\n\n\006UNREAD\020\000\022\010\n\004READ\020\001*\255\001\n\007" +
+      "\"\n\nReadStatus\022\n\n\006UNREAD\020\000\022\010\n\004READ\020\001*\316\001\n\007" +
       "ErrCode\022\022\n\016ERRORCODE_NULL\020\000\022\013\n\007SUCCESS\020\001" +
       "\022\021\n\004FAIL\020\377\377\377\377\377\377\377\377\377\001\022$\n SEND_MSG_INDIVIDU" +
       "ALLY_TO_UID_NUL\020e\022!\n\035SEND_MSG_INDIVIDUAL" +
       "LY_MSG_NUL\020f\022%\n!SEND_MSG_INDIVIDUALLY_FR" +
-      "OM_ID_NUL\020gB+\n\037com.example.proto.common." +
-      "commonB\006CommonP\000b\006proto3"
+      "OM_ID_NUL\020g\022\037\n\032GET_UNREAD_MSG_USER_ID_NU" +
+      "L\020\226\001B+\n\037com.example.proto.common.commonB" +
+      "\006CommonP\000b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

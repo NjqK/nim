@@ -47,11 +47,15 @@
 
         </javaClientGenerator>
         <!--表配置，tableName支持%，表示全部生成-->
-        <table tableName="t_user_info" domainObjectName="UserInfo"> <!--mysql 配置-->
+        <!--<table tableName="t_user_info" domainObjectName="UserInfo"> &lt;!&ndash;mysql 配置&ndash;&gt;-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+
+        <table tableName="t_msg_info" domainObjectName="MsgInfo"> <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
 
-        <table tableName="t_msg_info" domainObjectName="MsgInfo"> <!--mysql 配置-->
+        <table tableName="t_msg_read" domainObjectName="MsgRead"> <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
     </context>

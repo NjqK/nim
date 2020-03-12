@@ -3,6 +3,8 @@ package com.example.chat.dao.manager;
 import com.example.chat.entity.domain.MsgInfo;
 import com.example.chat.entity.dto.MsgInfoDto;
 
+import java.util.List;
+
 /**
  * @author kuro
  * @version v1.0
@@ -11,6 +13,7 @@ import com.example.chat.entity.dto.MsgInfoDto;
 public interface MsgInfoDaoManager {
     /**
      * 添加消息记录
+     *
      * @param msgInfo
      * @return
      */
@@ -18,8 +21,10 @@ public interface MsgInfoDaoManager {
 
     /**
      * 通过guid找消息
-     * @param guid
-     * @return
+     *
+     * @param uid 用户id
+     * @param maxGuid 最大的guid
+     * @return 返回用户的所有msgId比maxGuid大的消息
      */
-    MsgInfo getMsgById(long guid);
+    List<MsgInfo> getMsgById(long uid, long maxGuid);
 }

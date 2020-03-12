@@ -31,16 +31,21 @@ public class ChatServiceImpl implements ChatService {
         log.info("getUnreadMsg, req:{}", req);
         Outer.GetUnreadMsgResp.Builder builder = Outer.GetUnreadMsgResp.newBuilder();
         try {
-            // TODO data check
+            // data check
             if (StringUtils.isEmpty(req.getUid())) {
                 Common.ErrorMsg errorMsg = Common.ErrorMsg.newBuilder()
-                        .setErrorCode(Common.ErrCode.SEND_MSG_INDIVIDUALLY_TO_UID_NUL)
+                        .setErrorCode(Common.ErrCode.GET_UNREAD_MSG_USER_ID_NUL)
                         .setMsg("目标用户id错误")
                         .build();
-                return builder.setRet().build();
+                return builder.setRet(errorMsg).build();
             }
-            // TODO logical implement
-            return builder.setRet(CommonConstants.SUCCESS).build();
+            // guid是递增的
+            if (StringUtils.isEmpty(req.getMaxGuid())) {
+                req.toBuilder().setMaxGuid(String.valueOf(Long.MIN_VALUE));
+            }
+            Outer.GetUnreadMsgResp resp = chatServiceManager.getUnreadMsg(req);
+            log.info("getUnreadMsg, resp:{}", resp);
+            return resp;
         } catch (Exception e) {
             log.error("getUnreadMsg caught exception, e:{}", e);
             return builder.setRet(CommonConstants.FAIL).build();

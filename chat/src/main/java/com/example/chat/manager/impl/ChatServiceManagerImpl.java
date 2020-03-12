@@ -62,7 +62,10 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
     }
 
     @Override
-    public Outer.GetUnreadMsgResp getUnreadMsg(Outer.GetUnreadMsgReq getUnreadMsgReq) {
+    public Outer.GetUnreadMsgResp getUnreadMsg(Outer.GetUnreadMsgReq req) {
+        long uid = Long.parseLong(req.getUid());
+        long maxGuid = Long.parseLong(req.getMaxGuid());
+
         return null;
     }
 
