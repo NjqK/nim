@@ -1,6 +1,5 @@
 package com.example.connector.dao.mappers;
 
-import com.example.connector.entity.domain.AppVersion;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

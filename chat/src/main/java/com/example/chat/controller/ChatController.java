@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @author kuro
  * @version V1.0
@@ -34,12 +36,6 @@ public class ChatController {
 
     @Autowired
     private ChatService chatService;
-
-//    @Reference(version = "1.0.0")
-//    private PushService pushService;
-
-//    @Autowired
-//    private ChatServiceManagerImpl chatServiceManager;
 
     @GetMapping("/getAvailableNode")
     public String getHostInfo() {
@@ -69,23 +65,9 @@ public class ChatController {
         return String.valueOf(UuidGenUtil.getUUID());
     }
 
-//    @GetMapping("/send")
-//    public String send() {
-//        Inner.RouteMsgReq req = Inner.RouteMsgReq.newBuilder()
-//                .setToUid("1")
-//                .build();
-//        return pushService.routeMsg(req).toString();
-//    }
-//
-//    @GetMapping("/send1")
-//    public String send1() {
-//        return chatService.send();
-//    }
-//
-//    @GetMapping("/send2")
-//    public String send2() {
-//        return chatServiceManager.send();
-//    }
-
+    @GetMapping("getMsg")
+    public List<Common.Msg> getUnreadMsg(@RequestParam("uid") String uid) {
+        return null;
+    }
 
 }

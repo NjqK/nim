@@ -3,7 +3,7 @@ package com.example.connector.service.impl;
 import com.example.api.inner.inner.ConnectorService;
 import com.example.common.CommonConstants;
 import com.example.connector.dao.manager.ClusterNodeManager;
-import com.example.connector.entity.cluster.ClusterNode;
+import com.example.connector.entity.domain.ClusterNode;
 import com.example.proto.common.common.Common;
 import com.example.proto.inner.inner.Inner;
 import lombok.extern.slf4j.Slf4j;

@@ -62,20 +62,17 @@ public class ConnectorProcessor implements ReceiveMessageCallback<String, String
                 if (sessionManager.isOnline(uid)) {
                     // online
                     Channel channel = sessionManager.getChannel(uid);
-                    boolean b = nettyServerManager.sendMsg(channel, builder.build());
-                    if (!b) {
-                        log.error("发送消息失败,uid:{},msgId:{}", uid, builder.getHead().getMsgId());
-                        // TODO 发送消息失败的逻辑
+                    if (!nettyServerManager.sendMsg(channel, builder.build())) {
+                        log.error("sending msg is failed, netty service maybe unusable.");
                     }
                 } else {
-                    log.error("用户uid:{}不在线...", uid);
+                    log.error("用户uid:{}不在线或者不在这个节点...", uid);
                 }
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }
         }
         log.info("<=== End process a batch im channel push task got from kafka, batch size:{} ===>", consumerRecords.count());
-
         return true;
     }
 }

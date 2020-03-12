@@ -2,19 +2,19 @@ package com.example.connector;
 
 import com.example.common.CommonConstants;
 import com.example.common.kafka.KafkaConsumerUtil;
+import com.example.common.kafka.KafkaProducerUtil;
 import com.example.common.redis.JedisUtil;
 import com.example.connector.common.RedisKeyUtil;
 import com.example.connector.dao.manager.ClusterNodeManager;
 import com.example.connector.dao.manager.SessionManager;
 import com.example.connector.dao.manager.impl.ConnectorProcessor;
-import com.example.connector.entity.cluster.ClusterNode;
+import com.example.connector.entity.domain.ClusterNode;
 import com.example.connector.netty.NettyServerManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -75,6 +75,7 @@ public class ConnectorApplication {
     private void initKafka() {
         List<String> kafkaTopics = new ArrayList<>();
         kafkaTopics.add(CommonConstants.CONNECTOR_KAFKA_TOPIC);
+        KafkaProducerUtil.init(kafkaNodes, applicationName, null);
         KafkaConsumerUtil.init(kafkaNodes, kafkaGroup, kafkaTopics
                 , new ConnectorProcessor(NettyServerManager.getInstance(), sessionManager));
     }

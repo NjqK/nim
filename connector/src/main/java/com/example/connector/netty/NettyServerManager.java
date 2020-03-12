@@ -1,12 +1,11 @@
 package com.example.connector.netty;
 
 import com.example.connector.common.ExecutorFactory;
-import com.example.connector.entity.cluster.ClusterNode;
+import com.example.connector.entity.domain.ClusterNode;
 import com.example.connector.netty.listener.SendMsgListener;
 import com.example.proto.common.common.Common;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelFutureListener;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.*;
@@ -53,7 +52,7 @@ public class NettyServerManager {
                 return false;
             }
             ChannelFuture channelFuture = channel.writeAndFlush(msg);
-            channelFuture.addListener(new SendMsgListener(msg.getHead().getMsgId()));
+            channelFuture.addListener(new SendMsgListener(msg));
             return true;
         }
         return false;

@@ -1,7 +1,6 @@
-package com.example.connector.entity.cluster;
+package com.example.connector.entity.domain;
 
 import lombok.Data;
-import lombok.ToString;
 
 /**
  * @author kuro

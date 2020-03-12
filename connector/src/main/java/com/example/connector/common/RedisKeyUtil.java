@@ -1,6 +1,6 @@
 package com.example.connector.common;
 
-import com.example.connector.entity.cluster.ClusterNode;
+import com.example.connector.entity.domain.ClusterNode;
 
 /**
  * @author kuro

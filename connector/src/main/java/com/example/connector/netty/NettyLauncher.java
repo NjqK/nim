@@ -1,6 +1,6 @@
 package com.example.connector.netty;
 
-import com.example.connector.entity.cluster.ClusterNode;
+import com.example.connector.entity.domain.ClusterNode;
 import com.example.connector.netty.handler.BizHandler;
 import com.example.connector.netty.handler.HeartBeatHandler;
 import com.example.connector.netty.handler.IdleTrigger;

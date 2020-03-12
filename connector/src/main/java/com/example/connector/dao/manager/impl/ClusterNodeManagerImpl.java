@@ -1,7 +1,7 @@
 package com.example.connector.dao.manager.impl;
 
 import com.example.connector.dao.manager.ClusterNodeManager;
-import com.example.connector.entity.cluster.ClusterNode;
+import com.example.connector.entity.domain.ClusterNode;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.common.utils.NetUtils;
 import org.springframework.stereotype.Component;

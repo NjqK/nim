@@ -48,7 +48,7 @@ public interface SessionManager {
     boolean updateSession(String uid, Channel channel);
 
     /**
-     * 服务下线删除所有session
+     * 服务下线删除所有redis上的session
      */
     void serverDown();
 }
