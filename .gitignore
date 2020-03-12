@@ -24,6 +24,7 @@ hs_err_pid*
 
 */target/*
 */.idea/*
+*/.mvn/*
 .idea/*
 *.iws
 *.iml
