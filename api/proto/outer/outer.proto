@@ -43,9 +43,25 @@ message DoGroupSendingResp {
     common.common.ErrorMsg ret = 1;
 }
 
+message GetUnreadMsgReq {
+    // 用户id
+    string uid = 1;
+    // 用户收到的最大的guid
+    string max_guid = 2;
+}
+
+message GetUnreadMsgResp {
+    // 结果
+    common.common.ErrorMsg ret = 1;
+    // 消息
+    repeated common.common.Msg msgs = 2;
+}
+
 service ChatService {
     // 单发消息
     rpc SendMsgIndividually (SendMsgIndividuallyReq) returns (SendMsgIndividuallyResp);
     // 群发
     rpc DoGroupSending (DoGroupSendingReq) returns (DoGroupSendingResp);
+    // 拉取消息
+    rpc GetUnreadMsg (GetUnreadMsgReq) returns (GetUnreadMsgResp);
 }

@@ -13,4 +13,6 @@ public interface ChatServiceManager {
     Outer.DoGroupSendingResp doGroupSending(Outer.DoGroupSendingReq req);
 
     Outer.SendMsgIndividuallyResp sendMsgIndividually(Outer.SendMsgIndividuallyReq req);
+
+    Outer.GetUnreadMsgResp getUnreadMsg(Outer.GetUnreadMsgReq getUnreadMsgReq);
 }

@@ -59,6 +59,14 @@ public final class Common {
      * <code>SINGLE_CHAT = 4;</code>
      */
     SINGLE_CHAT(4),
+    /**
+     * <pre>
+     * 挥手
+     * </pre>
+     *
+     * <code>BYE = 5;</code>
+     */
+    BYE(5),
     UNRECOGNIZED(-1),
     ;
 
@@ -102,6 +110,14 @@ public final class Common {
      * <code>SINGLE_CHAT = 4;</code>
      */
     public static final int SINGLE_CHAT_VALUE = 4;
+    /**
+     * <pre>
+     * 挥手
+     * </pre>
+     *
+     * <code>BYE = 5;</code>
+     */
+    public static final int BYE_VALUE = 5;
 
 
     public final int getNumber() {
@@ -127,6 +143,7 @@ public final class Common {
         case 2: return HEART_BEAT;
         case 3: return KICK;
         case 4: return SINGLE_CHAT;
+        case 5: return BYE;
         default: return null;
       }
     }
@@ -286,6 +303,120 @@ public final class Common {
   }
 
   /**
+   * Protobuf enum {@code common.common.ReadStatus}
+   */
+  public enum ReadStatus
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <pre>
+     * 未读
+     * </pre>
+     *
+     * <code>UNREAD = 0;</code>
+     */
+    UNREAD(0),
+    /**
+     * <pre>
+     * 已读
+     * </pre>
+     *
+     * <code>READ = 1;</code>
+     */
+    READ(1),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <pre>
+     * 未读
+     * </pre>
+     *
+     * <code>UNREAD = 0;</code>
+     */
+    public static final int UNREAD_VALUE = 0;
+    /**
+     * <pre>
+     * 已读
+     * </pre>
+     *
+     * <code>READ = 1;</code>
+     */
+    public static final int READ_VALUE = 1;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static ReadStatus valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ReadStatus forNumber(int value) {
+      switch (value) {
+        case 0: return UNREAD;
+        case 1: return READ;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<ReadStatus>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ReadStatus> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ReadStatus>() {
+            public ReadStatus findValueByNumber(int number) {
+              return ReadStatus.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.example.proto.common.common.Common.getDescriptor().getEnumTypes().get(2);
+    }
+
+    private static final ReadStatus[] VALUES = values();
+
+    public static ReadStatus valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private ReadStatus(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:common.common.ReadStatus)
+  }
+
+  /**
    * <pre>
    * 错误码
    * </pre>
@@ -437,7 +568,7 @@ public final class Common {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return com.example.proto.common.common.Common.getDescriptor().getEnumTypes().get(2);
+      return com.example.proto.common.common.Common.getDescriptor().getEnumTypes().get(3);
     }
 
     private static final ErrCode[] VALUES = values();
@@ -4959,16 +5090,17 @@ public final class Common {
       "status_report\030\007 \001(\005\022+\n\007extends\030\010 \003(\0132\032.c" +
       "ommon.common.ExtraHeader\"C\n\010ErrorMsg\022*\n\n" +
       "error_code\030\001 \001(\0162\026.common.common.ErrCode" +
-      "\022\013\n\003msg\030\002 \001(\t*V\n\007MsgType\022\020\n\014MSG_TYPE_NUL" +
+      "\022\013\n\003msg\030\002 \001(\t*_\n\007MsgType\022\020\n\014MSG_TYPE_NUL" +
       "\020\000\022\016\n\nHAND_SHAKE\020\001\022\016\n\nHEART_BEAT\020\002\022\010\n\004KI" +
-      "CK\020\003\022\017\n\013SINGLE_CHAT\020\004*/\n\016MsgContentType\022" +
-      "\023\n\017MSG_CONTENT_NUL\020\000\022\010\n\004TEXT\020\001*\255\001\n\007ErrCo" +
-      "de\022\022\n\016ERRORCODE_NULL\020\000\022\013\n\007SUCCESS\020\001\022\021\n\004F" +
-      "AIL\020\377\377\377\377\377\377\377\377\377\001\022$\n SEND_MSG_INDIVIDUALLY_" +
-      "TO_UID_NUL\020e\022!\n\035SEND_MSG_INDIVIDUALLY_MS" +
-      "G_NUL\020f\022%\n!SEND_MSG_INDIVIDUALLY_FROM_ID" +
-      "_NUL\020gB+\n\037com.example.proto.common.commo" +
-      "nB\006CommonP\000b\006proto3"
+      "CK\020\003\022\017\n\013SINGLE_CHAT\020\004\022\007\n\003BYE\020\005*/\n\016MsgCon" +
+      "tentType\022\023\n\017MSG_CONTENT_NUL\020\000\022\010\n\004TEXT\020\001*" +
+      "\"\n\nReadStatus\022\n\n\006UNREAD\020\000\022\010\n\004READ\020\001*\255\001\n\007" +
+      "ErrCode\022\022\n\016ERRORCODE_NULL\020\000\022\013\n\007SUCCESS\020\001" +
+      "\022\021\n\004FAIL\020\377\377\377\377\377\377\377\377\377\001\022$\n SEND_MSG_INDIVIDU" +
+      "ALLY_TO_UID_NUL\020e\022!\n\035SEND_MSG_INDIVIDUAL" +
+      "LY_MSG_NUL\020f\022%\n!SEND_MSG_INDIVIDUALLY_FR" +
+      "OM_ID_NUL\020gB+\n\037com.example.proto.common." +
+      "commonB\006CommonP\000b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

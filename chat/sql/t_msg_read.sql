@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS `chat`.`t_msg_read`;
+CREATE TABLE `chat`.`t_msg_read` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `uid` BIGINT(16) NOT NULL COMMENT '用户id',
+  `guid` BIGINT(16) NOT NULL COMMENT '消息id',
+  `is_delete` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0未删除 1已删除',
+  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  INDEX `to_key` (`uid`))
+  ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT 'NIM-消息读取确认表';

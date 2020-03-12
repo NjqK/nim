@@ -26,8 +26,26 @@ public class ChatServiceImpl implements ChatService {
     @Autowired
     private ChatServiceManager chatServiceManager;
 
-    @Reference(version = "1.0.0")
-    private PushService pushService;
+    @Override
+    public Outer.GetUnreadMsgResp getUnreadMsg(Outer.GetUnreadMsgReq req) {
+        log.info("getUnreadMsg, req:{}", req);
+        Outer.GetUnreadMsgResp.Builder builder = Outer.GetUnreadMsgResp.newBuilder();
+        try {
+            // TODO data check
+            if (StringUtils.isEmpty(req.getUid())) {
+                Common.ErrorMsg errorMsg = Common.ErrorMsg.newBuilder()
+                        .setErrorCode(Common.ErrCode.SEND_MSG_INDIVIDUALLY_TO_UID_NUL)
+                        .setMsg("目标用户id错误")
+                        .build();
+                return builder.setRet().build();
+            }
+            // TODO logical implement
+            return builder.setRet(CommonConstants.SUCCESS).build();
+        } catch (Exception e) {
+            log.error("getUnreadMsg caught exception, e:{}", e);
+            return builder.setRet(CommonConstants.FAIL).build();
+        }
+    }
 
     @Override
     public Outer.DoGroupSendingResp doGroupSending(Outer.DoGroupSendingReq req) {
@@ -51,21 +69,21 @@ public class ChatServiceImpl implements ChatService {
             if (StringUtils.isEmpty(req.getToUid())) {
                 Common.ErrorMsg errorMsg = Common.ErrorMsg.newBuilder()
                         .setErrorCode(Common.ErrCode.SEND_MSG_INDIVIDUALLY_TO_UID_NUL)
-                        .setMsg("fuck*")
+                        .setMsg("目标用户id错误")
                         .build();
                 return builder.setRet(errorMsg).build();
             }
             if (StringUtils.isEmpty(req.getFromUid())) {
                 Common.ErrorMsg errorMsg = Common.ErrorMsg.newBuilder()
                         .setErrorCode(Common.ErrCode.SEND_MSG_INDIVIDUALLY_FROM_ID_NUL)
-                        .setMsg("fuck*")
+                        .setMsg("发送者id错误")
                         .build();
                 return builder.setRet(errorMsg).build();
             }
             if (StringUtils.isEmpty(req.getMsgContent())) {
                 Common.ErrorMsg errorMsg = Common.ErrorMsg.newBuilder()
                         .setErrorCode(Common.ErrCode.SEND_MSG_INDIVIDUALLY_MSG_NUL)
-                        .setMsg("fuck*")
+                        .setMsg("发送消息错误")
                         .build();
                 return builder.setRet(errorMsg).build();
             }
@@ -78,11 +96,4 @@ public class ChatServiceImpl implements ChatService {
             return builder.setRet(CommonConstants.FAIL).build();
         }
     }
-
-//    public String send() {
-//        Inner.RouteMsgReq req = Inner.RouteMsgReq.newBuilder()
-//                .setToUid("1")
-//                .build();
-//        return pushService.routeMsg(req).toString();
-//    }
 }

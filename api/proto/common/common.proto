@@ -81,6 +81,8 @@ enum ErrCode {
     SEND_MSG_INDIVIDUALLY_MSG_NUL = 102;
     // 发送者id空
     SEND_MSG_INDIVIDUALLY_FROM_ID_NUL = 103;
+    // 获取未读消息用户id空
+    GET_UNREAD_MSG_USER_ID_NUL = 150;
 }
 
 message ErrorMsg {

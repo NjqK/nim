@@ -31,12 +31,13 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
 
     @Override
     public Outer.DoGroupSendingResp doGroupSending(Outer.DoGroupSendingReq req) {
+
         return null;
     }
 
     @Override
     public Outer.SendMsgIndividuallyResp sendMsgIndividually(Outer.SendMsgIndividuallyReq req) {
-        // TODO 存到消息表然后发给push
+        // 存到消息表然后发给push
         MsgInfoDto msgInfoDto = new MsgInfoDto();
         msgInfoDto.setFromUid(Long.valueOf(req.getFromUid()));
         msgInfoDto.setToUid(Long.valueOf(req.getToUid()));
@@ -44,20 +45,25 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
         msgInfoDto.setMsgContentType(req.getMsgContentTypeValue());
         long uuid = UuidGenUtil.getUUID();
         msgInfoDto.setGuid(uuid);
-        // TODO 封装消息的类
+        // 封装消息的类
         msgInfoDto.setMsgBody(Common.Body.newBuilder()
-                .setContent("ss")
+                .setContent(req.getMsgContent())
                 .build());
         if (msgInfoDaoManager.addMsgInfo(msgInfoDto) != 1) {
-            // TODO return fail
+            // return fail
             return Outer.SendMsgIndividuallyResp.newBuilder().setRet(CommonConstants.FAIL).build();
         }
-        // TODO 转发给push
+        // invoke push
         Inner.RouteMsgReq routeMsgReq = buildPushReq(req, uuid);
-        // TODO Asynchronously invoke the push service
+        // Asynchronously invoke the push service
         log.info("route req:{}", req);
         pushService.routeMsg(routeMsgReq);
         return Outer.SendMsgIndividuallyResp.newBuilder().setRet(CommonConstants.SUCCESS).build();
+    }
+
+    @Override
+    public Outer.GetUnreadMsgResp getUnreadMsg(Outer.GetUnreadMsgReq getUnreadMsgReq) {
+        return null;
     }
 
     private Inner.RouteMsgReq buildPushReq(Outer.SendMsgIndividuallyReq req, long guid) {
@@ -78,11 +84,4 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
                         .build())
                 .build();
     }
-
-//    public String send() {
-//        Inner.RouteMsgReq req = Inner.RouteMsgReq.newBuilder()
-//                .setToUid("1")
-//                .build();
-//        return pushService.routeMsg(req).toString();
-//    }
 }

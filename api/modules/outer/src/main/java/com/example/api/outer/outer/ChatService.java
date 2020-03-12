@@ -3,6 +3,8 @@ package com.example.api.outer.outer;
 
 import com.example.proto.outer.outer.Outer.DoGroupSendingReq;
 import com.example.proto.outer.outer.Outer.DoGroupSendingResp;
+import com.example.proto.outer.outer.Outer.GetUnreadMsgReq;
+import com.example.proto.outer.outer.Outer.GetUnreadMsgResp;
 import com.example.proto.outer.outer.Outer.SendMsgIndividuallyReq;
 import com.example.proto.outer.outer.Outer.SendMsgIndividuallyResp;
 
@@ -22,6 +24,14 @@ public interface ChatService {
      * @return DoGroupSendingResp
      */
     DoGroupSendingResp doGroupSending(DoGroupSendingReq doGroupSendingReq);
+
+    /**
+     * 拉取消息
+     *
+     * @param getUnreadMsgReq the GetUnreadMsgReq
+     * @return GetUnreadMsgResp
+     */
+    GetUnreadMsgResp getUnreadMsg(GetUnreadMsgReq getUnreadMsgReq);
 
     /**
      * 单发消息
