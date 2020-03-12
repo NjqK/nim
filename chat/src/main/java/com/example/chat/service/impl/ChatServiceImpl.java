@@ -41,7 +41,7 @@ public class ChatServiceImpl implements ChatService {
             }
             // guid是递增的
             if (StringUtils.isEmpty(req.getMaxGuid())) {
-                req.toBuilder().setMaxGuid(String.valueOf(Long.MIN_VALUE));
+                req = req.toBuilder().setMaxGuid(String.valueOf(Long.MIN_VALUE)).build();
             }
             Outer.GetUnreadMsgResp resp = chatServiceManager.getUnreadMsg(req);
             log.info("getUnreadMsg, resp:{}", resp);

@@ -1,4 +1,4 @@
-package com.example.chat.entity.example;
+package com.example.generator.entity.domain;
 
 import java.util.ArrayList;
 import java.util.Date;

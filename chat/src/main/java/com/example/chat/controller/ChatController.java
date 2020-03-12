@@ -10,6 +10,8 @@ import com.example.common.guid.UuidGenUtil;
 import com.example.proto.common.common.Common;
 import com.example.proto.inner.inner.Inner;
 import com.example.proto.outer.outer.Outer;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.util.JsonFormat;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,10 +67,12 @@ public class ChatController {
         return String.valueOf(UuidGenUtil.getUUID());
     }
 
-    @GetMapping("getMsg")
-    public List<Common.Msg> getUnreadMsg(@RequestParam("uid") String uid) {
-
-        return null;
+    @GetMapping("/getMsg")
+    public String getUnreadMsg(@RequestParam("uid") String uid, @RequestParam("mGuid") String maxGuid) throws InvalidProtocolBufferException {
+        Outer.GetUnreadMsgReq req = Outer.GetUnreadMsgReq.newBuilder().setUid(uid).setMaxGuid(maxGuid).build();
+        Outer.GetUnreadMsgResp resp = chatService.getUnreadMsg(req);
+        String print = JsonFormat.printer().print(resp);
+        return print;
     }
 
 }

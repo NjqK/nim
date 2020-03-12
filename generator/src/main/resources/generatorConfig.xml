@@ -9,12 +9,36 @@
         <property name="endingDelimiter" value="`"/>
         <!-- 生成的Java文件的编码 -->
         <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="mybatisVersion" value="3.5.4"/>
+
+
+        <!-- 使用自带序列化插件 -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!-- MySQL分页插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.LimitPlugin">
+            <!-- 通过配置startPage影响Example中的page方法开始分页的页码，默认分页从0开始 -->
+            <property name="startPage" value="0"/>
+        </plugin>
+        <!-- 数据Model属性对应Column获取插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.ModelColumnPlugin"/>
+        <plugin type="com.itfsw.mybatis.generator.plugins.SelectSelectivePlugin">
+
+        </plugin>
+        <!-- 批量插入插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.BatchInsertPlugin">
+            <!--
+            开启后可以实现官方插件根据属性是否为空决定是否插入该字段功能
+            ！需开启allowMultiQueries=true多条sql提交操作，所以不建议使用！插件默认不开启
+            -->
+            <property name="allowMultiQueries" value="false"/>
+        </plugin>
 
         <commentGenerator>
             <property name="suppressDate" value="true" />
             <property name="addRemarkComments" value="true" />
             <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss" />
         </commentGenerator>
+
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1:3306/chat"
@@ -30,19 +54,19 @@
 
         <!--model包路径-->
         <javaModelGenerator targetPackage="com.example.chat.entity.domain"
-                            targetProject="src/main/java">
+                            targetProject="/home/kuro/nim/chat/src/main/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
             <property name="useActualColumnNames" value="true" />
         </javaModelGenerator>
         <!--mapper.xml包路径-->
         <sqlMapGenerator targetPackage="com.example.chat.dao.mappers"
-                         targetProject="src/main/resources">
+                         targetProject="/home/kuro/nim/chat/src/main/resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
         <!--mapper包路径-->
         <javaClientGenerator targetPackage="com.example.chat.dao.mappers"
-                             targetProject="src/main/java"
+                             targetProject="/home/kuro/nim/chat/src/main/java"
                              type="XMLMAPPER">
 
         </javaClientGenerator>
@@ -50,6 +74,11 @@
         <!--<table tableName="t_user_info" domainObjectName="UserInfo"> &lt;!&ndash;mysql 配置&ndash;&gt;-->
             <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
         <!--</table>-->
+
+        <!--表配置，tableName支持%，表示全部生成-->
+        <table tableName="t_user_info" domainObjectName="UserInfo"> <!--mysql 配置-->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
 
         <table tableName="t_msg_info" domainObjectName="MsgInfo"> <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>

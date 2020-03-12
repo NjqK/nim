@@ -2,17 +2,25 @@ package com.example.chat.manager.impl;
 
 import com.example.api.inner.inner.PushService;
 import com.example.chat.dao.manager.MsgInfoDaoManager;
+import com.example.chat.dao.manager.MsgReadDaoManager;
+import com.example.chat.entity.domain.MsgInfo;
 import com.example.chat.entity.dto.MsgInfoDto;
 import com.example.chat.manager.ChatServiceManager;
 import com.example.common.CommonConstants;
 import com.example.common.guid.UuidGenUtil;
+import com.example.common.util.ListUtil;
 import com.example.proto.common.common.Common;
 import com.example.proto.inner.inner.Inner;
 import com.example.proto.outer.outer.Outer;
+import com.google.protobuf.InvalidProtocolBufferException;
+import io.protostuff.ByteString;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author kuro
@@ -25,6 +33,9 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
 
     @Autowired
     private MsgInfoDaoManager msgInfoDaoManager;
+
+    @Autowired
+    private MsgReadDaoManager msgReadDaoManager;
 
     @Reference(version = "1.0.0", async = true)
     private PushService pushService;
@@ -62,11 +73,39 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
     }
 
     @Override
-    public Outer.GetUnreadMsgResp getUnreadMsg(Outer.GetUnreadMsgReq req) {
+    public Outer.GetUnreadMsgResp getUnreadMsg(Outer.GetUnreadMsgReq req) throws InvalidProtocolBufferException {
         long uid = Long.parseLong(req.getUid());
         long maxGuid = Long.parseLong(req.getMaxGuid());
-
-        return null;
+        long receivedMaxGuid = msgReadDaoManager.getMaxGuid(uid);
+        maxGuid = Long.max(maxGuid, receivedMaxGuid);
+        List<MsgInfo> unreadMsg = msgInfoDaoManager.getUnreadMsg(uid, maxGuid);
+        Outer.GetUnreadMsgResp.Builder builder = Outer.GetUnreadMsgResp.newBuilder();
+        Common.ErrorMsg errMsg = Common.ErrorMsg.newBuilder()
+                .setErrorCode(Common.ErrCode.SUCCESS)
+                .build();
+        builder.setRet(errMsg);
+        if (!ListUtil.isEmpty(unreadMsg)) {
+            List<Common.Msg> unread = new ArrayList<>(unreadMsg.size());
+            Common.Msg.Builder msgBuilder = Common.Msg.newBuilder();
+            Common.Head.Builder headBuilder = Common.Head.newBuilder();
+            for (MsgInfo msgInfo : unreadMsg) {
+                Common.Head head = headBuilder.setFromId(msgInfo.getFromUid())
+                        .setToId(uid)
+                        .setMsgTypeValue(msgInfo.getMsgType())
+                        .setMsgContentTypeValue(msgInfo.getMsgContentType())
+                        .setMsgId(msgInfo.getGuid())
+                        .build();
+                Common.Body body = Common.Body.parseFrom(msgInfo.getMsgData());
+                Common.Msg msg = msgBuilder
+                        .setHead(head)
+                        .setBody(body)
+                        .build();
+                builder.addMsgs(msg);
+                msgBuilder.clear();
+                headBuilder.clear();
+            }
+        }
+        return builder.build();
     }
 
     private Inner.RouteMsgReq buildPushReq(Outer.SendMsgIndividuallyReq req, long guid) {

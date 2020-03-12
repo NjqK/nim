@@ -5,12 +5,14 @@ import com.example.chat.dao.mappers.MsgInfoMapper;
 import com.example.chat.entity.domain.MsgInfo;
 import com.example.chat.entity.dto.MsgInfoDto;
 import com.example.chat.entity.example.MsgInfoExample;
+import com.example.common.CommonConstants;
 import com.example.common.IsDeleteEnum;
 import com.example.common.util.ListUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,15 +45,17 @@ public class MsgInfoDaoManagerImpl implements MsgInfoDaoManager {
     }
 
     @Override
-    public List<MsgInfo> getMsgById(long uid, long maxGuid) {
+    public List<MsgInfo> getUnreadMsg(long uid, long maxGuid) {
         MsgInfoExample msgInfoExample = new MsgInfoExample();
         MsgInfoExample.Criteria criteria = getCriteria(msgInfoExample);
-        criteria.andGuidEqualTo(guid);
-        List<MsgInfo> msgInfos = msgInfoMapper.selectByExampleWithBLOBs(msgInfoExample);
-        if (ListUtil.isEmpty(msgInfos) || msgInfos.size() != 1) {
-            log.error("消息记录不存在，guid:{}", guid);
-            return null;
+        criteria.andToUidEqualTo(uid);
+        criteria.andGuidGreaterThan(maxGuid);
+        // TODO 考虑客户端分页拉
+        List<MsgInfo> msgInfos = msgInfoMapper.selectByExampleSelective(msgInfoExample, MsgInfo.Column.fromUid,
+                MsgInfo.Column.msgType, MsgInfo.Column.msgContentType, MsgInfo.Column.msgData, MsgInfo.Column.guid);
+        if (!ListUtil.isEmpty(msgInfos)) {
+            return msgInfos;
         }
-        return msgInfos.get(0);
+        return null;
     }
 }

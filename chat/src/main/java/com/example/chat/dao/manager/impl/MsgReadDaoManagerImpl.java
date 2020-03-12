@@ -35,8 +35,9 @@ public class MsgReadDaoManagerImpl implements MsgReadDaoManager {
         MsgReadExample.Criteria criteria = getCriteria(msgReadExample);
         criteria.andUidEqualTo(uid);
         msgReadExample.setOrderByClause("guid desc");
-        // TODO limit 1条
-        List<MsgRead> msgReads = msgReadMapper.selectByExample(msgReadExample);
+        // limit 1条
+        msgReadExample.limit(0, 1);
+        List<MsgRead> msgReads = msgReadMapper.selectByExampleSelective(msgReadExample, MsgRead.Column.guid);
         if (ListUtil.isEmpty(msgReads)) {
             return 0L;
         }

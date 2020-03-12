@@ -26,5 +26,5 @@ public interface MsgInfoDaoManager {
      * @param maxGuid 最大的guid
      * @return 返回用户的所有msgId比maxGuid大的消息
      */
-    List<MsgInfo> getMsgById(long uid, long maxGuid);
+    List<MsgInfo> getUnreadMsg(long uid, long maxGuid);
 }

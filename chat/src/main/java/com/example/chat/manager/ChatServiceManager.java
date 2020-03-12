@@ -1,6 +1,7 @@
 package com.example.chat.manager;
 
 import com.example.proto.outer.outer.Outer;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 /**
  * service逻辑实现的接口
@@ -14,5 +15,5 @@ public interface ChatServiceManager {
 
     Outer.SendMsgIndividuallyResp sendMsgIndividually(Outer.SendMsgIndividuallyReq req);
 
-    Outer.GetUnreadMsgResp getUnreadMsg(Outer.GetUnreadMsgReq getUnreadMsgReq);
+    Outer.GetUnreadMsgResp getUnreadMsg(Outer.GetUnreadMsgReq getUnreadMsgReq) throws InvalidProtocolBufferException;
 }

@@ -2,6 +2,9 @@ package com.example.common;
 
 import com.example.proto.common.common.Common;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author kuro
  * @version v1.0
@@ -20,4 +23,6 @@ public class CommonConstants {
     public static final String USERS_REDIS_KEY = "users";
 
     public static final String CONNECTOR_KAFKA_TOPIC = "connector";
+
+    public static final List EMPTY_LIST = new ArrayList(0);
 }
