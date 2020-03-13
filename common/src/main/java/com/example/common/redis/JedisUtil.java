@@ -293,12 +293,12 @@ public class JedisUtil {
      * 通过key 和 field 获取指定的 value
      *
      * @param key
-     * @param failed
+     * @param field
      * @return
      */
-    public static String hget(String key, String failed) {
+    public static String hget(String key, String field) {
         Jedis jedis = getJedis();
-        return jedis.hget(key, failed);
+        return jedis.hget(key, field);
     }
 
     /**
@@ -370,7 +370,7 @@ public class JedisUtil {
      */
     public static Long hdel(String key, String... fields) {
         for (String f : fields) {
-            log.info("hset:" + key + ", fields: " + f);
+            log.info("hdel:" + key + ", fields: " + f);
         }
         Jedis jedis = getJedis();
         return jedis.hdel(key, fields);

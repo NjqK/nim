@@ -23,7 +23,7 @@ public class DefaultInitializer extends ChannelInitializer<Channel> {
     protected void initChannel(Channel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
         // 超过5s没有收到客户端消息，TODO 时间改为配置
-        pipeline.addLast(new IdleStateHandler(10, 0, 0));
+        pipeline.addLast(new IdleStateHandler(60, 0, 0));
         pipeline.addLast("IdleTriggerHandler", new IdleTrigger());
         // 半包处理
         pipeline.addLast(new ProtobufVarint32FrameDecoder());

@@ -6,6 +6,7 @@ import com.example.common.util.ListUtil;
 import com.example.connector.common.RedisKeyUtil;
 import com.example.connector.common.SpringUtil;
 import com.example.connector.dao.manager.SessionManager;
+import com.example.connector.entity.domain.ClusterNode;
 import com.example.proto.common.common.Common;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -47,6 +48,7 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
                     }
                 }
             } else {
+                log.error("uid is null");
                 ctx.close();
             }
         } else {
@@ -103,8 +105,10 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         log.error("error:{}", cause.getMessage());
         String uid = ctx.channel().attr(AttributeKey.<String>valueOf("uid")).get();
-        JedisUtil.hdel(CommonConstants.USERS_REDIS_KEY, uid);
-        sessionManager.destroySession(uid);
+        if (uid != null) {
+            JedisUtil.hdel(CommonConstants.USERS_REDIS_KEY, uid);
+            sessionManager.destroySession(uid);
+        }
         ctx.close();
     }
 }
