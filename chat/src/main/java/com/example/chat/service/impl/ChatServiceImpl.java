@@ -8,6 +8,7 @@ import com.example.common.CommonConstants;
 import com.example.proto.common.common.Common;
 import com.example.proto.inner.inner.Inner;
 import com.example.proto.outer.outer.Outer;
+import com.google.protobuf.util.JsonFormat;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;
@@ -25,6 +26,9 @@ public class ChatServiceImpl implements ChatService {
 
     @Autowired
     private ChatServiceManager chatServiceManager;
+
+    @Reference(version = "1.0.0")
+    private ConnectorService connectorService;
 
     @Override
     public Outer.GetUnreadMsgResp getUnreadMsg(Outer.GetUnreadMsgReq req) {
@@ -98,6 +102,57 @@ public class ChatServiceImpl implements ChatService {
             return resp;
         } catch (Exception e) {
             log.error("sendMsgIndividually caught exception, e:{}", e);
+            return builder.setRet(CommonConstants.FAIL).build();
+        }
+    }
+
+    @Override
+    public Outer.AckMsgResp ackMsg(Outer.AckMsgReq req) {
+        log.info("ackMsg, req:{}", req);
+        Outer.AckMsgResp.Builder builder = Outer.AckMsgResp.newBuilder();
+        try {
+            if (StringUtils.isEmpty(req.getUid())) {
+                Common.ErrorMsg errorMsg = Common.ErrorMsg.newBuilder()
+                        .setErrorCode(Common.ErrCode.ACK_MSG_RESP_UID_NUL)
+                        .setMsg("确认消息uid空")
+                        .build();
+                return builder.setRet(errorMsg).build();
+            }
+            if (StringUtils.isEmpty(req.getGuid())) {
+                Common.ErrorMsg errorMsg = Common.ErrorMsg.newBuilder()
+                        .setErrorCode(Common.ErrCode.ACK_MSG_RESP_GUID_NUL)
+                        .setMsg("确认消息guid空")
+                        .build();
+                return builder.setRet(errorMsg).build();
+            }
+            Outer.AckMsgResp resp = chatServiceManager.ackMsg(req);
+            log.info("ackMsg, resp:{}", resp);
+            return resp;
+        } catch (Exception e) {
+            log.error("ackMsg caught exception, e:{}", e);
+            return builder.setRet(CommonConstants.FAIL).build();
+        }
+    }
+
+    @Override
+    public Outer.GetAvailableNodeResp getAvailableNode(Outer.GetAvailableNodeReq req) {
+        log.info("getAvailableNode, req:{}", req);
+        Outer.GetAvailableNodeResp.Builder builder = Outer.GetAvailableNodeResp.newBuilder();
+        try {
+            Inner.GetNodeAddresssReq nodeReq = Inner.GetNodeAddresssReq.newBuilder().build();
+            Inner.GetNodeAddresssResp nodeResp = connectorService.getNodeAddress(nodeReq);
+            log.info("NodeAddress:{}", nodeResp);
+            if (nodeResp.getRet().getErrorCode().equals(Common.ErrCode.SUCCESS)) {
+                builder.setRet(CommonConstants.SUCCESS);
+                builder.setHost(nodeResp.getHost());
+                builder.setPort(nodeResp.getPort());
+                Outer.GetAvailableNodeResp resp = builder.build();
+                log.info("getAvailableNode, resp:{}", resp);
+                return resp;
+            }
+            return builder.setRet(CommonConstants.FAIL).build();
+        } catch (Exception e) {
+            log.error("getAvailableNode caught exception, e:{}", e);
             return builder.setRet(CommonConstants.FAIL).build();
         }
     }

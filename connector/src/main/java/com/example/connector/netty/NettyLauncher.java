@@ -4,6 +4,7 @@ import com.example.connector.entity.domain.ClusterNode;
 import com.example.connector.netty.handler.BizHandler;
 import com.example.connector.netty.handler.HeartBeatHandler;
 import com.example.connector.netty.handler.IdleTrigger;
+import com.example.connector.netty.initializer.DefaultInitializer;
 import com.example.proto.common.common.Common;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -59,26 +60,7 @@ public class NettyLauncher implements Runnable {
                     .option(ChannelOption.SO_BACKLOG, 1024)
 //                        .option(ChannelOption.TCP_NODELAY, true)
 //                        .option(ChannelOption.SO_KEEPALIVE, true)
-                    .childHandler(new ChannelInitializer<SocketChannel>() {
-                        @Override
-                        protected void initChannel(SocketChannel ch) throws Exception {
-                            ChannelPipeline pipeline = ch.pipeline();
-                            // 超过5s没有收到客户端消息，TODO 时间改为配置
-                            pipeline.addLast(new IdleStateHandler(10, 0, 0));
-                            pipeline.addLast("IdleTriggerHandler", new IdleTrigger());
-                            // 半包处理
-                            pipeline.addLast(new ProtobufVarint32FrameDecoder());
-                            // 解码的目标类
-                            pipeline.addLast("decoder", new ProtobufDecoder(Common.Msg.getDefaultInstance()));
-                            // 必修要在encoder前
-                            pipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
-                            // 编码器
-                            pipeline.addLast("encode", new ProtobufEncoder());
-                            pipeline.addLast("HeartBeatHandler", new HeartBeatHandler());
-                            // 逻辑handler
-                            pipeline.addLast("BizHandler", new BizHandler());
-                        }
-                    });
+                    .childHandler(new DefaultInitializer());
             ChannelFuture future = b.bind().sync();
             future.addListener((ChannelFutureListener) future1 -> {
                 // 启动成功

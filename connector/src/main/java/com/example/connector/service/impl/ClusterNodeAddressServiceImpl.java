@@ -32,6 +32,7 @@ public class ClusterNodeAddressServiceImpl implements ConnectorService {
                         .build();
             }
             Inner.GetNodeAddresssResp resp = builder.setHost(localNode.getIp())
+                    .setRet(CommonConstants.SUCCESS)
                     .setPort(localNode.getPort())
                     .build();
             log.info("ClusterNodeAddressServiceImpl getNodeAddress, resp:{}", resp);

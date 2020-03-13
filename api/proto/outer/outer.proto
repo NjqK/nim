@@ -43,6 +43,7 @@ message DoGroupSendingResp {
     common.common.ErrorMsg ret = 1;
 }
 
+// 获取未读消息请求
 message GetUnreadMsgReq {
     // 用户id
     string uid = 1;
@@ -50,11 +51,37 @@ message GetUnreadMsgReq {
     string max_guid = 2;
 }
 
+// 获取未读消息响应
 message GetUnreadMsgResp {
     // 结果
     common.common.ErrorMsg ret = 1;
     // 消息
     repeated common.common.Msg msgs = 2;
+}
+
+// 获取可用netty服务请求
+message GetAvailableNodeReq {
+
+}
+
+// 获取可用netty服务响应
+message GetAvailableNodeResp {
+    // 结果
+    common.common.ErrorMsg ret = 1;
+    // ip
+    string host = 2;
+    // port
+    string port = 3;
+}
+
+message AckMsgReq {
+    string uid = 1;
+    string guid = 2;
+}
+
+message AckMsgResp {
+    // 结果
+    common.common.ErrorMsg ret = 1;
 }
 
 service ChatService {
@@ -64,4 +91,8 @@ service ChatService {
     rpc DoGroupSending (DoGroupSendingReq) returns (DoGroupSendingResp);
     // 拉取消息
     rpc GetUnreadMsg (GetUnreadMsgReq) returns (GetUnreadMsgResp);
+    // 获取可用的netty服务节点信息
+    rpc GetAvailableNode (GetAvailableNodeReq) returns (GetAvailableNodeResp);
+    // 确认收到消息
+    rpc AckMsg (AckMsgReq) returns (AckMsgResp);
 }

@@ -61,12 +61,20 @@ public final class Common {
     SINGLE_CHAT(4),
     /**
      * <pre>
+     * 群聊
+     * </pre>
+     *
+     * <code>MULTI_CHAT = 5;</code>
+     */
+    MULTI_CHAT(5),
+    /**
+     * <pre>
      * 挥手
      * </pre>
      *
-     * <code>BYE = 5;</code>
+     * <code>BYE = 6;</code>
      */
-    BYE(5),
+    BYE(6),
     UNRECOGNIZED(-1),
     ;
 
@@ -112,12 +120,20 @@ public final class Common {
     public static final int SINGLE_CHAT_VALUE = 4;
     /**
      * <pre>
+     * 群聊
+     * </pre>
+     *
+     * <code>MULTI_CHAT = 5;</code>
+     */
+    public static final int MULTI_CHAT_VALUE = 5;
+    /**
+     * <pre>
      * 挥手
      * </pre>
      *
-     * <code>BYE = 5;</code>
+     * <code>BYE = 6;</code>
      */
-    public static final int BYE_VALUE = 5;
+    public static final int BYE_VALUE = 6;
 
 
     public final int getNumber() {
@@ -143,7 +159,8 @@ public final class Common {
         case 2: return HEART_BEAT;
         case 3: return KICK;
         case 4: return SINGLE_CHAT;
-        case 5: return BYE;
+        case 5: return MULTI_CHAT;
+        case 6: return BYE;
         default: return null;
       }
     }
@@ -474,9 +491,33 @@ public final class Common {
      * 获取未读消息用户id空
      * </pre>
      *
-     * <code>GET_UNREAD_MSG_USER_ID_NUL = 150;</code>
+     * <code>GET_UNREAD_MSG_USER_ID_NUL = 111;</code>
      */
-    GET_UNREAD_MSG_USER_ID_NUL(150),
+    GET_UNREAD_MSG_USER_ID_NUL(111),
+    /**
+     * <pre>
+     * 确认消息uid空
+     * </pre>
+     *
+     * <code>ACK_MSG_RESP_UID_NUL = 121;</code>
+     */
+    ACK_MSG_RESP_UID_NUL(121),
+    /**
+     * <pre>
+     * 确认消息guid空
+     * </pre>
+     *
+     * <code>ACK_MSG_RESP_GUID_NUL = 122;</code>
+     */
+    ACK_MSG_RESP_GUID_NUL(122),
+    /**
+     * <pre>
+     * 更新数据库失败
+     * </pre>
+     *
+     * <code>ACK_MSG_RESP_UPDATE_DB_FAIL = 123;</code>
+     */
+    ACK_MSG_RESP_UPDATE_DB_FAIL(123),
     UNRECOGNIZED(-1),
     ;
 
@@ -529,9 +570,33 @@ public final class Common {
      * 获取未读消息用户id空
      * </pre>
      *
-     * <code>GET_UNREAD_MSG_USER_ID_NUL = 150;</code>
+     * <code>GET_UNREAD_MSG_USER_ID_NUL = 111;</code>
      */
-    public static final int GET_UNREAD_MSG_USER_ID_NUL_VALUE = 150;
+    public static final int GET_UNREAD_MSG_USER_ID_NUL_VALUE = 111;
+    /**
+     * <pre>
+     * 确认消息uid空
+     * </pre>
+     *
+     * <code>ACK_MSG_RESP_UID_NUL = 121;</code>
+     */
+    public static final int ACK_MSG_RESP_UID_NUL_VALUE = 121;
+    /**
+     * <pre>
+     * 确认消息guid空
+     * </pre>
+     *
+     * <code>ACK_MSG_RESP_GUID_NUL = 122;</code>
+     */
+    public static final int ACK_MSG_RESP_GUID_NUL_VALUE = 122;
+    /**
+     * <pre>
+     * 更新数据库失败
+     * </pre>
+     *
+     * <code>ACK_MSG_RESP_UPDATE_DB_FAIL = 123;</code>
+     */
+    public static final int ACK_MSG_RESP_UPDATE_DB_FAIL_VALUE = 123;
 
 
     public final int getNumber() {
@@ -558,7 +623,10 @@ public final class Common {
         case 101: return SEND_MSG_INDIVIDUALLY_TO_UID_NUL;
         case 102: return SEND_MSG_INDIVIDUALLY_MSG_NUL;
         case 103: return SEND_MSG_INDIVIDUALLY_FROM_ID_NUL;
-        case 150: return GET_UNREAD_MSG_USER_ID_NUL;
+        case 111: return GET_UNREAD_MSG_USER_ID_NUL;
+        case 121: return ACK_MSG_RESP_UID_NUL;
+        case 122: return ACK_MSG_RESP_GUID_NUL;
+        case 123: return ACK_MSG_RESP_UPDATE_DB_FAIL;
         default: return null;
       }
     }
@@ -5107,18 +5175,20 @@ public final class Common {
       "status_report\030\007 \001(\005\022+\n\007extends\030\010 \003(\0132\032.c" +
       "ommon.common.ExtraHeader\"C\n\010ErrorMsg\022*\n\n" +
       "error_code\030\001 \001(\0162\026.common.common.ErrCode" +
-      "\022\013\n\003msg\030\002 \001(\t*_\n\007MsgType\022\020\n\014MSG_TYPE_NUL" +
+      "\022\013\n\003msg\030\002 \001(\t*o\n\007MsgType\022\020\n\014MSG_TYPE_NUL" +
       "\020\000\022\016\n\nHAND_SHAKE\020\001\022\016\n\nHEART_BEAT\020\002\022\010\n\004KI" +
-      "CK\020\003\022\017\n\013SINGLE_CHAT\020\004\022\007\n\003BYE\020\005*/\n\016MsgCon" +
-      "tentType\022\023\n\017MSG_CONTENT_NUL\020\000\022\010\n\004TEXT\020\001*" +
-      "\"\n\nReadStatus\022\n\n\006UNREAD\020\000\022\010\n\004READ\020\001*\316\001\n\007" +
-      "ErrCode\022\022\n\016ERRORCODE_NULL\020\000\022\013\n\007SUCCESS\020\001" +
-      "\022\021\n\004FAIL\020\377\377\377\377\377\377\377\377\377\001\022$\n SEND_MSG_INDIVIDU" +
-      "ALLY_TO_UID_NUL\020e\022!\n\035SEND_MSG_INDIVIDUAL" +
-      "LY_MSG_NUL\020f\022%\n!SEND_MSG_INDIVIDUALLY_FR" +
-      "OM_ID_NUL\020g\022\037\n\032GET_UNREAD_MSG_USER_ID_NU" +
-      "L\020\226\001B+\n\037com.example.proto.common.commonB" +
-      "\006CommonP\000b\006proto3"
+      "CK\020\003\022\017\n\013SINGLE_CHAT\020\004\022\016\n\nMULTI_CHAT\020\005\022\007\n" +
+      "\003BYE\020\006*/\n\016MsgContentType\022\023\n\017MSG_CONTENT_" +
+      "NUL\020\000\022\010\n\004TEXT\020\001*\"\n\nReadStatus\022\n\n\006UNREAD\020" +
+      "\000\022\010\n\004READ\020\001*\243\002\n\007ErrCode\022\022\n\016ERRORCODE_NUL" +
+      "L\020\000\022\013\n\007SUCCESS\020\001\022\021\n\004FAIL\020\377\377\377\377\377\377\377\377\377\001\022$\n S" +
+      "END_MSG_INDIVIDUALLY_TO_UID_NUL\020e\022!\n\035SEN" +
+      "D_MSG_INDIVIDUALLY_MSG_NUL\020f\022%\n!SEND_MSG" +
+      "_INDIVIDUALLY_FROM_ID_NUL\020g\022\036\n\032GET_UNREA" +
+      "D_MSG_USER_ID_NUL\020o\022\030\n\024ACK_MSG_RESP_UID_" +
+      "NUL\020y\022\031\n\025ACK_MSG_RESP_GUID_NUL\020z\022\037\n\033ACK_" +
+      "MSG_RESP_UPDATE_DB_FAIL\020{B+\n\037com.example" +
+      ".proto.common.commonB\006CommonP\000b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

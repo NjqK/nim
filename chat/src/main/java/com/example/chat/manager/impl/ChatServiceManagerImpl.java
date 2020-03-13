@@ -108,6 +108,33 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
         return builder.build();
     }
 
+    @Override
+    public Outer.AckMsgResp ackMsg(Outer.AckMsgReq ackMsgReq) {
+        long uid = Long.parseLong(ackMsgReq.getUid());
+        long guid = Long.parseLong(ackMsgReq.getGuid());
+        long maxGuid = msgReadDaoManager.getMaxGuid(uid);
+        if (maxGuid == 0L) {
+            // 还没有，直接insert
+            if (msgReadDaoManager.insertMaxGuid(uid, guid) != 1L) {
+                Common.ErrorMsg errorMsg = Common.ErrorMsg.newBuilder()
+                        .setErrorCode(Common.ErrCode.ACK_MSG_RESP_UPDATE_DB_FAIL)
+                        .setMsg("insert ackMsg数据库失败")
+                        .build();
+                return Outer.AckMsgResp.newBuilder().setRet(errorMsg).build();
+            }
+        } else if (maxGuid != guid){
+            if (msgReadDaoManager.updateMaxGuid(uid, guid) != 1L) {
+                // return value != 1 means updating database is failed
+                Common.ErrorMsg errorMsg = Common.ErrorMsg.newBuilder()
+                        .setErrorCode(Common.ErrCode.ACK_MSG_RESP_UPDATE_DB_FAIL)
+                        .setMsg("update ackMsg数据库失败")
+                        .build();
+                return Outer.AckMsgResp.newBuilder().setRet(errorMsg).build();
+            }
+        }
+        return Outer.AckMsgResp.newBuilder().setRet(CommonConstants.SUCCESS).build();
+    }
+
     private Inner.RouteMsgReq buildPushReq(Outer.SendMsgIndividuallyReq req, long guid) {
         Common.Head header = Common.Head.newBuilder()
                 .setMsgId(guid)

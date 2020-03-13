@@ -36,6 +36,11 @@ public class ClientBizHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         Common.Msg message = (Common.Msg) msg;
         log.info("Client received data: {}", message);
+        Common.MsgType msgType = message.getHead().getMsgType();
+        if (msgType.equals(Common.MsgType.SINGLE_CHAT) || msgType.equals(Common.MsgType.MULTI_CHAT)) {
+            // TODO 消息，发送已经读取消息的请求
+
+        }
     }
 
     @Override

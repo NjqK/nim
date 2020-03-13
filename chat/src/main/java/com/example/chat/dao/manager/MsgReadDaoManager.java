@@ -13,4 +13,22 @@ public interface MsgReadDaoManager {
      * @return
      */
     long getMaxGuid(long uid);
+
+    /**
+     * 更新用户最大guid
+     *
+     * @param uid
+     * @param guid
+     * @return
+     */
+    long updateMaxGuid(long uid, long guid);
+
+    /**
+     * 添加用户最大guid
+     *
+     * @param uid
+     * @param guid
+     * @return
+     */
+    long insertMaxGuid(long uid, long guid);
 }

@@ -43,4 +43,22 @@ public class MsgReadDaoManagerImpl implements MsgReadDaoManager {
         }
         return msgReads.get(0).getGuid();
     }
+
+    @Override
+    public long updateMaxGuid(long uid, long guid) {
+        MsgReadExample msgReadExample = new MsgReadExample();
+        MsgReadExample.Criteria criteria = getCriteria(msgReadExample);
+        criteria.andUidEqualTo(uid);
+        MsgRead msgRead = new MsgRead();
+        msgRead.setGuid(guid);
+        return msgReadMapper.updateByExampleSelective(msgRead, msgReadExample);
+    }
+
+    @Override
+    public long insertMaxGuid(long uid, long guid) {
+        MsgRead msgRead = new MsgRead();
+        msgRead.setUid(uid);
+        msgRead.setGuid(guid);
+        return msgReadMapper.insertSelective(msgRead);
+    }
 }

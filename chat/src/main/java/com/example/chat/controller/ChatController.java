@@ -33,46 +33,44 @@ import java.util.List;
 @RequestMapping("/")
 public class ChatController {
 
-    @Reference(version = "1.0.0")
-    private ConnectorService connectorService;
-
     @Autowired
     private ChatService chatService;
 
     @GetMapping("/getAvailableNode")
-    public String getHostInfo() {
-        Inner.GetNodeAddresssReq req = Inner.GetNodeAddresssReq.newBuilder().build();
-        Inner.GetNodeAddresssResp nodeAddress =
-                connectorService.getNodeAddress(req);
-        log.info("NodeAddress:{}", nodeAddress);
-        return nodeAddress.toString();
+    public byte[] getHostInfo() throws InvalidProtocolBufferException {
+        Outer.GetAvailableNodeResp resp = chatService.getAvailableNode(Outer.GetAvailableNodeReq.newBuilder().build());
+        return resp.toByteArray();
     }
 
     @GetMapping("/sendMsg")
-    public String sendMsg(@RequestParam("uid") String uid) {
+    public String sendMsg(@RequestParam("uid") String uid, @RequestParam("msg") String msg) {
         // TODO 转化对象
         Outer.SendMsgIndividuallyReq req = Outer.SendMsgIndividuallyReq.newBuilder()
                 .setToUid(uid)
                 .setFromUid("2")
                 .setMsgType(Common.MsgType.SINGLE_CHAT)
                 .setMsgContentType(Common.MsgContentType.TEXT)
-                .setMsgContent("hello")
+                .setMsgContent(msg)
                 .build();
         Outer.SendMsgIndividuallyResp resp = chatService.sendMsgIndividually(req);
         return resp.toString();
     }
 
-    @GetMapping("/gen")
-    public String gen() {
-        return String.valueOf(UuidGenUtil.getUUID());
-    }
-
     @GetMapping("/getMsg")
-    public String getUnreadMsg(@RequestParam("uid") String uid, @RequestParam("mGuid") String maxGuid) throws InvalidProtocolBufferException {
+    public byte[] getUnreadMsg(@RequestParam("uid") String uid, @RequestParam("mGuid") String maxGuid) throws InvalidProtocolBufferException {
         Outer.GetUnreadMsgReq req = Outer.GetUnreadMsgReq.newBuilder().setUid(uid).setMaxGuid(maxGuid).build();
         Outer.GetUnreadMsgResp resp = chatService.getUnreadMsg(req);
-        String print = JsonFormat.printer().print(resp);
-        return print;
+        return resp.toByteArray();
+    }
+
+    @GetMapping("/ackMsg")
+    public byte[] ackMsg(@RequestParam("uid") String uid, @RequestParam("guid") String guid) {
+        Outer.AckMsgReq req = Outer.AckMsgReq.newBuilder()
+                .setUid(uid)
+                .setGuid(guid)
+                .build();
+        Outer.AckMsgResp resp = chatService.ackMsg(req);
+        return resp.toByteArray();
     }
 
 }

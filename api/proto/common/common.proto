@@ -16,8 +16,10 @@ enum MsgType {
     KICK = 3;
     // 单聊
     SINGLE_CHAT = 4;
+    // 群聊
+    MULTI_CHAT = 5;
     // 挥手
-    BYE = 5;
+    BYE = 6;
 }
 
 enum MsgContentType {
@@ -82,7 +84,13 @@ enum ErrCode {
     // 发送者id空
     SEND_MSG_INDIVIDUALLY_FROM_ID_NUL = 103;
     // 获取未读消息用户id空
-    GET_UNREAD_MSG_USER_ID_NUL = 150;
+    GET_UNREAD_MSG_USER_ID_NUL = 111;
+    // 确认消息uid空
+    ACK_MSG_RESP_UID_NUL = 121;
+    // 确认消息guid空
+    ACK_MSG_RESP_GUID_NUL = 122;
+    // 更新数据库失败
+    ACK_MSG_RESP_UPDATE_DB_FAIL = 123;
 }
 
 message ErrorMsg {

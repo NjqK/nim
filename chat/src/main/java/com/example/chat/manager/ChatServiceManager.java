@@ -16,4 +16,6 @@ public interface ChatServiceManager {
     Outer.SendMsgIndividuallyResp sendMsgIndividually(Outer.SendMsgIndividuallyReq req);
 
     Outer.GetUnreadMsgResp getUnreadMsg(Outer.GetUnreadMsgReq getUnreadMsgReq) throws InvalidProtocolBufferException;
+
+    Outer.AckMsgResp ackMsg(Outer.AckMsgReq ackMsgReq);
 }

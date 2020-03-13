@@ -1,8 +1,12 @@
 
 package com.example.api.outer.outer;
 
+import com.example.proto.outer.outer.Outer.AckMsgReq;
+import com.example.proto.outer.outer.Outer.AckMsgResp;
 import com.example.proto.outer.outer.Outer.DoGroupSendingReq;
 import com.example.proto.outer.outer.Outer.DoGroupSendingResp;
+import com.example.proto.outer.outer.Outer.GetAvailableNodeReq;
+import com.example.proto.outer.outer.Outer.GetAvailableNodeResp;
 import com.example.proto.outer.outer.Outer.GetUnreadMsgReq;
 import com.example.proto.outer.outer.Outer.GetUnreadMsgResp;
 import com.example.proto.outer.outer.Outer.SendMsgIndividuallyReq;
@@ -40,6 +44,22 @@ public interface ChatService {
      * @return SendMsgIndividuallyResp
      */
     SendMsgIndividuallyResp sendMsgIndividually(SendMsgIndividuallyReq sendMsgIndividuallyReq);
+
+    /**
+     * 确认收到消息
+     *
+     * @param ackMsgReq the AckMsgReq
+     * @return AckMsgResp
+     */
+    AckMsgResp ackMsg(AckMsgReq ackMsgReq);
+
+    /**
+     * 获取可用的netty服务节点信息
+     *
+     * @param getAvailableNodeReq the GetAvailableNodeReq
+     * @return GetAvailableNodeResp
+     */
+    GetAvailableNodeResp getAvailableNode(GetAvailableNodeReq getAvailableNodeReq);
 
 }
 
