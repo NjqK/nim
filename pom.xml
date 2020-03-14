@@ -14,7 +14,6 @@
         <module>push</module>
         <module>connector</module>
         <module>common</module>
-        <module>netty</module>
     </modules>
 
     <properties>

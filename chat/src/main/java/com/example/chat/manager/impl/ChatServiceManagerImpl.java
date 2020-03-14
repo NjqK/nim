@@ -133,10 +133,10 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
                 .build();
         builder.setRet(errMsg);
         if (!ListUtil.isEmpty(unreadMsg)) {
-            List<Common.Msg> unread = new ArrayList<>(unreadMsg.size());
             Common.Msg.Builder msgBuilder = Common.Msg.newBuilder();
             Common.Head.Builder headBuilder = Common.Head.newBuilder();
             for (MsgInfo msgInfo : unreadMsg) {
+                maxGuid = Long.max(maxGuid, msgInfo.getGuid());
                 Common.Head head = headBuilder.setFromId(msgInfo.getFromUid())
                         .setToId(uid)
                         .setMsgTypeValue(msgInfo.getMsgType())
@@ -152,6 +152,12 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
                 msgBuilder.clear();
                 headBuilder.clear();
             }
+        }
+        // 更新最大guid
+        if (receivedMaxGuid == 0L) {
+            msgReadDaoManager.insertMaxGuid(uid, maxGuid);
+        } else {
+            msgReadDaoManager.updateMaxGuid(uid, maxGuid);
         }
         return builder.build();
     }
