@@ -1,5 +1,6 @@
 package com.example.common.kafka;
 
+import com.example.common.util.ExecutorFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -10,6 +11,7 @@ import java.time.Duration;
 import java.util.Collection;
 import java.util.Properties;
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
@@ -20,39 +22,61 @@ import java.util.concurrent.Executors;
 @Slf4j
 public class KafkaConsumerUtil<K, V> {
 
-    private Executor executor = Executors.newSingleThreadExecutor();
+    /**
+     * 监听kafka topic的线程
+     */
+    private ExecutorService executor = ExecutorFactory.singleExecutor("KafkaConsumerUtil-start");
+    /**
+     * 线程可见
+     */
     private volatile boolean running = false;
+    /**
+     * kafka消费者订阅主题
+     */
     private Collection<String> topics;
+    /**
+     * 自动提交偏移量 true自动 false手动
+     */
     private boolean autoCommit = true;
+    /**
+     * 收到消息的回调
+     */
     private ReceiveMessageCallback<K, V> receiveMessageCallback;
+    /**
+     * kafka consumer
+     */
     private KafkaConsumer<K, V> consumer;
 
+    /**
+     * 单例
+     */
     private static class Instance {
         private static KafkaConsumerUtil instance = new KafkaConsumerUtil();
     }
 
-    public static void init(String hosts, String group, Collection<String> topics, ReceiveMessageCallback receiveMessageCallback) {
+    public static void init(String hosts, String group, Collection<String> topics,
+                            ReceiveMessageCallback receiveMessageCallback, boolean autoCommit) {
         Instance.instance.topics = topics;
         Instance.instance.receiveMessageCallback = receiveMessageCallback;
+        Instance.instance.autoCommit = autoCommit;
         Properties properties = new Properties();
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, hosts);
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, group);
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         //自动更新offset，虽然不推荐
-        properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
-        Instance.instance.consumer = new KafkaConsumer<>(properties);
-        if ("false".equals(properties.getProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG))) {
-            Instance.instance.autoCommit = false;
+        if (autoCommit) {
+            properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
         }
+        Instance.instance.consumer = new KafkaConsumer<>(properties);
         Instance.instance.start();
     }
 
-    public static void destory(){
+    public static void destory() {
         Instance.instance.close();
     }
 
-    public static KafkaConsumerUtil getInstance(){
+    public static KafkaConsumerUtil getInstance() {
         return Instance.instance;
     }
 

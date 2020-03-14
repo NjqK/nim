@@ -7,6 +7,7 @@ import com.example.common.redis.JedisUtil;
 import com.example.common.util.ListUtil;
 import com.example.proto.common.common.Common;
 import com.example.proto.inner.inner.Inner;
+import com.example.push.common.PushExecutor;
 import com.google.protobuf.util.JsonFormat;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;
@@ -28,7 +29,6 @@ public class PushServiceImpl implements PushService {
         log.info("Inner.BatchRouteMsgResp batchRouteMsg, req:{}", req);
         Inner.BatchRouteMsgResp.Builder builder = Inner.BatchRouteMsgResp.newBuilder();
         try {
-            //List<Inner.GuidUidBinder> toUidList = new ArrayList<>();
             List<Inner.GuidUidBinder> toUidList = req.getToUidList();
             Inner.BatchRouteMsgResp resp = builder.setRet(CommonConstants.SUCCESS).build();
             if (ListUtil.isEmpty(toUidList)) {
@@ -48,8 +48,11 @@ public class PushServiceImpl implements PushService {
                 headBuilder.setMsgId(binder.getGuid());
                 msgBuilder.setHead(headBuilder.build());
                 String msgJson = JsonFormat.printer().print(msgBuilder);
-                System.err.println(msgJson);
-                //KafkaProducerUtil.sendSingle(CommonConstants.CONNECTOR_KAFKA_TOPIC, msgJson, true);
+                log.info("msg that will be send to kafka soon:{}", msgJson);
+                // TODO 可能会阻塞业务，放到线程池
+                // TODO Q1：发送了几次后就就阻塞了
+                PushExecutor.execute(CommonConstants.CONNECTOR_KAFKA_TOPIC, msgJson);
+                //KafkaProducerUtil.sendSingle(CommonConstants.CONNECTOR_KAFKA_TOPIC, msgJson, false);
             }
             log.info("Inner.BatchRouteMsgResp batchRouteMsg, resp:{}", resp);
             return resp;
@@ -66,12 +69,11 @@ public class PushServiceImpl implements PushService {
         try {
             // 找到netty，放到对应的kafka节点
             String nettyNodeInfo = JedisUtil.hget(CommonConstants.USERS_REDIS_KEY, req.getToUid());
-            // TODO 删除下线的用户
             if (nettyNodeInfo == null) {
                 log.error("用户不在线.");
                 return builder.setRet(CommonConstants.FAIL).build();
             }
-            // TODO 把消息放到对应的kafka
+            // 把消息放到对应的kafka
             String msgJson = JsonFormat.printer().print(req.getMsg());
             KafkaProducerUtil.sendSingle(CommonConstants.CONNECTOR_KAFKA_TOPIC, msgJson, true);
             Inner.RouteMsgResp resp = builder.setRet(CommonConstants.SUCCESS).build();

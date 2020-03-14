@@ -20,6 +20,6 @@ public class KafkaConsumerTest {
         List<String> kafkaTopics = new ArrayList<>();
         kafkaTopics.add(CommonConstants.CONNECTOR_KAFKA_TOPIC);
         KafkaConsumerUtil.init(kafkaNodes, kafkaGroup, kafkaTopics
-                , new ConnectorProcessor(NettyServerManager.getInstance(), null));
+                , new ConnectorProcessor(NettyServerManager.getInstance(), null), true);
     }
 }

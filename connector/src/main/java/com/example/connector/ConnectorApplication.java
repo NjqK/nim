@@ -77,7 +77,7 @@ public class ConnectorApplication {
         kafkaTopics.add(CommonConstants.CONNECTOR_KAFKA_TOPIC);
         KafkaProducerUtil.init(kafkaNodes, applicationName, null);
         KafkaConsumerUtil.init(kafkaNodes, kafkaGroup, kafkaTopics
-                , new ConnectorProcessor(NettyServerManager.getInstance(), sessionManager));
+                , new ConnectorProcessor(NettyServerManager.getInstance(), sessionManager), true);
     }
 
     private void initNetty() {
@@ -101,10 +101,9 @@ public class ConnectorApplication {
 
     @PreDestroy
     private void onDestroy() {
-        // TODO 删除这个节点在线的客户端在redis里的记录
         sessionManager.serverDown();
-        // TODO 删掉zk节点，释放netty资源，dubbo等
         JedisUtil.close();
+        KafkaProducerUtil.close();
         KafkaConsumerUtil.destory();
         // TODO 添加dubbo优雅停机
         System.out.println("close");

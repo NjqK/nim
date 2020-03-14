@@ -1,6 +1,6 @@
 package com.example.connector.netty;
 
-import com.example.connector.common.ExecutorFactory;
+import com.example.common.util.ExecutorFactory;
 import com.example.connector.entity.domain.ClusterNode;
 import com.example.connector.netty.listener.SendMsgListener;
 import com.example.proto.common.common.Common;

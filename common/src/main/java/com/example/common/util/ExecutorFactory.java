@@ -1,4 +1,4 @@
-package com.example.connector.common;
+package com.example.common.util;
 
 import java.util.concurrent.*;
 
@@ -16,6 +16,16 @@ public class ExecutorFactory {
             @Override
             public Thread newThread(Runnable r) {
                 return new Thread(r, threadName);
+            }
+        });
+    }
+
+    public static ExecutorService fixedExecutors(int threadSize) {
+        return new ThreadPoolExecutor(threadSize, threadSize, 0L, TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<Runnable>(), new ThreadFactory() {
+            @Override
+            public Thread newThread(Runnable r) {
+                return new Thread(r);
             }
         });
     }

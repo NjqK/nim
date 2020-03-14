@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author from net
+ * @author kuro
  * @version V1.0
  * @date 3/6/20 3:16 PM
  **/
@@ -19,8 +19,8 @@ public class JedisUtil {
 
     private static JedisPool pool = null;
 
-    public static void initJedisUtil(String redisHost, int redisPort, String redisPassword,
-                                     int redisMaxTotal, int redisMaxIdle, int redisMaxWaitMillis) {
+    public static synchronized void initJedisUtil(String redisHost, int redisPort, String redisPassword,
+                                                  int redisMaxTotal, int redisMaxIdle, int redisMaxWaitMillis) {
         if (pool == null) {
             JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
             jedisPoolConfig.setMaxTotal(redisMaxTotal);
@@ -45,10 +45,9 @@ public class JedisUtil {
      * @return
      */
     public static String get(String key) {
-        Jedis jedis = getJedis();
-        String value = null;
-        value = jedis.get(key);
-        return value;
+        try (Jedis jedis = getJedis()) {
+            return jedis.get(key);
+        }
     }
 
     /**
@@ -59,8 +58,9 @@ public class JedisUtil {
      * @return
      */
     public static String set(String key, String value) {
-        Jedis jedis = getJedis();
-        return jedis.set(key, value);
+        try (Jedis jedis = getJedis()) {
+            return jedis.set(key, value);
+        }
     }
 
     /**
@@ -70,8 +70,9 @@ public class JedisUtil {
      * @return
      */
     public static Long del(String... keys) {
-        Jedis jedis = getJedis();
-        return jedis.del(keys);
+        try (Jedis jedis = getJedis()) {
+            return jedis.del(keys);
+        }
     }
 
     /**
@@ -82,8 +83,10 @@ public class JedisUtil {
      * @return
      */
     public static Long append(String key, String str) {
-        Jedis jedis = getJedis();
-        return jedis.append(key, str);
+        try (Jedis jedis = getJedis()) {
+            return jedis.append(key, str);
+        }
+
     }
 
     /**
@@ -93,8 +96,9 @@ public class JedisUtil {
      * @return
      */
     public static Boolean exists(String key) {
-        Jedis jedis = getJedis();
-        return jedis.exists(key);
+        try (Jedis jedis = getJedis()) {
+            return jedis.exists(key);
+        }
     }
 
     /**
@@ -105,8 +109,11 @@ public class JedisUtil {
      * @return
      */
     public static Long setnx(String key, String value) {
-        Jedis jedis = getJedis();
-        return jedis.setnx(key, value);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.setnx(key, value);
+        }
+
     }
 
     /**
@@ -118,8 +125,11 @@ public class JedisUtil {
      * @return
      */
     public static String setex(String key, int seconds, String value) {
-        Jedis jedis = getJedis();
-        return jedis.setex(key, seconds, value);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.setex(key, seconds, value);
+        }
+
     }
 
     /**
@@ -131,8 +141,11 @@ public class JedisUtil {
      * @return
      */
     public static Long setrange(String key, int offset, String str) {
-        Jedis jedis = getJedis();
-        return jedis.setrange(key, offset, str);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.setrange(key, offset, str);
+        }
+
     }
 
     /**
@@ -142,8 +155,11 @@ public class JedisUtil {
      * @return
      */
     public static List<String> mget(String... keys) {
-        Jedis jedis = getJedis();
-        return jedis.mget(keys);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.mget(keys);
+        }
+
     }
 
     /**
@@ -153,8 +169,11 @@ public class JedisUtil {
      * @return
      */
     public static String mset(String... keysValues) {
-        Jedis jedis = getJedis();
-        return jedis.mset(keysValues);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.mset(keysValues);
+        }
+
     }
 
     /**
@@ -164,8 +183,11 @@ public class JedisUtil {
      * @return
      */
     public static Long msetnx(String... keysValues) {
-        Jedis jedis = getJedis();
-        return jedis.msetnx(keysValues);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.msetnx(keysValues);
+        }
+
     }
 
     /**
@@ -176,8 +198,11 @@ public class JedisUtil {
      * @return
      */
     public static String getSet(String key, String value) {
-        Jedis jedis = getJedis();
-        return jedis.getSet(key, value);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.getSet(key, value);
+        }
+
     }
 
     /**
@@ -189,8 +214,11 @@ public class JedisUtil {
      * @return
      */
     public static String getrange(String key, int startOffset, int endOffset) {
-        Jedis jedis = getJedis();
-        return jedis.getrange(key, startOffset, endOffset);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.getrange(key, startOffset, endOffset);
+        }
+
     }
 
     /**
@@ -200,8 +228,11 @@ public class JedisUtil {
      * @return
      */
     public static Long incr(String key) {
-        Jedis jedis = getJedis();
-        return jedis.incr(key);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.incr(key);
+        }
+
     }
 
     /**
@@ -212,8 +243,11 @@ public class JedisUtil {
      * @return
      */
     public static Long incrBy(String key, long integer) {
-        Jedis jedis = getJedis();
-        return jedis.incrBy(key, integer);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.incrBy(key, integer);
+        }
+
     }
 
     /**
@@ -223,8 +257,11 @@ public class JedisUtil {
      * @return
      */
     public static Long decr(String key) {
-        Jedis jedis = getJedis();
-        return jedis.decr(key);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.decr(key);
+        }
+
     }
 
     /**
@@ -235,8 +272,11 @@ public class JedisUtil {
      * @return
      */
     public static Long decrBy(String key, long integer) {
-        Jedis jedis = getJedis();
-        return jedis.decrBy(key, integer);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.decrBy(key, integer);
+        }
+
     }
 
     /**
@@ -246,8 +286,11 @@ public class JedisUtil {
      * @return
      */
     public static Long strLen(String key) {
-        Jedis jedis = getJedis();
-        return jedis.strlen(key);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.strlen(key);
+        }
+
     }
 
     /**
@@ -259,8 +302,11 @@ public class JedisUtil {
      * @return
      */
     public static Long hsetnx(String key, String field, String value) {
-        Jedis jedis = getJedis();
-        return jedis.hsetnx(key, field, value);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.hsetnx(key, field, value);
+        }
+
     }
 
     /**
@@ -272,9 +318,10 @@ public class JedisUtil {
      * @return
      */
     public static Long hset(String key, String field, String value) {
-        log.info("hset:" + key + "_" + field + "_" + value);
-        Jedis jedis = getJedis();
-        return jedis.hset(key, field, value);
+        try (Jedis jedis = getJedis()) {
+            log.info("hset:" + key + "_" + field + "_" + value);
+            return jedis.hset(key, field, value);
+        }
     }
 
     /**
@@ -285,8 +332,11 @@ public class JedisUtil {
      * @return
      */
     public static String hmset(String key, Map<String, String> hash) {
-        Jedis jedis = getJedis();
-        return jedis.hmset(key, hash);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.hmset(key, hash);
+        }
+
     }
 
     /**
@@ -297,8 +347,11 @@ public class JedisUtil {
      * @return
      */
     public static String hget(String key, String field) {
-        Jedis jedis = getJedis();
-        return jedis.hget(key, field);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.hget(key, field);
+        }
+
     }
 
     /**
@@ -309,8 +362,11 @@ public class JedisUtil {
      * @return
      */
     public static Long expire(String key, int seconds) {
-        Jedis jedis = getJedis();
-        return jedis.expire(key, seconds);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.expire(key, seconds);
+        }
+
     }
 
     /**
@@ -321,8 +377,11 @@ public class JedisUtil {
      * @return
      */
     public static List<String> hmget(String key, String... fields) {
-        Jedis jedis = getJedis();
-        return jedis.hmget(key, fields);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.hmget(key, fields);
+        }
+
     }
 
     /**
@@ -334,8 +393,11 @@ public class JedisUtil {
      * @return
      */
     public static Long hincrby(String key, String field, Long value) {
-        Jedis jedis = getJedis();
-        return jedis.hincrBy(key, field, value);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.hincrBy(key, field, value);
+        }
+
     }
 
     /**
@@ -346,8 +408,11 @@ public class JedisUtil {
      * @return
      */
     public static Boolean hexists(String key, String field) {
-        Jedis jedis = getJedis();
-        return jedis.hexists(key, field);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.hexists(key, field);
+        }
+
     }
 
     /**
@@ -357,8 +422,11 @@ public class JedisUtil {
      * @return
      */
     public static Long hlen(String key) {
-        Jedis jedis = getJedis();
-        return jedis.hlen(key);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.hlen(key);
+        }
+
     }
 
     /**
@@ -369,11 +437,12 @@ public class JedisUtil {
      * @return
      */
     public static Long hdel(String key, String... fields) {
-        for (String f : fields) {
-            log.info("hdel:" + key + ", fields: " + f);
+        try (Jedis jedis = getJedis()) {
+            for (String f : fields) {
+                log.info("hdel:" + key + ", fields: " + f);
+            }
+            return jedis.hdel(key, fields);
         }
-        Jedis jedis = getJedis();
-        return jedis.hdel(key, fields);
     }
 
     /**
@@ -383,8 +452,11 @@ public class JedisUtil {
      * @return
      */
     public static Set<String> hkeys(String key) {
-        Jedis jedis = getJedis();
-        return jedis.hkeys(key);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.hkeys(key);
+        }
+
     }
 
     /**
@@ -394,8 +466,11 @@ public class JedisUtil {
      * @return
      */
     public static List<String> hvals(String key) {
-        Jedis jedis = getJedis();
-        return jedis.hvals(key);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.hvals(key);
+        }
+
     }
 
     /**
@@ -405,8 +480,11 @@ public class JedisUtil {
      * @return
      */
     public static Map<String, String> hgetall(String key) {
-        Jedis jedis = getJedis();
-        return jedis.hgetAll(key);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.hgetAll(key);
+        }
+
     }
 
     /**
@@ -417,8 +495,11 @@ public class JedisUtil {
      * @return 返回list的value个数
      */
     public static Long lpush(String key, String... strs) {
-        Jedis jedis = getJedis();
-        return jedis.lpush(key, strs);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.lpush(key, strs);
+        }
+
     }
 
     /**
@@ -429,25 +510,13 @@ public class JedisUtil {
      * @return 返回list的value个数
      */
     public static Long rpush(String key, String... strs) {
-        Jedis jedis = getJedis();
-        return jedis.rpush(key, strs);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.rpush(key, strs);
+        }
+
     }
-
-//    /**
-//     * 通过key在list指定的位置之前或者之后 添加字符串元素
-//     *
-//     * @param key
-//     * @param where LIST_POSITION枚举类型
-//     * @param pivot list里面的value
-//     * @param value 添加的value
-//     * @return
-//     */
-//    public Long linsert(String key, BinaryClient.LIST_POSITION where,
-//                        String pivot, String value) {
-//        Jedis jedis = getJedis();
-//        return jedis.linsert(key, where, pivot, value);
-//    }
-
+    
     /**
      * 通过key设置list指定下标位置的value
      * 如果下标超过list里面value的个数则报错
@@ -458,8 +527,11 @@ public class JedisUtil {
      * @return 成功返回OK
      */
     public static String lset(String key, Long index, String value) {
-        Jedis jedis = getJedis();
-        return jedis.lset(key, index, value);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.lset(key, index, value);
+        }
+
     }
 
     /**
@@ -471,8 +543,11 @@ public class JedisUtil {
      * @return 返回被删除的个数
      */
     public static Long lrem(String key, long count, String value) {
-        Jedis jedis = getJedis();
-        return jedis.lrem(key, count, value);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.lrem(key, count, value);
+        }
+
     }
 
     /**
@@ -484,8 +559,11 @@ public class JedisUtil {
      * @return 成功返回OK
      */
     public static String ltrim(String key, long start, long end) {
-        Jedis jedis = getJedis();
-        return jedis.ltrim(key, start, end);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.ltrim(key, start, end);
+        }
+
     }
 
     /**
@@ -495,9 +573,10 @@ public class JedisUtil {
      * @return
      */
     public static synchronized String lpop(String key) {
+        try (Jedis jedis = getJedis()) {
 
-        Jedis jedis = getJedis();
-        return jedis.lpop(key);
+            return jedis.lpop(key);
+        }
     }
 
     /**
@@ -507,8 +586,11 @@ public class JedisUtil {
      * @return
      */
     public static synchronized String rpop(String key) {
-        Jedis jedis = getJedis();
-        return jedis.rpop(key);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.rpop(key);
+        }
+
     }
 
     /**
@@ -520,8 +602,11 @@ public class JedisUtil {
      * @return
      */
     public static String rpoplpush(String srckey, String dstkey) {
-        Jedis jedis = getJedis();
-        return jedis.rpoplpush(srckey, dstkey);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.rpoplpush(srckey, dstkey);
+        }
+
     }
 
     /**
@@ -532,8 +617,11 @@ public class JedisUtil {
      * @return 如果没有返回null
      */
     public static String lindex(String key, long index) {
-        Jedis jedis = getJedis();
-        return jedis.lindex(key, index);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.lindex(key, index);
+        }
+
     }
 
     /**
@@ -543,8 +631,11 @@ public class JedisUtil {
      * @return
      */
     public static Long llen(String key) {
-        Jedis jedis = getJedis();
-        return jedis.llen(key);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.llen(key);
+        }
+
     }
 
     /**
@@ -557,8 +648,11 @@ public class JedisUtil {
      * @return
      */
     public static List<String> lrange(String key, long start, long end) {
-        Jedis jedis = getJedis();
-        return jedis.lrange(key, start, end);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.lrange(key, start, end);
+        }
+
     }
 
     /**
@@ -569,8 +663,11 @@ public class JedisUtil {
      * @return 添加成功的个数
      */
     public static Long sadd(String key, String... members) {
-        Jedis jedis = getJedis();
-        return jedis.sadd(key, members);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.sadd(key, members);
+        }
+
     }
 
     /**
@@ -581,8 +678,11 @@ public class JedisUtil {
      * @return 删除的个数
      */
     public static Long srem(String key, String... members) {
-        Jedis jedis = getJedis();
-        return jedis.srem(key, members);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.srem(key, members);
+        }
+
     }
 
     /**
@@ -592,8 +692,11 @@ public class JedisUtil {
      * @return
      */
     public static String spop(String key) {
-        Jedis jedis = getJedis();
-        return jedis.spop(key);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.spop(key);
+        }
+
     }
 
     /**
@@ -604,8 +707,11 @@ public class JedisUtil {
      * @return
      */
     public static Set<String> sdiff(String... keys) {
-        Jedis jedis = getJedis();
-        return jedis.sdiff(keys);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.sdiff(keys);
+        }
+
     }
 
     /**
@@ -617,8 +723,11 @@ public class JedisUtil {
      * @return
      */
     public static Long sdiffstore(String dstkey, String... keys) {
-        Jedis jedis = getJedis();
-        return jedis.sdiffstore(dstkey, keys);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.sdiffstore(dstkey, keys);
+        }
+
     }
 
     /**
@@ -628,8 +737,11 @@ public class JedisUtil {
      * @return
      */
     public static Set<String> sinter(String... keys) {
-        Jedis jedis = getJedis();
-        return jedis.sinter(keys);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.sinter(keys);
+        }
+
     }
 
     /**
@@ -640,8 +752,11 @@ public class JedisUtil {
      * @return
      */
     public static Long sinterstore(String dstkey, String... keys) {
-        Jedis jedis = getJedis();
-        return jedis.sinterstore(dstkey, keys);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.sinterstore(dstkey, keys);
+        }
+
     }
 
     /**
@@ -651,8 +766,11 @@ public class JedisUtil {
      * @return
      */
     public static Set<String> sunion(String... keys) {
-        Jedis jedis = getJedis();
-        return jedis.sunion(keys);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.sunion(keys);
+        }
+
     }
 
     /**
@@ -663,8 +781,11 @@ public class JedisUtil {
      * @return
      */
     public static Long sunionstore(String dstkey, String... keys) {
-        Jedis jedis = getJedis();
-        return jedis.sunionstore(dstkey, keys);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.sunionstore(dstkey, keys);
+        }
+
     }
 
     /**
@@ -676,8 +797,11 @@ public class JedisUtil {
      * @return
      */
     public static Long smove(String srckey, String dstkey, String member) {
-        Jedis jedis = getJedis();
-        return jedis.smove(srckey, dstkey, member);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.smove(srckey, dstkey, member);
+        }
+
     }
 
     /**
@@ -687,8 +811,11 @@ public class JedisUtil {
      * @return
      */
     public static Long scard(String key) {
-        Jedis jedis = getJedis();
-        return jedis.scard(key);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.scard(key);
+        }
+
     }
 
     /**
@@ -699,8 +826,11 @@ public class JedisUtil {
      * @return
      */
     public static Boolean sismember(String key, String member) {
-        Jedis jedis = getJedis();
-        return jedis.sismember(key, member);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.sismember(key, member);
+        }
+
     }
 
     /**
@@ -710,8 +840,11 @@ public class JedisUtil {
      * @return
      */
     public static String srandmember(String key) {
-        Jedis jedis = getJedis();
-        return jedis.srandmember(key);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.srandmember(key);
+        }
+
     }
 
     /**
@@ -721,8 +854,11 @@ public class JedisUtil {
      * @return
      */
     public static Set<String> smembers(String key) {
-        Jedis jedis = getJedis();
-        return jedis.smembers(key);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.smembers(key);
+        }
+
     }
 
 
@@ -736,8 +872,11 @@ public class JedisUtil {
      * @return
      */
     public static Long zadd(String key, double score, String member) {
-        Jedis jedis = getJedis();
-        return jedis.zadd(key, score, member);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.zadd(key, score, member);
+        }
+
     }
 
     /**
@@ -748,8 +887,11 @@ public class JedisUtil {
      * @return
      */
     public static Long zrem(String key, String... members) {
-        Jedis jedis = getJedis();
-        return jedis.zrem(key, members);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.zrem(key, members);
+        }
+
     }
 
     /**
@@ -761,8 +903,11 @@ public class JedisUtil {
      * @return
      */
     public static Double zincrby(String key, double score, String member) {
-        Jedis jedis = getJedis();
-        return jedis.zincrby(key, score, member);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.zincrby(key, score, member);
+        }
+
     }
 
     /**
@@ -774,8 +919,11 @@ public class JedisUtil {
      * @return
      */
     public static Long zrank(String key, String member) {
-        Jedis jedis = getJedis();
-        return jedis.zrank(key, member);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.zrank(key, member);
+        }
+
     }
 
     /**
@@ -787,8 +935,11 @@ public class JedisUtil {
      * @return
      */
     public static Long zrevrank(String key, String member) {
-        Jedis jedis = getJedis();
-        return jedis.zrevrank(key, member);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.zrevrank(key, member);
+        }
+
     }
 
     /**
@@ -802,8 +953,11 @@ public class JedisUtil {
      * @return
      */
     public static Set<String> zrevrange(String key, long start, long end) {
-        Jedis jedis = getJedis();
-        return jedis.zrevrange(key, start, end);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.zrevrange(key, start, end);
+        }
+
     }
 
     /**
@@ -815,8 +969,11 @@ public class JedisUtil {
      * @return
      */
     public static Set<String> zrangebyscore(String key, String max, String min) {
-        Jedis jedis = getJedis();
-        return jedis.zrevrangeByScore(key, max, min);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.zrevrangeByScore(key, max, min);
+        }
+
     }
 
     /**
@@ -828,8 +985,11 @@ public class JedisUtil {
      * @return
      */
     public static Set<String> zrangeByScore(String key, double max, double min) {
-        Jedis jedis = getJedis();
-        return jedis.zrevrangeByScore(key, max, min);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.zrevrangeByScore(key, max, min);
+        }
+
     }
 
     /**
@@ -841,8 +1001,10 @@ public class JedisUtil {
      * @return
      */
     public static Long zcount(String key, String min, String max) {
-        Jedis jedis = getJedis();
-        return jedis.zcount(key, min, max);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.zcount(key, min, max);
+        }
     }
 
     /**
@@ -852,8 +1014,11 @@ public class JedisUtil {
      * @return
      */
     public static Long zcard(String key) {
-        Jedis jedis = getJedis();
-        return jedis.zcard(key);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.zcard(key);
+        }
+
     }
 
     /**
@@ -864,8 +1029,11 @@ public class JedisUtil {
      * @return
      */
     public static Double zscore(String key, String member) {
-        Jedis jedis = getJedis();
-        return jedis.zscore(key, member);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.zscore(key, member);
+        }
+
     }
 
     /**
@@ -877,8 +1045,11 @@ public class JedisUtil {
      * @return
      */
     public static Long zremrangeByRank(String key, long start, long end) {
-        Jedis jedis = getJedis();
-        return jedis.zremrangeByRank(key, start, end);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.zremrangeByRank(key, start, end);
+        }
+
     }
 
     /**
@@ -890,8 +1061,11 @@ public class JedisUtil {
      * @return
      */
     public static Long zremrangeByScore(String key, double start, double end) {
-        Jedis jedis = getJedis();
-        return jedis.zremrangeByScore(key, start, end);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.zremrangeByScore(key, start, end);
+        }
+
     }
 
     /**
@@ -903,8 +1077,11 @@ public class JedisUtil {
      * @return
      */
     public static Set<String> keys(String pattern) {
-        Jedis jedis = getJedis();
-        return jedis.keys(pattern);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.keys(pattern);
+        }
+
     }
 
     /**
@@ -914,8 +1091,11 @@ public class JedisUtil {
      * @return
      */
     public static String type(String key) {
-        Jedis jedis = getJedis();
-        return jedis.type(key);
+        try (Jedis jedis = getJedis()) {
+
+            return jedis.type(key);
+        }
+
     }
 
 
