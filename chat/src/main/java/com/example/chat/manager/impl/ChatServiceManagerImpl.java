@@ -13,7 +13,7 @@ import com.example.proto.common.common.Common;
 import com.example.proto.inner.inner.Inner;
 import com.example.proto.outer.outer.Outer;
 import com.google.protobuf.InvalidProtocolBufferException;
-import io.protostuff.ByteString;
+import com.google.protobuf.ProtocolStringList;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +42,56 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
 
     @Override
     public Outer.DoGroupSendingResp doGroupSending(Outer.DoGroupSendingReq req) {
+        ProtocolStringList toUidsList = req.getToUidsList();
+        int uidSize = toUidsList.size();
+        log.info("ChatServiceManagerImpl doGroupSending send uidSize:{}", uidSize);
+        long[] uuiDs = UuidGenUtil.getUUIDs(uidSize);
+        int uuidIndex = 0;
+        long fromUid = Long.parseLong(req.getFromUid());
+        List<MsgInfoDto> msgInfoDtos = new ArrayList<>(uidSize);
+        Common.Body body = Common.Body.newBuilder().setContent(req.getMsgContent()).build();
+        for (String toUid : toUidsList) {
+            MsgInfoDto msgInfoDto = new MsgInfoDto();
+            msgInfoDto.setFromUid(fromUid);
+            msgInfoDto.setToUid(Long.valueOf(toUid));
+            msgInfoDto.setMsgType(req.getMsgTypeValue());
+            msgInfoDto.setMsgContentType(req.getMsgContentTypeValue());
+            msgInfoDto.setGuid(uuiDs[uuidIndex++]);
+            msgInfoDto.setMsgBody(body);
+            msgInfoDtos.add(msgInfoDto);
+        }
+        if (msgInfoDaoManager.addMsgInfo(msgInfoDtos) != uidSize) {
+            log.error("doGroupSending batch insert fail");
+        }
+        // 发给push
+        Inner.BatchRouteMsgReq.Builder batchRouteMsgReqBuilder = builderBatchRouteReq(req, fromUid, msgInfoDtos);
+        pushService.batchRouteMsg(batchRouteMsgReqBuilder.build());
+        return Outer.DoGroupSendingResp.newBuilder().setRet(CommonConstants.SUCCESS).build();
+    }
 
-        return null;
+    private Inner.BatchRouteMsgReq.Builder builderBatchRouteReq(Outer.DoGroupSendingReq req,
+                                                                long fromUid, List<MsgInfoDto> msgInfoDtos) {
+        Common.Head header = Common.Head.newBuilder()
+                .setFromId(fromUid)
+                .setMsgType(req.getMsgType())
+                .setMsgContentType(req.getMsgContentType())
+                .build();
+        Common.Body body = Common.Body.newBuilder()
+                .setContent(req.getMsgContent())
+                .build();
+        Common.Msg msg = Common.Msg.newBuilder()
+                .setHead(header)
+                .setBody(body)
+                .build();
+        Inner.GuidUidBinder.Builder binderBuilder = Inner.GuidUidBinder.newBuilder();
+        Inner.BatchRouteMsgReq.Builder batchRouteMsgReqBuilder = Inner.BatchRouteMsgReq.newBuilder().setMsg(msg);
+        for (MsgInfoDto msgInfoDto : msgInfoDtos) {
+            binderBuilder.clear();
+            binderBuilder.setGuid(msgInfoDto.getGuid());
+            binderBuilder.setUid(msgInfoDto.getToUid());
+            batchRouteMsgReqBuilder.addToUid(binderBuilder.build());
+        }
+        return batchRouteMsgReqBuilder;
     }
 
     @Override
@@ -122,7 +170,7 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
                         .build();
                 return Outer.AckMsgResp.newBuilder().setRet(errorMsg).build();
             }
-        } else if (maxGuid != guid){
+        } else if (maxGuid != guid) {
             if (msgReadDaoManager.updateMaxGuid(uid, guid) != 1L) {
                 // return value != 1 means updating database is failed
                 Common.ErrorMsg errorMsg = Common.ErrorMsg.newBuilder()

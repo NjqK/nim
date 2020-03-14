@@ -1,6 +1,8 @@
 
 package com.example.api.inner.inner;
 
+import com.example.proto.inner.inner.Inner.BatchRouteMsgReq;
+import com.example.proto.inner.inner.Inner.BatchRouteMsgResp;
 import com.example.proto.inner.inner.Inner.RouteMsgReq;
 import com.example.proto.inner.inner.Inner.RouteMsgResp;
 
@@ -12,6 +14,14 @@ import com.example.proto.inner.inner.Inner.RouteMsgResp;
  * @version
  */
 public interface PushService {
+
+    /**
+     * batch route
+     *
+     * @param batchRouteMsgReq the BatchRouteMsgReq
+     * @return BatchRouteMsgResp
+     */
+    BatchRouteMsgResp batchRouteMsg(BatchRouteMsgReq batchRouteMsgReq);
 
     /**
      * 找到用户所在netty节点，转发消息

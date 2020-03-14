@@ -24,6 +24,7 @@ public final class Inner {
      * </pre>
      *
      * <code>string to_uid = 1;</code>
+     * @return The toUid.
      */
     java.lang.String getToUid();
     /**
@@ -32,6 +33,7 @@ public final class Inner {
      * </pre>
      *
      * <code>string to_uid = 1;</code>
+     * @return The bytes for toUid.
      */
     com.google.protobuf.ByteString
         getToUidBytes();
@@ -42,6 +44,7 @@ public final class Inner {
      * </pre>
      *
      * <code>.common.common.Msg msg = 2;</code>
+     * @return Whether the msg field is set.
      */
     boolean hasMsg();
     /**
@@ -50,6 +53,7 @@ public final class Inner {
      * </pre>
      *
      * <code>.common.common.Msg msg = 2;</code>
+     * @return The msg.
      */
     com.example.proto.common.common.Common.Msg getMsg();
     /**
@@ -78,6 +82,13 @@ public final class Inner {
     }
 
     @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RouteMsgReq();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -90,7 +101,6 @@ public final class Inner {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -121,7 +131,7 @@ public final class Inner {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -160,6 +170,7 @@ public final class Inner {
      * </pre>
      *
      * <code>string to_uid = 1;</code>
+     * @return The toUid.
      */
     public java.lang.String getToUid() {
       java.lang.Object ref = toUid_;
@@ -179,6 +190,7 @@ public final class Inner {
      * </pre>
      *
      * <code>string to_uid = 1;</code>
+     * @return The bytes for toUid.
      */
     public com.google.protobuf.ByteString
         getToUidBytes() {
@@ -202,6 +214,7 @@ public final class Inner {
      * </pre>
      *
      * <code>.common.common.Msg msg = 2;</code>
+     * @return Whether the msg field is set.
      */
     public boolean hasMsg() {
       return msg_ != null;
@@ -212,6 +225,7 @@ public final class Inner {
      * </pre>
      *
      * <code>.common.common.Msg msg = 2;</code>
+     * @return The msg.
      */
     public com.example.proto.common.common.Common.Msg getMsg() {
       return msg_ == null ? com.example.proto.common.common.Common.Msg.getDefaultInstance() : msg_;
@@ -278,16 +292,15 @@ public final class Inner {
       }
       com.example.proto.inner.inner.Inner.RouteMsgReq other = (com.example.proto.inner.inner.Inner.RouteMsgReq) obj;
 
-      boolean result = true;
-      result = result && getToUid()
-          .equals(other.getToUid());
-      result = result && (hasMsg() == other.hasMsg());
+      if (!getToUid()
+          .equals(other.getToUid())) return false;
+      if (hasMsg() != other.hasMsg()) return false;
       if (hasMsg()) {
-        result = result && getMsg()
-            .equals(other.getMsg());
+        if (!getMsg()
+            .equals(other.getMsg())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -482,35 +495,35 @@ public final class Inner {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -567,6 +580,7 @@ public final class Inner {
        * </pre>
        *
        * <code>string to_uid = 1;</code>
+       * @return The toUid.
        */
       public java.lang.String getToUid() {
         java.lang.Object ref = toUid_;
@@ -586,6 +600,7 @@ public final class Inner {
        * </pre>
        *
        * <code>string to_uid = 1;</code>
+       * @return The bytes for toUid.
        */
       public com.google.protobuf.ByteString
           getToUidBytes() {
@@ -606,6 +621,8 @@ public final class Inner {
        * </pre>
        *
        * <code>string to_uid = 1;</code>
+       * @param value The toUid to set.
+       * @return This builder for chaining.
        */
       public Builder setToUid(
           java.lang.String value) {
@@ -623,6 +640,7 @@ public final class Inner {
        * </pre>
        *
        * <code>string to_uid = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearToUid() {
         
@@ -636,6 +654,8 @@ public final class Inner {
        * </pre>
        *
        * <code>string to_uid = 1;</code>
+       * @param value The bytes for toUid to set.
+       * @return This builder for chaining.
        */
       public Builder setToUidBytes(
           com.google.protobuf.ByteString value) {
@@ -649,7 +669,7 @@ public final class Inner {
         return this;
       }
 
-      private com.example.proto.common.common.Common.Msg msg_ = null;
+      private com.example.proto.common.common.Common.Msg msg_;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.example.proto.common.common.Common.Msg, com.example.proto.common.common.Common.Msg.Builder, com.example.proto.common.common.Common.MsgOrBuilder> msgBuilder_;
       /**
@@ -658,6 +678,7 @@ public final class Inner {
        * </pre>
        *
        * <code>.common.common.Msg msg = 2;</code>
+       * @return Whether the msg field is set.
        */
       public boolean hasMsg() {
         return msgBuilder_ != null || msg_ != null;
@@ -668,6 +689,7 @@ public final class Inner {
        * </pre>
        *
        * <code>.common.common.Msg msg = 2;</code>
+       * @return The msg.
        */
       public com.example.proto.common.common.Common.Msg getMsg() {
         if (msgBuilder_ == null) {
@@ -804,7 +826,7 @@ public final class Inner {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -864,6 +886,7 @@ public final class Inner {
      * </pre>
      *
      * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return Whether the ret field is set.
      */
     boolean hasRet();
     /**
@@ -872,6 +895,7 @@ public final class Inner {
      * </pre>
      *
      * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return The ret.
      */
     com.example.proto.common.common.Common.ErrorMsg getRet();
     /**
@@ -899,6 +923,13 @@ public final class Inner {
     }
 
     @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RouteMsgResp();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -911,7 +942,6 @@ public final class Inner {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -936,7 +966,7 @@ public final class Inner {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -975,6 +1005,7 @@ public final class Inner {
      * </pre>
      *
      * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return Whether the ret field is set.
      */
     public boolean hasRet() {
       return ret_ != null;
@@ -985,6 +1016,7 @@ public final class Inner {
      * </pre>
      *
      * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return The ret.
      */
     public com.example.proto.common.common.Common.ErrorMsg getRet() {
       return ret_ == null ? com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
@@ -1045,14 +1077,13 @@ public final class Inner {
       }
       com.example.proto.inner.inner.Inner.RouteMsgResp other = (com.example.proto.inner.inner.Inner.RouteMsgResp) obj;
 
-      boolean result = true;
-      result = result && (hasRet() == other.hasRet());
+      if (hasRet() != other.hasRet()) return false;
       if (hasRet()) {
-        result = result && getRet()
-            .equals(other.getRet());
+        if (!getRet()
+            .equals(other.getRet())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -1242,35 +1273,35 @@ public final class Inner {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1316,7 +1347,7 @@ public final class Inner {
         return this;
       }
 
-      private com.example.proto.common.common.Common.ErrorMsg ret_ = null;
+      private com.example.proto.common.common.Common.ErrorMsg ret_;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder> retBuilder_;
       /**
@@ -1325,6 +1356,7 @@ public final class Inner {
        * </pre>
        *
        * <code>.common.common.ErrorMsg ret = 1;</code>
+       * @return Whether the ret field is set.
        */
       public boolean hasRet() {
         return retBuilder_ != null || ret_ != null;
@@ -1335,6 +1367,7 @@ public final class Inner {
        * </pre>
        *
        * <code>.common.common.ErrorMsg ret = 1;</code>
+       * @return The ret.
        */
       public com.example.proto.common.common.Common.ErrorMsg getRet() {
         if (retBuilder_ == null) {
@@ -1471,7 +1504,7 @@ public final class Inner {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -1521,6 +1554,2400 @@ public final class Inner {
 
   }
 
+  public interface GuidUidBinderOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:inner.inner.GuidUidBinder)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int64 uid = 1;</code>
+     * @return The uid.
+     */
+    long getUid();
+
+    /**
+     * <code>int64 guid = 2;</code>
+     * @return The guid.
+     */
+    long getGuid();
+  }
+  /**
+   * Protobuf type {@code inner.inner.GuidUidBinder}
+   */
+  public  static final class GuidUidBinder extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:inner.inner.GuidUidBinder)
+      GuidUidBinderOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GuidUidBinder.newBuilder() to construct.
+    private GuidUidBinder(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GuidUidBinder() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GuidUidBinder();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GuidUidBinder(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              uid_ = input.readInt64();
+              break;
+            }
+            case 16: {
+
+              guid_ = input.readInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.proto.inner.inner.Inner.internal_static_inner_inner_GuidUidBinder_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.proto.inner.inner.Inner.internal_static_inner_inner_GuidUidBinder_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.proto.inner.inner.Inner.GuidUidBinder.class, com.example.proto.inner.inner.Inner.GuidUidBinder.Builder.class);
+    }
+
+    public static final int UID_FIELD_NUMBER = 1;
+    private long uid_;
+    /**
+     * <code>int64 uid = 1;</code>
+     * @return The uid.
+     */
+    public long getUid() {
+      return uid_;
+    }
+
+    public static final int GUID_FIELD_NUMBER = 2;
+    private long guid_;
+    /**
+     * <code>int64 guid = 2;</code>
+     * @return The guid.
+     */
+    public long getGuid() {
+      return guid_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (uid_ != 0L) {
+        output.writeInt64(1, uid_);
+      }
+      if (guid_ != 0L) {
+        output.writeInt64(2, guid_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (uid_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, uid_);
+      }
+      if (guid_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, guid_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.proto.inner.inner.Inner.GuidUidBinder)) {
+        return super.equals(obj);
+      }
+      com.example.proto.inner.inner.Inner.GuidUidBinder other = (com.example.proto.inner.inner.Inner.GuidUidBinder) obj;
+
+      if (getUid()
+          != other.getUid()) return false;
+      if (getGuid()
+          != other.getGuid()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + UID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getUid());
+      hash = (37 * hash) + GUID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getGuid());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.proto.inner.inner.Inner.GuidUidBinder parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.inner.inner.Inner.GuidUidBinder parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.GuidUidBinder parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.inner.inner.Inner.GuidUidBinder parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.GuidUidBinder parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.inner.inner.Inner.GuidUidBinder parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.GuidUidBinder parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.proto.inner.inner.Inner.GuidUidBinder parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.GuidUidBinder parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.proto.inner.inner.Inner.GuidUidBinder parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.GuidUidBinder parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.proto.inner.inner.Inner.GuidUidBinder parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.proto.inner.inner.Inner.GuidUidBinder prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code inner.inner.GuidUidBinder}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:inner.inner.GuidUidBinder)
+        com.example.proto.inner.inner.Inner.GuidUidBinderOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_GuidUidBinder_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_GuidUidBinder_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.proto.inner.inner.Inner.GuidUidBinder.class, com.example.proto.inner.inner.Inner.GuidUidBinder.Builder.class);
+      }
+
+      // Construct using com.example.proto.inner.inner.Inner.GuidUidBinder.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        uid_ = 0L;
+
+        guid_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_GuidUidBinder_descriptor;
+      }
+
+      @java.lang.Override
+      public com.example.proto.inner.inner.Inner.GuidUidBinder getDefaultInstanceForType() {
+        return com.example.proto.inner.inner.Inner.GuidUidBinder.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.example.proto.inner.inner.Inner.GuidUidBinder build() {
+        com.example.proto.inner.inner.Inner.GuidUidBinder result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.example.proto.inner.inner.Inner.GuidUidBinder buildPartial() {
+        com.example.proto.inner.inner.Inner.GuidUidBinder result = new com.example.proto.inner.inner.Inner.GuidUidBinder(this);
+        result.uid_ = uid_;
+        result.guid_ = guid_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.proto.inner.inner.Inner.GuidUidBinder) {
+          return mergeFrom((com.example.proto.inner.inner.Inner.GuidUidBinder)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.proto.inner.inner.Inner.GuidUidBinder other) {
+        if (other == com.example.proto.inner.inner.Inner.GuidUidBinder.getDefaultInstance()) return this;
+        if (other.getUid() != 0L) {
+          setUid(other.getUid());
+        }
+        if (other.getGuid() != 0L) {
+          setGuid(other.getGuid());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.proto.inner.inner.Inner.GuidUidBinder parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.proto.inner.inner.Inner.GuidUidBinder) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long uid_ ;
+      /**
+       * <code>int64 uid = 1;</code>
+       * @return The uid.
+       */
+      public long getUid() {
+        return uid_;
+      }
+      /**
+       * <code>int64 uid = 1;</code>
+       * @param value The uid to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUid(long value) {
+        
+        uid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 uid = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUid() {
+        
+        uid_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long guid_ ;
+      /**
+       * <code>int64 guid = 2;</code>
+       * @return The guid.
+       */
+      public long getGuid() {
+        return guid_;
+      }
+      /**
+       * <code>int64 guid = 2;</code>
+       * @param value The guid to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGuid(long value) {
+        
+        guid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 guid = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearGuid() {
+        
+        guid_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:inner.inner.GuidUidBinder)
+    }
+
+    // @@protoc_insertion_point(class_scope:inner.inner.GuidUidBinder)
+    private static final com.example.proto.inner.inner.Inner.GuidUidBinder DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.proto.inner.inner.Inner.GuidUidBinder();
+    }
+
+    public static com.example.proto.inner.inner.Inner.GuidUidBinder getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GuidUidBinder>
+        PARSER = new com.google.protobuf.AbstractParser<GuidUidBinder>() {
+      @java.lang.Override
+      public GuidUidBinder parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GuidUidBinder(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GuidUidBinder> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GuidUidBinder> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.example.proto.inner.inner.Inner.GuidUidBinder getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BatchRouteMsgReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:inner.inner.BatchRouteMsgReq)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 目标id
+     * </pre>
+     *
+     * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+     */
+    java.util.List<com.example.proto.inner.inner.Inner.GuidUidBinder> 
+        getToUidList();
+    /**
+     * <pre>
+     * 目标id
+     * </pre>
+     *
+     * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+     */
+    com.example.proto.inner.inner.Inner.GuidUidBinder getToUid(int index);
+    /**
+     * <pre>
+     * 目标id
+     * </pre>
+     *
+     * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+     */
+    int getToUidCount();
+    /**
+     * <pre>
+     * 目标id
+     * </pre>
+     *
+     * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+     */
+    java.util.List<? extends com.example.proto.inner.inner.Inner.GuidUidBinderOrBuilder> 
+        getToUidOrBuilderList();
+    /**
+     * <pre>
+     * 目标id
+     * </pre>
+     *
+     * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+     */
+    com.example.proto.inner.inner.Inner.GuidUidBinderOrBuilder getToUidOrBuilder(
+        int index);
+
+    /**
+     * <pre>
+     * 消息，因为群发消息内容是一样的，所以就不在chat里循环调用了，网络开销比较大
+     * </pre>
+     *
+     * <code>.common.common.Msg msg = 2;</code>
+     * @return Whether the msg field is set.
+     */
+    boolean hasMsg();
+    /**
+     * <pre>
+     * 消息，因为群发消息内容是一样的，所以就不在chat里循环调用了，网络开销比较大
+     * </pre>
+     *
+     * <code>.common.common.Msg msg = 2;</code>
+     * @return The msg.
+     */
+    com.example.proto.common.common.Common.Msg getMsg();
+    /**
+     * <pre>
+     * 消息，因为群发消息内容是一样的，所以就不在chat里循环调用了，网络开销比较大
+     * </pre>
+     *
+     * <code>.common.common.Msg msg = 2;</code>
+     */
+    com.example.proto.common.common.Common.MsgOrBuilder getMsgOrBuilder();
+  }
+  /**
+   * Protobuf type {@code inner.inner.BatchRouteMsgReq}
+   */
+  public  static final class BatchRouteMsgReq extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:inner.inner.BatchRouteMsgReq)
+      BatchRouteMsgReqOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BatchRouteMsgReq.newBuilder() to construct.
+    private BatchRouteMsgReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private BatchRouteMsgReq() {
+      toUid_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new BatchRouteMsgReq();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BatchRouteMsgReq(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                toUid_ = new java.util.ArrayList<com.example.proto.inner.inner.Inner.GuidUidBinder>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              toUid_.add(
+                  input.readMessage(com.example.proto.inner.inner.Inner.GuidUidBinder.parser(), extensionRegistry));
+              break;
+            }
+            case 18: {
+              com.example.proto.common.common.Common.Msg.Builder subBuilder = null;
+              if (msg_ != null) {
+                subBuilder = msg_.toBuilder();
+              }
+              msg_ = input.readMessage(com.example.proto.common.common.Common.Msg.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(msg_);
+                msg_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          toUid_ = java.util.Collections.unmodifiableList(toUid_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.proto.inner.inner.Inner.internal_static_inner_inner_BatchRouteMsgReq_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.proto.inner.inner.Inner.internal_static_inner_inner_BatchRouteMsgReq_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.proto.inner.inner.Inner.BatchRouteMsgReq.class, com.example.proto.inner.inner.Inner.BatchRouteMsgReq.Builder.class);
+    }
+
+    public static final int TO_UID_FIELD_NUMBER = 1;
+    private java.util.List<com.example.proto.inner.inner.Inner.GuidUidBinder> toUid_;
+    /**
+     * <pre>
+     * 目标id
+     * </pre>
+     *
+     * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+     */
+    public java.util.List<com.example.proto.inner.inner.Inner.GuidUidBinder> getToUidList() {
+      return toUid_;
+    }
+    /**
+     * <pre>
+     * 目标id
+     * </pre>
+     *
+     * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+     */
+    public java.util.List<? extends com.example.proto.inner.inner.Inner.GuidUidBinderOrBuilder> 
+        getToUidOrBuilderList() {
+      return toUid_;
+    }
+    /**
+     * <pre>
+     * 目标id
+     * </pre>
+     *
+     * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+     */
+    public int getToUidCount() {
+      return toUid_.size();
+    }
+    /**
+     * <pre>
+     * 目标id
+     * </pre>
+     *
+     * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+     */
+    public com.example.proto.inner.inner.Inner.GuidUidBinder getToUid(int index) {
+      return toUid_.get(index);
+    }
+    /**
+     * <pre>
+     * 目标id
+     * </pre>
+     *
+     * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+     */
+    public com.example.proto.inner.inner.Inner.GuidUidBinderOrBuilder getToUidOrBuilder(
+        int index) {
+      return toUid_.get(index);
+    }
+
+    public static final int MSG_FIELD_NUMBER = 2;
+    private com.example.proto.common.common.Common.Msg msg_;
+    /**
+     * <pre>
+     * 消息，因为群发消息内容是一样的，所以就不在chat里循环调用了，网络开销比较大
+     * </pre>
+     *
+     * <code>.common.common.Msg msg = 2;</code>
+     * @return Whether the msg field is set.
+     */
+    public boolean hasMsg() {
+      return msg_ != null;
+    }
+    /**
+     * <pre>
+     * 消息，因为群发消息内容是一样的，所以就不在chat里循环调用了，网络开销比较大
+     * </pre>
+     *
+     * <code>.common.common.Msg msg = 2;</code>
+     * @return The msg.
+     */
+    public com.example.proto.common.common.Common.Msg getMsg() {
+      return msg_ == null ? com.example.proto.common.common.Common.Msg.getDefaultInstance() : msg_;
+    }
+    /**
+     * <pre>
+     * 消息，因为群发消息内容是一样的，所以就不在chat里循环调用了，网络开销比较大
+     * </pre>
+     *
+     * <code>.common.common.Msg msg = 2;</code>
+     */
+    public com.example.proto.common.common.Common.MsgOrBuilder getMsgOrBuilder() {
+      return getMsg();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < toUid_.size(); i++) {
+        output.writeMessage(1, toUid_.get(i));
+      }
+      if (msg_ != null) {
+        output.writeMessage(2, getMsg());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < toUid_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, toUid_.get(i));
+      }
+      if (msg_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getMsg());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.proto.inner.inner.Inner.BatchRouteMsgReq)) {
+        return super.equals(obj);
+      }
+      com.example.proto.inner.inner.Inner.BatchRouteMsgReq other = (com.example.proto.inner.inner.Inner.BatchRouteMsgReq) obj;
+
+      if (!getToUidList()
+          .equals(other.getToUidList())) return false;
+      if (hasMsg() != other.hasMsg()) return false;
+      if (hasMsg()) {
+        if (!getMsg()
+            .equals(other.getMsg())) return false;
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getToUidCount() > 0) {
+        hash = (37 * hash) + TO_UID_FIELD_NUMBER;
+        hash = (53 * hash) + getToUidList().hashCode();
+      }
+      if (hasMsg()) {
+        hash = (37 * hash) + MSG_FIELD_NUMBER;
+        hash = (53 * hash) + getMsg().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgReq parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgReq parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgReq parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgReq parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgReq parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgReq parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgReq parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgReq parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgReq parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgReq parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgReq parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgReq parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.proto.inner.inner.Inner.BatchRouteMsgReq prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code inner.inner.BatchRouteMsgReq}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:inner.inner.BatchRouteMsgReq)
+        com.example.proto.inner.inner.Inner.BatchRouteMsgReqOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_BatchRouteMsgReq_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_BatchRouteMsgReq_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.proto.inner.inner.Inner.BatchRouteMsgReq.class, com.example.proto.inner.inner.Inner.BatchRouteMsgReq.Builder.class);
+      }
+
+      // Construct using com.example.proto.inner.inner.Inner.BatchRouteMsgReq.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getToUidFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (toUidBuilder_ == null) {
+          toUid_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          toUidBuilder_.clear();
+        }
+        if (msgBuilder_ == null) {
+          msg_ = null;
+        } else {
+          msg_ = null;
+          msgBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_BatchRouteMsgReq_descriptor;
+      }
+
+      @java.lang.Override
+      public com.example.proto.inner.inner.Inner.BatchRouteMsgReq getDefaultInstanceForType() {
+        return com.example.proto.inner.inner.Inner.BatchRouteMsgReq.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.example.proto.inner.inner.Inner.BatchRouteMsgReq build() {
+        com.example.proto.inner.inner.Inner.BatchRouteMsgReq result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.example.proto.inner.inner.Inner.BatchRouteMsgReq buildPartial() {
+        com.example.proto.inner.inner.Inner.BatchRouteMsgReq result = new com.example.proto.inner.inner.Inner.BatchRouteMsgReq(this);
+        int from_bitField0_ = bitField0_;
+        if (toUidBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            toUid_ = java.util.Collections.unmodifiableList(toUid_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.toUid_ = toUid_;
+        } else {
+          result.toUid_ = toUidBuilder_.build();
+        }
+        if (msgBuilder_ == null) {
+          result.msg_ = msg_;
+        } else {
+          result.msg_ = msgBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.proto.inner.inner.Inner.BatchRouteMsgReq) {
+          return mergeFrom((com.example.proto.inner.inner.Inner.BatchRouteMsgReq)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.proto.inner.inner.Inner.BatchRouteMsgReq other) {
+        if (other == com.example.proto.inner.inner.Inner.BatchRouteMsgReq.getDefaultInstance()) return this;
+        if (toUidBuilder_ == null) {
+          if (!other.toUid_.isEmpty()) {
+            if (toUid_.isEmpty()) {
+              toUid_ = other.toUid_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureToUidIsMutable();
+              toUid_.addAll(other.toUid_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.toUid_.isEmpty()) {
+            if (toUidBuilder_.isEmpty()) {
+              toUidBuilder_.dispose();
+              toUidBuilder_ = null;
+              toUid_ = other.toUid_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              toUidBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getToUidFieldBuilder() : null;
+            } else {
+              toUidBuilder_.addAllMessages(other.toUid_);
+            }
+          }
+        }
+        if (other.hasMsg()) {
+          mergeMsg(other.getMsg());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.proto.inner.inner.Inner.BatchRouteMsgReq parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.proto.inner.inner.Inner.BatchRouteMsgReq) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<com.example.proto.inner.inner.Inner.GuidUidBinder> toUid_ =
+        java.util.Collections.emptyList();
+      private void ensureToUidIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          toUid_ = new java.util.ArrayList<com.example.proto.inner.inner.Inner.GuidUidBinder>(toUid_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.proto.inner.inner.Inner.GuidUidBinder, com.example.proto.inner.inner.Inner.GuidUidBinder.Builder, com.example.proto.inner.inner.Inner.GuidUidBinderOrBuilder> toUidBuilder_;
+
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+       */
+      public java.util.List<com.example.proto.inner.inner.Inner.GuidUidBinder> getToUidList() {
+        if (toUidBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(toUid_);
+        } else {
+          return toUidBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+       */
+      public int getToUidCount() {
+        if (toUidBuilder_ == null) {
+          return toUid_.size();
+        } else {
+          return toUidBuilder_.getCount();
+        }
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+       */
+      public com.example.proto.inner.inner.Inner.GuidUidBinder getToUid(int index) {
+        if (toUidBuilder_ == null) {
+          return toUid_.get(index);
+        } else {
+          return toUidBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+       */
+      public Builder setToUid(
+          int index, com.example.proto.inner.inner.Inner.GuidUidBinder value) {
+        if (toUidBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureToUidIsMutable();
+          toUid_.set(index, value);
+          onChanged();
+        } else {
+          toUidBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+       */
+      public Builder setToUid(
+          int index, com.example.proto.inner.inner.Inner.GuidUidBinder.Builder builderForValue) {
+        if (toUidBuilder_ == null) {
+          ensureToUidIsMutable();
+          toUid_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          toUidBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+       */
+      public Builder addToUid(com.example.proto.inner.inner.Inner.GuidUidBinder value) {
+        if (toUidBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureToUidIsMutable();
+          toUid_.add(value);
+          onChanged();
+        } else {
+          toUidBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+       */
+      public Builder addToUid(
+          int index, com.example.proto.inner.inner.Inner.GuidUidBinder value) {
+        if (toUidBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureToUidIsMutable();
+          toUid_.add(index, value);
+          onChanged();
+        } else {
+          toUidBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+       */
+      public Builder addToUid(
+          com.example.proto.inner.inner.Inner.GuidUidBinder.Builder builderForValue) {
+        if (toUidBuilder_ == null) {
+          ensureToUidIsMutable();
+          toUid_.add(builderForValue.build());
+          onChanged();
+        } else {
+          toUidBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+       */
+      public Builder addToUid(
+          int index, com.example.proto.inner.inner.Inner.GuidUidBinder.Builder builderForValue) {
+        if (toUidBuilder_ == null) {
+          ensureToUidIsMutable();
+          toUid_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          toUidBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+       */
+      public Builder addAllToUid(
+          java.lang.Iterable<? extends com.example.proto.inner.inner.Inner.GuidUidBinder> values) {
+        if (toUidBuilder_ == null) {
+          ensureToUidIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, toUid_);
+          onChanged();
+        } else {
+          toUidBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+       */
+      public Builder clearToUid() {
+        if (toUidBuilder_ == null) {
+          toUid_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          toUidBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+       */
+      public Builder removeToUid(int index) {
+        if (toUidBuilder_ == null) {
+          ensureToUidIsMutable();
+          toUid_.remove(index);
+          onChanged();
+        } else {
+          toUidBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+       */
+      public com.example.proto.inner.inner.Inner.GuidUidBinder.Builder getToUidBuilder(
+          int index) {
+        return getToUidFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+       */
+      public com.example.proto.inner.inner.Inner.GuidUidBinderOrBuilder getToUidOrBuilder(
+          int index) {
+        if (toUidBuilder_ == null) {
+          return toUid_.get(index);  } else {
+          return toUidBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+       */
+      public java.util.List<? extends com.example.proto.inner.inner.Inner.GuidUidBinderOrBuilder> 
+           getToUidOrBuilderList() {
+        if (toUidBuilder_ != null) {
+          return toUidBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(toUid_);
+        }
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+       */
+      public com.example.proto.inner.inner.Inner.GuidUidBinder.Builder addToUidBuilder() {
+        return getToUidFieldBuilder().addBuilder(
+            com.example.proto.inner.inner.Inner.GuidUidBinder.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+       */
+      public com.example.proto.inner.inner.Inner.GuidUidBinder.Builder addToUidBuilder(
+          int index) {
+        return getToUidFieldBuilder().addBuilder(
+            index, com.example.proto.inner.inner.Inner.GuidUidBinder.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * 目标id
+       * </pre>
+       *
+       * <code>repeated .inner.inner.GuidUidBinder to_uid = 1;</code>
+       */
+      public java.util.List<com.example.proto.inner.inner.Inner.GuidUidBinder.Builder> 
+           getToUidBuilderList() {
+        return getToUidFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.proto.inner.inner.Inner.GuidUidBinder, com.example.proto.inner.inner.Inner.GuidUidBinder.Builder, com.example.proto.inner.inner.Inner.GuidUidBinderOrBuilder> 
+          getToUidFieldBuilder() {
+        if (toUidBuilder_ == null) {
+          toUidBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.example.proto.inner.inner.Inner.GuidUidBinder, com.example.proto.inner.inner.Inner.GuidUidBinder.Builder, com.example.proto.inner.inner.Inner.GuidUidBinderOrBuilder>(
+                  toUid_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          toUid_ = null;
+        }
+        return toUidBuilder_;
+      }
+
+      private com.example.proto.common.common.Common.Msg msg_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.proto.common.common.Common.Msg, com.example.proto.common.common.Common.Msg.Builder, com.example.proto.common.common.Common.MsgOrBuilder> msgBuilder_;
+      /**
+       * <pre>
+       * 消息，因为群发消息内容是一样的，所以就不在chat里循环调用了，网络开销比较大
+       * </pre>
+       *
+       * <code>.common.common.Msg msg = 2;</code>
+       * @return Whether the msg field is set.
+       */
+      public boolean hasMsg() {
+        return msgBuilder_ != null || msg_ != null;
+      }
+      /**
+       * <pre>
+       * 消息，因为群发消息内容是一样的，所以就不在chat里循环调用了，网络开销比较大
+       * </pre>
+       *
+       * <code>.common.common.Msg msg = 2;</code>
+       * @return The msg.
+       */
+      public com.example.proto.common.common.Common.Msg getMsg() {
+        if (msgBuilder_ == null) {
+          return msg_ == null ? com.example.proto.common.common.Common.Msg.getDefaultInstance() : msg_;
+        } else {
+          return msgBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * 消息，因为群发消息内容是一样的，所以就不在chat里循环调用了，网络开销比较大
+       * </pre>
+       *
+       * <code>.common.common.Msg msg = 2;</code>
+       */
+      public Builder setMsg(com.example.proto.common.common.Common.Msg value) {
+        if (msgBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          msg_ = value;
+          onChanged();
+        } else {
+          msgBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 消息，因为群发消息内容是一样的，所以就不在chat里循环调用了，网络开销比较大
+       * </pre>
+       *
+       * <code>.common.common.Msg msg = 2;</code>
+       */
+      public Builder setMsg(
+          com.example.proto.common.common.Common.Msg.Builder builderForValue) {
+        if (msgBuilder_ == null) {
+          msg_ = builderForValue.build();
+          onChanged();
+        } else {
+          msgBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 消息，因为群发消息内容是一样的，所以就不在chat里循环调用了，网络开销比较大
+       * </pre>
+       *
+       * <code>.common.common.Msg msg = 2;</code>
+       */
+      public Builder mergeMsg(com.example.proto.common.common.Common.Msg value) {
+        if (msgBuilder_ == null) {
+          if (msg_ != null) {
+            msg_ =
+              com.example.proto.common.common.Common.Msg.newBuilder(msg_).mergeFrom(value).buildPartial();
+          } else {
+            msg_ = value;
+          }
+          onChanged();
+        } else {
+          msgBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 消息，因为群发消息内容是一样的，所以就不在chat里循环调用了，网络开销比较大
+       * </pre>
+       *
+       * <code>.common.common.Msg msg = 2;</code>
+       */
+      public Builder clearMsg() {
+        if (msgBuilder_ == null) {
+          msg_ = null;
+          onChanged();
+        } else {
+          msg_ = null;
+          msgBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 消息，因为群发消息内容是一样的，所以就不在chat里循环调用了，网络开销比较大
+       * </pre>
+       *
+       * <code>.common.common.Msg msg = 2;</code>
+       */
+      public com.example.proto.common.common.Common.Msg.Builder getMsgBuilder() {
+        
+        onChanged();
+        return getMsgFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * 消息，因为群发消息内容是一样的，所以就不在chat里循环调用了，网络开销比较大
+       * </pre>
+       *
+       * <code>.common.common.Msg msg = 2;</code>
+       */
+      public com.example.proto.common.common.Common.MsgOrBuilder getMsgOrBuilder() {
+        if (msgBuilder_ != null) {
+          return msgBuilder_.getMessageOrBuilder();
+        } else {
+          return msg_ == null ?
+              com.example.proto.common.common.Common.Msg.getDefaultInstance() : msg_;
+        }
+      }
+      /**
+       * <pre>
+       * 消息，因为群发消息内容是一样的，所以就不在chat里循环调用了，网络开销比较大
+       * </pre>
+       *
+       * <code>.common.common.Msg msg = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.proto.common.common.Common.Msg, com.example.proto.common.common.Common.Msg.Builder, com.example.proto.common.common.Common.MsgOrBuilder> 
+          getMsgFieldBuilder() {
+        if (msgBuilder_ == null) {
+          msgBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.proto.common.common.Common.Msg, com.example.proto.common.common.Common.Msg.Builder, com.example.proto.common.common.Common.MsgOrBuilder>(
+                  getMsg(),
+                  getParentForChildren(),
+                  isClean());
+          msg_ = null;
+        }
+        return msgBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:inner.inner.BatchRouteMsgReq)
+    }
+
+    // @@protoc_insertion_point(class_scope:inner.inner.BatchRouteMsgReq)
+    private static final com.example.proto.inner.inner.Inner.BatchRouteMsgReq DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.proto.inner.inner.Inner.BatchRouteMsgReq();
+    }
+
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgReq getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<BatchRouteMsgReq>
+        PARSER = new com.google.protobuf.AbstractParser<BatchRouteMsgReq>() {
+      @java.lang.Override
+      public BatchRouteMsgReq parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BatchRouteMsgReq(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<BatchRouteMsgReq> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BatchRouteMsgReq> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.example.proto.inner.inner.Inner.BatchRouteMsgReq getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BatchRouteMsgRespOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:inner.inner.BatchRouteMsgResp)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return Whether the ret field is set.
+     */
+    boolean hasRet();
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return The ret.
+     */
+    com.example.proto.common.common.Common.ErrorMsg getRet();
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     */
+    com.example.proto.common.common.Common.ErrorMsgOrBuilder getRetOrBuilder();
+  }
+  /**
+   * Protobuf type {@code inner.inner.BatchRouteMsgResp}
+   */
+  public  static final class BatchRouteMsgResp extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:inner.inner.BatchRouteMsgResp)
+      BatchRouteMsgRespOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BatchRouteMsgResp.newBuilder() to construct.
+    private BatchRouteMsgResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private BatchRouteMsgResp() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new BatchRouteMsgResp();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BatchRouteMsgResp(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              com.example.proto.common.common.Common.ErrorMsg.Builder subBuilder = null;
+              if (ret_ != null) {
+                subBuilder = ret_.toBuilder();
+              }
+              ret_ = input.readMessage(com.example.proto.common.common.Common.ErrorMsg.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(ret_);
+                ret_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.proto.inner.inner.Inner.internal_static_inner_inner_BatchRouteMsgResp_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.proto.inner.inner.Inner.internal_static_inner_inner_BatchRouteMsgResp_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.proto.inner.inner.Inner.BatchRouteMsgResp.class, com.example.proto.inner.inner.Inner.BatchRouteMsgResp.Builder.class);
+    }
+
+    public static final int RET_FIELD_NUMBER = 1;
+    private com.example.proto.common.common.Common.ErrorMsg ret_;
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return Whether the ret field is set.
+     */
+    public boolean hasRet() {
+      return ret_ != null;
+    }
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return The ret.
+     */
+    public com.example.proto.common.common.Common.ErrorMsg getRet() {
+      return ret_ == null ? com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
+    }
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     */
+    public com.example.proto.common.common.Common.ErrorMsgOrBuilder getRetOrBuilder() {
+      return getRet();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (ret_ != null) {
+        output.writeMessage(1, getRet());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (ret_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getRet());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.proto.inner.inner.Inner.BatchRouteMsgResp)) {
+        return super.equals(obj);
+      }
+      com.example.proto.inner.inner.Inner.BatchRouteMsgResp other = (com.example.proto.inner.inner.Inner.BatchRouteMsgResp) obj;
+
+      if (hasRet() != other.hasRet()) return false;
+      if (hasRet()) {
+        if (!getRet()
+            .equals(other.getRet())) return false;
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasRet()) {
+        hash = (37 * hash) + RET_FIELD_NUMBER;
+        hash = (53 * hash) + getRet().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgResp parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgResp parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgResp parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgResp parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgResp parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgResp parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgResp parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgResp parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgResp parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgResp parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgResp parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgResp parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.proto.inner.inner.Inner.BatchRouteMsgResp prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code inner.inner.BatchRouteMsgResp}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:inner.inner.BatchRouteMsgResp)
+        com.example.proto.inner.inner.Inner.BatchRouteMsgRespOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_BatchRouteMsgResp_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_BatchRouteMsgResp_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.proto.inner.inner.Inner.BatchRouteMsgResp.class, com.example.proto.inner.inner.Inner.BatchRouteMsgResp.Builder.class);
+      }
+
+      // Construct using com.example.proto.inner.inner.Inner.BatchRouteMsgResp.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (retBuilder_ == null) {
+          ret_ = null;
+        } else {
+          ret_ = null;
+          retBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_BatchRouteMsgResp_descriptor;
+      }
+
+      @java.lang.Override
+      public com.example.proto.inner.inner.Inner.BatchRouteMsgResp getDefaultInstanceForType() {
+        return com.example.proto.inner.inner.Inner.BatchRouteMsgResp.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.example.proto.inner.inner.Inner.BatchRouteMsgResp build() {
+        com.example.proto.inner.inner.Inner.BatchRouteMsgResp result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.example.proto.inner.inner.Inner.BatchRouteMsgResp buildPartial() {
+        com.example.proto.inner.inner.Inner.BatchRouteMsgResp result = new com.example.proto.inner.inner.Inner.BatchRouteMsgResp(this);
+        if (retBuilder_ == null) {
+          result.ret_ = ret_;
+        } else {
+          result.ret_ = retBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.proto.inner.inner.Inner.BatchRouteMsgResp) {
+          return mergeFrom((com.example.proto.inner.inner.Inner.BatchRouteMsgResp)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.proto.inner.inner.Inner.BatchRouteMsgResp other) {
+        if (other == com.example.proto.inner.inner.Inner.BatchRouteMsgResp.getDefaultInstance()) return this;
+        if (other.hasRet()) {
+          mergeRet(other.getRet());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.proto.inner.inner.Inner.BatchRouteMsgResp parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.proto.inner.inner.Inner.BatchRouteMsgResp) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.example.proto.common.common.Common.ErrorMsg ret_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder> retBuilder_;
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       * @return Whether the ret field is set.
+       */
+      public boolean hasRet() {
+        return retBuilder_ != null || ret_ != null;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       * @return The ret.
+       */
+      public com.example.proto.common.common.Common.ErrorMsg getRet() {
+        if (retBuilder_ == null) {
+          return ret_ == null ? com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
+        } else {
+          return retBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public Builder setRet(com.example.proto.common.common.Common.ErrorMsg value) {
+        if (retBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ret_ = value;
+          onChanged();
+        } else {
+          retBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public Builder setRet(
+          com.example.proto.common.common.Common.ErrorMsg.Builder builderForValue) {
+        if (retBuilder_ == null) {
+          ret_ = builderForValue.build();
+          onChanged();
+        } else {
+          retBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public Builder mergeRet(com.example.proto.common.common.Common.ErrorMsg value) {
+        if (retBuilder_ == null) {
+          if (ret_ != null) {
+            ret_ =
+              com.example.proto.common.common.Common.ErrorMsg.newBuilder(ret_).mergeFrom(value).buildPartial();
+          } else {
+            ret_ = value;
+          }
+          onChanged();
+        } else {
+          retBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public Builder clearRet() {
+        if (retBuilder_ == null) {
+          ret_ = null;
+          onChanged();
+        } else {
+          ret_ = null;
+          retBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public com.example.proto.common.common.Common.ErrorMsg.Builder getRetBuilder() {
+        
+        onChanged();
+        return getRetFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public com.example.proto.common.common.Common.ErrorMsgOrBuilder getRetOrBuilder() {
+        if (retBuilder_ != null) {
+          return retBuilder_.getMessageOrBuilder();
+        } else {
+          return ret_ == null ?
+              com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
+        }
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder> 
+          getRetFieldBuilder() {
+        if (retBuilder_ == null) {
+          retBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder>(
+                  getRet(),
+                  getParentForChildren(),
+                  isClean());
+          ret_ = null;
+        }
+        return retBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:inner.inner.BatchRouteMsgResp)
+    }
+
+    // @@protoc_insertion_point(class_scope:inner.inner.BatchRouteMsgResp)
+    private static final com.example.proto.inner.inner.Inner.BatchRouteMsgResp DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.proto.inner.inner.Inner.BatchRouteMsgResp();
+    }
+
+    public static com.example.proto.inner.inner.Inner.BatchRouteMsgResp getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<BatchRouteMsgResp>
+        PARSER = new com.google.protobuf.AbstractParser<BatchRouteMsgResp>() {
+      @java.lang.Override
+      public BatchRouteMsgResp parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BatchRouteMsgResp(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<BatchRouteMsgResp> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BatchRouteMsgResp> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.example.proto.inner.inner.Inner.BatchRouteMsgResp getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface GetNodeAddresssReqOrBuilder extends
       // @@protoc_insertion_point(interface_extends:inner.inner.GetNodeAddresssReq)
       com.google.protobuf.MessageOrBuilder {
@@ -1542,6 +3969,13 @@ public final class Inner {
       super(builder);
     }
     private GetNodeAddresssReq() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetNodeAddresssReq();
     }
 
     @java.lang.Override
@@ -1568,7 +4002,7 @@ public final class Inner {
               done = true;
               break;
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -1637,9 +4071,8 @@ public final class Inner {
       }
       com.example.proto.inner.inner.Inner.GetNodeAddresssReq other = (com.example.proto.inner.inner.Inner.GetNodeAddresssReq) obj;
 
-      boolean result = true;
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -1818,35 +4251,35 @@ public final class Inner {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1891,7 +4324,7 @@ public final class Inner {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -1951,6 +4384,7 @@ public final class Inner {
      * </pre>
      *
      * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return Whether the ret field is set.
      */
     boolean hasRet();
     /**
@@ -1959,6 +4393,7 @@ public final class Inner {
      * </pre>
      *
      * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return The ret.
      */
     com.example.proto.common.common.Common.ErrorMsg getRet();
     /**
@@ -1976,6 +4411,7 @@ public final class Inner {
      * </pre>
      *
      * <code>string host = 2;</code>
+     * @return The host.
      */
     java.lang.String getHost();
     /**
@@ -1984,6 +4420,7 @@ public final class Inner {
      * </pre>
      *
      * <code>string host = 2;</code>
+     * @return The bytes for host.
      */
     com.google.protobuf.ByteString
         getHostBytes();
@@ -1994,6 +4431,7 @@ public final class Inner {
      * </pre>
      *
      * <code>string port = 3;</code>
+     * @return The port.
      */
     java.lang.String getPort();
     /**
@@ -2002,6 +4440,7 @@ public final class Inner {
      * </pre>
      *
      * <code>string port = 3;</code>
+     * @return The bytes for port.
      */
     com.google.protobuf.ByteString
         getPortBytes();
@@ -2024,6 +4463,13 @@ public final class Inner {
     }
 
     @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GetNodeAddresssResp();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -2036,7 +4482,6 @@ public final class Inner {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -2073,7 +4518,7 @@ public final class Inner {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -2112,6 +4557,7 @@ public final class Inner {
      * </pre>
      *
      * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return Whether the ret field is set.
      */
     public boolean hasRet() {
       return ret_ != null;
@@ -2122,6 +4568,7 @@ public final class Inner {
      * </pre>
      *
      * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return The ret.
      */
     public com.example.proto.common.common.Common.ErrorMsg getRet() {
       return ret_ == null ? com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
@@ -2145,6 +4592,7 @@ public final class Inner {
      * </pre>
      *
      * <code>string host = 2;</code>
+     * @return The host.
      */
     public java.lang.String getHost() {
       java.lang.Object ref = host_;
@@ -2164,6 +4612,7 @@ public final class Inner {
      * </pre>
      *
      * <code>string host = 2;</code>
+     * @return The bytes for host.
      */
     public com.google.protobuf.ByteString
         getHostBytes() {
@@ -2187,6 +4636,7 @@ public final class Inner {
      * </pre>
      *
      * <code>string port = 3;</code>
+     * @return The port.
      */
     public java.lang.String getPort() {
       java.lang.Object ref = port_;
@@ -2206,6 +4656,7 @@ public final class Inner {
      * </pre>
      *
      * <code>string port = 3;</code>
+     * @return The bytes for port.
      */
     public com.google.protobuf.ByteString
         getPortBytes() {
@@ -2278,18 +4729,17 @@ public final class Inner {
       }
       com.example.proto.inner.inner.Inner.GetNodeAddresssResp other = (com.example.proto.inner.inner.Inner.GetNodeAddresssResp) obj;
 
-      boolean result = true;
-      result = result && (hasRet() == other.hasRet());
+      if (hasRet() != other.hasRet()) return false;
       if (hasRet()) {
-        result = result && getRet()
-            .equals(other.getRet());
+        if (!getRet()
+            .equals(other.getRet())) return false;
       }
-      result = result && getHost()
-          .equals(other.getHost());
-      result = result && getPort()
-          .equals(other.getPort());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getHost()
+          .equals(other.getHost())) return false;
+      if (!getPort()
+          .equals(other.getPort())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -2489,35 +4939,35 @@ public final class Inner {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2571,7 +5021,7 @@ public final class Inner {
         return this;
       }
 
-      private com.example.proto.common.common.Common.ErrorMsg ret_ = null;
+      private com.example.proto.common.common.Common.ErrorMsg ret_;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder> retBuilder_;
       /**
@@ -2580,6 +5030,7 @@ public final class Inner {
        * </pre>
        *
        * <code>.common.common.ErrorMsg ret = 1;</code>
+       * @return Whether the ret field is set.
        */
       public boolean hasRet() {
         return retBuilder_ != null || ret_ != null;
@@ -2590,6 +5041,7 @@ public final class Inner {
        * </pre>
        *
        * <code>.common.common.ErrorMsg ret = 1;</code>
+       * @return The ret.
        */
       public com.example.proto.common.common.Common.ErrorMsg getRet() {
         if (retBuilder_ == null) {
@@ -2731,6 +5183,7 @@ public final class Inner {
        * </pre>
        *
        * <code>string host = 2;</code>
+       * @return The host.
        */
       public java.lang.String getHost() {
         java.lang.Object ref = host_;
@@ -2750,6 +5203,7 @@ public final class Inner {
        * </pre>
        *
        * <code>string host = 2;</code>
+       * @return The bytes for host.
        */
       public com.google.protobuf.ByteString
           getHostBytes() {
@@ -2770,6 +5224,8 @@ public final class Inner {
        * </pre>
        *
        * <code>string host = 2;</code>
+       * @param value The host to set.
+       * @return This builder for chaining.
        */
       public Builder setHost(
           java.lang.String value) {
@@ -2787,6 +5243,7 @@ public final class Inner {
        * </pre>
        *
        * <code>string host = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearHost() {
         
@@ -2800,6 +5257,8 @@ public final class Inner {
        * </pre>
        *
        * <code>string host = 2;</code>
+       * @param value The bytes for host to set.
+       * @return This builder for chaining.
        */
       public Builder setHostBytes(
           com.google.protobuf.ByteString value) {
@@ -2820,6 +5279,7 @@ public final class Inner {
        * </pre>
        *
        * <code>string port = 3;</code>
+       * @return The port.
        */
       public java.lang.String getPort() {
         java.lang.Object ref = port_;
@@ -2839,6 +5299,7 @@ public final class Inner {
        * </pre>
        *
        * <code>string port = 3;</code>
+       * @return The bytes for port.
        */
       public com.google.protobuf.ByteString
           getPortBytes() {
@@ -2859,6 +5320,8 @@ public final class Inner {
        * </pre>
        *
        * <code>string port = 3;</code>
+       * @param value The port to set.
+       * @return This builder for chaining.
        */
       public Builder setPort(
           java.lang.String value) {
@@ -2876,6 +5339,7 @@ public final class Inner {
        * </pre>
        *
        * <code>string port = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPort() {
         
@@ -2889,6 +5353,8 @@ public final class Inner {
        * </pre>
        *
        * <code>string port = 3;</code>
+       * @param value The bytes for port to set.
+       * @return This builder for chaining.
        */
       public Builder setPortBytes(
           com.google.protobuf.ByteString value) {
@@ -2904,7 +5370,7 @@ public final class Inner {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -2965,6 +5431,21 @@ public final class Inner {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_inner_inner_RouteMsgResp_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_inner_inner_GuidUidBinder_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_inner_inner_GuidUidBinder_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_inner_inner_BatchRouteMsgReq_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_inner_inner_BatchRouteMsgReq_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_inner_inner_BatchRouteMsgResp_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_inner_inner_BatchRouteMsgResp_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_inner_inner_GetNodeAddresssReq_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -2987,29 +5468,28 @@ public final class Inner {
       "/common.proto\">\n\013RouteMsgReq\022\016\n\006to_uid\030\001" +
       " \001(\t\022\037\n\003msg\030\002 \001(\0132\022.common.common.Msg\"4\n" +
       "\014RouteMsgResp\022$\n\003ret\030\001 \001(\0132\027.common.comm" +
+      "on.ErrorMsg\"*\n\rGuidUidBinder\022\013\n\003uid\030\001 \001(" +
+      "\003\022\014\n\004guid\030\002 \001(\003\"_\n\020BatchRouteMsgReq\022*\n\006t" +
+      "o_uid\030\001 \003(\0132\032.inner.inner.GuidUidBinder\022" +
+      "\037\n\003msg\030\002 \001(\0132\022.common.common.Msg\"9\n\021Batc" +
+      "hRouteMsgResp\022$\n\003ret\030\001 \001(\0132\027.common.comm" +
       "on.ErrorMsg\"\024\n\022GetNodeAddresssReq\"W\n\023Get" +
       "NodeAddresssResp\022$\n\003ret\030\001 \001(\0132\027.common.c" +
       "ommon.ErrorMsg\022\014\n\004host\030\002 \001(\t\022\014\n\004port\030\003 \001" +
       "(\t2g\n\020ConnectorService\022S\n\016GetNodeAddress" +
       "\022\037.inner.inner.GetNodeAddresssReq\032 .inne" +
-      "r.inner.GetNodeAddresssResp2N\n\013PushServi" +
-      "ce\022?\n\010RouteMsg\022\030.inner.inner.RouteMsgReq" +
-      "\032\031.inner.inner.RouteMsgRespB(\n\035com.examp" +
-      "le.proto.inner.innerB\005InnerP\000b\006proto3"
+      "r.inner.GetNodeAddresssResp2\236\001\n\013PushServ" +
+      "ice\022?\n\010RouteMsg\022\030.inner.inner.RouteMsgRe" +
+      "q\032\031.inner.inner.RouteMsgResp\022N\n\rBatchRou" +
+      "teMsg\022\035.inner.inner.BatchRouteMsgReq\032\036.i" +
+      "nner.inner.BatchRouteMsgRespB(\n\035com.exam" +
+      "ple.proto.inner.innerB\005InnerP\000b\006proto3"
     };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
-        };
-    com.google.protobuf.Descriptors.FileDescriptor
+    descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.example.proto.common.common.Common.getDescriptor(),
-        }, assigner);
+        });
     internal_static_inner_inner_RouteMsgReq_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_inner_inner_RouteMsgReq_fieldAccessorTable = new
@@ -3022,14 +5502,32 @@ public final class Inner {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_inner_inner_RouteMsgResp_descriptor,
         new java.lang.String[] { "Ret", });
-    internal_static_inner_inner_GetNodeAddresssReq_descriptor =
+    internal_static_inner_inner_GuidUidBinder_descriptor =
       getDescriptor().getMessageTypes().get(2);
+    internal_static_inner_inner_GuidUidBinder_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_inner_inner_GuidUidBinder_descriptor,
+        new java.lang.String[] { "Uid", "Guid", });
+    internal_static_inner_inner_BatchRouteMsgReq_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_inner_inner_BatchRouteMsgReq_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_inner_inner_BatchRouteMsgReq_descriptor,
+        new java.lang.String[] { "ToUid", "Msg", });
+    internal_static_inner_inner_BatchRouteMsgResp_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_inner_inner_BatchRouteMsgResp_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_inner_inner_BatchRouteMsgResp_descriptor,
+        new java.lang.String[] { "Ret", });
+    internal_static_inner_inner_GetNodeAddresssReq_descriptor =
+      getDescriptor().getMessageTypes().get(5);
     internal_static_inner_inner_GetNodeAddresssReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_inner_inner_GetNodeAddresssReq_descriptor,
         new java.lang.String[] { });
     internal_static_inner_inner_GetNodeAddresssResp_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_inner_inner_GetNodeAddresssResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_inner_inner_GetNodeAddresssResp_descriptor,

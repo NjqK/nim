@@ -35,6 +35,10 @@ message DoGroupSendingReq {
     string from_uid = 2;
     // 消息
     string msg_content = 3;
+    // 消息类型
+    common.common.MsgType msg_type = 4;
+    // 消息内容类型
+    common.common.MsgContentType msg_content_type = 5;
 }
 
 // 群发响应

@@ -4,10 +4,15 @@ import com.example.api.inner.inner.PushService;
 import com.example.common.CommonConstants;
 import com.example.common.kafka.KafkaProducerUtil;
 import com.example.common.redis.JedisUtil;
+import com.example.common.util.ListUtil;
+import com.example.proto.common.common.Common;
 import com.example.proto.inner.inner.Inner;
 import com.google.protobuf.util.JsonFormat;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author kuro
@@ -19,11 +24,47 @@ import org.apache.dubbo.config.annotation.Service;
 public class PushServiceImpl implements PushService {
 
     @Override
+    public Inner.BatchRouteMsgResp batchRouteMsg(Inner.BatchRouteMsgReq req) {
+        log.info("Inner.BatchRouteMsgResp batchRouteMsg, req:{}", req);
+        Inner.BatchRouteMsgResp.Builder builder = Inner.BatchRouteMsgResp.newBuilder();
+        try {
+            //List<Inner.GuidUidBinder> toUidList = new ArrayList<>();
+            List<Inner.GuidUidBinder> toUidList = req.getToUidList();
+            Inner.BatchRouteMsgResp resp = builder.setRet(CommonConstants.SUCCESS).build();
+            if (ListUtil.isEmpty(toUidList)) {
+                log.error("Inner.BatchRouteMsgResp batchRouteMsg, toUidList is empty.");
+                return resp;
+            }
+            Common.Msg.Builder msgBuilder = req.getMsg().toBuilder();
+            Common.Head.Builder headBuilder = req.getMsg().getHead().toBuilder();
+            for (Inner.GuidUidBinder binder : toUidList) {
+                String uid = String.valueOf(binder.getUid());
+                String nettyNodeInfo = JedisUtil.hget(CommonConstants.USERS_REDIS_KEY, uid);
+                if (nettyNodeInfo == null) {
+                    log.error("Inner.BatchRouteMsgResp batchRouteMsg 用户uid:{}不在线.", uid);
+                    continue;
+                }
+                headBuilder.setToId(binder.getUid());
+                headBuilder.setMsgId(binder.getGuid());
+                msgBuilder.setHead(headBuilder.build());
+                String msgJson = JsonFormat.printer().print(msgBuilder);
+                System.err.println(msgJson);
+                //KafkaProducerUtil.sendSingle(CommonConstants.CONNECTOR_KAFKA_TOPIC, msgJson, true);
+            }
+            log.info("Inner.BatchRouteMsgResp batchRouteMsg, resp:{}", resp);
+            return resp;
+        } catch (Exception e) {
+            log.error("Inner.BatchRouteMsgResp batchRouteMsg, occur error:{}", e);
+            return builder.setRet(CommonConstants.FAIL).build();
+        }
+    }
+
+    @Override
     public Inner.RouteMsgResp routeMsg(Inner.RouteMsgReq req) {
         log.info("Inner.RouteMsgResp routeMsg, req:{}", req);
         Inner.RouteMsgResp.Builder builder = Inner.RouteMsgResp.newBuilder();
         try {
-            // TODO 找到netty，放到对应的kafka节点
+            // 找到netty，放到对应的kafka节点
             String nettyNodeInfo = JedisUtil.hget(CommonConstants.USERS_REDIS_KEY, req.getToUid());
             // TODO 删除下线的用户
             if (nettyNodeInfo == null) {

@@ -45,6 +45,25 @@ public class MsgInfoDaoManagerImpl implements MsgInfoDaoManager {
     }
 
     @Override
+    public long addMsgInfo(List<MsgInfoDto> msgInfos) {
+        // TODO 分批次
+        List<MsgInfo> list = new ArrayList<>(msgInfos.size());
+        for (MsgInfoDto msgInfo : msgInfos) {
+            MsgInfo msgDO = new MsgInfo();
+            msgDO.setGuid(msgInfo.getGuid());
+            msgDO.setFromUid(msgInfo.getFromUid());
+            msgDO.setToUid(msgInfo.getToUid());
+            msgDO.setMsgData(msgInfo.getMsgBody().toByteArray());
+            msgDO.setMsgType(msgInfo.getMsgType());
+            msgDO.setMsgContentType(msgInfo.getMsgContentType());
+            list.add(msgDO);
+        }
+        return msgInfoMapper.batchInsertSelective(list, MsgInfo.Column.guid, MsgInfo.Column.fromUid
+                , MsgInfo.Column.toUid,MsgInfo.Column.msgData
+                , MsgInfo.Column.msgType, MsgInfo.Column.msgContentType);
+    }
+
+    @Override
     public List<MsgInfo> getUnreadMsg(long uid, long maxGuid) {
         MsgInfoExample msgInfoExample = new MsgInfoExample();
         MsgInfoExample.Criteria criteria = getCriteria(msgInfoExample);

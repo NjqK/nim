@@ -66,7 +66,7 @@ message Head {
     int64 timestamp = 6;
     // 状态报告
     int32 status_report = 7;
-    // 扩展字段，以key/value形式存放的json
+    // 扩展字段
     repeated ExtraHeader extends = 8;
 }
 
@@ -79,10 +79,16 @@ enum ErrCode {
     FAIL = -1;
     // 单发用户🆔id空
     SEND_MSG_INDIVIDUALLY_TO_UID_NUL = 101;
-    // 单发用户🆔id空
+    // 单发消息id空
     SEND_MSG_INDIVIDUALLY_MSG_NUL = 102;
     // 发送者id空
     SEND_MSG_INDIVIDUALLY_FROM_ID_NUL = 103;
+    // 群发用户🆔id空
+    SEND_MSG_GROUP_TO_UID_NUL = 104;
+    // 群发用消息id空
+    SEND_MSG_GROUP_MSG_NUL = 105;
+    // 发送者id空
+    SEND_MSG_GROUP_FROM_ID_NUL = 106;
     // 获取未读消息用户id空
     GET_UNREAD_MSG_USER_ID_NUL = 111;
     // 确认消息uid空
@@ -98,4 +104,17 @@ message ErrorMsg {
     ErrCode error_code = 1;
     // 错误信息
     string msg = 2;
+}
+
+message A {
+    string a = 1;
+    string b = 2;
+}
+
+message B {
+    repeated A aList = 1;
+}
+
+message C {
+    A aList = 1;
 }

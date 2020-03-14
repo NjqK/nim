@@ -5,6 +5,7 @@ import com.example.api.inner.inner.PushService;
 import com.example.api.outer.outer.ChatService;
 import com.example.chat.manager.ChatServiceManager;
 import com.example.common.CommonConstants;
+import com.example.common.util.ListUtil;
 import com.example.proto.common.common.Common;
 import com.example.proto.inner.inner.Inner;
 import com.example.proto.outer.outer.Outer;
@@ -61,9 +62,34 @@ public class ChatServiceImpl implements ChatService {
         log.info("doGroupSending, req:{}", req);
         Outer.DoGroupSendingResp.Builder builder = Outer.DoGroupSendingResp.newBuilder();
         try {
-            // TODO data check
+            // data check
+            if (ListUtil.isEmpty(req.getToUidsList())) {
+                Common.ErrorMsg errorMsg = Common.ErrorMsg.newBuilder()
+                        .setErrorCode(Common.ErrCode.SEND_MSG_GROUP_TO_UID_NUL)
+                        .setMsg("目标用户id错误")
+                        .build();
+                return builder.setRet(errorMsg).build();
+            }
+            if (StringUtils.isEmpty(req.getFromUid())) {
+                Common.ErrorMsg errorMsg = Common.ErrorMsg.newBuilder()
+                        .setErrorCode(Common.ErrCode.SEND_MSG_GROUP_FROM_ID_NUL)
+                        .setMsg("发送者id错误")
+                        .build();
+                return builder.setRet(errorMsg).build();
+            }
+            if (StringUtils.isEmpty(req.getMsgContent())
+                    || Common.MsgContentType.MSG_CONTENT_NUL.equals(req.getMsgContentType())
+                    || !Common.MsgType.MULTI_CHAT.equals(req.getMsgType())) {
+                Common.ErrorMsg errorMsg = Common.ErrorMsg.newBuilder()
+                        .setErrorCode(Common.ErrCode.SEND_MSG_INDIVIDUALLY_MSG_NUL)
+                        .setMsg("发送消息错误")
+                        .build();
+                return builder.setRet(errorMsg).build();
+            }
             // TODO logical implement
-            return builder.setRet(CommonConstants.SUCCESS).build();
+            Outer.DoGroupSendingResp resp = chatServiceManager.doGroupSending(req);
+            log.info("doGroupSending, resp:{}", resp);
+            return resp;
         } catch (Exception e) {
             log.error("doGroupSending caught exception, e:{}", e);
             return builder.setRet(CommonConstants.FAIL).build();
@@ -89,7 +115,9 @@ public class ChatServiceImpl implements ChatService {
                         .build();
                 return builder.setRet(errorMsg).build();
             }
-            if (StringUtils.isEmpty(req.getMsgContent())) {
+            if (StringUtils.isEmpty(req.getMsgContent())
+                    || Common.MsgContentType.MSG_CONTENT_NUL.equals(req.getMsgContentType())
+                    || !Common.MsgType.SINGLE_CHAT.equals(req.getMsgType())) {
                 Common.ErrorMsg errorMsg = Common.ErrorMsg.newBuilder()
                         .setErrorCode(Common.ErrCode.SEND_MSG_INDIVIDUALLY_MSG_NUL)
                         .setMsg("发送消息错误")

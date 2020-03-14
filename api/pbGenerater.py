@@ -1,9 +1,5 @@
 #!/usr/bin/env python2.7
 # coding=utf-8
-# description: generate protocol buffer classes and dubbo dinterface for fingo server
-# author: wanghuizhou
-# last modify:20160726
-# version: v1.0.0
 
 import os
 import sys
@@ -18,9 +14,9 @@ import shutil
 
 from subprocess import Popen, PIPE
 
-fingo_project_info=''''''
+example_project_info=''''''
 
-fingo_class_info='''/**
+example_class_info='''/**
  * @Type SERVICE_NAME
  * @Desc CLASS_DESCRIPTION
  * @author COMMIT_USER
@@ -28,14 +24,14 @@ fingo_class_info='''/**
  * @version
  */'''
 
-fingo_method_info='''    /**
+example_method_info='''    /**
      * METHOD_DESCRIPTION
      *
      * @param REQUEST_NAME the REQUEST_TYPE
      * @return METHOD_RESPONSE
      */'''
 
-fingo_end_info='''/**
+example_end_info='''/**
  * Revision history
  * -------------------------------------------------------------------------
  *
@@ -62,10 +58,10 @@ proto_exe_relative_path=os.path.sep + "executor" + os.path.sep + "protoc"
 grpc_plugin_relative_path=os.path.sep + "executor" + os.path.sep + "grpc" + os.path.sep + "java" + os.path.sep + "protoc-gen-grpc-java-1.18.0-"
 
 python_dir = cur_file_dir()
-fingo_parent_dir = os.path.dirname(python_dir)
-fingo_connector_dir = os.path.join(fingo_parent_dir, "fingo-connector")
+example_parent_dir = os.path.dirname(python_dir)
+example_connector_dir = os.path.join(example_parent_dir, "example-connector")
 
-grpc_out_dir = fingo_connector_dir + os.path.sep + "src" + os.path.sep + "main" + os.path.sep + "java"
+grpc_out_dir = example_connector_dir + os.path.sep + "src" + os.path.sep + "main" + os.path.sep + "java"
 proto_dir = python_dir + os.path.sep + "proto"
 proto_java_dir = python_dir + os.path.sep + "modules" + os.path.sep + "{}" + os.path.sep + "src" + os.path.sep + "main" + os.path.sep + "java"
 java_interface_dir = proto_java_dir + os.path.sep + "com" + os.path.sep + "example" + os.path.sep + "api"
@@ -291,8 +287,8 @@ def write_java_interface_class(module_path, method_req_res_type, pb_service, out
 
     # write  project information
     commit_info = get_commit_info(pb_file)
-    fingo_project_info_w = fingo_project_info.replace("COMMIT_DATE", commit_info["commit_date"])
-    f.write(fingo_project_info_w)
+    example_project_info_w = example_project_info.replace("COMMIT_DATE", commit_info["commit_date"])
+    f.write(example_project_info_w)
     f.write("\n")
 
     # write  package information
@@ -303,8 +299,8 @@ def write_java_interface_class(module_path, method_req_res_type, pb_service, out
     for java_import_type_w in java_import_type:
         f.write("import " + java_pkg_name + "." + java_import_type_w + ";\n")
     f.write("\n")
-    fingo_class_info_w = fingo_class_info.replace("SERVICE_NAME", service_if[0] + ".java").replace("CLASS_DESCRIPTION", service_if[1]).replace("COMMIT_USER", commit_info["commit_author"]).replace("COMMIT_TIME", commit_info["commit_time"])
-    f.write(fingo_class_info_w)
+    example_class_info_w = example_class_info.replace("SERVICE_NAME", service_if[0] + ".java").replace("CLASS_DESCRIPTION", service_if[1]).replace("COMMIT_USER", commit_info["commit_author"]).replace("COMMIT_TIME", commit_info["commit_time"])
+    f.write(example_class_info_w)
     f.write("\n")
 
     # write dinterface name
@@ -313,18 +309,18 @@ def write_java_interface_class(module_path, method_req_res_type, pb_service, out
     # write method information
     for method_name_w, method_info_w in method_if.iteritems():
         method_request_name_w = method_info_w[1][0].lower() + method_info_w[1][1:]
-        fingo_method_info_w = fingo_method_info.replace("METHOD_DESCRIPTION", method_info_w[3]).replace("REQUEST_TYPE", method_info_w[1]).replace("METHOD_RESPONSE", method_info_w[2]).replace("REQUEST_NAME", method_request_name_w)
+        example_method_info_w = example_method_info.replace("METHOD_DESCRIPTION", method_info_w[3]).replace("REQUEST_TYPE", method_info_w[1]).replace("METHOD_RESPONSE", method_info_w[2]).replace("REQUEST_NAME", method_request_name_w)
         method_w = method_info_w[2] + " " + method_name_w + "(" + method_info_w[1] + " " + method_request_name_w + ");\n"
-        f.write("\n" + fingo_method_info_w + "\n")
+        f.write("\n" + example_method_info_w + "\n")
         f.write(" " * 4 + method_w)
 
     # end of dinterface
     f.write("\n}\n")
 
     # write  end information
-    fingo_end_info_w = fingo_end_info.replace("COMMIT_DATE", commit_info["commit_date"]).replace("COMMIT_USER", commit_info["commit_author"])
+    example_end_info_w = example_end_info.replace("COMMIT_DATE", commit_info["commit_date"]).replace("COMMIT_USER", commit_info["commit_author"])
     f.write("\n")
-    f.write(fingo_end_info_w)
+    f.write(example_end_info_w)
     f.write("\n")
 
 # generate interafce

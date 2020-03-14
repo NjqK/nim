@@ -16,7 +16,7 @@ dubbo:
   protocol:
     name: dubbo
     port: 20883
-    serialization: protostuff
+    serialization: myprotobuf
   registry:
     address: zookeeper://127.0.0.1:2181
     client: curator

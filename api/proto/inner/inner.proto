@@ -19,6 +19,23 @@ message RouteMsgResp {
     common.common.ErrorMsg ret = 1;
 }
 
+message GuidUidBinder {
+    int64 uid = 1;
+    int64 guid = 2;
+}
+
+message BatchRouteMsgReq {
+    // 目标id
+    repeated GuidUidBinder to_uid = 1;
+    // 消息，因为群发消息内容是一样的，所以就不在chat里循环调用了，网络开销比较大
+    common.common.Msg msg = 2;
+}
+
+message BatchRouteMsgResp {
+    // 结果
+    common.common.ErrorMsg ret = 1;
+}
+
 message GetNodeAddresssReq {
     // nul
 }
@@ -40,4 +57,6 @@ service ConnectorService {
 service PushService {
     // 找到用户所在netty节点，转发消息
     rpc RouteMsg (RouteMsgReq) returns (RouteMsgResp);
+    // batch route
+    rpc BatchRouteMsg (BatchRouteMsgReq) returns (BatchRouteMsgResp);
 }

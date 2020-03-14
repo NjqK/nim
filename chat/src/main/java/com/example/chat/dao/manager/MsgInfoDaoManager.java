@@ -20,9 +20,17 @@ public interface MsgInfoDaoManager {
     long addMsgInfo(MsgInfoDto msgInfo);
 
     /**
+     * 批量添加消息记录
+     *
+     * @param msgInfos
+     * @return
+     */
+    long addMsgInfo(List<MsgInfoDto> msgInfos);
+
+    /**
      * 通过guid找消息
      *
-     * @param uid 用户id
+     * @param uid     用户id
      * @param maxGuid 最大的guid
      * @return 返回用户的所有msgId比maxGuid大的消息
      */
