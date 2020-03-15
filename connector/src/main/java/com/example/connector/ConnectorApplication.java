@@ -18,6 +18,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.net.ssl.KeyManagerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,7 +90,6 @@ public class ConnectorApplication {
         instance.init(localNode);
         RedisKeyUtil.createApplicationRedisKey(applicationName, localNode);
     }
-
 
     private void initRedis() {
         int port = Integer.parseInt(redisPort);

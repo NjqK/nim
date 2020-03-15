@@ -5,6 +5,7 @@ import com.example.connector.netty.handler.BizHandler;
 import com.example.connector.netty.handler.HeartBeatHandler;
 import com.example.connector.netty.handler.IdleTrigger;
 import com.example.connector.netty.initializer.DefaultInitializer;
+import com.example.connector.netty.initializer.SslInitializer;
 import com.example.proto.common.common.Common;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -60,7 +61,7 @@ public class NettyLauncher implements Runnable {
                     .option(ChannelOption.SO_BACKLOG, 1024)
 //                        .option(ChannelOption.TCP_NODELAY, true)
 //                        .option(ChannelOption.SO_KEEPALIVE, true)
-                    .childHandler(new DefaultInitializer());
+                    .childHandler(new SslInitializer());
             ChannelFuture future = b.bind().sync();
             future.addListener((ChannelFutureListener) future1 -> {
                 // 启动成功

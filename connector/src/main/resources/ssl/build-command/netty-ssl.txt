@@ -1,0 +1,17 @@
+生成服务器端的JKS密钥库kserver.keystore
+keytool -genkeypair -v -alias server -keyalg RSA -sigalg SHA1withRSA -keystore kserver.keystore
+
+从服务器端密钥库kserver.keystore中导出服务器证书
+keytool -exportcert -v -alias server -file server.cer -keystore kserver.keystore
+
+将导出的服务器端证书导入到客户端信任密钥库tclient.bks中，其中客户端信任密钥库自动生成，并且此时要特别指明信任密钥库是BKS类型的
+keytool -importcert -v -alias server -file server.cer -keystore tclient.bks -storetype BKS -provider org.bouncycastle.jce.provider.BouncyCastleProvider
+
+生成客户端密钥库kclient.bks
+keytool -genkeypair -v -alias client -keyalg RSA -sigalg SHA1withRSA -keystore kclient.bks -storetype BKS -provider org.bouncycastle.jce.provider.BouncyCastleProvider
+
+导出客户端证书
+keytool -exportcert -v -alias client -file client.cer -keystore kclient.bks -storetype BKS -provider org.bouncycastle.jce.provider.BouncyCastleProvider
+
+导入生成服务器端信任密钥库
+keytool -importcert -v -alias client -file client.cer -keystore tserver.keystore
