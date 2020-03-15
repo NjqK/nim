@@ -15,7 +15,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 /**
  * @author kuro
  * @version v1.0
- * @date 20-3-10 下午6:55
+ * @date 20-3-10 下午7:55
  **/
 @Slf4j
 public class ConnectorProcessor implements ReceiveMessageCallback<String, String> {

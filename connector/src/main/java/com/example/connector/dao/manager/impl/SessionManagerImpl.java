@@ -21,7 +21,12 @@ import java.util.concurrent.ConcurrentHashMap;
 public class SessionManagerImpl implements SessionManager {
 
     /**
-     * Session of this connector service node
+     * 删除session 每批的个数
+     */
+    private static final int BATCH_SIZE = 500;
+
+    /**
+     * Sessions of this connector service node
      */
     private Map<String, Channel> session = new ConcurrentHashMap<>(16);
 
@@ -91,7 +96,7 @@ public class SessionManagerImpl implements SessionManager {
             return;
         }
         String[] uids;
-        if (size < 500) {
+        if (size < BATCH_SIZE) {
             batchWorks = size;
         } else {
             batchWorks = 500;

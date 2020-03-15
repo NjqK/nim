@@ -1,9 +1,8 @@
 package com.example.common.guid;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 /**
+ * 雪花算法的uuid生成器
+ *
  * @author kuro
  * @version v1.0
  * @date 20-3-9 下午7:29
@@ -53,10 +52,12 @@ public class SnowFlakeIdGenerator {
 
     public SnowFlakeIdGenerator(long workerId, long datacenterId) {
         if (workerId > MAX_WORKER_ID || workerId < 0) {
-            throw new IllegalArgumentException(String.format("WorkerID can't be greater than %d or less than 0", MAX_WORKER_ID));
+            throw new IllegalArgumentException(String
+                    .format("WorkerID can't be greater than %d or less than 0", MAX_WORKER_ID));
         }
         if (datacenterId > MAX_DATACENTER_ID || datacenterId < 0) {
-            throw new IllegalArgumentException(String.format("DataCenterID can't be greater than %d or less than 0", MAX_WORKER_ID));
+            throw new IllegalArgumentException(String
+                    .format("DataCenterID can't be greater than %d or less than 0", MAX_WORKER_ID));
         }
         this.workerId = workerId;
         this.datacenterId = datacenterId;
@@ -77,7 +78,10 @@ public class SnowFlakeIdGenerator {
         }
         lastTimestamp = timeStamp;
 
-        return (timeStamp - INITIAL_TIME_STAMP) << TIMESTAMP_OFFSET | (datacenterId << DATACENTERID_OFFSET) | (workerId << WORKERID_OFFSET) | sequence;
+        return (timeStamp - INITIAL_TIME_STAMP) << TIMESTAMP_OFFSET
+                | (datacenterId << DATACENTERID_OFFSET)
+                | (workerId << WORKERID_OFFSET)
+                | sequence;
     }
 
     private long tillNextMillis(long lastTimestamp) {

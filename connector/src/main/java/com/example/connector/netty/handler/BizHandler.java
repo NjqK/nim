@@ -6,7 +6,6 @@ import com.example.common.util.ListUtil;
 import com.example.connector.common.RedisKeyUtil;
 import com.example.connector.common.SpringUtil;
 import com.example.connector.dao.manager.SessionManager;
-import com.example.connector.entity.domain.ClusterNode;
 import com.example.proto.common.common.Common;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -37,7 +36,7 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
         Common.Msg message = (Common.Msg) msg;
         log.info("BizHandler got msgBody:{}", message);
         if (message.getHead().getMsgType().equals(Common.MsgType.HAND_SHAKE)) {
-            String uid = getValue(message, "uid");
+            String uid = getUid(message, "uid");
             if (uid != null) {
                 log.info("create redis session, uid:{}", uid);
                 if (JedisUtil.hset(CommonConstants.USERS_REDIS_KEY, uid, RedisKeyUtil.getApplicationRedisKey()) >= 0) {
@@ -51,12 +50,17 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
                 log.error("uid is null");
                 ctx.close();
             }
-        } else {
-            ctx.writeAndFlush(defaultMsg());
         }
     }
 
-    private String getValue(Common.Msg message, String key) {
+    /**
+     * 获取握手消息携带的用户id
+     *
+     * @param message
+     * @param key
+     * @return
+     */
+    private String getUid(Common.Msg message, String key) {
         List<Common.ExtraHeader> extendsList = message.getHead().getExtendsList();
         if (ListUtil.isEmpty(extendsList)) {
             log.error("握手的消息包有误.");
@@ -83,22 +87,6 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
             }
         }
         channel.close();
-    }
-
-    private Common.Msg defaultMsg() {
-        Common.Msg.Builder builder = Common.Msg.newBuilder();
-        Common.Head header = Common.Head.newBuilder()
-                .setMsgType(Common.MsgType.SINGLE_CHAT)
-                .setMsgContentType(Common.MsgContentType.TEXT)
-                .setTimestamp(111L)
-                .setStatusReport(1)
-                .build();
-        Common.Body body = Common.Body.newBuilder()
-                .setContent("msgBody received")
-                .build();
-        builder.setHead(header);
-        builder.setBody(body);
-        return builder.build();
     }
 
     @Override

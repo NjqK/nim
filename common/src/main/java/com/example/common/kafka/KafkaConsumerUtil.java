@@ -17,7 +17,7 @@ import java.util.concurrent.Executors;
 /**
  * @author kuro
  * @version v1.0
- * @date 20-3-10 下午6:14
+ * @date 20-3-10 下午6:24
  **/
 @Slf4j
 public class KafkaConsumerUtil<K, V> {

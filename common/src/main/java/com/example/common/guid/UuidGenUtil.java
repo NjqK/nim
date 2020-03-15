@@ -1,9 +1,7 @@
 package com.example.common.guid;
 
-import com.example.common.guid.SnowFlakeIdGenerator;
-
 /**
- * TODO 用数字的
+ * 系统UUID生成器
  *
  * @author kuro
  * @version v1.0
@@ -39,57 +37,4 @@ public class UuidGenUtil {
         }
         return ss;
     }
-
-//    public static void main(String[] args) throws InterruptedException {
-////        SnowFlakeIdGenerator generator = new SnowFlakeIdGenerator(1, 1);
-////        long start = System.currentTimeMillis();
-////        int initialCapacity = 1000000;
-////        int i = 0;
-////        HashMap<Long, Long> hashMap = new HashMap<>(initialCapacity);
-////        while (initialCapacity > 0) {
-////            ++i;
-////            --initialCapacity;
-////            Long uuid = generator.nextId();
-////            if (hashMap.get(uuid) != null) {
-////                System.out.println("FUCK " + i);
-////                break;
-////            }
-////            hashMap.put(uuid, uuid);
-////        }
-////        System.out.println("cost:" + (System.currentTimeMillis() - start) + "ms ");
-//        long start = System.currentTimeMillis();
-//        int initialCapacity = 10000000;
-//        SnowFlakeIdGenerator generator = new SnowFlakeIdGenerator(1, 1);
-//        ConcurrentHashMap<Long, Long> concurrentHashMap = new ConcurrentHashMap<>(initialCapacity);
-//        int i = 0;
-//        ExecutorService executorService = Executors.newFixedThreadPool(4);
-//        CountDownLatch countDownLatch = new CountDownLatch(4);
-//        while (i < 4) {
-//            ++i;
-//            executorService.submit(new Runnable() {
-//
-//                int times = initialCapacity/4;
-//                int ii = 0;
-//
-//                @Override
-//                public void run() {
-//                    while (times > 0) {
-//                        ++ii;
-//                        --times;
-//                        Long uuid = generator.nextId();
-//                        if (concurrentHashMap.get(uuid) != null) {
-//                            System.out.println("FUCK " + ii);
-//                            break;
-//                        }
-//                        concurrentHashMap.put(uuid, uuid);
-//                    }
-//                    System.out.println("down");
-//                    countDownLatch.countDown();
-//                }
-//            });
-//        }
-//        countDownLatch.await();
-//        System.out.println("cost:" + (System.currentTimeMillis() - start) + "ms ");
-//        executorService.shutdown();
-//    }
 }

@@ -49,10 +49,8 @@ public class PushServiceImpl implements PushService {
                 msgBuilder.setHead(headBuilder.build());
                 String msgJson = JsonFormat.printer().print(msgBuilder);
                 log.info("msg that will be send to kafka soon:{}", msgJson);
-                // TODO 可能会阻塞业务，放到线程池
-                // TODO Q1：发送了几次后就就阻塞了
+                // 可能会阻塞业务，放到线程池
                 PushExecutor.execute(CommonConstants.CONNECTOR_KAFKA_TOPIC, msgJson);
-                //KafkaProducerUtil.sendSingle(CommonConstants.CONNECTOR_KAFKA_TOPIC, msgJson, false);
             }
             log.info("Inner.BatchRouteMsgResp batchRouteMsg, resp:{}", resp);
             return resp;
