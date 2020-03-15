@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * {@link org.apache.dubbo.serialize.hessian}
  * @author kuro
  * @version v1.0
  * @date 20-3-14 下午3:37
@@ -33,7 +34,6 @@ public class Hessian2WithSpecialObjectOutput extends Hessian2ObjectOutput {
      */
     public Hessian2WithSpecialObjectOutput(OutputStream os, SpecialSerializeFactory... factories) {
         super(os);
-
         if (null != factories) {
             factoryList = new ArrayList<SpecialSerializeFactory>();
             for (SpecialSerializeFactory factory : factories) {
@@ -51,7 +51,6 @@ public class Hessian2WithSpecialObjectOutput extends Hessian2ObjectOutput {
         if (null == factoryList) {
             factoryList = new ArrayList<SpecialSerializeFactory>();
         }
-
         factoryList.add(factory);
     }
 

@@ -5,6 +5,7 @@ import com.google.protobuf.MessageLite;
 import java.io.IOException;
 
 /**
+ * {@link org.apache.dubbo.serialize.hessian}
  * @author kuro
  * @version v1.0
  * @date 20-3-14 下午3:38
@@ -25,7 +26,6 @@ public class ProtobufSerializeFactory implements SpecialSerializeFactory {
     public Object parse(Hessian2WithSpecialObjectInput input) throws IOException {
         String className = input.readUTF();
         byte[] data = input.readBytes();
-
         return ProtobufUtil.parseFrom(className, data);
     }
 
@@ -40,21 +40,18 @@ public class ProtobufSerializeFactory implements SpecialSerializeFactory {
         } else if (obj instanceof MessageLite) {
             type = ProtobufUtil.TYPE_PROTOBUF;
         }
-
         if (type == ProtobufUtil.TYPE_PROTOBUF) {
-            // write tag big for protocol buffer
+            // 反序列化的时候用
             output.writeInt(ProtobufUtil.TYPE_PROTOBUF);
-            // write protocol buffer class name
+            // 类名
             output.writeUTF(obj.getClass().getName());
             if (isMessageLiteBuilder) {
                 output.writeBytes(((MessageLite.Builder) obj).build().toByteArray());
             } else {
                 output.writeBytes(((MessageLite) obj).toByteArray());
             }
-
             return true;
         }
-
         return false;
     }
 

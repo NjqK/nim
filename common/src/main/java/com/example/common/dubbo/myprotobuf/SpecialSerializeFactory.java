@@ -10,7 +10,7 @@ import java.io.IOException;
 public interface SpecialSerializeFactory {
 
     /**
-     * Is support deserialize.
+     * 是否支持序列化
      *
      * @param type the type
      * @return true, if successful
@@ -18,22 +18,21 @@ public interface SpecialSerializeFactory {
     boolean supportDeserialize(int type);
 
     /**
-     * Parses the object
+     * 反序列化
      *
      * @param input the input
      * @return the object
-     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws IOException I/O exception
      */
     Object parse(Hessian2WithSpecialObjectInput input) throws IOException;
 
     /**
-     * Try serialize object.
+     * 序列化
      *
      * @param output the output
      * @param obj the obj
      * @return true, if successful
-     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws IOException I/O exception
      */
-    boolean trySerializeObject(Hessian2WithSpecialObjectOutput output, Object obj)
-            throws IOException;
+    boolean trySerializeObject(Hessian2WithSpecialObjectOutput output, Object obj) throws IOException;
 }

@@ -6,21 +6,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
+ * {@link org.apache.dubbo.serialize.hessian}
  * @author kuro
  * @version v1.0
  * @date 20-3-14 下午3:37
  **/
 public class Hessian2WithSpecialObjectInput extends Hessian2ObjectInput {
+
     private List<SpecialSerializeFactory> factoryList;
 
-    /**
-     * Instantiates a new hessian2 with special object input.
-     *
-     * @param is the is
-     */
     public Hessian2WithSpecialObjectInput(InputStream is) {
         super(is);
     }
@@ -33,12 +31,9 @@ public class Hessian2WithSpecialObjectInput extends Hessian2ObjectInput {
      */
     public Hessian2WithSpecialObjectInput(InputStream is, SpecialSerializeFactory... factories) {
         super(is);
-
         if (null != factories) {
             factoryList = new ArrayList<SpecialSerializeFactory>();
-            for (SpecialSerializeFactory factory : factories) {
-                factoryList.add(factory);
-            }
+            factoryList.addAll(Arrays.asList(factories));
         }
     }
 
@@ -66,17 +61,14 @@ public class Hessian2WithSpecialObjectInput extends Hessian2ObjectInput {
                 }
             }
         }
-
         return super.readObject();
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public <T> T readObject(Class<T> cls) throws IOException, ClassNotFoundException {
         return (T) readObject();
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public <T> T readObject(Class<T> cls, Type type) throws IOException, ClassNotFoundException {
         return (T) readObject();

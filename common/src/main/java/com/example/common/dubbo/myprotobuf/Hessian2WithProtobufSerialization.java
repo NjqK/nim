@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
+ * {@link org.apache.dubbo.serialize.hessian}
  * @author kuro
  * @version v1.0
  * @date 20-3-14 下午3:31
