@@ -11,14 +11,6 @@ import io.netty.channel.Channel;
 public interface SessionManager {
 
     /**
-     * 创建用户的session
-     * @param uid
-     * @param channel
-     * @return
-     */
-    boolean createSession(String uid, Channel channel);
-
-    /**
      * 删除用户的session
      * @param uid
      * @return
@@ -40,12 +32,21 @@ public interface SessionManager {
     Channel getChannel(String uid);
 
     /**
+     * 如果session没有就创建，并返回true，否则返回false
+     *
+     * @param uid
+     * @param channel
+     * @return
+     */
+    boolean createIfAbsent(String uid, Channel channel);
+
+    /**
      * 更新用户session，可能短线重连，channel变了
      * @param uid
      * @param channel
      * @return
      */
-    boolean updateSession(String uid, Channel channel);
+    Channel updateSession(String uid, Channel channel);
 
     /**
      * 服务下线删除所有redis上的session

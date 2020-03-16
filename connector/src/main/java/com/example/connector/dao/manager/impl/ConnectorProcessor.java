@@ -56,7 +56,7 @@ public class ConnectorProcessor implements ReceiveMessageCallback<String, String
                 continue;
             }
             try {
-                // TODO 具体长连接发送逻辑
+                // 具体长连接发送逻辑
                 String uid = String.valueOf(builder.getHead().getToId());
                 log.info("start to send msg, uid:{}", uid);
                 if (sessionManager.isOnline(uid)) {

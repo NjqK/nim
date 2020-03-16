@@ -8,6 +8,7 @@ import com.example.connector.common.SpringUtil;
 import com.example.connector.dao.manager.SessionManager;
 import com.example.proto.common.common.Common;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.Attribute;
@@ -24,6 +25,7 @@ import java.util.List;
  * @date 20-3-7 下午3:12
  **/
 @Slf4j
+@ChannelHandler.Sharable
 public class BizHandler extends ChannelInboundHandlerAdapter {
 
     /**
@@ -40,11 +42,14 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
             if (uid != null) {
                 log.info("create redis session, uid:{}", uid);
                 if (JedisUtil.hset(CommonConstants.USERS_REDIS_KEY, uid, RedisKeyUtil.getApplicationRedisKey()) >= 0) {
-                    if (sessionManager.createSession(uid, ctx.channel())) {
-                        // 绑定uid
-                        AttributeKey<String> key = AttributeKey.valueOf("uid");
-                        ctx.channel().attr(key).set(uid);
+                    Channel channel = ctx.channel();
+                    if (!sessionManager.createIfAbsent(uid, channel)) {
+                        // 已经有别的了
+                        Channel origin = sessionManager.updateSession(uid, channel);
+                        origin.close();
                     }
+                    AttributeKey<String> key = AttributeKey.valueOf("uid");
+                    channel.attr(key).set(uid);
                 }
             } else {
                 log.error("uid is null");

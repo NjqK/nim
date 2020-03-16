@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author kuro
@@ -30,15 +32,10 @@ public class SessionManagerImpl implements SessionManager {
      */
     private Map<String, Channel> session = new ConcurrentHashMap<>(16);
 
-    @Override
-    public boolean createSession(String uid, Channel channel) {
-        log.info("createSession, uid:{}, channel:{}", uid, channel);
-        if (uid == null || channel == null) {
-            throw new RuntimeException("createSession, uid or channel is null");
-        }
-        session.putIfAbsent(uid, channel);
-        return true;
-    }
+    /**
+     * 创建session是用的锁
+     */
+    private final Lock writeLock = new ReentrantLock();
 
     @Override
     public boolean destroySession(String uid) {
@@ -72,23 +69,28 @@ public class SessionManagerImpl implements SessionManager {
     }
 
     @Override
-    public boolean updateSession(String uid, Channel channel) {
-        log.info("updateSession, uid:{}, channel:{}", uid, channel);
-        if (uid == null) {
-            log.error("updateSession, uid is null");
+    public boolean createIfAbsent(String uid, Channel channel) {
+        if (getChannel(uid) != null) {
             return false;
         }
-        if (session.get(uid) != null) {
+        synchronized (writeLock) {
+            if (getChannel(uid) != null) {
+                return false;
+            }
             session.put(uid, channel);
             return true;
-        } else {
-            log.error("updateSession, uid is null");
-            return false;
         }
     }
 
     @Override
-    public synchronized void serverDown() {
+    public Channel updateSession(String uid, Channel channel) {
+        Channel origin = session.get(uid);
+        session.put(uid, channel);
+        return origin;
+    }
+
+    @Override
+    public void serverDown() {
         log.error("session:{}", session);
         int batchWorks = 0;
         int size = session.size();
