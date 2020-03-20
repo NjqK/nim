@@ -51,6 +51,9 @@ public class NettyLauncher implements Runnable {
     @Override
     public void run() {
         EpollEventLoopGroup bossGroup = new EpollEventLoopGroup();
+        /*
+         * 默认可用处理器 * 2
+         */
         EpollEventLoopGroup workerGroup = new EpollEventLoopGroup();
         try {
             int port = Integer.parseInt(localNode.getPort());

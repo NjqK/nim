@@ -39,23 +39,4 @@ public class IdleTrigger extends ChannelInboundHandlerAdapter {
             }
         }
     }
-
-//    @Override
-//    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-//        ctx.pipeline().get(SslHandler.class).handshakeFuture().addListener(new GenericFutureListener<Future<? super Channel>>() {
-//            @Override
-//            public void operationComplete(Future<? super Channel> future) throws Exception {
-//                String msg = "Your session is protected by "
-//                        + ctx.pipeline().get(SslHandler.class).engine()
-//                        .getSession().getCipherSuite()
-//                        + " cipher suite.\n";
-//                Common.Msg build = Common.Msg.newBuilder().setHead(Common.Head.newBuilder()
-//                        .setMsgType(Common.MsgType.SINGLE_CHAT).build())
-//                        .setBody(Common.Body.newBuilder().setContent(msg))
-//                        .build();
-//                ctx.channel().writeAndFlush(build);
-//            }
-//        });
-//        super.channelActive(ctx);
-//    }
 }

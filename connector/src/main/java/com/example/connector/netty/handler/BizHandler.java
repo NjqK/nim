@@ -27,7 +27,14 @@ import java.util.List;
 @Slf4j
 @ChannelHandler.Sharable
 public class BizHandler extends ChannelInboundHandlerAdapter {
-
+    /**
+     * kick message
+     */
+    private static final Common.Msg KICK_MSG = Common.Msg.newBuilder()
+            .setHead(Common.Head.newBuilder()
+                    .setMsgType(Common.MsgType.KICK)
+                    .build())
+            .build();
     /**
      * session manager, 管理uid和channel
      */
@@ -35,6 +42,7 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+
         Common.Msg message = (Common.Msg) msg;
         log.info("BizHandler got msgBody:{}", message);
         if (message.getHead().getMsgType().equals(Common.MsgType.HAND_SHAKE)) {
@@ -46,6 +54,7 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
                     if (!sessionManager.createIfAbsent(uid, channel)) {
                         // 已经有别的了
                         Channel origin = sessionManager.updateSession(uid, channel);
+                        origin.writeAndFlush(KICK_MSG);
                         origin.close();
                     }
                     AttributeKey<String> key = AttributeKey.valueOf("uid");
