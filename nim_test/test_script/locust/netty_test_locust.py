@@ -98,8 +98,10 @@ class SocketClient(object):
 
 
 class UserBehavior(TaskSet):
-    def on_start(self):
+    def __init__(self):
         self._client = SocketClient()
+
+    def on_start(self):
         self._client.connect((self.locust.host, self.locust.port))
 
     def on_stop(self):
@@ -107,7 +109,7 @@ class UserBehavior(TaskSet):
         self._client.close()
 
     @task
-    def sendMsg(self):
+    def send_msg(self):
         self._client.send(PING)
 
 
