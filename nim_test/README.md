@@ -1,6 +1,8 @@
 # NIM Test
 
-### Jmeter TcpSampler Implement
+### Jmeter TcpSampler
+
+**Jmeter version: Jmeter5.2**
 
 **1.把lib目录下的jar包放到 %JMETER_HOME%/lib/ext/目录下**
 
@@ -18,4 +20,25 @@
 -j：保存执行log
 -H：代理机主机名或者ip地址
 -P：代理机端口
+```
+
+**4.查看生成的xx.jtl的测试结果，可以在Jmeter里添加插件**
+
+```
+1.添加lib/report下的jmeter-plugins-manager-1.3.jar
+2.打开jmeter找到options里的plugins manager
+3.找到basic grahic 和 additional grahic并添加
+4.打开test_script/jmeter下的report.jmx脚本，然后在对应的 \
+栏目里打开xx.jtl文件，查看数据。
+```
+
+### Locust 
+
+**1.cd到脚本所在目录**
+
+**2.参照python脚本的main方法去执行命令**
+
+```
+locust -f netty_test.py --no-web（不启动web，删掉可以启动，然后打开localhost:8089） \
+-c 1（创建用户数） -r 1（创建速率，单机推荐小于等于100，分布式可以增大） -t 20m(20分钟)
 ```
