@@ -67,7 +67,7 @@ class SocketClient(object):
                 try:
                     skt.connect(args[0])
                 except Exception as e:
-                    # print(e)
+                    print(e)
                     total_time = int((time.time() - start_time) * 1000)
                     events.request_failure.fire(request_type="connect", name=name, response_time=total_time,
                                                 response_length=0, exception=e)
@@ -80,12 +80,10 @@ class SocketClient(object):
                     skt.sendall(args[0])
                     data = skt.recv(5)
                     # 因为服务端返回的心跳pong和ping是一个格式，所以是和ping一样的
-                    if data == PONG:
-                        print("right resp")
-                    else:
+                    if data != PONG:
                         print("error resp")
                 except Exception as e:
-                    # print(e)
+                    print(e)
                     total_time = int((time.time() - start_time) * 1000)
                     events.request_failure.fire(request_type="send", name=name, response_time=total_time,
                                                 response_length=0, exception=e)
@@ -108,8 +106,8 @@ class UserBehavior(TaskSet):
         print("end conn")
         self._client.close()
 
-    @task(1)
-    def sendAddCmd(self):
+    @task
+    def sendMsg(self):
         self._client.send(PING)
 
 
@@ -120,9 +118,9 @@ class SocketLocust(Locust):
 
 class SocketUser(SocketLocust):
     host = "192.168.0.106"
-    port = 10859
+    port = 16423
     task_set = UserBehavior
-    wait_time = between(1000, 10000)
+    wait_time = between(1, 10)
 
 
 # def trans(s):
@@ -130,7 +128,7 @@ class SocketUser(SocketLocust):
 
 
 if __name__ == "__main__":
-    os.system("locust -f netty_test.py --no-web -c 1 -r 1 -t 20m")
+    os.system("locust -f netty_test_locust.py --no-web -c 1 -r 1 -t 20m")
     # client = SocketClient()
     # client.connect(("192.168.0.106", 10859))
     # client.send(bytes([4, 10, 2, 16, 2]))
