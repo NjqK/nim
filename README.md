@@ -12,7 +12,7 @@
 		开发：
 			语言：Java
 			中间件：Redis Zookeeper Kafka Dubbo
-			数据库： Mybatis Druid Mybatis
+			数据库： MySQL Druid Mybatis
 			数据协议：Google Protobuf
 			通讯框架：Netty
 		
