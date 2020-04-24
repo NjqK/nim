@@ -13,6 +13,7 @@ def loadSettings():
     for i in os.listdir(path):
         if os.path.splitext(i)[1] == ".jar":
             jar = i
+            break
     xmx = settings["dev"]["Xmx"]
     xms = settings["dev"]["Xms"]
     xmn = settings["dev"]["Xmn"]
