@@ -18,7 +18,7 @@ dubbo:
     port: 20881
     serialization: myprotobuf
   registry:
-    address: zookeeper://127.0.0.1:2181
+    address: zookeeper://192.168.0.108:2181
     client: curator
   consumer:
     loadbalance: leastactive
@@ -36,11 +36,11 @@ mybatis:
 #    port: 20880
 
 zookeeper:
-  url: 127.0.0.1:2181
+  url: 192.168.0.108:2181
 
 redis:
   cluster:
-    nodes: 127.0.0.1:port
+    nodes: 192.168.0.108:port
     password:
 
 kafka:

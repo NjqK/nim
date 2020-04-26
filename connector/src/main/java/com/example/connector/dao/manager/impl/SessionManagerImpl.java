@@ -8,7 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -113,5 +115,10 @@ public class SessionManagerImpl implements SessionManager {
                 uids = new String[batchWorks];
             }
         }
+    }
+
+    @Override
+    public Set<String> getAllUid() {
+        return session.keySet();
     }
 }

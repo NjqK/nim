@@ -71,6 +71,10 @@ public class ConnectorApplication {
         initNetty();
         // 用这个clusterNode在redis李建立一个map，并创建ServerBootstrap
         initKafka();
+        // 添加这个节点到redis，分别为connector，服务器key，权重
+        JedisUtil.hsetnx(CommonConstants.CONNECTOR_REDIS_KEY, RedisKeyUtil.getApplicationRedisKey(), "");
+        // TODO 添加定时更新负载的任务
+
     }
 
     private void initKafka() {
@@ -102,6 +106,7 @@ public class ConnectorApplication {
     @PreDestroy
     private void onDestroy() {
         sessionManager.serverDown();
+        JedisUtil.hdel(CommonConstants.CONNECTOR_REDIS_KEY, RedisKeyUtil.getApplicationRedisKey());
         JedisUtil.close();
         KafkaProducerUtil.close();
         KafkaConsumerUtil.destory();

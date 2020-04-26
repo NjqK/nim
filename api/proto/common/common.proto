@@ -20,6 +20,8 @@ enum MsgType {
     MULTI_CHAT = 5;
     // 挥手
     BYE = 6;
+    // 更换服务器
+    CHANGE_SERVER = 7;
 }
 
 enum MsgContentType {

@@ -2,6 +2,8 @@ package com.example.connector.dao.manager;
 
 import io.netty.channel.Channel;
 
+import java.util.Set;
+
 /**
  * 管理用户id 和 channel
  * @author kuro
@@ -52,4 +54,10 @@ public interface SessionManager {
      * 服务下线删除所有redis上的session
      */
     void serverDown();
+
+    /**
+     * 获取所有uid
+     * @return
+     */
+    Set<String> getAllUid();
 }

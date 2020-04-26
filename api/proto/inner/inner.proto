@@ -49,9 +49,20 @@ message GetNodeAddresssResp {
     string port = 3;
 }
 
+message RemoveConnectionsReq {
+
+}
+
+message RemoveConnectionsResp {
+    // 结果
+    common.common.ErrorMsg ret = 1;
+}
+
 service ConnectorService {
     // 获取可用的connector节点信息
     rpc GetNodeAddress (GetNodeAddresssReq) returns (GetNodeAddresssResp);
+    // 迁移服务器长连接
+    rpc RemoveConnections(RemoveConnectionsReq) returns (RemoveConnectionsResp);
 }
 
 service PushService {

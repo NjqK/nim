@@ -75,6 +75,14 @@ public final class Common {
      * <code>BYE = 6;</code>
      */
     BYE(6),
+    /**
+     * <pre>
+     * 更换服务器
+     * </pre>
+     *
+     * <code>CHANGE_SERVER = 7;</code>
+     */
+    CHANGE_SERVER(7),
     UNRECOGNIZED(-1),
     ;
 
@@ -134,6 +142,14 @@ public final class Common {
      * <code>BYE = 6;</code>
      */
     public static final int BYE_VALUE = 6;
+    /**
+     * <pre>
+     * 更换服务器
+     * </pre>
+     *
+     * <code>CHANGE_SERVER = 7;</code>
+     */
+    public static final int CHANGE_SERVER_VALUE = 7;
 
 
     public final int getNumber() {
@@ -167,6 +183,7 @@ public final class Common {
         case 4: return SINGLE_CHAT;
         case 5: return MULTI_CHAT;
         case 6: return BYE;
+        case 7: return CHANGE_SERVER;
         default: return null;
       }
     }
@@ -7524,23 +7541,24 @@ public final class Common {
       "error_code\030\001 \001(\0162\026.common.common.ErrCode" +
       "\022\013\n\003msg\030\002 \001(\t\"\031\n\001A\022\t\n\001a\030\001 \001(\t\022\t\n\001b\030\002 \001(\t" +
       "\"$\n\001B\022\037\n\005aList\030\001 \003(\0132\020.common.common.A\"$" +
-      "\n\001C\022\037\n\005aList\030\001 \001(\0132\020.common.common.A*o\n\007" +
-      "MsgType\022\020\n\014MSG_TYPE_NUL\020\000\022\016\n\nHAND_SHAKE\020" +
-      "\001\022\016\n\nHEART_BEAT\020\002\022\010\n\004KICK\020\003\022\017\n\013SINGLE_CH" +
-      "AT\020\004\022\016\n\nMULTI_CHAT\020\005\022\007\n\003BYE\020\006*/\n\016MsgCont" +
-      "entType\022\023\n\017MSG_CONTENT_NUL\020\000\022\010\n\004TEXT\020\001*\"" +
-      "\n\nReadStatus\022\n\n\006UNREAD\020\000\022\010\n\004READ\020\001*\376\002\n\007E" +
-      "rrCode\022\022\n\016ERRORCODE_NULL\020\000\022\013\n\007SUCCESS\020\001\022" +
-      "\021\n\004FAIL\020\377\377\377\377\377\377\377\377\377\001\022$\n SEND_MSG_INDIVIDUA" +
-      "LLY_TO_UID_NUL\020e\022!\n\035SEND_MSG_INDIVIDUALL" +
-      "Y_MSG_NUL\020f\022%\n!SEND_MSG_INDIVIDUALLY_FRO" +
-      "M_ID_NUL\020g\022\035\n\031SEND_MSG_GROUP_TO_UID_NUL\020" +
-      "h\022\032\n\026SEND_MSG_GROUP_MSG_NUL\020i\022\036\n\032SEND_MS" +
-      "G_GROUP_FROM_ID_NUL\020j\022\036\n\032GET_UNREAD_MSG_" +
-      "USER_ID_NUL\020o\022\030\n\024ACK_MSG_RESP_UID_NUL\020y\022" +
-      "\031\n\025ACK_MSG_RESP_GUID_NUL\020z\022\037\n\033ACK_MSG_RE" +
-      "SP_UPDATE_DB_FAIL\020{B+\n\037com.example.proto" +
-      ".common.commonB\006CommonP\000b\006proto3"
+      "\n\001C\022\037\n\005aList\030\001 \001(\0132\020.common.common.A*\202\001\n" +
+      "\007MsgType\022\020\n\014MSG_TYPE_NUL\020\000\022\016\n\nHAND_SHAKE" +
+      "\020\001\022\016\n\nHEART_BEAT\020\002\022\010\n\004KICK\020\003\022\017\n\013SINGLE_C" +
+      "HAT\020\004\022\016\n\nMULTI_CHAT\020\005\022\007\n\003BYE\020\006\022\021\n\rCHANGE" +
+      "_SERVER\020\007*/\n\016MsgContentType\022\023\n\017MSG_CONTE" +
+      "NT_NUL\020\000\022\010\n\004TEXT\020\001*\"\n\nReadStatus\022\n\n\006UNRE" +
+      "AD\020\000\022\010\n\004READ\020\001*\376\002\n\007ErrCode\022\022\n\016ERRORCODE_" +
+      "NULL\020\000\022\013\n\007SUCCESS\020\001\022\021\n\004FAIL\020\377\377\377\377\377\377\377\377\377\001\022$" +
+      "\n SEND_MSG_INDIVIDUALLY_TO_UID_NUL\020e\022!\n\035" +
+      "SEND_MSG_INDIVIDUALLY_MSG_NUL\020f\022%\n!SEND_" +
+      "MSG_INDIVIDUALLY_FROM_ID_NUL\020g\022\035\n\031SEND_M" +
+      "SG_GROUP_TO_UID_NUL\020h\022\032\n\026SEND_MSG_GROUP_" +
+      "MSG_NUL\020i\022\036\n\032SEND_MSG_GROUP_FROM_ID_NUL\020" +
+      "j\022\036\n\032GET_UNREAD_MSG_USER_ID_NUL\020o\022\030\n\024ACK" +
+      "_MSG_RESP_UID_NUL\020y\022\031\n\025ACK_MSG_RESP_GUID" +
+      "_NUL\020z\022\037\n\033ACK_MSG_RESP_UPDATE_DB_FAIL\020{B" +
+      "+\n\037com.example.proto.common.commonB\006Comm" +
+      "onP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
