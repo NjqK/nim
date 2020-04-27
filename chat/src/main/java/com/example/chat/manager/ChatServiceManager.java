@@ -18,4 +18,6 @@ public interface ChatServiceManager {
     Outer.GetUnreadMsgResp getUnreadMsg(Outer.GetUnreadMsgReq getUnreadMsgReq) throws InvalidProtocolBufferException;
 
     Outer.AckMsgResp ackMsg(Outer.AckMsgReq ackMsgReq);
+
+    Outer.ReleaseConnectionsResp releaseConnections(Outer.ReleaseConnectionsReq releaseConnectionsReq);
 }

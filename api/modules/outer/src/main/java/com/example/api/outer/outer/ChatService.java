@@ -9,6 +9,8 @@ import com.example.proto.outer.outer.Outer.GetAvailableNodeReq;
 import com.example.proto.outer.outer.Outer.GetAvailableNodeResp;
 import com.example.proto.outer.outer.Outer.GetUnreadMsgReq;
 import com.example.proto.outer.outer.Outer.GetUnreadMsgResp;
+import com.example.proto.outer.outer.Outer.ReleaseConnectionsReq;
+import com.example.proto.outer.outer.Outer.ReleaseConnectionsResp;
 import com.example.proto.outer.outer.Outer.SendMsgIndividuallyReq;
 import com.example.proto.outer.outer.Outer.SendMsgIndividuallyResp;
 
@@ -22,20 +24,20 @@ import com.example.proto.outer.outer.Outer.SendMsgIndividuallyResp;
 public interface ChatService {
 
     /**
-     * 群发
-     *
-     * @param doGroupSendingReq the DoGroupSendingReq
-     * @return DoGroupSendingResp
-     */
-    DoGroupSendingResp doGroupSending(DoGroupSendingReq doGroupSendingReq);
-
-    /**
      * 拉取消息
      *
      * @param getUnreadMsgReq the GetUnreadMsgReq
      * @return GetUnreadMsgResp
      */
     GetUnreadMsgResp getUnreadMsg(GetUnreadMsgReq getUnreadMsgReq);
+
+    /**
+     * 释放某结点的长连接
+     *
+     * @param releaseConnectionsReq the ReleaseConnectionsReq
+     * @return ReleaseConnectionsResp
+     */
+    ReleaseConnectionsResp releaseConnections(ReleaseConnectionsReq releaseConnectionsReq);
 
     /**
      * 单发消息
@@ -60,6 +62,14 @@ public interface ChatService {
      * @return GetAvailableNodeResp
      */
     GetAvailableNodeResp getAvailableNode(GetAvailableNodeReq getAvailableNodeReq);
+
+    /**
+     * 群发
+     *
+     * @param doGroupSendingReq the DoGroupSendingReq
+     * @return DoGroupSendingResp
+     */
+    DoGroupSendingResp doGroupSending(DoGroupSendingReq doGroupSendingReq);
 
 }
 

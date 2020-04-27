@@ -88,6 +88,20 @@ message AckMsgResp {
     common.common.ErrorMsg ret = 1;
 }
 
+message ReleaseConnectionsReq {
+    // 应用名
+    string application_name = 1;
+    // ip
+    string ip = 2;
+    // 端口
+    string port = 3;
+}
+
+message ReleaseConnectionsResp {
+    // 结果
+    common.common.ErrorMsg ret = 1;
+}
+
 service ChatService {
     // 单发消息
     rpc SendMsgIndividually (SendMsgIndividuallyReq) returns (SendMsgIndividuallyResp);
@@ -99,4 +113,6 @@ service ChatService {
     rpc GetAvailableNode (GetAvailableNodeReq) returns (GetAvailableNodeResp);
     // 确认收到消息
     rpc AckMsg (AckMsgReq) returns (AckMsgResp);
+    // 释放某结点的长连接
+    rpc ReleaseConnections (ReleaseConnectionsReq) returns (ReleaseConnectionsResp);
 }

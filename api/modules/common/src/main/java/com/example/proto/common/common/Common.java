@@ -577,6 +577,14 @@ public final class Common {
      * <code>ACK_MSG_RESP_UPDATE_DB_FAIL = 123;</code>
      */
     ACK_MSG_RESP_UPDATE_DB_FAIL(123),
+    /**
+     * <pre>
+     * 释放长连接接口如参有失误
+     * </pre>
+     *
+     * <code>RELEASE_CONNECTIONS_FAULTY_PARAMETER = 124;</code>
+     */
+    RELEASE_CONNECTIONS_FAULTY_PARAMETER(124),
     UNRECOGNIZED(-1),
     ;
 
@@ -680,6 +688,14 @@ public final class Common {
      * <code>ACK_MSG_RESP_UPDATE_DB_FAIL = 123;</code>
      */
     public static final int ACK_MSG_RESP_UPDATE_DB_FAIL_VALUE = 123;
+    /**
+     * <pre>
+     * 释放长连接接口如参有失误
+     * </pre>
+     *
+     * <code>RELEASE_CONNECTIONS_FAULTY_PARAMETER = 124;</code>
+     */
+    public static final int RELEASE_CONNECTIONS_FAULTY_PARAMETER_VALUE = 124;
 
 
     public final int getNumber() {
@@ -719,6 +735,7 @@ public final class Common {
         case 121: return ACK_MSG_RESP_UID_NUL;
         case 122: return ACK_MSG_RESP_GUID_NUL;
         case 123: return ACK_MSG_RESP_UPDATE_DB_FAIL;
+        case 124: return RELEASE_CONNECTIONS_FAULTY_PARAMETER;
         default: return null;
       }
     }
@@ -7547,7 +7564,7 @@ public final class Common {
       "HAT\020\004\022\016\n\nMULTI_CHAT\020\005\022\007\n\003BYE\020\006\022\021\n\rCHANGE" +
       "_SERVER\020\007*/\n\016MsgContentType\022\023\n\017MSG_CONTE" +
       "NT_NUL\020\000\022\010\n\004TEXT\020\001*\"\n\nReadStatus\022\n\n\006UNRE" +
-      "AD\020\000\022\010\n\004READ\020\001*\376\002\n\007ErrCode\022\022\n\016ERRORCODE_" +
+      "AD\020\000\022\010\n\004READ\020\001*\250\003\n\007ErrCode\022\022\n\016ERRORCODE_" +
       "NULL\020\000\022\013\n\007SUCCESS\020\001\022\021\n\004FAIL\020\377\377\377\377\377\377\377\377\377\001\022$" +
       "\n SEND_MSG_INDIVIDUALLY_TO_UID_NUL\020e\022!\n\035" +
       "SEND_MSG_INDIVIDUALLY_MSG_NUL\020f\022%\n!SEND_" +
@@ -7556,9 +7573,10 @@ public final class Common {
       "MSG_NUL\020i\022\036\n\032SEND_MSG_GROUP_FROM_ID_NUL\020" +
       "j\022\036\n\032GET_UNREAD_MSG_USER_ID_NUL\020o\022\030\n\024ACK" +
       "_MSG_RESP_UID_NUL\020y\022\031\n\025ACK_MSG_RESP_GUID" +
-      "_NUL\020z\022\037\n\033ACK_MSG_RESP_UPDATE_DB_FAIL\020{B" +
-      "+\n\037com.example.proto.common.commonB\006Comm" +
-      "onP\000b\006proto3"
+      "_NUL\020z\022\037\n\033ACK_MSG_RESP_UPDATE_DB_FAIL\020{\022" +
+      "(\n$RELEASE_CONNECTIONS_FAULTY_PARAMETER\020" +
+      "|B+\n\037com.example.proto.common.commonB\006Co" +
+      "mmonP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -1,6 +1,7 @@
 package com.example.connector.netty;
 
 import com.example.common.util.ExecutorFactory;
+import com.example.connector.common.ConnectorThreadFactory;
 import com.example.connector.entity.domain.ClusterNode;
 import com.example.connector.netty.listener.SendMsgListener;
 import com.example.proto.common.common.Common;
@@ -27,7 +28,7 @@ public class NettyServerManager {
         if (!init && localNode != null) {
             ExecutorService executorService = ExecutorFactory.singleExecutor("NettyLauncherThread");
             NettyLauncher nettyLauncherWork = new NettyLauncher(localNode);
-            executorService.submit(nettyLauncherWork);
+            ConnectorThreadFactory.addJob(nettyLauncherWork);
             while (!nettyLauncherWork.isStart()) {
                 // wait
             }

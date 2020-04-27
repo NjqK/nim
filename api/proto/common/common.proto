@@ -99,6 +99,8 @@ enum ErrCode {
     ACK_MSG_RESP_GUID_NUL = 122;
     // 更新数据库失败
     ACK_MSG_RESP_UPDATE_DB_FAIL = 123;
+    // 释放长连接接口如参有失误
+    RELEASE_CONNECTIONS_FAULTY_PARAMETER = 124;
 }
 
 message ErrorMsg {

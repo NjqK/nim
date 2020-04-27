@@ -8844,6 +8844,1654 @@ public final class Outer {
 
   }
 
+  public interface ReleaseConnectionsReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:outer.outer.ReleaseConnectionsReq)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 应用名
+     * </pre>
+     *
+     * <code>string application_name = 1;</code>
+     * @return The applicationName.
+     */
+    java.lang.String getApplicationName();
+    /**
+     * <pre>
+     * 应用名
+     * </pre>
+     *
+     * <code>string application_name = 1;</code>
+     * @return The bytes for applicationName.
+     */
+    com.google.protobuf.ByteString
+        getApplicationNameBytes();
+
+    /**
+     * <pre>
+     * ip
+     * </pre>
+     *
+     * <code>string ip = 2;</code>
+     * @return The ip.
+     */
+    java.lang.String getIp();
+    /**
+     * <pre>
+     * ip
+     * </pre>
+     *
+     * <code>string ip = 2;</code>
+     * @return The bytes for ip.
+     */
+    com.google.protobuf.ByteString
+        getIpBytes();
+
+    /**
+     * <pre>
+     * 端口
+     * </pre>
+     *
+     * <code>string port = 3;</code>
+     * @return The port.
+     */
+    java.lang.String getPort();
+    /**
+     * <pre>
+     * 端口
+     * </pre>
+     *
+     * <code>string port = 3;</code>
+     * @return The bytes for port.
+     */
+    com.google.protobuf.ByteString
+        getPortBytes();
+  }
+  /**
+   * Protobuf type {@code outer.outer.ReleaseConnectionsReq}
+   */
+  public  static final class ReleaseConnectionsReq extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:outer.outer.ReleaseConnectionsReq)
+      ReleaseConnectionsReqOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ReleaseConnectionsReq.newBuilder() to construct.
+    private ReleaseConnectionsReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReleaseConnectionsReq() {
+      applicationName_ = "";
+      ip_ = "";
+      port_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ReleaseConnectionsReq();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ReleaseConnectionsReq(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              applicationName_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              ip_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              port_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.proto.outer.outer.Outer.internal_static_outer_outer_ReleaseConnectionsReq_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.proto.outer.outer.Outer.internal_static_outer_outer_ReleaseConnectionsReq_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.proto.outer.outer.Outer.ReleaseConnectionsReq.class, com.example.proto.outer.outer.Outer.ReleaseConnectionsReq.Builder.class);
+    }
+
+    public static final int APPLICATION_NAME_FIELD_NUMBER = 1;
+    private volatile java.lang.Object applicationName_;
+    /**
+     * <pre>
+     * 应用名
+     * </pre>
+     *
+     * <code>string application_name = 1;</code>
+     * @return The applicationName.
+     */
+    public java.lang.String getApplicationName() {
+      java.lang.Object ref = applicationName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        applicationName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 应用名
+     * </pre>
+     *
+     * <code>string application_name = 1;</code>
+     * @return The bytes for applicationName.
+     */
+    public com.google.protobuf.ByteString
+        getApplicationNameBytes() {
+      java.lang.Object ref = applicationName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        applicationName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int IP_FIELD_NUMBER = 2;
+    private volatile java.lang.Object ip_;
+    /**
+     * <pre>
+     * ip
+     * </pre>
+     *
+     * <code>string ip = 2;</code>
+     * @return The ip.
+     */
+    public java.lang.String getIp() {
+      java.lang.Object ref = ip_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        ip_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * ip
+     * </pre>
+     *
+     * <code>string ip = 2;</code>
+     * @return The bytes for ip.
+     */
+    public com.google.protobuf.ByteString
+        getIpBytes() {
+      java.lang.Object ref = ip_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        ip_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PORT_FIELD_NUMBER = 3;
+    private volatile java.lang.Object port_;
+    /**
+     * <pre>
+     * 端口
+     * </pre>
+     *
+     * <code>string port = 3;</code>
+     * @return The port.
+     */
+    public java.lang.String getPort() {
+      java.lang.Object ref = port_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        port_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 端口
+     * </pre>
+     *
+     * <code>string port = 3;</code>
+     * @return The bytes for port.
+     */
+    public com.google.protobuf.ByteString
+        getPortBytes() {
+      java.lang.Object ref = port_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        port_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getApplicationNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, applicationName_);
+      }
+      if (!getIpBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, ip_);
+      }
+      if (!getPortBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, port_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getApplicationNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, applicationName_);
+      }
+      if (!getIpBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, ip_);
+      }
+      if (!getPortBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, port_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.proto.outer.outer.Outer.ReleaseConnectionsReq)) {
+        return super.equals(obj);
+      }
+      com.example.proto.outer.outer.Outer.ReleaseConnectionsReq other = (com.example.proto.outer.outer.Outer.ReleaseConnectionsReq) obj;
+
+      if (!getApplicationName()
+          .equals(other.getApplicationName())) return false;
+      if (!getIp()
+          .equals(other.getIp())) return false;
+      if (!getPort()
+          .equals(other.getPort())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + APPLICATION_NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getApplicationName().hashCode();
+      hash = (37 * hash) + IP_FIELD_NUMBER;
+      hash = (53 * hash) + getIp().hashCode();
+      hash = (37 * hash) + PORT_FIELD_NUMBER;
+      hash = (53 * hash) + getPort().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsReq parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsReq parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsReq parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsReq parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsReq parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsReq parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsReq parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsReq parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsReq parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsReq parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsReq parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsReq parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.proto.outer.outer.Outer.ReleaseConnectionsReq prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code outer.outer.ReleaseConnectionsReq}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:outer.outer.ReleaseConnectionsReq)
+        com.example.proto.outer.outer.Outer.ReleaseConnectionsReqOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.proto.outer.outer.Outer.internal_static_outer_outer_ReleaseConnectionsReq_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.proto.outer.outer.Outer.internal_static_outer_outer_ReleaseConnectionsReq_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.proto.outer.outer.Outer.ReleaseConnectionsReq.class, com.example.proto.outer.outer.Outer.ReleaseConnectionsReq.Builder.class);
+      }
+
+      // Construct using com.example.proto.outer.outer.Outer.ReleaseConnectionsReq.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        applicationName_ = "";
+
+        ip_ = "";
+
+        port_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.proto.outer.outer.Outer.internal_static_outer_outer_ReleaseConnectionsReq_descriptor;
+      }
+
+      @java.lang.Override
+      public com.example.proto.outer.outer.Outer.ReleaseConnectionsReq getDefaultInstanceForType() {
+        return com.example.proto.outer.outer.Outer.ReleaseConnectionsReq.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.example.proto.outer.outer.Outer.ReleaseConnectionsReq build() {
+        com.example.proto.outer.outer.Outer.ReleaseConnectionsReq result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.example.proto.outer.outer.Outer.ReleaseConnectionsReq buildPartial() {
+        com.example.proto.outer.outer.Outer.ReleaseConnectionsReq result = new com.example.proto.outer.outer.Outer.ReleaseConnectionsReq(this);
+        result.applicationName_ = applicationName_;
+        result.ip_ = ip_;
+        result.port_ = port_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.proto.outer.outer.Outer.ReleaseConnectionsReq) {
+          return mergeFrom((com.example.proto.outer.outer.Outer.ReleaseConnectionsReq)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.proto.outer.outer.Outer.ReleaseConnectionsReq other) {
+        if (other == com.example.proto.outer.outer.Outer.ReleaseConnectionsReq.getDefaultInstance()) return this;
+        if (!other.getApplicationName().isEmpty()) {
+          applicationName_ = other.applicationName_;
+          onChanged();
+        }
+        if (!other.getIp().isEmpty()) {
+          ip_ = other.ip_;
+          onChanged();
+        }
+        if (!other.getPort().isEmpty()) {
+          port_ = other.port_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.proto.outer.outer.Outer.ReleaseConnectionsReq parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.proto.outer.outer.Outer.ReleaseConnectionsReq) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object applicationName_ = "";
+      /**
+       * <pre>
+       * 应用名
+       * </pre>
+       *
+       * <code>string application_name = 1;</code>
+       * @return The applicationName.
+       */
+      public java.lang.String getApplicationName() {
+        java.lang.Object ref = applicationName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          applicationName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 应用名
+       * </pre>
+       *
+       * <code>string application_name = 1;</code>
+       * @return The bytes for applicationName.
+       */
+      public com.google.protobuf.ByteString
+          getApplicationNameBytes() {
+        java.lang.Object ref = applicationName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          applicationName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 应用名
+       * </pre>
+       *
+       * <code>string application_name = 1;</code>
+       * @param value The applicationName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setApplicationName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        applicationName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 应用名
+       * </pre>
+       *
+       * <code>string application_name = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearApplicationName() {
+        
+        applicationName_ = getDefaultInstance().getApplicationName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 应用名
+       * </pre>
+       *
+       * <code>string application_name = 1;</code>
+       * @param value The bytes for applicationName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setApplicationNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        applicationName_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object ip_ = "";
+      /**
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string ip = 2;</code>
+       * @return The ip.
+       */
+      public java.lang.String getIp() {
+        java.lang.Object ref = ip_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          ip_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string ip = 2;</code>
+       * @return The bytes for ip.
+       */
+      public com.google.protobuf.ByteString
+          getIpBytes() {
+        java.lang.Object ref = ip_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          ip_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string ip = 2;</code>
+       * @param value The ip to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIp(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        ip_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string ip = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIp() {
+        
+        ip_ = getDefaultInstance().getIp();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * ip
+       * </pre>
+       *
+       * <code>string ip = 2;</code>
+       * @param value The bytes for ip to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIpBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        ip_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object port_ = "";
+      /**
+       * <pre>
+       * 端口
+       * </pre>
+       *
+       * <code>string port = 3;</code>
+       * @return The port.
+       */
+      public java.lang.String getPort() {
+        java.lang.Object ref = port_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          port_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 端口
+       * </pre>
+       *
+       * <code>string port = 3;</code>
+       * @return The bytes for port.
+       */
+      public com.google.protobuf.ByteString
+          getPortBytes() {
+        java.lang.Object ref = port_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          port_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 端口
+       * </pre>
+       *
+       * <code>string port = 3;</code>
+       * @param value The port to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPort(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        port_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 端口
+       * </pre>
+       *
+       * <code>string port = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPort() {
+        
+        port_ = getDefaultInstance().getPort();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 端口
+       * </pre>
+       *
+       * <code>string port = 3;</code>
+       * @param value The bytes for port to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPortBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        port_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:outer.outer.ReleaseConnectionsReq)
+    }
+
+    // @@protoc_insertion_point(class_scope:outer.outer.ReleaseConnectionsReq)
+    private static final com.example.proto.outer.outer.Outer.ReleaseConnectionsReq DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.proto.outer.outer.Outer.ReleaseConnectionsReq();
+    }
+
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsReq getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReleaseConnectionsReq>
+        PARSER = new com.google.protobuf.AbstractParser<ReleaseConnectionsReq>() {
+      @java.lang.Override
+      public ReleaseConnectionsReq parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ReleaseConnectionsReq(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReleaseConnectionsReq> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReleaseConnectionsReq> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.example.proto.outer.outer.Outer.ReleaseConnectionsReq getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ReleaseConnectionsRespOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:outer.outer.ReleaseConnectionsResp)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return Whether the ret field is set.
+     */
+    boolean hasRet();
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return The ret.
+     */
+    com.example.proto.common.common.Common.ErrorMsg getRet();
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     */
+    com.example.proto.common.common.Common.ErrorMsgOrBuilder getRetOrBuilder();
+  }
+  /**
+   * Protobuf type {@code outer.outer.ReleaseConnectionsResp}
+   */
+  public  static final class ReleaseConnectionsResp extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:outer.outer.ReleaseConnectionsResp)
+      ReleaseConnectionsRespOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ReleaseConnectionsResp.newBuilder() to construct.
+    private ReleaseConnectionsResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReleaseConnectionsResp() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ReleaseConnectionsResp();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ReleaseConnectionsResp(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              com.example.proto.common.common.Common.ErrorMsg.Builder subBuilder = null;
+              if (ret_ != null) {
+                subBuilder = ret_.toBuilder();
+              }
+              ret_ = input.readMessage(com.example.proto.common.common.Common.ErrorMsg.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(ret_);
+                ret_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.proto.outer.outer.Outer.internal_static_outer_outer_ReleaseConnectionsResp_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.proto.outer.outer.Outer.internal_static_outer_outer_ReleaseConnectionsResp_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.proto.outer.outer.Outer.ReleaseConnectionsResp.class, com.example.proto.outer.outer.Outer.ReleaseConnectionsResp.Builder.class);
+    }
+
+    public static final int RET_FIELD_NUMBER = 1;
+    private com.example.proto.common.common.Common.ErrorMsg ret_;
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return Whether the ret field is set.
+     */
+    public boolean hasRet() {
+      return ret_ != null;
+    }
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     * @return The ret.
+     */
+    public com.example.proto.common.common.Common.ErrorMsg getRet() {
+      return ret_ == null ? com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
+    }
+    /**
+     * <pre>
+     * 结果
+     * </pre>
+     *
+     * <code>.common.common.ErrorMsg ret = 1;</code>
+     */
+    public com.example.proto.common.common.Common.ErrorMsgOrBuilder getRetOrBuilder() {
+      return getRet();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (ret_ != null) {
+        output.writeMessage(1, getRet());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (ret_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getRet());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.proto.outer.outer.Outer.ReleaseConnectionsResp)) {
+        return super.equals(obj);
+      }
+      com.example.proto.outer.outer.Outer.ReleaseConnectionsResp other = (com.example.proto.outer.outer.Outer.ReleaseConnectionsResp) obj;
+
+      if (hasRet() != other.hasRet()) return false;
+      if (hasRet()) {
+        if (!getRet()
+            .equals(other.getRet())) return false;
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasRet()) {
+        hash = (37 * hash) + RET_FIELD_NUMBER;
+        hash = (53 * hash) + getRet().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsResp parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsResp parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsResp parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsResp parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsResp parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsResp parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsResp parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsResp parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsResp parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsResp parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsResp parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsResp parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.proto.outer.outer.Outer.ReleaseConnectionsResp prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code outer.outer.ReleaseConnectionsResp}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:outer.outer.ReleaseConnectionsResp)
+        com.example.proto.outer.outer.Outer.ReleaseConnectionsRespOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.proto.outer.outer.Outer.internal_static_outer_outer_ReleaseConnectionsResp_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.proto.outer.outer.Outer.internal_static_outer_outer_ReleaseConnectionsResp_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.proto.outer.outer.Outer.ReleaseConnectionsResp.class, com.example.proto.outer.outer.Outer.ReleaseConnectionsResp.Builder.class);
+      }
+
+      // Construct using com.example.proto.outer.outer.Outer.ReleaseConnectionsResp.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (retBuilder_ == null) {
+          ret_ = null;
+        } else {
+          ret_ = null;
+          retBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.proto.outer.outer.Outer.internal_static_outer_outer_ReleaseConnectionsResp_descriptor;
+      }
+
+      @java.lang.Override
+      public com.example.proto.outer.outer.Outer.ReleaseConnectionsResp getDefaultInstanceForType() {
+        return com.example.proto.outer.outer.Outer.ReleaseConnectionsResp.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.example.proto.outer.outer.Outer.ReleaseConnectionsResp build() {
+        com.example.proto.outer.outer.Outer.ReleaseConnectionsResp result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.example.proto.outer.outer.Outer.ReleaseConnectionsResp buildPartial() {
+        com.example.proto.outer.outer.Outer.ReleaseConnectionsResp result = new com.example.proto.outer.outer.Outer.ReleaseConnectionsResp(this);
+        if (retBuilder_ == null) {
+          result.ret_ = ret_;
+        } else {
+          result.ret_ = retBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.proto.outer.outer.Outer.ReleaseConnectionsResp) {
+          return mergeFrom((com.example.proto.outer.outer.Outer.ReleaseConnectionsResp)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.proto.outer.outer.Outer.ReleaseConnectionsResp other) {
+        if (other == com.example.proto.outer.outer.Outer.ReleaseConnectionsResp.getDefaultInstance()) return this;
+        if (other.hasRet()) {
+          mergeRet(other.getRet());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.proto.outer.outer.Outer.ReleaseConnectionsResp parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.proto.outer.outer.Outer.ReleaseConnectionsResp) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.example.proto.common.common.Common.ErrorMsg ret_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder> retBuilder_;
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       * @return Whether the ret field is set.
+       */
+      public boolean hasRet() {
+        return retBuilder_ != null || ret_ != null;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       * @return The ret.
+       */
+      public com.example.proto.common.common.Common.ErrorMsg getRet() {
+        if (retBuilder_ == null) {
+          return ret_ == null ? com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
+        } else {
+          return retBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public Builder setRet(com.example.proto.common.common.Common.ErrorMsg value) {
+        if (retBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ret_ = value;
+          onChanged();
+        } else {
+          retBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public Builder setRet(
+          com.example.proto.common.common.Common.ErrorMsg.Builder builderForValue) {
+        if (retBuilder_ == null) {
+          ret_ = builderForValue.build();
+          onChanged();
+        } else {
+          retBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public Builder mergeRet(com.example.proto.common.common.Common.ErrorMsg value) {
+        if (retBuilder_ == null) {
+          if (ret_ != null) {
+            ret_ =
+              com.example.proto.common.common.Common.ErrorMsg.newBuilder(ret_).mergeFrom(value).buildPartial();
+          } else {
+            ret_ = value;
+          }
+          onChanged();
+        } else {
+          retBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public Builder clearRet() {
+        if (retBuilder_ == null) {
+          ret_ = null;
+          onChanged();
+        } else {
+          ret_ = null;
+          retBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public com.example.proto.common.common.Common.ErrorMsg.Builder getRetBuilder() {
+        
+        onChanged();
+        return getRetFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      public com.example.proto.common.common.Common.ErrorMsgOrBuilder getRetOrBuilder() {
+        if (retBuilder_ != null) {
+          return retBuilder_.getMessageOrBuilder();
+        } else {
+          return ret_ == null ?
+              com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
+        }
+      }
+      /**
+       * <pre>
+       * 结果
+       * </pre>
+       *
+       * <code>.common.common.ErrorMsg ret = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder> 
+          getRetFieldBuilder() {
+        if (retBuilder_ == null) {
+          retBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder>(
+                  getRet(),
+                  getParentForChildren(),
+                  isClean());
+          ret_ = null;
+        }
+        return retBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:outer.outer.ReleaseConnectionsResp)
+    }
+
+    // @@protoc_insertion_point(class_scope:outer.outer.ReleaseConnectionsResp)
+    private static final com.example.proto.outer.outer.Outer.ReleaseConnectionsResp DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.proto.outer.outer.Outer.ReleaseConnectionsResp();
+    }
+
+    public static com.example.proto.outer.outer.Outer.ReleaseConnectionsResp getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReleaseConnectionsResp>
+        PARSER = new com.google.protobuf.AbstractParser<ReleaseConnectionsResp>() {
+      @java.lang.Override
+      public ReleaseConnectionsResp parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ReleaseConnectionsResp(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReleaseConnectionsResp> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReleaseConnectionsResp> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.example.proto.outer.outer.Outer.ReleaseConnectionsResp getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_outer_outer_SendMsgIndividuallyReq_descriptor;
   private static final 
@@ -8894,6 +10542,16 @@ public final class Outer {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_outer_outer_AckMsgResp_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_outer_outer_ReleaseConnectionsReq_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_outer_outer_ReleaseConnectionsReq_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_outer_outer_ReleaseConnectionsResp_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_outer_outer_ReleaseConnectionsResp_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -8925,18 +10583,24 @@ public final class Outer {
       "Msg\022\014\n\004host\030\002 \001(\t\022\014\n\004port\030\003 \001(\t\"&\n\tAckMs" +
       "gReq\022\013\n\003uid\030\001 \001(\t\022\014\n\004guid\030\002 \001(\t\"2\n\nAckMs" +
       "gResp\022$\n\003ret\030\001 \001(\0132\027.common.common.Error" +
-      "Msg2\243\003\n\013ChatService\022`\n\023SendMsgIndividual" +
-      "ly\022#.outer.outer.SendMsgIndividuallyReq\032" +
-      "$.outer.outer.SendMsgIndividuallyResp\022Q\n" +
-      "\016DoGroupSending\022\036.outer.outer.DoGroupSen" +
-      "dingReq\032\037.outer.outer.DoGroupSendingResp" +
-      "\022K\n\014GetUnreadMsg\022\034.outer.outer.GetUnread" +
-      "MsgReq\032\035.outer.outer.GetUnreadMsgResp\022W\n" +
-      "\020GetAvailableNode\022 .outer.outer.GetAvail" +
-      "ableNodeReq\032!.outer.outer.GetAvailableNo" +
-      "deResp\0229\n\006AckMsg\022\026.outer.outer.AckMsgReq" +
-      "\032\027.outer.outer.AckMsgRespB(\n\035com.example" +
-      ".proto.outer.outerB\005OuterP\000b\006proto3"
+      "Msg\"K\n\025ReleaseConnectionsReq\022\030\n\020applicat" +
+      "ion_name\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004port\030\003 \001(\t" +
+      "\">\n\026ReleaseConnectionsResp\022$\n\003ret\030\001 \001(\0132" +
+      "\027.common.common.ErrorMsg2\202\004\n\013ChatService" +
+      "\022`\n\023SendMsgIndividually\022#.outer.outer.Se" +
+      "ndMsgIndividuallyReq\032$.outer.outer.SendM" +
+      "sgIndividuallyResp\022Q\n\016DoGroupSending\022\036.o" +
+      "uter.outer.DoGroupSendingReq\032\037.outer.out" +
+      "er.DoGroupSendingResp\022K\n\014GetUnreadMsg\022\034." +
+      "outer.outer.GetUnreadMsgReq\032\035.outer.oute" +
+      "r.GetUnreadMsgResp\022W\n\020GetAvailableNode\022 " +
+      ".outer.outer.GetAvailableNodeReq\032!.outer" +
+      ".outer.GetAvailableNodeResp\0229\n\006AckMsg\022\026." +
+      "outer.outer.AckMsgReq\032\027.outer.outer.AckM" +
+      "sgResp\022]\n\022ReleaseConnections\022\".outer.out" +
+      "er.ReleaseConnectionsReq\032#.outer.outer.R" +
+      "eleaseConnectionsRespB(\n\035com.example.pro" +
+      "to.outer.outerB\005OuterP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -9002,6 +10666,18 @@ public final class Outer {
     internal_static_outer_outer_AckMsgResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_outer_outer_AckMsgResp_descriptor,
+        new java.lang.String[] { "Ret", });
+    internal_static_outer_outer_ReleaseConnectionsReq_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_outer_outer_ReleaseConnectionsReq_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_outer_outer_ReleaseConnectionsReq_descriptor,
+        new java.lang.String[] { "ApplicationName", "Ip", "Port", });
+    internal_static_outer_outer_ReleaseConnectionsResp_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_outer_outer_ReleaseConnectionsResp_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_outer_outer_ReleaseConnectionsResp_descriptor,
         new java.lang.String[] { "Ret", });
     com.example.proto.common.common.Common.getDescriptor();
   }

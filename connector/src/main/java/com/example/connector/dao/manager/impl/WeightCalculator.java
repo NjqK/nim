@@ -1,6 +1,6 @@
 package com.example.connector.dao.manager.impl;
 
-import com.example.connector.dao.manager.WeightPolicy;
+import com.example.connector.entity.domain.WeightPolicy;
 import com.example.connector.entity.domain.ServiceLoad;
 
 /**
@@ -8,7 +8,7 @@ import com.example.connector.entity.domain.ServiceLoad;
  * @version V1.0
  * @date 2020-04-26 8:18 PM
  **/
-public class WeightPolicyImpl {
+public class WeightCalculator {
     /**
      * 计算规则
      */

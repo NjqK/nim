@@ -14,6 +14,119 @@ public final class Inner {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  /**
+   * Protobuf enum {@code inner.inner.RouteType}
+   */
+  public enum RouteType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>ROUTE_TYPE_NUL = 0;</code>
+     */
+    ROUTE_TYPE_NUL(0),
+    /**
+     * <code>NORMAL = 1;</code>
+     */
+    NORMAL(1),
+    /**
+     * <code>CMD = 2;</code>
+     */
+    CMD(2),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>ROUTE_TYPE_NUL = 0;</code>
+     */
+    public static final int ROUTE_TYPE_NUL_VALUE = 0;
+    /**
+     * <code>NORMAL = 1;</code>
+     */
+    public static final int NORMAL_VALUE = 1;
+    /**
+     * <code>CMD = 2;</code>
+     */
+    public static final int CMD_VALUE = 2;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static RouteType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static RouteType forNumber(int value) {
+      switch (value) {
+        case 0: return ROUTE_TYPE_NUL;
+        case 1: return NORMAL;
+        case 2: return CMD;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<RouteType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        RouteType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<RouteType>() {
+            public RouteType findValueByNumber(int number) {
+              return RouteType.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.example.proto.inner.inner.Inner.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final RouteType[] VALUES = values();
+
+    public static RouteType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private RouteType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:inner.inner.RouteType)
+  }
+
   public interface RouteMsgReqOrBuilder extends
       // @@protoc_insertion_point(interface_extends:inner.inner.RouteMsgReq)
       com.google.protobuf.MessageOrBuilder {
@@ -64,6 +177,17 @@ public final class Inner {
      * <code>.common.common.Msg msg = 2;</code>
      */
     com.example.proto.common.common.Common.MsgOrBuilder getMsgOrBuilder();
+
+    /**
+     * <code>.inner.inner.RouteType type = 3;</code>
+     * @return The enum numeric value on the wire for type.
+     */
+    int getTypeValue();
+    /**
+     * <code>.inner.inner.RouteType type = 3;</code>
+     * @return The type.
+     */
+    com.example.proto.inner.inner.Inner.RouteType getType();
   }
   /**
    * Protobuf type {@code inner.inner.RouteMsgReq}
@@ -79,6 +203,7 @@ public final class Inner {
     }
     private RouteMsgReq() {
       toUid_ = "";
+      type_ = 0;
     }
 
     @java.lang.Override
@@ -128,6 +253,12 @@ public final class Inner {
                 msg_ = subBuilder.buildPartial();
               }
 
+              break;
+            }
+            case 24: {
+              int rawValue = input.readEnum();
+
+              type_ = rawValue;
               break;
             }
             default: {
@@ -241,6 +372,25 @@ public final class Inner {
       return getMsg();
     }
 
+    public static final int TYPE_FIELD_NUMBER = 3;
+    private int type_;
+    /**
+     * <code>.inner.inner.RouteType type = 3;</code>
+     * @return The enum numeric value on the wire for type.
+     */
+    public int getTypeValue() {
+      return type_;
+    }
+    /**
+     * <code>.inner.inner.RouteType type = 3;</code>
+     * @return The type.
+     */
+    public com.example.proto.inner.inner.Inner.RouteType getType() {
+      @SuppressWarnings("deprecation")
+      com.example.proto.inner.inner.Inner.RouteType result = com.example.proto.inner.inner.Inner.RouteType.valueOf(type_);
+      return result == null ? com.example.proto.inner.inner.Inner.RouteType.UNRECOGNIZED : result;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -261,6 +411,9 @@ public final class Inner {
       if (msg_ != null) {
         output.writeMessage(2, getMsg());
       }
+      if (type_ != com.example.proto.inner.inner.Inner.RouteType.ROUTE_TYPE_NUL.getNumber()) {
+        output.writeEnum(3, type_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -276,6 +429,10 @@ public final class Inner {
       if (msg_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getMsg());
+      }
+      if (type_ != com.example.proto.inner.inner.Inner.RouteType.ROUTE_TYPE_NUL.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(3, type_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -299,6 +456,7 @@ public final class Inner {
         if (!getMsg()
             .equals(other.getMsg())) return false;
       }
+      if (type_ != other.type_) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -316,6 +474,8 @@ public final class Inner {
         hash = (37 * hash) + MSG_FIELD_NUMBER;
         hash = (53 * hash) + getMsg().hashCode();
       }
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + type_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -457,6 +617,8 @@ public final class Inner {
           msg_ = null;
           msgBuilder_ = null;
         }
+        type_ = 0;
+
         return this;
       }
 
@@ -489,6 +651,7 @@ public final class Inner {
         } else {
           result.msg_ = msgBuilder_.build();
         }
+        result.type_ = type_;
         onBuilt();
         return result;
       }
@@ -543,6 +706,9 @@ public final class Inner {
         }
         if (other.hasMsg()) {
           mergeMsg(other.getMsg());
+        }
+        if (other.type_ != 0) {
+          setTypeValue(other.getTypeValue());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -822,6 +988,58 @@ public final class Inner {
           msg_ = null;
         }
         return msgBuilder_;
+      }
+
+      private int type_ = 0;
+      /**
+       * <code>.inner.inner.RouteType type = 3;</code>
+       * @return The enum numeric value on the wire for type.
+       */
+      public int getTypeValue() {
+        return type_;
+      }
+      /**
+       * <code>.inner.inner.RouteType type = 3;</code>
+       * @param value The enum numeric value on the wire for type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTypeValue(int value) {
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.inner.inner.RouteType type = 3;</code>
+       * @return The type.
+       */
+      public com.example.proto.inner.inner.Inner.RouteType getType() {
+        @SuppressWarnings("deprecation")
+        com.example.proto.inner.inner.Inner.RouteType result = com.example.proto.inner.inner.Inner.RouteType.valueOf(type_);
+        return result == null ? com.example.proto.inner.inner.Inner.RouteType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.inner.inner.RouteType type = 3;</code>
+       * @param value The type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setType(com.example.proto.inner.inner.Inner.RouteType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        type_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.inner.inner.RouteType type = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearType() {
+        
+        type_ = 0;
+        onChanged();
+        return this;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -5420,1102 +5638,6 @@ public final class Inner {
 
   }
 
-  public interface RemoveConnectionsReqOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:inner.inner.RemoveConnectionsReq)
-      com.google.protobuf.MessageOrBuilder {
-  }
-  /**
-   * Protobuf type {@code inner.inner.RemoveConnectionsReq}
-   */
-  public  static final class RemoveConnectionsReq extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:inner.inner.RemoveConnectionsReq)
-      RemoveConnectionsReqOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use RemoveConnectionsReq.newBuilder() to construct.
-    private RemoveConnectionsReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private RemoveConnectionsReq() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new RemoveConnectionsReq();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private RemoveConnectionsReq(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RemoveConnectionsReq_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RemoveConnectionsReq_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.example.proto.inner.inner.Inner.RemoveConnectionsReq.class, com.example.proto.inner.inner.Inner.RemoveConnectionsReq.Builder.class);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.example.proto.inner.inner.Inner.RemoveConnectionsReq)) {
-        return super.equals(obj);
-      }
-      com.example.proto.inner.inner.Inner.RemoveConnectionsReq other = (com.example.proto.inner.inner.Inner.RemoveConnectionsReq) obj;
-
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsReq parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsReq parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsReq parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsReq parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsReq parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsReq parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsReq parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsReq parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsReq parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsReq parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsReq parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsReq parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.example.proto.inner.inner.Inner.RemoveConnectionsReq prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code inner.inner.RemoveConnectionsReq}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:inner.inner.RemoveConnectionsReq)
-        com.example.proto.inner.inner.Inner.RemoveConnectionsReqOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RemoveConnectionsReq_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RemoveConnectionsReq_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.example.proto.inner.inner.Inner.RemoveConnectionsReq.class, com.example.proto.inner.inner.Inner.RemoveConnectionsReq.Builder.class);
-      }
-
-      // Construct using com.example.proto.inner.inner.Inner.RemoveConnectionsReq.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RemoveConnectionsReq_descriptor;
-      }
-
-      @java.lang.Override
-      public com.example.proto.inner.inner.Inner.RemoveConnectionsReq getDefaultInstanceForType() {
-        return com.example.proto.inner.inner.Inner.RemoveConnectionsReq.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.example.proto.inner.inner.Inner.RemoveConnectionsReq build() {
-        com.example.proto.inner.inner.Inner.RemoveConnectionsReq result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.example.proto.inner.inner.Inner.RemoveConnectionsReq buildPartial() {
-        com.example.proto.inner.inner.Inner.RemoveConnectionsReq result = new com.example.proto.inner.inner.Inner.RemoveConnectionsReq(this);
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.example.proto.inner.inner.Inner.RemoveConnectionsReq) {
-          return mergeFrom((com.example.proto.inner.inner.Inner.RemoveConnectionsReq)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.example.proto.inner.inner.Inner.RemoveConnectionsReq other) {
-        if (other == com.example.proto.inner.inner.Inner.RemoveConnectionsReq.getDefaultInstance()) return this;
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.example.proto.inner.inner.Inner.RemoveConnectionsReq parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.example.proto.inner.inner.Inner.RemoveConnectionsReq) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:inner.inner.RemoveConnectionsReq)
-    }
-
-    // @@protoc_insertion_point(class_scope:inner.inner.RemoveConnectionsReq)
-    private static final com.example.proto.inner.inner.Inner.RemoveConnectionsReq DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.example.proto.inner.inner.Inner.RemoveConnectionsReq();
-    }
-
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsReq getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<RemoveConnectionsReq>
-        PARSER = new com.google.protobuf.AbstractParser<RemoveConnectionsReq>() {
-      @java.lang.Override
-      public RemoveConnectionsReq parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RemoveConnectionsReq(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<RemoveConnectionsReq> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<RemoveConnectionsReq> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.example.proto.inner.inner.Inner.RemoveConnectionsReq getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface RemoveConnectionsRespOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:inner.inner.RemoveConnectionsResp)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     * 结果
-     * </pre>
-     *
-     * <code>.common.common.ErrorMsg ret = 1;</code>
-     * @return Whether the ret field is set.
-     */
-    boolean hasRet();
-    /**
-     * <pre>
-     * 结果
-     * </pre>
-     *
-     * <code>.common.common.ErrorMsg ret = 1;</code>
-     * @return The ret.
-     */
-    com.example.proto.common.common.Common.ErrorMsg getRet();
-    /**
-     * <pre>
-     * 结果
-     * </pre>
-     *
-     * <code>.common.common.ErrorMsg ret = 1;</code>
-     */
-    com.example.proto.common.common.Common.ErrorMsgOrBuilder getRetOrBuilder();
-  }
-  /**
-   * Protobuf type {@code inner.inner.RemoveConnectionsResp}
-   */
-  public  static final class RemoveConnectionsResp extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:inner.inner.RemoveConnectionsResp)
-      RemoveConnectionsRespOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use RemoveConnectionsResp.newBuilder() to construct.
-    private RemoveConnectionsResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private RemoveConnectionsResp() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new RemoveConnectionsResp();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private RemoveConnectionsResp(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.example.proto.common.common.Common.ErrorMsg.Builder subBuilder = null;
-              if (ret_ != null) {
-                subBuilder = ret_.toBuilder();
-              }
-              ret_ = input.readMessage(com.example.proto.common.common.Common.ErrorMsg.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(ret_);
-                ret_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RemoveConnectionsResp_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RemoveConnectionsResp_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.example.proto.inner.inner.Inner.RemoveConnectionsResp.class, com.example.proto.inner.inner.Inner.RemoveConnectionsResp.Builder.class);
-    }
-
-    public static final int RET_FIELD_NUMBER = 1;
-    private com.example.proto.common.common.Common.ErrorMsg ret_;
-    /**
-     * <pre>
-     * 结果
-     * </pre>
-     *
-     * <code>.common.common.ErrorMsg ret = 1;</code>
-     * @return Whether the ret field is set.
-     */
-    public boolean hasRet() {
-      return ret_ != null;
-    }
-    /**
-     * <pre>
-     * 结果
-     * </pre>
-     *
-     * <code>.common.common.ErrorMsg ret = 1;</code>
-     * @return The ret.
-     */
-    public com.example.proto.common.common.Common.ErrorMsg getRet() {
-      return ret_ == null ? com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
-    }
-    /**
-     * <pre>
-     * 结果
-     * </pre>
-     *
-     * <code>.common.common.ErrorMsg ret = 1;</code>
-     */
-    public com.example.proto.common.common.Common.ErrorMsgOrBuilder getRetOrBuilder() {
-      return getRet();
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (ret_ != null) {
-        output.writeMessage(1, getRet());
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (ret_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getRet());
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.example.proto.inner.inner.Inner.RemoveConnectionsResp)) {
-        return super.equals(obj);
-      }
-      com.example.proto.inner.inner.Inner.RemoveConnectionsResp other = (com.example.proto.inner.inner.Inner.RemoveConnectionsResp) obj;
-
-      if (hasRet() != other.hasRet()) return false;
-      if (hasRet()) {
-        if (!getRet()
-            .equals(other.getRet())) return false;
-      }
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasRet()) {
-        hash = (37 * hash) + RET_FIELD_NUMBER;
-        hash = (53 * hash) + getRet().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsResp parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsResp parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsResp parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsResp parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsResp parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsResp parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsResp parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsResp parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsResp parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsResp parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsResp parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsResp parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.example.proto.inner.inner.Inner.RemoveConnectionsResp prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code inner.inner.RemoveConnectionsResp}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:inner.inner.RemoveConnectionsResp)
-        com.example.proto.inner.inner.Inner.RemoveConnectionsRespOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RemoveConnectionsResp_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RemoveConnectionsResp_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.example.proto.inner.inner.Inner.RemoveConnectionsResp.class, com.example.proto.inner.inner.Inner.RemoveConnectionsResp.Builder.class);
-      }
-
-      // Construct using com.example.proto.inner.inner.Inner.RemoveConnectionsResp.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (retBuilder_ == null) {
-          ret_ = null;
-        } else {
-          ret_ = null;
-          retBuilder_ = null;
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.example.proto.inner.inner.Inner.internal_static_inner_inner_RemoveConnectionsResp_descriptor;
-      }
-
-      @java.lang.Override
-      public com.example.proto.inner.inner.Inner.RemoveConnectionsResp getDefaultInstanceForType() {
-        return com.example.proto.inner.inner.Inner.RemoveConnectionsResp.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.example.proto.inner.inner.Inner.RemoveConnectionsResp build() {
-        com.example.proto.inner.inner.Inner.RemoveConnectionsResp result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.example.proto.inner.inner.Inner.RemoveConnectionsResp buildPartial() {
-        com.example.proto.inner.inner.Inner.RemoveConnectionsResp result = new com.example.proto.inner.inner.Inner.RemoveConnectionsResp(this);
-        if (retBuilder_ == null) {
-          result.ret_ = ret_;
-        } else {
-          result.ret_ = retBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.example.proto.inner.inner.Inner.RemoveConnectionsResp) {
-          return mergeFrom((com.example.proto.inner.inner.Inner.RemoveConnectionsResp)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.example.proto.inner.inner.Inner.RemoveConnectionsResp other) {
-        if (other == com.example.proto.inner.inner.Inner.RemoveConnectionsResp.getDefaultInstance()) return this;
-        if (other.hasRet()) {
-          mergeRet(other.getRet());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.example.proto.inner.inner.Inner.RemoveConnectionsResp parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.example.proto.inner.inner.Inner.RemoveConnectionsResp) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private com.example.proto.common.common.Common.ErrorMsg ret_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder> retBuilder_;
-      /**
-       * <pre>
-       * 结果
-       * </pre>
-       *
-       * <code>.common.common.ErrorMsg ret = 1;</code>
-       * @return Whether the ret field is set.
-       */
-      public boolean hasRet() {
-        return retBuilder_ != null || ret_ != null;
-      }
-      /**
-       * <pre>
-       * 结果
-       * </pre>
-       *
-       * <code>.common.common.ErrorMsg ret = 1;</code>
-       * @return The ret.
-       */
-      public com.example.proto.common.common.Common.ErrorMsg getRet() {
-        if (retBuilder_ == null) {
-          return ret_ == null ? com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
-        } else {
-          return retBuilder_.getMessage();
-        }
-      }
-      /**
-       * <pre>
-       * 结果
-       * </pre>
-       *
-       * <code>.common.common.ErrorMsg ret = 1;</code>
-       */
-      public Builder setRet(com.example.proto.common.common.Common.ErrorMsg value) {
-        if (retBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ret_ = value;
-          onChanged();
-        } else {
-          retBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <pre>
-       * 结果
-       * </pre>
-       *
-       * <code>.common.common.ErrorMsg ret = 1;</code>
-       */
-      public Builder setRet(
-          com.example.proto.common.common.Common.ErrorMsg.Builder builderForValue) {
-        if (retBuilder_ == null) {
-          ret_ = builderForValue.build();
-          onChanged();
-        } else {
-          retBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <pre>
-       * 结果
-       * </pre>
-       *
-       * <code>.common.common.ErrorMsg ret = 1;</code>
-       */
-      public Builder mergeRet(com.example.proto.common.common.Common.ErrorMsg value) {
-        if (retBuilder_ == null) {
-          if (ret_ != null) {
-            ret_ =
-              com.example.proto.common.common.Common.ErrorMsg.newBuilder(ret_).mergeFrom(value).buildPartial();
-          } else {
-            ret_ = value;
-          }
-          onChanged();
-        } else {
-          retBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <pre>
-       * 结果
-       * </pre>
-       *
-       * <code>.common.common.ErrorMsg ret = 1;</code>
-       */
-      public Builder clearRet() {
-        if (retBuilder_ == null) {
-          ret_ = null;
-          onChanged();
-        } else {
-          ret_ = null;
-          retBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <pre>
-       * 结果
-       * </pre>
-       *
-       * <code>.common.common.ErrorMsg ret = 1;</code>
-       */
-      public com.example.proto.common.common.Common.ErrorMsg.Builder getRetBuilder() {
-        
-        onChanged();
-        return getRetFieldBuilder().getBuilder();
-      }
-      /**
-       * <pre>
-       * 结果
-       * </pre>
-       *
-       * <code>.common.common.ErrorMsg ret = 1;</code>
-       */
-      public com.example.proto.common.common.Common.ErrorMsgOrBuilder getRetOrBuilder() {
-        if (retBuilder_ != null) {
-          return retBuilder_.getMessageOrBuilder();
-        } else {
-          return ret_ == null ?
-              com.example.proto.common.common.Common.ErrorMsg.getDefaultInstance() : ret_;
-        }
-      }
-      /**
-       * <pre>
-       * 结果
-       * </pre>
-       *
-       * <code>.common.common.ErrorMsg ret = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder> 
-          getRetFieldBuilder() {
-        if (retBuilder_ == null) {
-          retBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.example.proto.common.common.Common.ErrorMsg, com.example.proto.common.common.Common.ErrorMsg.Builder, com.example.proto.common.common.Common.ErrorMsgOrBuilder>(
-                  getRet(),
-                  getParentForChildren(),
-                  isClean());
-          ret_ = null;
-        }
-        return retBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:inner.inner.RemoveConnectionsResp)
-    }
-
-    // @@protoc_insertion_point(class_scope:inner.inner.RemoveConnectionsResp)
-    private static final com.example.proto.inner.inner.Inner.RemoveConnectionsResp DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.example.proto.inner.inner.Inner.RemoveConnectionsResp();
-    }
-
-    public static com.example.proto.inner.inner.Inner.RemoveConnectionsResp getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<RemoveConnectionsResp>
-        PARSER = new com.google.protobuf.AbstractParser<RemoveConnectionsResp>() {
-      @java.lang.Override
-      public RemoveConnectionsResp parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RemoveConnectionsResp(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<RemoveConnectionsResp> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<RemoveConnectionsResp> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.example.proto.inner.inner.Inner.RemoveConnectionsResp getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_inner_inner_RouteMsgReq_descriptor;
   private static final 
@@ -6551,16 +5673,6 @@ public final class Inner {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_inner_inner_GetNodeAddresssResp_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_inner_inner_RemoveConnectionsReq_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_inner_inner_RemoveConnectionsReq_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_inner_inner_RemoveConnectionsResp_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_inner_inner_RemoveConnectionsResp_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -6571,30 +5683,28 @@ public final class Inner {
   static {
     java.lang.String[] descriptorData = {
       "\n\021inner/inner.proto\022\013inner.inner\032\023common" +
-      "/common.proto\">\n\013RouteMsgReq\022\016\n\006to_uid\030\001" +
-      " \001(\t\022\037\n\003msg\030\002 \001(\0132\022.common.common.Msg\"4\n" +
-      "\014RouteMsgResp\022$\n\003ret\030\001 \001(\0132\027.common.comm" +
-      "on.ErrorMsg\"*\n\rGuidUidBinder\022\013\n\003uid\030\001 \001(" +
-      "\003\022\014\n\004guid\030\002 \001(\003\"_\n\020BatchRouteMsgReq\022*\n\006t" +
-      "o_uid\030\001 \003(\0132\032.inner.inner.GuidUidBinder\022" +
-      "\037\n\003msg\030\002 \001(\0132\022.common.common.Msg\"9\n\021Batc" +
-      "hRouteMsgResp\022$\n\003ret\030\001 \001(\0132\027.common.comm" +
-      "on.ErrorMsg\"\024\n\022GetNodeAddresssReq\"W\n\023Get" +
-      "NodeAddresssResp\022$\n\003ret\030\001 \001(\0132\027.common.c" +
-      "ommon.ErrorMsg\022\014\n\004host\030\002 \001(\t\022\014\n\004port\030\003 \001" +
-      "(\t\"\026\n\024RemoveConnectionsReq\"=\n\025RemoveConn" +
-      "ectionsResp\022$\n\003ret\030\001 \001(\0132\027.common.common" +
-      ".ErrorMsg2\303\001\n\020ConnectorService\022S\n\016GetNod" +
-      "eAddress\022\037.inner.inner.GetNodeAddresssRe" +
-      "q\032 .inner.inner.GetNodeAddresssResp\022Z\n\021R" +
-      "emoveConnections\022!.inner.inner.RemoveCon" +
-      "nectionsReq\032\".inner.inner.RemoveConnecti" +
-      "onsResp2\236\001\n\013PushService\022?\n\010RouteMsg\022\030.in" +
-      "ner.inner.RouteMsgReq\032\031.inner.inner.Rout" +
-      "eMsgResp\022N\n\rBatchRouteMsg\022\035.inner.inner." +
-      "BatchRouteMsgReq\032\036.inner.inner.BatchRout" +
-      "eMsgRespB(\n\035com.example.proto.inner.inne" +
-      "rB\005InnerP\000b\006proto3"
+      "/common.proto\"d\n\013RouteMsgReq\022\016\n\006to_uid\030\001" +
+      " \001(\t\022\037\n\003msg\030\002 \001(\0132\022.common.common.Msg\022$\n" +
+      "\004type\030\003 \001(\0162\026.inner.inner.RouteType\"4\n\014R" +
+      "outeMsgResp\022$\n\003ret\030\001 \001(\0132\027.common.common" +
+      ".ErrorMsg\"*\n\rGuidUidBinder\022\013\n\003uid\030\001 \001(\003\022" +
+      "\014\n\004guid\030\002 \001(\003\"_\n\020BatchRouteMsgReq\022*\n\006to_" +
+      "uid\030\001 \003(\0132\032.inner.inner.GuidUidBinder\022\037\n" +
+      "\003msg\030\002 \001(\0132\022.common.common.Msg\"9\n\021BatchR" +
+      "outeMsgResp\022$\n\003ret\030\001 \001(\0132\027.common.common" +
+      ".ErrorMsg\"\024\n\022GetNodeAddresssReq\"W\n\023GetNo" +
+      "deAddresssResp\022$\n\003ret\030\001 \001(\0132\027.common.com" +
+      "mon.ErrorMsg\022\014\n\004host\030\002 \001(\t\022\014\n\004port\030\003 \001(\t" +
+      "*4\n\tRouteType\022\022\n\016ROUTE_TYPE_NUL\020\000\022\n\n\006NOR" +
+      "MAL\020\001\022\007\n\003CMD\020\0022g\n\020ConnectorService\022S\n\016Ge" +
+      "tNodeAddress\022\037.inner.inner.GetNodeAddres" +
+      "ssReq\032 .inner.inner.GetNodeAddresssResp2" +
+      "\236\001\n\013PushService\022?\n\010RouteMsg\022\030.inner.inne" +
+      "r.RouteMsgReq\032\031.inner.inner.RouteMsgResp" +
+      "\022N\n\rBatchRouteMsg\022\035.inner.inner.BatchRou" +
+      "teMsgReq\032\036.inner.inner.BatchRouteMsgResp" +
+      "B(\n\035com.example.proto.inner.innerB\005Inner" +
+      "P\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -6606,7 +5716,7 @@ public final class Inner {
     internal_static_inner_inner_RouteMsgReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_inner_inner_RouteMsgReq_descriptor,
-        new java.lang.String[] { "ToUid", "Msg", });
+        new java.lang.String[] { "ToUid", "Msg", "Type", });
     internal_static_inner_inner_RouteMsgResp_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_inner_inner_RouteMsgResp_fieldAccessorTable = new
@@ -6643,18 +5753,6 @@ public final class Inner {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_inner_inner_GetNodeAddresssResp_descriptor,
         new java.lang.String[] { "Ret", "Host", "Port", });
-    internal_static_inner_inner_RemoveConnectionsReq_descriptor =
-      getDescriptor().getMessageTypes().get(7);
-    internal_static_inner_inner_RemoveConnectionsReq_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_inner_inner_RemoveConnectionsReq_descriptor,
-        new java.lang.String[] { });
-    internal_static_inner_inner_RemoveConnectionsResp_descriptor =
-      getDescriptor().getMessageTypes().get(8);
-    internal_static_inner_inner_RemoveConnectionsResp_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_inner_inner_RemoveConnectionsResp_descriptor,
-        new java.lang.String[] { "Ret", });
     com.example.proto.common.common.Common.getDescriptor();
   }
 

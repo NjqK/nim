@@ -58,6 +58,29 @@ public class ChatServiceImpl implements ChatService {
     }
 
     @Override
+    public Outer.ReleaseConnectionsResp releaseConnections(Outer.ReleaseConnectionsReq req) {
+        log.info("releaseConnections, req:{}", req);
+        Outer.ReleaseConnectionsResp.Builder builder = Outer.ReleaseConnectionsResp.newBuilder();
+        try {
+            if (StringUtils.isEmpty(req.getApplicationName())
+                    || StringUtils.isEmpty(req.getIp())
+                    || StringUtils.isEmpty(req.getPort())) {
+                return builder.setRet(Common.ErrorMsg.newBuilder()
+                        .setErrorCode(Common.ErrCode.RELEASE_CONNECTIONS_FAULTY_PARAMETER)
+                        .setMsg("参数错误")
+                        .build())
+                        .build();
+            }
+            Outer.ReleaseConnectionsResp resp = chatServiceManager.releaseConnections(req);
+            log.info("releaseConnections, resp:{}", resp);
+            return resp;
+        } catch (Exception e) {
+            log.error("releaseConnections caught exception, e:{}", e);
+            return builder.setRet(CommonConstants.FAIL).build();
+        }
+    }
+
+    @Override
     public Outer.DoGroupSendingResp doGroupSending(Outer.DoGroupSendingReq req) {
         log.info("doGroupSending, req:{}", req);
         Outer.DoGroupSendingResp.Builder builder = Outer.DoGroupSendingResp.newBuilder();

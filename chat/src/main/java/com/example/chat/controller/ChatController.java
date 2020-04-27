@@ -48,6 +48,11 @@ public class ChatController {
         return resp.toByteArray();
     }
 
+    @GetMapping("/releaseConnections")
+    public void releaseConnections() {
+
+    }
+
     @GetMapping("/sendMsg")
     public String sendMsg(@RequestParam("uid") String uid, @RequestParam("msg") String msg) {
         // TODO 转化对象

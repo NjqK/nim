@@ -1,4 +1,4 @@
-package com.example.connector.dao.manager;
+package com.example.connector.entity.domain;
 
 import com.example.connector.entity.domain.ServiceLoad;
 

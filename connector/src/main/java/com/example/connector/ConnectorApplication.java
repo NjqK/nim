@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -72,16 +73,18 @@ public class ConnectorApplication {
         // 用这个clusterNode在redis李建立一个map，并创建ServerBootstrap
         initKafka();
         // 添加这个节点到redis，分别为connector，服务器key，权重
-        JedisUtil.hsetnx(CommonConstants.CONNECTOR_REDIS_KEY, RedisKeyUtil.getApplicationRedisKey(), "");
+        JedisUtil.hsetnx(CommonConstants.CONNECTOR_REDIS_KEY, RedisKeyUtil.getApplicationRedisKey(), "0");
         // TODO 添加定时更新负载的任务
 
     }
 
     private void initKafka() {
+        ClusterNode localNode = clusterNodeManager.getLocalNode();
         List<String> kafkaTopics = new ArrayList<>();
         kafkaTopics.add(CommonConstants.CONNECTOR_KAFKA_TOPIC);
         KafkaProducerUtil.init(kafkaNodes, applicationName, null);
-        KafkaConsumerUtil.init(kafkaNodes, kafkaGroup, kafkaTopics
+        String groupName = kafkaGroup + localNode.getIp() + "_" + localNode.getPort();
+        KafkaConsumerUtil.init(kafkaNodes, groupName, kafkaTopics
                 , new ConnectorProcessor(NettyServerManager.getInstance(), sessionManager), true);
     }
 
