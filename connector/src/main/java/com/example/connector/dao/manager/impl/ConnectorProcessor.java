@@ -70,6 +70,7 @@ public class ConnectorProcessor implements ReceiveMessageCallback<String, String
                     if (StringUtils.isNotEmpty(content)) {
                         if (RedisKeyUtil.getApplicationRedisKey().equals(content)) {
                             // 创建任务去作
+                            log.info("ConnectorProcessor, releasing===");
                             ConnectorThreadFactory.addJob(new ReleaseConnectionsTask(sessionManager));
                         }
                     } else {
