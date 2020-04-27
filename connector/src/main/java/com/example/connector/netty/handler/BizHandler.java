@@ -59,6 +59,8 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
                     }
                     AttributeKey<String> key = AttributeKey.valueOf("uid");
                     channel.attr(key).set(uid);
+
+                    JedisUtil.hincrby(RedisKeyUtil.getApplicationRedisKey(), "userCount", 1L);
                 }
             } else {
                 log.error("uid is null");
@@ -99,6 +101,7 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
             if (!sessionManager.destroySession(uid)) {
                 log.error("deleting session is failed, uid:{}", uid);
             }
+            JedisUtil.hincrby(RedisKeyUtil.getApplicationRedisKey(), "userCount", -1L);
         }
         channel.close();
     }
@@ -110,6 +113,7 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
         if (uid != null) {
             JedisUtil.hdel(CommonConstants.USERS_REDIS_KEY, uid);
             sessionManager.destroySession(uid);
+            JedisUtil.hincrby(RedisKeyUtil.getApplicationRedisKey(), "userCount", -1L);
         }
         ctx.close();
     }
