@@ -27,7 +27,9 @@ public class UpdateServerLoadTask implements Runnable {
         ServiceLoad serviceLoad = new ServiceLoad(processCpuLoad, freePhysicalMemorySize);
         long weight = Math.max(weightCalculator.calculateServiceWeight(serviceLoad), 1L);
         String value = String.valueOf(weight);
-        JedisUtil.hset(CommonConstants.CONNECTOR_REDIS_KEY, RedisKeyUtil.getApplicationRedisKey(), value);
+        if (JedisUtil.hexists(CommonConstants.CONNECTOR_REDIS_KEY, RedisKeyUtil.getApplicationRedisKey())) {
+            JedisUtil.hset(CommonConstants.CONNECTOR_REDIS_KEY, RedisKeyUtil.getApplicationRedisKey(), value);
+        }
         JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "weight", value);
     }
 }

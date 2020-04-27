@@ -75,3 +75,7 @@
 				Jmeter：
 				
 				Locust：
+	
+- Tips：
+
+        dubbo连不上Zookeeper需要配置host文件，添加ip
