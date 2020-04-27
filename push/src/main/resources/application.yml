@@ -18,7 +18,7 @@ dubbo:
     port: 20883
     serialization: myprotobuf
   registry:
-    address: zookeeper://127.0.0.1:2181
+    address: zookeeper://192.168.0.108:2181
     client: curator
   scan:
     base-packages: com.example.push.service
@@ -28,7 +28,7 @@ server:
 
 redis:
   pool:
-    host: 127.0.0.1
+    host: 192.168.0.108
     port: 6379
     password:
     maxTotal: 8
@@ -36,7 +36,7 @@ redis:
     maxWaitMillis: -1
 
 kafka:
-  nodes: 127.0.0.1:9092
+  nodes: 192.168.0.108:9092
   group: push_task_group
 
 

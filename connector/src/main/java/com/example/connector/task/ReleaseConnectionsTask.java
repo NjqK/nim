@@ -42,6 +42,11 @@ public class ReleaseConnectionsTask implements Runnable {
             }
             // TODO 降级这个服务，防止新的连接请求
 
+            int uidCount = allUid.size();
+            if (uidCount == 0) {
+                log.info("no user on this node");
+                return;
+            }
             Map<String, String> allServers = JedisUtil.hgetall(CommonConstants.CONNECTOR_REDIS_KEY);
             Map<String, Integer> allAvailableServers = new HashMap<>(16);
             if (allServers == null || allServers.size() == 0) {
@@ -49,7 +54,6 @@ public class ReleaseConnectionsTask implements Runnable {
                 return;
             }
             int current = 0;
-            int uidCount = allUid.size();
             int totalWeight = 0;
             for (String serverInfo : allServers.keySet()) {
                 String weight = allServers.get(serverInfo);

@@ -17,7 +17,18 @@ public class GetSystemInfoUtil {
 //        System.out.println(getTotalMemorySize());
 //        System.out.println(getFreePhysicalMemorySize());
 //        System.out.println(getUsedMemory());
+//        long maxMem = Runtime.getRuntime().maxMemory()/1024/1024;
+//        long freeMem = Runtime.getRuntime().freeMemory()/1024/1024;
+//        long usedMem = maxMem - freeMem;
+//        System.out.println(maxMem+"_"+freeMem+"_"+usedMem);
 //    }
+
+
+    public static long getAvailableMem() {
+        long freeMem = Runtime.getRuntime().freeMemory() / 1024 / 1024;
+        System.out.println(freeMem);
+        return freeMem;
+    }
 
     /**
      * 获取操作系统名称
@@ -69,7 +80,7 @@ public class GetSystemInfoUtil {
     }
 
     /**
-     * 获取剩余的物理内存
+     * 获取free的物理内存
      *
      * @return
      */

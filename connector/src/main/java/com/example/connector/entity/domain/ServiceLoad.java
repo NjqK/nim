@@ -16,9 +16,9 @@ public class ServiceLoad {
     /**
      * 可用内存
      */
-    private final int freeMem;
+    private final long freeMem;
 
-    public ServiceLoad(double cpuLoad, int freeMem) {
+    public ServiceLoad(double cpuLoad, long freeMem) {
         this.cpuLoad = cpuLoad;
         this.freeMem = freeMem;
     }

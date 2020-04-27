@@ -65,6 +65,13 @@ public class PushServiceImpl implements PushService {
         log.info("Inner.RouteMsgResp routeMsg, req:{}", req);
         Inner.RouteMsgResp.Builder builder = Inner.RouteMsgResp.newBuilder();
         try {
+            if (req.getType().equals(Inner.RouteType.CMD)) {
+                if (req.getMsg().getHead().getMsgType().equals(Common.MsgType.CHANGE_SERVER)) {
+                    String msgJson = JsonFormat.printer().print(req.getMsg());
+                    KafkaProducerUtil.sendSingle(CommonConstants.CONNECTOR_KAFKA_TOPIC, msgJson, true);
+                }
+                return builder.setRet(CommonConstants.SUCCESS).build();
+            }
             // 找到netty，放到对应的kafka节点
             String nettyNodeInfo = JedisUtil.hget(CommonConstants.USERS_REDIS_KEY, req.getToUid());
             if (nettyNodeInfo == null) {

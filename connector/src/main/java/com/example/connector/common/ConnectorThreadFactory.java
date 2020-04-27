@@ -11,7 +11,13 @@ public class ConnectorThreadFactory {
 
     private static final ExecutorService EXECUTOR_SERVICE = Executors.newFixedThreadPool(5);
 
+    public static final ScheduledExecutorService SCHEDULED_EXECUTOR_SERVICE = Executors.newScheduledThreadPool(1);
+
     public static void addJob(Runnable job) {
         EXECUTOR_SERVICE.submit(job);
+    }
+
+    public static void  addScheduledJob(Runnable job, long scheduleTime, TimeUnit timeUnit) {
+        SCHEDULED_EXECUTOR_SERVICE.scheduleAtFixedRate(job, 0L, scheduleTime, timeUnit);
     }
 }

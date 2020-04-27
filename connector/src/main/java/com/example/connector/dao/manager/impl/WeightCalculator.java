@@ -14,12 +14,16 @@ public class WeightCalculator {
      */
     private WeightPolicy policy;
 
+    public WeightCalculator(WeightPolicy policy) {
+        this.policy = policy;
+    }
+
     /**
      * 计算长连接服务权重
      * @param serviceLoad ServiceLoad
      * @return serviceWeight int
      */
-    public int calculateServiceWeight(ServiceLoad serviceLoad) {
-        return  0;
+    public long calculateServiceWeight(ServiceLoad serviceLoad) {
+        return  policy.calculateWeight(serviceLoad);
     }
 }
