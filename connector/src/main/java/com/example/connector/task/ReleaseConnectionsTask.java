@@ -112,7 +112,7 @@ public class ReleaseConnectionsTask implements Runnable {
                                 .setBody(body)
                                 .build();
                         int weight = allAvailableServers.get(serverInfo);
-                        double v = uidCount * (weight + 0.0 / totalWeight);
+                        double v = uidCount * ((weight + 0.0) / totalWeight);
                         int proportion = new Double(Math.max(v, 1)).intValue();
                         for (int i = 0; i < proportion; i++) {
                             if (current < uidCount) {
