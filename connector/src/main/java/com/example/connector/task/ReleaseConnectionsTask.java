@@ -94,8 +94,10 @@ public class ReleaseConnectionsTask implements Runnable {
                                 .build();
                         int weight = allAvailableServers.get(serverInfo);
                         for (int i = 0; i < weight; i++) {
-                            instance.sendMsg(sessionManager.getChannel(allUid.get(current)), changeServerMsg);
-                            current++;
+                            if (current < uidCount) {
+                                instance.sendMsg(sessionManager.getChannel(allUid.get(current)), changeServerMsg);
+                                current++;
+                            }
                         }
                     }
                 }
@@ -110,10 +112,13 @@ public class ReleaseConnectionsTask implements Runnable {
                                 .setBody(body)
                                 .build();
                         int weight = allAvailableServers.get(serverInfo);
-                        int proportion = Math.max((uidCount * weight) / totalWeight, 1);
+                        double v = uidCount * (weight + 0.0 / totalWeight);
+                        int proportion = new Double(Math.max(v, 1)).intValue();
                         for (int i = 0; i < proportion; i++) {
-                            instance.sendMsg(sessionManager.getChannel(allUid.get(current)), changeServerMsg);
-                            current++;
+                            if (current < uidCount) {
+                                instance.sendMsg(sessionManager.getChannel(allUid.get(current)), changeServerMsg);
+                                current++;
+                            }
                         }
                     }
                 }
