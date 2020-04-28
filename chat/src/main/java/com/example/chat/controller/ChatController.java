@@ -1,6 +1,7 @@
 package com.example.chat.controller;
 
 import com.example.api.outer.outer.ChatService;
+import com.example.chat.entity.vo.RecoverServiceReqVO;
 import com.example.chat.entity.vo.ReleaseConnectionsReqVO;
 import com.example.chat.entity.vo.SendGroupMsgReq;
 import com.example.proto.common.common.Common;
@@ -46,6 +47,17 @@ public class ChatController {
                 .setPort(releaseConnectionsReqVO.getPort())
                 .build();
         Outer.ReleaseConnectionsResp resp = chatService.releaseConnections(req);
+        return JsonFormat.printer().print(resp);
+    }
+
+    @PostMapping("/recoverServer")
+    public String recoverService(@RequestBody RecoverServiceReqVO recoverServiceReqVO) throws InvalidProtocolBufferException {
+        Outer.RecoverServiceReq req = Outer.RecoverServiceReq.newBuilder()
+                .setApplicationName(recoverServiceReqVO.getAppName())
+                .setIp(recoverServiceReqVO.getIp())
+                .setPort(recoverServiceReqVO.getPort())
+                .build();
+        Outer.RecoverServiceResp resp = chatService.recoverService(req);
         return JsonFormat.printer().print(resp);
     }
 

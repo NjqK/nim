@@ -1,6 +1,7 @@
 package com.example.connector.common;
 
 import com.example.connector.entity.domain.ClusterNode;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author kuro
@@ -26,5 +27,19 @@ public class RedisKeyUtil {
 
     public static String getApplicationRedisKey() {
         return applicationRedisKey;
+    }
+
+    public static String getIp(String key) {
+        if (StringUtils.isNotEmpty(key)) {
+            return key.split("_")[1];
+        }
+        return null;
+    }
+
+    public static String getHost(String key) {
+        if (StringUtils.isNotEmpty(key)) {
+            return key.split("_")[2];
+        }
+        return null;
     }
 }

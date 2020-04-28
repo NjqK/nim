@@ -4,7 +4,9 @@ import com.example.common.CommonConstants;
 import com.example.common.kafka.KafkaConsumerUtil;
 import com.example.common.kafka.KafkaProducerUtil;
 import com.example.common.redis.JedisUtil;
+import com.example.common.zk.ZkUtil;
 import com.example.connector.common.ConnectorThreadFactory;
+import com.example.connector.common.DubboRouterUtil;
 import com.example.connector.common.RedisKeyUtil;
 import com.example.connector.dao.manager.ClusterNodeManager;
 import com.example.connector.dao.manager.SessionManager;
@@ -15,15 +17,15 @@ import com.example.connector.entity.domain.RatePolicy;
 import com.example.connector.netty.NettyServerManager;
 import com.example.connector.task.UpdateServerLoadTask;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.common.metrics.stats.Rate;
+import org.apache.zookeeper.CreateMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.net.ssl.KeyManagerFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -56,8 +58,6 @@ public class ConnectorApplication {
     @Value("${redis.pool.maxWaitMillis}")
     private String redisMaxWaitMillis;
 
-    private String zkRootPath = "/app/";
-
     @Value(("${kafka.nodes}"))
     private String kafkaNodes;
 
@@ -73,18 +73,33 @@ public class ConnectorApplication {
     @PostConstruct
     private void onStart() {
         log.info(applicationName + " starting...");
+        initZk();
         initRedis();
         initNetty();
         // 用这个clusterNode在redis李建立一个map，并创建ServerBootstrap
         initKafka();
+        // 添加zk临时节点
+        String zkPath = CommonConstants.CONNECTOR_ZK_BASE_PATH + "/" + RedisKeyUtil.getApplicationRedisKey();
+        if (!ZkUtil.isExists(CommonConstants.BASE_ZK_PATH)) {
+            ZkUtil.createPath(CommonConstants.BASE_ZK_PATH, "", CreateMode.PERSISTENT);
+        }
+        if (!ZkUtil.isExists(CommonConstants.CONNECTOR_ZK_BASE_PATH)) {
+            ZkUtil.createPath(CommonConstants.CONNECTOR_ZK_BASE_PATH, "", CreateMode.PERSISTENT);
+        }
+        ZkUtil.createPath(zkPath, "", CreateMode.EPHEMERAL);
         // 添加这个节点到redis，分别为connector，服务器key，权重
         JedisUtil.hsetnx(CommonConstants.CONNECTOR_REDIS_KEY, RedisKeyUtil.getApplicationRedisKey(), "0");
         JedisUtil.hsetnx(RedisKeyUtil.getApplicationRedisKey(), "weight", "0");
         JedisUtil.hsetnx(RedisKeyUtil.getApplicationRedisKey(), "userCount", "0");
-        // TODO 添加定时更新负载的任务
-        RatePolicy ratePolicy = new RatePolicy(0, 1);
+        DubboRouterUtil.init(zkUrl);
+        // 添加定时更新负载的任务
+        RatePolicy ratePolicy = RatePolicy.DEFAULT;
         WeightCalculator weightCalculator = new WeightCalculator(ratePolicy);
         ConnectorThreadFactory.addScheduledJob(new UpdateServerLoadTask(weightCalculator), 60, TimeUnit.SECONDS);
+    }
+
+    private void initZk() {
+        ZkUtil.start(zkUrl, null);
     }
 
     private void initKafka() {
@@ -117,10 +132,12 @@ public class ConnectorApplication {
 
     @PreDestroy
     private void onDestroy() {
-        sessionManager.serverDown();
         JedisUtil.hdel(CommonConstants.CONNECTOR_REDIS_KEY, RedisKeyUtil.getApplicationRedisKey());
         JedisUtil.del(RedisKeyUtil.getApplicationRedisKey());
+        ZkUtil.deletePath(CommonConstants.CONNECTOR_ZK_BASE_PATH + "/" + RedisKeyUtil.getApplicationRedisKey());
+        sessionManager.serverDown();
         JedisUtil.close();
+        ZkUtil.releaseConnection();
         KafkaProducerUtil.close();
         KafkaConsumerUtil.destory();
         // TODO 添加dubbo优雅停机

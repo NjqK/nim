@@ -25,4 +25,8 @@ public class CommonConstants {
     public static final String CONNECTOR_REDIS_KEY = "connector";
 
     public static final String CONNECTOR_KAFKA_TOPIC = "connector";
+
+    public static final String BASE_ZK_PATH = "/app";
+
+    public static final String CONNECTOR_ZK_BASE_PATH = "/app/connector";
 }

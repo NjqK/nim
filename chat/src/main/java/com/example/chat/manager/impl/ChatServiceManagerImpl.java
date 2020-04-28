@@ -210,6 +210,27 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
         return Outer.ReleaseConnectionsResp.newBuilder().setRet(CommonConstants.SUCCESS).build();
     }
 
+    @Override
+    public Outer.RecoverServiceResp recoverService(Outer.RecoverServiceReq req) {
+        String cmd = req.getApplicationName() + "_" + req.getIp() + "_" + req.getPort();
+        Common.Head header = Common.Head.newBuilder()
+                .setMsgType(Common.MsgType.RECOVER_SERVER)
+                .build();
+        Common.Body body = Common.Body.newBuilder()
+                .setContent(cmd)
+                .build();
+        Common.Msg msg = Common.Msg.newBuilder()
+                .setHead(header)
+                .setBody(body)
+                .build();
+        Inner.RouteMsgReq touteReq = Inner.RouteMsgReq.newBuilder()
+                .setType(Inner.RouteType.CMD)
+                .setMsg(msg)
+                .build();
+        pushService.routeMsg(touteReq);
+        return Outer.RecoverServiceResp.newBuilder().setRet(CommonConstants.SUCCESS).build();
+    }
+
     private Inner.RouteMsgReq buildPushReq(Outer.SendMsgIndividuallyReq req, long guid) {
         Common.Head header = Common.Head.newBuilder()
                 .setMsgId(guid)

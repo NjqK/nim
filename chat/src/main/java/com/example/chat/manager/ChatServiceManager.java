@@ -20,4 +20,6 @@ public interface ChatServiceManager {
     Outer.AckMsgResp ackMsg(Outer.AckMsgReq ackMsgReq);
 
     Outer.ReleaseConnectionsResp releaseConnections(Outer.ReleaseConnectionsReq releaseConnectionsReq);
+
+    Outer.RecoverServiceResp recoverService(Outer.RecoverServiceReq recoverServiceReq);
 }

@@ -18,7 +18,7 @@ import java.net.ServerSocket;
 @Component
 public class ClusterNodeManagerImpl implements ClusterNodeManager {
 
-    private ClusterNode localNode = null;
+    private volatile ClusterNode localNode = null;
 
     @Override
     public ClusterNode getLocalNode() {

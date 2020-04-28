@@ -66,9 +66,15 @@ public class PushServiceImpl implements PushService {
         Inner.RouteMsgResp.Builder builder = Inner.RouteMsgResp.newBuilder();
         try {
             if (req.getType().equals(Inner.RouteType.CMD)) {
-                if (req.getMsg().getHead().getMsgType().equals(Common.MsgType.CHANGE_SERVER)) {
-                    String msgJson = JsonFormat.printer().print(req.getMsg());
-                    KafkaProducerUtil.sendSingle(CommonConstants.CONNECTOR_KAFKA_TOPIC, msgJson, true);
+                switch (req.getMsg().getHead().getMsgType()) {
+                    case CHANGE_SERVER:
+                    case RECOVER_SERVER:
+                        String msgJson = JsonFormat.printer().print(req.getMsg());
+                        KafkaProducerUtil.sendSingle(CommonConstants.CONNECTOR_KAFKA_TOPIC, msgJson, true);
+                        break;
+                    default:
+                        log.error("UNKNOWN CMD MSG TYPE!");
+                        break;
                 }
                 return builder.setRet(CommonConstants.SUCCESS).build();
             }

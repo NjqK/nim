@@ -1,7 +1,11 @@
 package com.example.connector.task;
 
+import com.alibaba.fastjson.JSON;
 import com.example.common.CommonConstants;
 import com.example.common.redis.JedisUtil;
+import com.example.common.util.ListUtil;
+import com.example.common.zk.ZkUtil;
+import com.example.connector.common.DubboRouterUtil;
 import com.example.connector.common.RedisKeyUtil;
 import com.example.connector.dao.manager.SessionManager;
 import com.example.connector.netty.NettyServerManager;
@@ -35,38 +39,44 @@ public class ReleaseConnectionsTask implements Runnable {
             List<String> allUid = new ArrayList<>(sessionManager.getAllUid());
             NettyServerManager instance = NettyServerManager.getInstance();
             // 删除key，防止别的节点的转移任务到这来
-            if (JedisUtil.hexists(CommonConstants.CONNECTOR_REDIS_KEY, RedisKeyUtil.getApplicationRedisKey())) {
-                JedisUtil.hdel(CommonConstants.CONNECTOR_REDIS_KEY, RedisKeyUtil.getApplicationRedisKey());
+            String applicationRedisKey = RedisKeyUtil.getApplicationRedisKey();
+            if (JedisUtil.hexists(CommonConstants.CONNECTOR_REDIS_KEY, applicationRedisKey)) {
+                JedisUtil.hdel(CommonConstants.CONNECTOR_REDIS_KEY, applicationRedisKey);
             } else {
                 return;
             }
-            // TODO 降级这个服务，防止新的连接请求
-
+            // 更改路由规则，防止进来新的连接请求
+            blockService(applicationRedisKey);
             int uidCount = allUid.size();
             if (uidCount == 0) {
                 log.info("no user on this node");
                 return;
             }
             Map<String, String> allServers = JedisUtil.hgetall(CommonConstants.CONNECTOR_REDIS_KEY);
+            List<String> child = ZkUtil.getChild(CommonConstants.CONNECTOR_ZK_BASE_PATH);
+            log.info("可用服务节点:{}", JSON.toJSONString(child, true));
             Map<String, Integer> allAvailableServers = new HashMap<>(16);
-            if (allServers == null || allServers.size() == 0) {
+            if (allServers == null || allServers.size() == 0 || ListUtil.isEmpty(child)) {
                 log.error("ConnectorServiceImpl removeConnections, no available node");
                 return;
             }
             int current = 0;
             int totalWeight = 0;
-            for (String serverInfo : allServers.keySet()) {
-                String weight = allServers.get(serverInfo);
-                if (StringUtils.isNotEmpty(weight)) {
-                    Integer v = Integer.valueOf(weight);
-                    allAvailableServers.put(serverInfo, v);
-                    totalWeight += v;
+            for (String serverInfo : child) {
+                if (!applicationRedisKey.equals(serverInfo)) {
+                    String weight = allServers.get(serverInfo);
+                    if (StringUtils.isNotEmpty(weight)) {
+                        Integer v = Integer.valueOf(weight);
+                        allAvailableServers.put(serverInfo, v);
+                        totalWeight += v;
+                    }
                 }
             }
             if (totalWeight == 0) {
                 log.error("ConnectorServiceImpl removeConnections total weight is 0");
                 return;
             }
+            log.info("allAvailableServers:{}", JSON.toJSONString(allAvailableServers, true));
             // assign job 分配任务
             Common.Head header = Common.Head.newBuilder()
                     .setMsgType(Common.MsgType.CHANGE_SERVER)
@@ -111,5 +121,18 @@ public class ReleaseConnectionsTask implements Runnable {
         } catch (Exception e) {
             log.info("removeConnections occur error: {}", e);
         }
+    }
+
+    /**
+     * 修改route规则，屏蔽这个ip的这个服务，防止有新的连接进入
+     * @param applicationRedisKey String
+     */
+    private void blockService(String applicationRedisKey) {
+        DubboRouterUtil dubboRouterUtil = DubboRouterUtil.getINSTANCE();
+        String ip = RedisKeyUtil.getIp(applicationRedisKey);
+        String serviceName = "com.example.api.inner.inner.ConnectorService";
+        String serviceVersion = "1.0.0";
+        String routeRule = "host != " + ip;
+        dubboRouterUtil.addRouteRule(serviceName, serviceVersion, routeRule);
     }
 }

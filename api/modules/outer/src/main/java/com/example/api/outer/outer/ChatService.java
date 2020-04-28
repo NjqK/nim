@@ -9,6 +9,8 @@ import com.example.proto.outer.outer.Outer.GetAvailableNodeReq;
 import com.example.proto.outer.outer.Outer.GetAvailableNodeResp;
 import com.example.proto.outer.outer.Outer.GetUnreadMsgReq;
 import com.example.proto.outer.outer.Outer.GetUnreadMsgResp;
+import com.example.proto.outer.outer.Outer.RecoverServiceReq;
+import com.example.proto.outer.outer.Outer.RecoverServiceResp;
 import com.example.proto.outer.outer.Outer.ReleaseConnectionsReq;
 import com.example.proto.outer.outer.Outer.ReleaseConnectionsResp;
 import com.example.proto.outer.outer.Outer.SendMsgIndividuallyReq;
@@ -62,6 +64,14 @@ public interface ChatService {
      * @return GetAvailableNodeResp
      */
     GetAvailableNodeResp getAvailableNode(GetAvailableNodeReq getAvailableNodeReq);
+
+    /**
+     * 恢复某个服务，让他能继续提供服务
+     *
+     * @param recoverServiceReq the RecoverServiceReq
+     * @return RecoverServiceResp
+     */
+    RecoverServiceResp recoverService(RecoverServiceReq recoverServiceReq);
 
     /**
      * 群发

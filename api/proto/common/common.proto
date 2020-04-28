@@ -22,6 +22,8 @@ enum MsgType {
     BYE = 6;
     // 更换服务器
     CHANGE_SERVER = 7;
+    // 恢复服务器
+    RECOVER_SERVER = 8;
 }
 
 enum MsgContentType {
@@ -101,6 +103,8 @@ enum ErrCode {
     ACK_MSG_RESP_UPDATE_DB_FAIL = 123;
     // 释放长连接接口如参有失误
     RELEASE_CONNECTIONS_FAULTY_PARAMETER = 124;
+    // 释放长连接接口如参有失误
+    RECOVER_SERVER_FAULTY_PARAMETER = 125;
 }
 
 message ErrorMsg {

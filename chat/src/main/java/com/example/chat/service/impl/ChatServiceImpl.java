@@ -207,4 +207,27 @@ public class ChatServiceImpl implements ChatService {
             return builder.setRet(CommonConstants.FAIL).build();
         }
     }
+
+    @Override
+    public Outer.RecoverServiceResp recoverService(Outer.RecoverServiceReq req) {
+        log.info("recoverService, req:{}", req);
+        Outer.RecoverServiceResp.Builder builder = Outer.RecoverServiceResp.newBuilder();
+        try {
+            if (StringUtils.isEmpty(req.getApplicationName())
+                    || StringUtils.isEmpty(req.getIp())
+                    || StringUtils.isEmpty(req.getPort())) {
+                return builder.setRet(Common.ErrorMsg.newBuilder()
+                        .setErrorCode(Common.ErrCode.RECOVER_SERVER_FAULTY_PARAMETER)
+                        .setMsg("参数错误")
+                        .build())
+                        .build();
+            }
+            Outer.RecoverServiceResp resp = chatServiceManager.recoverService(req);
+            log.info("releaseConnections, resp:{}", resp);
+            return resp;
+        } catch (Exception e) {
+            log.error("releaseConnections caught exception, e:{}", e);
+            return builder.setRet(CommonConstants.FAIL).build();
+        }
+    }
 }

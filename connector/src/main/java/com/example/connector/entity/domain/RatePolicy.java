@@ -15,6 +15,8 @@ public class RatePolicy implements WeightPolicy {
         this.memRate = memRate;
     }
 
+    public static final RatePolicy DEFAULT = new RatePolicy(0, 1);
+
     @Override
     public long calculateWeight(ServiceLoad serviceLoad) {
         long cpuPoint = (int) (serviceLoad.getCpuLoad() * cpuRate);

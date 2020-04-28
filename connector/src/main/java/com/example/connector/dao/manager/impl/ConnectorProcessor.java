@@ -7,6 +7,7 @@ import com.example.connector.common.RedisKeyUtil;
 import com.example.connector.common.SpringUtil;
 import com.example.connector.dao.manager.SessionManager;
 import com.example.connector.netty.NettyServerManager;
+import com.example.connector.task.RecoverServerTask;
 import com.example.connector.task.ReleaseConnectionsTask;
 import com.example.proto.common.common.Common;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -75,6 +76,19 @@ public class ConnectorProcessor implements ReceiveMessageCallback<String, String
                         }
                     } else {
                         log.error("ConnectorProcessor, change server cmd is faulty");
+                    }
+                    return true;
+                }
+                if (msg.getHead().getMsgType().equals(Common.MsgType.RECOVER_SERVER)) {
+                    String content = msg.getBody().getContent();
+                    if (StringUtils.isNotEmpty(content)) {
+                        if (RedisKeyUtil.getApplicationRedisKey().equals(content)) {
+                            // 恢复服务
+                            log.info("ConnectorProcessor, recovering===");
+                            ConnectorThreadFactory.addJob(new RecoverServerTask());
+                        }
+                    } else {
+                        log.error("ConnectorProcessor, recover server cmd is faulty");
                     }
                     return true;
                 }

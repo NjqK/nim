@@ -24,11 +24,14 @@ public class ZkUtil {
      * 创建ZkClient
      *
      * @param url            String
-     * @param sessionTimeout int
+     * @param sessionTimeout Integer
      * @return 成功返回true
      */
-    public static boolean start(String url, int sessionTimeout) {
+    public static boolean start(String url, Integer sessionTimeout) {
         try {
+            if (sessionTimeout == null) {
+                sessionTimeout = 60000;
+            }
             zk = new ZooKeeper(url, sessionTimeout, null);
         } catch (IOException e) {
             e.printStackTrace();
@@ -52,10 +55,9 @@ public class ZkUtil {
      * @param data zNode数据内容
      * @return 创建成功返回true, 反之返回false.
      */
-    public static boolean createPath(String path, String data) {
+    public static boolean createPath(String path, String data, CreateMode createMode) {
         try {
-            String zkPath = zk.create(path, data.getBytes(),
-                    ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+            String zkPath = zk.create(path, data.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, createMode);
             log.info("节点创建成功, Path: " + zkPath + ", content: " + data);
             return true;
         } catch (KeeperException e) {
@@ -104,7 +106,7 @@ public class ZkUtil {
      * @param data zNode数据内容
      * @return 更新成功返回true, 返回返回false
      */
-    public boolean writeData(String path, String data) {
+    public static boolean writeData(String path, String data) {
         try {
             Stat stat = zk.setData(path, data.getBytes(), -1);
             log.info("更新数据成功, path：" + path + ", stat: " + stat);
@@ -155,7 +157,7 @@ public class ZkUtil {
      * @throws KeeperException
      * @throws InterruptedException
      */
-    public List<String> getChild(String path) {
+    public static List<String> getChild(String path) {
         try {
             List<String> list = zk.getChildren(path, false);
             if (list.isEmpty()) {
@@ -178,7 +180,7 @@ public class ZkUtil {
      * @param path zNode节点路径
      * @return 存在返回true, 反之返回false
      */
-    public boolean isExists(String path) {
+    public static boolean isExists(String path) {
         try {
             Stat stat = zk.exists(path, false);
             return null != stat;
@@ -195,7 +197,7 @@ public class ZkUtil {
     /**
      * 关闭ZK连接
      */
-    public void releaseConnection() {
+    public static void releaseConnection() {
         if (null != zk) {
             try {
                 zk.close();
