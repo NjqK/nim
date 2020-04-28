@@ -34,11 +34,6 @@ public class SessionManagerImpl implements SessionManager {
      */
     private Map<String, Channel> session = new ConcurrentHashMap<>(16);
 
-    /**
-     * 创建session是用的锁
-     */
-    private final Lock writeLock = new ReentrantLock();
-
     @Override
     public boolean destroySession(String uid) {
         log.info("destroySession, uid:{}", uid);
@@ -72,16 +67,8 @@ public class SessionManagerImpl implements SessionManager {
 
     @Override
     public boolean createIfAbsent(String uid, Channel channel) {
-        if (getChannel(uid) != null) {
-            return false;
-        }
-        synchronized (writeLock) {
-            if (getChannel(uid) != null) {
-                return false;
-            }
-            session.put(uid, channel);
-            return true;
-        }
+        session.putIfAbsent(uid, channel);
+        return true;
     }
 
     @Override
