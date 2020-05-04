@@ -9,6 +9,12 @@ spring:
       password: 123456
       min-idle: 5
       max-active: 20
+  data:
+    mongodb:
+      host: 192.168.0.108
+      port: 27017
+      database: nim
+      auto-index-creation: false
 
 dubbo:
   application:
@@ -30,10 +36,6 @@ server:
 mybatis:
   mapper-locations: classpath*:com/example/chat/dao/mappers/*.xml
   type-aliases-package: com.example.chat.entity.domain
-
-#dubbo:
-#  connector:
-#    port: 20880
 
 zookeeper:
   url: 192.168.0.108:2181

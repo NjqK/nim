@@ -1,6 +1,7 @@
 package com.example.chat.dao.manager;
 
 import com.example.chat.entity.domain.MsgInfo;
+import com.example.chat.entity.domain.MsgInfoMongo;
 import com.example.chat.entity.dto.MsgInfoDto;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public interface MsgInfoDaoManager {
      * @param msgInfos
      * @return
      */
-    long addMsgInfo(List<MsgInfoDto> msgInfos);
+    long addMsgInfos(List<MsgInfoDto> msgInfos);
 
     /**
      * 通过guid找消息
@@ -34,5 +35,5 @@ public interface MsgInfoDaoManager {
      * @param maxGuid 最大的guid
      * @return 返回用户的所有msgId比maxGuid大的消息
      */
-    List<MsgInfo> getUnreadMsg(long uid, long maxGuid);
+    List<MsgInfoMongo> getUnreadMsg(long uid, long maxGuid);
 }

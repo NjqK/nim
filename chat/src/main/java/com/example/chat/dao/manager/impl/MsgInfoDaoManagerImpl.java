@@ -2,18 +2,22 @@ package com.example.chat.dao.manager.impl;
 
 import com.example.chat.dao.manager.MsgInfoDaoManager;
 import com.example.chat.dao.mappers.MsgInfoMapper;
-import com.example.chat.entity.domain.MsgInfo;
+import com.example.chat.entity.domain.MsgInfoMongo;
 import com.example.chat.entity.dto.MsgInfoDto;
 import com.example.chat.entity.example.MsgInfoExample;
-import com.example.common.CommonConstants;
 import com.example.common.IsDeleteEnum;
 import com.example.common.util.ListUtil;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.util.JsonFormat;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author kuro
@@ -27,6 +31,9 @@ public class MsgInfoDaoManagerImpl implements MsgInfoDaoManager {
     @Resource
     private MsgInfoMapper msgInfoMapper;
 
+    @Autowired
+    private MongoTemplate mongoTemplate;
+
     public MsgInfoExample.Criteria getCriteria(MsgInfoExample example) {
         MsgInfoExample.Criteria criteria = example.createCriteria();
         return criteria.andIsDeleteEqualTo(IsDeleteEnum.NO.getValue());
@@ -34,47 +41,61 @@ public class MsgInfoDaoManagerImpl implements MsgInfoDaoManager {
 
     @Override
     public long addMsgInfo(MsgInfoDto msgInfo) {
-        MsgInfo msgDO = new MsgInfo();
+        try {
+            MsgInfoMongo msgInfoMongo = msgInfoToMsgInfoMongo(msgInfo);
+            mongoTemplate.insert(msgInfoMongo);
+            return 1;
+        } catch (Exception e) {
+            log.error("MsgInfoDaoManagerImpl addMsgInfo occurred error:{}", e);
+            return 0;
+        }
+    }
+
+    @Override
+    public long addMsgInfos(List<MsgInfoDto> msgInfos) {
+        // TODO 分批次
+        List<MsgInfoMongo> list = new ArrayList<>(msgInfos.size());
+        for (MsgInfoDto msgInfo : msgInfos) {
+            try {
+                MsgInfoMongo msgInfoMongo = msgInfoToMsgInfoMongo(msgInfo);
+                list.add(msgInfoMongo);
+            } catch (Exception e) {
+                log.error("MsgInfoDaoManagerImpl addMsgInfo occurred error:{}", e);
+                return 0;
+            }
+        }
+        Collection<MsgInfoMongo> saved = mongoTemplate.insertAll(list);
+        return saved.size();
+    }
+
+    private MsgInfoMongo msgInfoToMsgInfoMongo(MsgInfoDto msgInfo) throws InvalidProtocolBufferException {
+        MsgInfoMongo msgDO = new MsgInfoMongo();
         msgDO.setGuid(msgInfo.getGuid());
         msgDO.setFromUid(msgInfo.getFromUid());
         msgDO.setToUid(msgInfo.getToUid());
-        msgDO.setMsgData(msgInfo.getMsgBody().toByteArray());
+        String body = JsonFormat.printer().print(msgInfo.getMsgBody());
+        msgDO.setMsgData(body);
         msgDO.setMsgType(msgInfo.getMsgType());
         msgDO.setMsgContentType(msgInfo.getMsgContentType());
-        return msgInfoMapper.insertSelective(msgDO);
+        msgDO.setSendTime(new Date());
+        return msgDO;
     }
 
     @Override
-    public long addMsgInfo(List<MsgInfoDto> msgInfos) {
-        // TODO 分批次
-        List<MsgInfo> list = new ArrayList<>(msgInfos.size());
-        for (MsgInfoDto msgInfo : msgInfos) {
-            MsgInfo msgDO = new MsgInfo();
-            msgDO.setGuid(msgInfo.getGuid());
-            msgDO.setFromUid(msgInfo.getFromUid());
-            msgDO.setToUid(msgInfo.getToUid());
-            msgDO.setMsgData(msgInfo.getMsgBody().toByteArray());
-            msgDO.setMsgType(msgInfo.getMsgType());
-            msgDO.setMsgContentType(msgInfo.getMsgContentType());
-            list.add(msgDO);
+    public List<MsgInfoMongo> getUnreadMsg(long uid, long maxGuid) {
+        Query query = new Query();
+        query.fields().include("fromUid");
+        query.fields().include("msgType");
+        query.fields().include("msgContentType");
+        query.fields().include("msgData");
+        query.fields().include("guid");
+        query.fields().include("sendTime");
+        query.addCriteria(Criteria.where("toUid").is(uid));
+        query.addCriteria(Criteria.where("guid").gt(maxGuid));
+        List<MsgInfoMongo> msgInfoMongoList = mongoTemplate.find(query, MsgInfoMongo.class);
+        if (ListUtil.isEmpty(msgInfoMongoList)) {
+            return Collections.EMPTY_LIST;
         }
-        return msgInfoMapper.batchInsertSelective(list, MsgInfo.Column.guid, MsgInfo.Column.fromUid
-                , MsgInfo.Column.toUid,MsgInfo.Column.msgData
-                , MsgInfo.Column.msgType, MsgInfo.Column.msgContentType);
-    }
-
-    @Override
-    public List<MsgInfo> getUnreadMsg(long uid, long maxGuid) {
-        MsgInfoExample msgInfoExample = new MsgInfoExample();
-        MsgInfoExample.Criteria criteria = getCriteria(msgInfoExample);
-        criteria.andToUidEqualTo(uid);
-        criteria.andGuidGreaterThan(maxGuid);
-        // TODO 考虑客户端分页拉
-        List<MsgInfo> msgInfos = msgInfoMapper.selectByExampleSelective(msgInfoExample, MsgInfo.Column.fromUid,
-                MsgInfo.Column.msgType, MsgInfo.Column.msgContentType, MsgInfo.Column.msgData, MsgInfo.Column.guid);
-        if (!ListUtil.isEmpty(msgInfos)) {
-            return msgInfos;
-        }
-        return null;
+        return msgInfoMongoList;
     }
 }

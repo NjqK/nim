@@ -4,6 +4,7 @@ import com.example.api.inner.inner.PushService;
 import com.example.chat.dao.manager.MsgInfoDaoManager;
 import com.example.chat.dao.manager.MsgReadDaoManager;
 import com.example.chat.entity.domain.MsgInfo;
+import com.example.chat.entity.domain.MsgInfoMongo;
 import com.example.chat.entity.dto.MsgInfoDto;
 import com.example.chat.manager.ChatServiceManager;
 import com.example.common.CommonConstants;
@@ -14,6 +15,7 @@ import com.example.proto.inner.inner.Inner;
 import com.example.proto.outer.outer.Outer;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.ProtocolStringList;
+import com.google.protobuf.util.JsonFormat;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +62,7 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
             msgInfoDto.setMsgBody(body);
             msgInfoDtos.add(msgInfoDto);
         }
-        if (msgInfoDaoManager.addMsgInfo(msgInfoDtos) != uidSize) {
+        if (msgInfoDaoManager.addMsgInfos(msgInfoDtos) != uidSize) {
             log.error("doGroupSending batch insert fail");
         }
         // 发给push
@@ -126,7 +128,7 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
         long maxGuid = Long.parseLong(req.getMaxGuid());
         long receivedMaxGuid = msgReadDaoManager.getMaxGuid(uid);
         maxGuid = Long.max(maxGuid, receivedMaxGuid);
-        List<MsgInfo> unreadMsg = msgInfoDaoManager.getUnreadMsg(uid, maxGuid);
+        List<MsgInfoMongo> unreadMsg = msgInfoDaoManager.getUnreadMsg(uid, maxGuid);
         Outer.GetUnreadMsgResp.Builder builder = Outer.GetUnreadMsgResp.newBuilder();
         Common.ErrorMsg errMsg = Common.ErrorMsg.newBuilder()
                 .setErrorCode(Common.ErrCode.SUCCESS)
@@ -135,7 +137,7 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
         if (!ListUtil.isEmpty(unreadMsg)) {
             Common.Msg.Builder msgBuilder = Common.Msg.newBuilder();
             Common.Head.Builder headBuilder = Common.Head.newBuilder();
-            for (MsgInfo msgInfo : unreadMsg) {
+            for (MsgInfoMongo msgInfo : unreadMsg) {
                 maxGuid = Long.max(maxGuid, msgInfo.getGuid());
                 Common.Head head = headBuilder.setFromId(msgInfo.getFromUid())
                         .setToId(uid)
@@ -143,10 +145,11 @@ public class ChatServiceManagerImpl implements ChatServiceManager {
                         .setMsgContentTypeValue(msgInfo.getMsgContentType())
                         .setMsgId(msgInfo.getGuid())
                         .build();
-                Common.Body body = Common.Body.parseFrom(msgInfo.getMsgData());
+                Common.Body.Builder bodyBuilder = Common.Body.newBuilder();
+                JsonFormat.parser().merge(msgInfo.getMsgData(), bodyBuilder);
                 Common.Msg msg = msgBuilder
                         .setHead(head)
-                        .setBody(body)
+                        .setBody(bodyBuilder.build())
                         .build();
                 builder.addMsgs(msg);
                 msgBuilder.clear();
