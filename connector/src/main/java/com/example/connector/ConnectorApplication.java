@@ -24,9 +24,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.core.io.ClassPathResource;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -118,10 +120,28 @@ public class ConnectorApplication {
         ClusterNode localNode = clusterNodeManager.getLocalNode();
         log.info("get local node for netty:{}", localNode);
         // init netty
-        new KeyManager();
+        initKeyManager();
         NettyServerManager instance = NettyServerManager.getInstance();
         instance.init(localNode);
         RedisKeyUtil.createApplicationRedisKey(applicationName, localNode);
+    }
+
+    private void initKeyManager() {
+        ClassPathResource classPathResource = new ClassPathResource("secure/rsa/private_key.txt");
+        try (InputStream inputStream = classPathResource.getInputStream();
+             InputStreamReader bufferedInputStream = new InputStreamReader(inputStream);
+             BufferedReader bufferedReader = new BufferedReader(bufferedInputStream);) {
+            StringBuilder sb = new StringBuilder();
+            String s = "";
+            while ((s = bufferedReader.readLine()) != null) {
+                sb.append(s + "\n");
+            }
+            String privateKey = sb.toString();
+            new KeyManager(privateKey);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("读取服务端密钥失败");
+        }
     }
 
     private void initRedis() {
