@@ -84,6 +84,7 @@ public class RSAUtils {
             cipher.init(Cipher.ENCRYPT_MODE, publicKey);
             return Base64.encodeBase64URLSafeString(rsaSplitCodec(cipher, Cipher.ENCRYPT_MODE, data.getBytes(CHARSET), publicKey.getModulus().bitLength()));
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException("加密字符串[" + data + "]时遇到异常", e);
         }
     }
@@ -101,6 +102,7 @@ public class RSAUtils {
             cipher.init(Cipher.DECRYPT_MODE, privateKey);
             return new String(rsaSplitCodec(cipher, Cipher.DECRYPT_MODE, Base64.decodeBase64(data), privateKey.getModulus().bitLength()), CHARSET);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException("解密字符串[" + data + "]时遇到异常", e);
         }
     }
