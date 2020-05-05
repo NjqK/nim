@@ -32,13 +32,6 @@ enum MsgContentType {
     TEXT = 1;
 }
 
-enum ReadStatus {
-    // 未读
-    UNREAD = 0;
-    // 已读
-    READ = 1;
-}
-
 message Msg {
     // 消息头
     Head head = 1;
@@ -47,7 +40,12 @@ message Msg {
 }
 
 message Body {
-    string content = 1;
+    // 标题
+    string title = 1;
+    // 内容
+    string content = 2;
+    // 跳转url
+    string url = 3;
 }
 
 message ExtraHeader {
@@ -68,10 +66,8 @@ message Head {
     int64 to_id = 5;
     // 消息时间戳
     int64 timestamp = 6;
-    // 状态报告
-    int32 status_report = 7;
     // 扩展字段
-    repeated ExtraHeader extends = 8;
+    repeated ExtraHeader extends = 7;
 }
 
 // 错误码
@@ -112,17 +108,4 @@ message ErrorMsg {
     ErrCode error_code = 1;
     // 错误信息
     string msg = 2;
-}
-
-message A {
-    string a = 1;
-    string b = 2;
-}
-
-message B {
-    repeated A aList = 1;
-}
-
-message C {
-    A aList = 1;
 }

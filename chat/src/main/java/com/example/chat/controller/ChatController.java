@@ -79,6 +79,7 @@ public class ChatController {
     public String sendMsg(@RequestBody SendGroupMsgReq req) throws InvalidProtocolBufferException {
         Outer.DoGroupSendingReq.Builder builder = Outer.DoGroupSendingReq.newBuilder();
         String toUids = req.getToUids();
+        // TODO 当uidList太大需要分批次做，以免大块内存导致FULL GC
         if (StringUtils.isNoneEmpty(toUids)) {
             String[] split = toUids.split(",");
             ArrayList<String> strings = new ArrayList<>(split.length);

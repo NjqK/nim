@@ -32,6 +32,7 @@
         <protostuff.version>1.7.0</protostuff.version>
         <jedis.version>3.2.0</jedis.version>
         <apache.common-lang3.version>3.9</apache.common-lang3.version>
+        <apache.common.codec>1.14</apache.common.codec>
         <kafka.version>2.4.0</kafka.version>
     </properties>
 
@@ -170,6 +171,11 @@
                 <groupId>org.apache.kafka</groupId>
                 <artifactId>kafka-clients</artifactId>
                 <version>${kafka.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${apache.common.codec}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
