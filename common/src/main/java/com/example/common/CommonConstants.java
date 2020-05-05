@@ -29,4 +29,6 @@ public class CommonConstants {
     public static final String BASE_ZK_PATH = "/app";
 
     public static final String CONNECTOR_ZK_BASE_PATH = "/app/connector";
+
+    public static final String CONNECTOR_SECRET_REDIS_KEY = "secret";
 }

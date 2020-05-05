@@ -1,8 +1,12 @@
 package com.example.connector.dao.manager.impl;
 
 import com.example.api.inner.inner.ConnectorService;
+import com.example.common.CommonConstants;
 import com.example.common.kafka.ReceiveMessageCallback;
+import com.example.common.redis.JedisUtil;
+import com.example.common.secure.aes.AESUtil;
 import com.example.connector.common.ConnectorThreadFactory;
+import com.example.connector.common.KeyManager;
 import com.example.connector.common.RedisKeyUtil;
 import com.example.connector.common.SpringUtil;
 import com.example.connector.dao.manager.SessionManager;
@@ -58,16 +62,16 @@ public class ConnectorProcessor implements ReceiveMessageCallback<String, String
             log.info("<=== Start process a batch push task got from kafka, batch size:{} ===>", consumerRecords.count());
             log.info("Got push task from kafka, topic:{}, partition:{}, offset:{}, key:{}, value:{}", record.topic(),
                     record.partition(), record.offset(), record.key(), record.value());
-            Common.Msg.Builder msg = Common.Msg.newBuilder();
+            Common.Msg.Builder msgBuilder = Common.Msg.newBuilder();
             try {
-                JsonFormat.parser().merge(record.value(), msg);
+                JsonFormat.parser().merge(record.value(), msgBuilder);
             } catch (InvalidProtocolBufferException e) {
                 log.error("Can not convert {} to PushRequest object, error message: {}", record.value(), e.getMessage());
                 continue;
             }
             try {
-                if (msg.getHead().getMsgType().equals(Common.MsgType.CHANGE_SERVER)) {
-                    String content = msg.getBody().getContent();
+                if (msgBuilder.getHead().getMsgType().equals(Common.MsgType.CHANGE_SERVER)) {
+                    String content = msgBuilder.getBody().getContent();
                     if (StringUtils.isNotEmpty(content)) {
                         if (RedisKeyUtil.getApplicationRedisKey().equals(content)) {
                             // 创建任务去作
@@ -79,8 +83,8 @@ public class ConnectorProcessor implements ReceiveMessageCallback<String, String
                     }
                     return true;
                 }
-                if (msg.getHead().getMsgType().equals(Common.MsgType.RECOVER_SERVER)) {
-                    String content = msg.getBody().getContent();
+                if (msgBuilder.getHead().getMsgType().equals(Common.MsgType.RECOVER_SERVER)) {
+                    String content = msgBuilder.getBody().getContent();
                     if (StringUtils.isNotEmpty(content)) {
                         if (RedisKeyUtil.getApplicationRedisKey().equals(content)) {
                             // 恢复服务
@@ -93,13 +97,19 @@ public class ConnectorProcessor implements ReceiveMessageCallback<String, String
                     return true;
                 }
                 // 具体长连接发送逻辑
-                String uid = String.valueOf(msg.getHead().getToId());
-                log.info("start to send msg, uid:{}", uid);
+                String uid = String.valueOf(msgBuilder.getHead().getToId());
+                log.info("start to send msgBuilder, uid:{}", uid);
                 if (sessionManager.isOnline(uid)) {
                     // online
                     Channel channel = sessionManager.getChannel(uid);
-                    if (!nettyServerManager.sendMsg(channel, msg.build())) {
-                        log.error("sending msg is failed, netty service maybe unusable.");
+                    String content = msgBuilder.getBody().getContent();
+                    String clientAESKey = JedisUtil.hget(CommonConstants.CONNECTOR_SECRET_REDIS_KEY, uid);
+                    // 消息加密
+                    String afterEncrypt = AESUtil.aesEncrypt(content, clientAESKey);
+                    Common.Body newBody = msgBuilder.getBody().toBuilder().setContent(afterEncrypt).build();
+                    msgBuilder.setBody(newBody);
+                    if (!nettyServerManager.sendMsg(channel, msgBuilder.build())) {
+                        log.error("sending msgBuilder is failed, netty service maybe unusable.");
                     }
                 } else {
                     log.error("用户uid:{}不在线或者不在这个节点...", uid);

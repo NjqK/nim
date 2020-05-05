@@ -45,7 +45,7 @@ public final class Common {
     HEART_BEAT(2),
     /**
      * <pre>
-     * 抢占线
+     * boot user
      * </pre>
      *
      * <code>KICK = 3;</code>
@@ -120,7 +120,7 @@ public final class Common {
     public static final int HEART_BEAT_VALUE = 2;
     /**
      * <pre>
-     * 抢占线
+     * boot user
      * </pre>
      *
      * <code>KICK = 3;</code>
@@ -363,126 +363,6 @@ public final class Common {
     }
 
     // @@protoc_insertion_point(enum_scope:common.common.MsgContentType)
-  }
-
-  /**
-   * Protobuf enum {@code common.common.ReadStatus}
-   */
-  public enum ReadStatus
-      implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <pre>
-     * 未读
-     * </pre>
-     *
-     * <code>UNREAD = 0;</code>
-     */
-    UNREAD(0),
-    /**
-     * <pre>
-     * 已读
-     * </pre>
-     *
-     * <code>READ = 1;</code>
-     */
-    READ(1),
-    UNRECOGNIZED(-1),
-    ;
-
-    /**
-     * <pre>
-     * 未读
-     * </pre>
-     *
-     * <code>UNREAD = 0;</code>
-     */
-    public static final int UNREAD_VALUE = 0;
-    /**
-     * <pre>
-     * 已读
-     * </pre>
-     *
-     * <code>READ = 1;</code>
-     */
-    public static final int READ_VALUE = 1;
-
-
-    public final int getNumber() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
-            "Can't get the number of an unknown enum value.");
-      }
-      return value;
-    }
-
-    /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static ReadStatus valueOf(int value) {
-      return forNumber(value);
-    }
-
-    /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
-     */
-    public static ReadStatus forNumber(int value) {
-      switch (value) {
-        case 0: return UNREAD;
-        case 1: return READ;
-        default: return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<ReadStatus>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        ReadStatus> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<ReadStatus>() {
-            public ReadStatus findValueByNumber(int number) {
-              return ReadStatus.forNumber(number);
-            }
-          };
-
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
-    }
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
-      return getDescriptor();
-    }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
-      return com.example.proto.common.common.Common.getDescriptor().getEnumTypes().get(2);
-    }
-
-    private static final ReadStatus[] VALUES = values();
-
-    public static ReadStatus valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-      if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
-      }
-      if (desc.getIndex() == -1) {
-        return UNRECOGNIZED;
-      }
-      return VALUES[desc.getIndex()];
-    }
-
-    private final int value;
-
-    private ReadStatus(int value) {
-      this.value = value;
-    }
-
-    // @@protoc_insertion_point(enum_scope:common.common.ReadStatus)
   }
 
   /**
@@ -796,7 +676,7 @@ public final class Common {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return com.example.proto.common.common.Common.getDescriptor().getEnumTypes().get(3);
+      return com.example.proto.common.common.Common.getDescriptor().getEnumTypes().get(2);
     }
 
     private static final ErrCode[] VALUES = values();
@@ -1765,16 +1645,64 @@ public final class Common {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string content = 1;</code>
+     * <pre>
+     * 标题
+     * </pre>
+     *
+     * <code>string title = 1;</code>
+     * @return The title.
+     */
+    java.lang.String getTitle();
+    /**
+     * <pre>
+     * 标题
+     * </pre>
+     *
+     * <code>string title = 1;</code>
+     * @return The bytes for title.
+     */
+    com.google.protobuf.ByteString
+        getTitleBytes();
+
+    /**
+     * <pre>
+     * 内容
+     * </pre>
+     *
+     * <code>string content = 2;</code>
      * @return The content.
      */
     java.lang.String getContent();
     /**
-     * <code>string content = 1;</code>
+     * <pre>
+     * 内容
+     * </pre>
+     *
+     * <code>string content = 2;</code>
      * @return The bytes for content.
      */
     com.google.protobuf.ByteString
         getContentBytes();
+
+    /**
+     * <pre>
+     * 跳转url
+     * </pre>
+     *
+     * <code>string url = 3;</code>
+     * @return The url.
+     */
+    java.lang.String getUrl();
+    /**
+     * <pre>
+     * 跳转url
+     * </pre>
+     *
+     * <code>string url = 3;</code>
+     * @return The bytes for url.
+     */
+    com.google.protobuf.ByteString
+        getUrlBytes();
   }
   /**
    * Protobuf type {@code common.common.Body}
@@ -1789,7 +1717,9 @@ public final class Common {
       super(builder);
     }
     private Body() {
+      title_ = "";
       content_ = "";
+      url_ = "";
     }
 
     @java.lang.Override
@@ -1825,7 +1755,19 @@ public final class Common {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
+              title_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
               content_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              url_ = s;
               break;
             }
             default: {
@@ -1860,10 +1802,58 @@ public final class Common {
               com.example.proto.common.common.Common.Body.class, com.example.proto.common.common.Common.Body.Builder.class);
     }
 
-    public static final int CONTENT_FIELD_NUMBER = 1;
+    public static final int TITLE_FIELD_NUMBER = 1;
+    private volatile java.lang.Object title_;
+    /**
+     * <pre>
+     * 标题
+     * </pre>
+     *
+     * <code>string title = 1;</code>
+     * @return The title.
+     */
+    public java.lang.String getTitle() {
+      java.lang.Object ref = title_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        title_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 标题
+     * </pre>
+     *
+     * <code>string title = 1;</code>
+     * @return The bytes for title.
+     */
+    public com.google.protobuf.ByteString
+        getTitleBytes() {
+      java.lang.Object ref = title_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        title_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CONTENT_FIELD_NUMBER = 2;
     private volatile java.lang.Object content_;
     /**
-     * <code>string content = 1;</code>
+     * <pre>
+     * 内容
+     * </pre>
+     *
+     * <code>string content = 2;</code>
      * @return The content.
      */
     public java.lang.String getContent() {
@@ -1879,7 +1869,11 @@ public final class Common {
       }
     }
     /**
-     * <code>string content = 1;</code>
+     * <pre>
+     * 内容
+     * </pre>
+     *
+     * <code>string content = 2;</code>
      * @return The bytes for content.
      */
     public com.google.protobuf.ByteString
@@ -1890,6 +1884,50 @@ public final class Common {
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         content_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int URL_FIELD_NUMBER = 3;
+    private volatile java.lang.Object url_;
+    /**
+     * <pre>
+     * 跳转url
+     * </pre>
+     *
+     * <code>string url = 3;</code>
+     * @return The url.
+     */
+    public java.lang.String getUrl() {
+      java.lang.Object ref = url_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        url_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 跳转url
+     * </pre>
+     *
+     * <code>string url = 3;</code>
+     * @return The bytes for url.
+     */
+    public com.google.protobuf.ByteString
+        getUrlBytes() {
+      java.lang.Object ref = url_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        url_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -1910,8 +1948,14 @@ public final class Common {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (!getTitleBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, title_);
+      }
       if (!getContentBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, content_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, content_);
+      }
+      if (!getUrlBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, url_);
       }
       unknownFields.writeTo(output);
     }
@@ -1922,8 +1966,14 @@ public final class Common {
       if (size != -1) return size;
 
       size = 0;
+      if (!getTitleBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, title_);
+      }
       if (!getContentBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, content_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, content_);
+      }
+      if (!getUrlBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, url_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1940,8 +1990,12 @@ public final class Common {
       }
       com.example.proto.common.common.Common.Body other = (com.example.proto.common.common.Common.Body) obj;
 
+      if (!getTitle()
+          .equals(other.getTitle())) return false;
       if (!getContent()
           .equals(other.getContent())) return false;
+      if (!getUrl()
+          .equals(other.getUrl())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1953,8 +2007,12 @@ public final class Common {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TITLE_FIELD_NUMBER;
+      hash = (53 * hash) + getTitle().hashCode();
       hash = (37 * hash) + CONTENT_FIELD_NUMBER;
       hash = (53 * hash) + getContent().hashCode();
+      hash = (37 * hash) + URL_FIELD_NUMBER;
+      hash = (53 * hash) + getUrl().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2088,7 +2146,11 @@ public final class Common {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        title_ = "";
+
         content_ = "";
+
+        url_ = "";
 
         return this;
       }
@@ -2116,7 +2178,9 @@ public final class Common {
       @java.lang.Override
       public com.example.proto.common.common.Common.Body buildPartial() {
         com.example.proto.common.common.Common.Body result = new com.example.proto.common.common.Common.Body(this);
+        result.title_ = title_;
         result.content_ = content_;
+        result.url_ = url_;
         onBuilt();
         return result;
       }
@@ -2165,8 +2229,16 @@ public final class Common {
 
       public Builder mergeFrom(com.example.proto.common.common.Common.Body other) {
         if (other == com.example.proto.common.common.Common.Body.getDefaultInstance()) return this;
+        if (!other.getTitle().isEmpty()) {
+          title_ = other.title_;
+          onChanged();
+        }
         if (!other.getContent().isEmpty()) {
           content_ = other.content_;
+          onChanged();
+        }
+        if (!other.getUrl().isEmpty()) {
+          url_ = other.url_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -2198,9 +2270,109 @@ public final class Common {
         return this;
       }
 
+      private java.lang.Object title_ = "";
+      /**
+       * <pre>
+       * 标题
+       * </pre>
+       *
+       * <code>string title = 1;</code>
+       * @return The title.
+       */
+      public java.lang.String getTitle() {
+        java.lang.Object ref = title_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          title_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 标题
+       * </pre>
+       *
+       * <code>string title = 1;</code>
+       * @return The bytes for title.
+       */
+      public com.google.protobuf.ByteString
+          getTitleBytes() {
+        java.lang.Object ref = title_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          title_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 标题
+       * </pre>
+       *
+       * <code>string title = 1;</code>
+       * @param value The title to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTitle(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        title_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 标题
+       * </pre>
+       *
+       * <code>string title = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTitle() {
+        
+        title_ = getDefaultInstance().getTitle();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 标题
+       * </pre>
+       *
+       * <code>string title = 1;</code>
+       * @param value The bytes for title to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTitleBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        title_ = value;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object content_ = "";
       /**
-       * <code>string content = 1;</code>
+       * <pre>
+       * 内容
+       * </pre>
+       *
+       * <code>string content = 2;</code>
        * @return The content.
        */
       public java.lang.String getContent() {
@@ -2216,7 +2388,11 @@ public final class Common {
         }
       }
       /**
-       * <code>string content = 1;</code>
+       * <pre>
+       * 内容
+       * </pre>
+       *
+       * <code>string content = 2;</code>
        * @return The bytes for content.
        */
       public com.google.protobuf.ByteString
@@ -2233,7 +2409,11 @@ public final class Common {
         }
       }
       /**
-       * <code>string content = 1;</code>
+       * <pre>
+       * 内容
+       * </pre>
+       *
+       * <code>string content = 2;</code>
        * @param value The content to set.
        * @return This builder for chaining.
        */
@@ -2248,7 +2428,11 @@ public final class Common {
         return this;
       }
       /**
-       * <code>string content = 1;</code>
+       * <pre>
+       * 内容
+       * </pre>
+       *
+       * <code>string content = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearContent() {
@@ -2258,7 +2442,11 @@ public final class Common {
         return this;
       }
       /**
-       * <code>string content = 1;</code>
+       * <pre>
+       * 内容
+       * </pre>
+       *
+       * <code>string content = 2;</code>
        * @param value The bytes for content to set.
        * @return This builder for chaining.
        */
@@ -2270,6 +2458,102 @@ public final class Common {
   checkByteStringIsUtf8(value);
         
         content_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object url_ = "";
+      /**
+       * <pre>
+       * 跳转url
+       * </pre>
+       *
+       * <code>string url = 3;</code>
+       * @return The url.
+       */
+      public java.lang.String getUrl() {
+        java.lang.Object ref = url_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          url_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 跳转url
+       * </pre>
+       *
+       * <code>string url = 3;</code>
+       * @return The bytes for url.
+       */
+      public com.google.protobuf.ByteString
+          getUrlBytes() {
+        java.lang.Object ref = url_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          url_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 跳转url
+       * </pre>
+       *
+       * <code>string url = 3;</code>
+       * @param value The url to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUrl(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        url_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 跳转url
+       * </pre>
+       *
+       * <code>string url = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUrl() {
+        
+        url_ = getDefaultInstance().getUrl();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 跳转url
+       * </pre>
+       *
+       * <code>string url = 3;</code>
+       * @param value The bytes for url to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUrlBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        url_ = value;
         onChanged();
         return this;
       }
@@ -3124,20 +3408,10 @@ public final class Common {
 
     /**
      * <pre>
-     * 状态报告
-     * </pre>
-     *
-     * <code>int32 status_report = 7;</code>
-     * @return The statusReport.
-     */
-    int getStatusReport();
-
-    /**
-     * <pre>
      * 扩展字段
      * </pre>
      *
-     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 7;</code>
      */
     java.util.List<com.example.proto.common.common.Common.ExtraHeader> 
         getExtendsList();
@@ -3146,7 +3420,7 @@ public final class Common {
      * 扩展字段
      * </pre>
      *
-     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 7;</code>
      */
     com.example.proto.common.common.Common.ExtraHeader getExtends(int index);
     /**
@@ -3154,7 +3428,7 @@ public final class Common {
      * 扩展字段
      * </pre>
      *
-     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 7;</code>
      */
     int getExtendsCount();
     /**
@@ -3162,7 +3436,7 @@ public final class Common {
      * 扩展字段
      * </pre>
      *
-     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 7;</code>
      */
     java.util.List<? extends com.example.proto.common.common.Common.ExtraHeaderOrBuilder> 
         getExtendsOrBuilderList();
@@ -3171,7 +3445,7 @@ public final class Common {
      * 扩展字段
      * </pre>
      *
-     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 7;</code>
      */
     com.example.proto.common.common.Common.ExtraHeaderOrBuilder getExtendsOrBuilder(
         int index);
@@ -3257,12 +3531,7 @@ public final class Common {
               timestamp_ = input.readInt64();
               break;
             }
-            case 56: {
-
-              statusReport_ = input.readInt32();
-              break;
-            }
-            case 66: {
+            case 58: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 extends_ = new java.util.ArrayList<com.example.proto.common.common.Common.ExtraHeader>();
                 mutable_bitField0_ |= 0x00000001;
@@ -3416,28 +3685,14 @@ public final class Common {
       return timestamp_;
     }
 
-    public static final int STATUS_REPORT_FIELD_NUMBER = 7;
-    private int statusReport_;
-    /**
-     * <pre>
-     * 状态报告
-     * </pre>
-     *
-     * <code>int32 status_report = 7;</code>
-     * @return The statusReport.
-     */
-    public int getStatusReport() {
-      return statusReport_;
-    }
-
-    public static final int EXTENDS_FIELD_NUMBER = 8;
+    public static final int EXTENDS_FIELD_NUMBER = 7;
     private java.util.List<com.example.proto.common.common.Common.ExtraHeader> extends_;
     /**
      * <pre>
      * 扩展字段
      * </pre>
      *
-     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 7;</code>
      */
     public java.util.List<com.example.proto.common.common.Common.ExtraHeader> getExtendsList() {
       return extends_;
@@ -3447,7 +3702,7 @@ public final class Common {
      * 扩展字段
      * </pre>
      *
-     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 7;</code>
      */
     public java.util.List<? extends com.example.proto.common.common.Common.ExtraHeaderOrBuilder> 
         getExtendsOrBuilderList() {
@@ -3458,7 +3713,7 @@ public final class Common {
      * 扩展字段
      * </pre>
      *
-     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 7;</code>
      */
     public int getExtendsCount() {
       return extends_.size();
@@ -3468,7 +3723,7 @@ public final class Common {
      * 扩展字段
      * </pre>
      *
-     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 7;</code>
      */
     public com.example.proto.common.common.Common.ExtraHeader getExtends(int index) {
       return extends_.get(index);
@@ -3478,7 +3733,7 @@ public final class Common {
      * 扩展字段
      * </pre>
      *
-     * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+     * <code>repeated .common.common.ExtraHeader extends = 7;</code>
      */
     public com.example.proto.common.common.Common.ExtraHeaderOrBuilder getExtendsOrBuilder(
         int index) {
@@ -3517,11 +3772,8 @@ public final class Common {
       if (timestamp_ != 0L) {
         output.writeInt64(6, timestamp_);
       }
-      if (statusReport_ != 0) {
-        output.writeInt32(7, statusReport_);
-      }
       for (int i = 0; i < extends_.size(); i++) {
-        output.writeMessage(8, extends_.get(i));
+        output.writeMessage(7, extends_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -3556,13 +3808,9 @@ public final class Common {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(6, timestamp_);
       }
-      if (statusReport_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(7, statusReport_);
-      }
       for (int i = 0; i < extends_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, extends_.get(i));
+          .computeMessageSize(7, extends_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3589,8 +3837,6 @@ public final class Common {
           != other.getToId()) return false;
       if (getTimestamp()
           != other.getTimestamp()) return false;
-      if (getStatusReport()
-          != other.getStatusReport()) return false;
       if (!getExtendsList()
           .equals(other.getExtendsList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
@@ -3620,8 +3866,6 @@ public final class Common {
       hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getTimestamp());
-      hash = (37 * hash) + STATUS_REPORT_FIELD_NUMBER;
-      hash = (53 * hash) + getStatusReport();
       if (getExtendsCount() > 0) {
         hash = (37 * hash) + EXTENDS_FIELD_NUMBER;
         hash = (53 * hash) + getExtendsList().hashCode();
@@ -3772,8 +4016,6 @@ public final class Common {
 
         timestamp_ = 0L;
 
-        statusReport_ = 0;
-
         if (extendsBuilder_ == null) {
           extends_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000001);
@@ -3813,7 +4055,6 @@ public final class Common {
         result.fromId_ = fromId_;
         result.toId_ = toId_;
         result.timestamp_ = timestamp_;
-        result.statusReport_ = statusReport_;
         if (extendsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             extends_ = java.util.Collections.unmodifiableList(extends_);
@@ -3888,9 +4129,6 @@ public final class Common {
         }
         if (other.getTimestamp() != 0L) {
           setTimestamp(other.getTimestamp());
-        }
-        if (other.getStatusReport() != 0) {
-          setStatusReport(other.getStatusReport());
         }
         if (extendsBuilder_ == null) {
           if (!other.extends_.isEmpty()) {
@@ -4260,48 +4498,6 @@ public final class Common {
         return this;
       }
 
-      private int statusReport_ ;
-      /**
-       * <pre>
-       * 状态报告
-       * </pre>
-       *
-       * <code>int32 status_report = 7;</code>
-       * @return The statusReport.
-       */
-      public int getStatusReport() {
-        return statusReport_;
-      }
-      /**
-       * <pre>
-       * 状态报告
-       * </pre>
-       *
-       * <code>int32 status_report = 7;</code>
-       * @param value The statusReport to set.
-       * @return This builder for chaining.
-       */
-      public Builder setStatusReport(int value) {
-        
-        statusReport_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 状态报告
-       * </pre>
-       *
-       * <code>int32 status_report = 7;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearStatusReport() {
-        
-        statusReport_ = 0;
-        onChanged();
-        return this;
-      }
-
       private java.util.List<com.example.proto.common.common.Common.ExtraHeader> extends_ =
         java.util.Collections.emptyList();
       private void ensureExtendsIsMutable() {
@@ -4319,7 +4515,7 @@ public final class Common {
        * 扩展字段
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 7;</code>
        */
       public java.util.List<com.example.proto.common.common.Common.ExtraHeader> getExtendsList() {
         if (extendsBuilder_ == null) {
@@ -4333,7 +4529,7 @@ public final class Common {
        * 扩展字段
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 7;</code>
        */
       public int getExtendsCount() {
         if (extendsBuilder_ == null) {
@@ -4347,7 +4543,7 @@ public final class Common {
        * 扩展字段
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 7;</code>
        */
       public com.example.proto.common.common.Common.ExtraHeader getExtends(int index) {
         if (extendsBuilder_ == null) {
@@ -4361,7 +4557,7 @@ public final class Common {
        * 扩展字段
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 7;</code>
        */
       public Builder setExtends(
           int index, com.example.proto.common.common.Common.ExtraHeader value) {
@@ -4382,7 +4578,7 @@ public final class Common {
        * 扩展字段
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 7;</code>
        */
       public Builder setExtends(
           int index, com.example.proto.common.common.Common.ExtraHeader.Builder builderForValue) {
@@ -4400,7 +4596,7 @@ public final class Common {
        * 扩展字段
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 7;</code>
        */
       public Builder addExtends(com.example.proto.common.common.Common.ExtraHeader value) {
         if (extendsBuilder_ == null) {
@@ -4420,7 +4616,7 @@ public final class Common {
        * 扩展字段
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 7;</code>
        */
       public Builder addExtends(
           int index, com.example.proto.common.common.Common.ExtraHeader value) {
@@ -4441,7 +4637,7 @@ public final class Common {
        * 扩展字段
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 7;</code>
        */
       public Builder addExtends(
           com.example.proto.common.common.Common.ExtraHeader.Builder builderForValue) {
@@ -4459,7 +4655,7 @@ public final class Common {
        * 扩展字段
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 7;</code>
        */
       public Builder addExtends(
           int index, com.example.proto.common.common.Common.ExtraHeader.Builder builderForValue) {
@@ -4477,7 +4673,7 @@ public final class Common {
        * 扩展字段
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 7;</code>
        */
       public Builder addAllExtends(
           java.lang.Iterable<? extends com.example.proto.common.common.Common.ExtraHeader> values) {
@@ -4496,7 +4692,7 @@ public final class Common {
        * 扩展字段
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 7;</code>
        */
       public Builder clearExtends() {
         if (extendsBuilder_ == null) {
@@ -4513,7 +4709,7 @@ public final class Common {
        * 扩展字段
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 7;</code>
        */
       public Builder removeExtends(int index) {
         if (extendsBuilder_ == null) {
@@ -4530,7 +4726,7 @@ public final class Common {
        * 扩展字段
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 7;</code>
        */
       public com.example.proto.common.common.Common.ExtraHeader.Builder getExtendsBuilder(
           int index) {
@@ -4541,7 +4737,7 @@ public final class Common {
        * 扩展字段
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 7;</code>
        */
       public com.example.proto.common.common.Common.ExtraHeaderOrBuilder getExtendsOrBuilder(
           int index) {
@@ -4555,7 +4751,7 @@ public final class Common {
        * 扩展字段
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 7;</code>
        */
       public java.util.List<? extends com.example.proto.common.common.Common.ExtraHeaderOrBuilder> 
            getExtendsOrBuilderList() {
@@ -4570,7 +4766,7 @@ public final class Common {
        * 扩展字段
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 7;</code>
        */
       public com.example.proto.common.common.Common.ExtraHeader.Builder addExtendsBuilder() {
         return getExtendsFieldBuilder().addBuilder(
@@ -4581,7 +4777,7 @@ public final class Common {
        * 扩展字段
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 7;</code>
        */
       public com.example.proto.common.common.Common.ExtraHeader.Builder addExtendsBuilder(
           int index) {
@@ -4593,7 +4789,7 @@ public final class Common {
        * 扩展字段
        * </pre>
        *
-       * <code>repeated .common.common.ExtraHeader extends = 8;</code>
+       * <code>repeated .common.common.ExtraHeader extends = 7;</code>
        */
       public java.util.List<com.example.proto.common.common.Common.ExtraHeader.Builder> 
            getExtendsBuilderList() {
@@ -5409,2126 +5605,6 @@ public final class Common {
 
   }
 
-  public interface AOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:common.common.A)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>string a = 1;</code>
-     * @return The a.
-     */
-    java.lang.String getA();
-    /**
-     * <code>string a = 1;</code>
-     * @return The bytes for a.
-     */
-    com.google.protobuf.ByteString
-        getABytes();
-
-    /**
-     * <code>string b = 2;</code>
-     * @return The b.
-     */
-    java.lang.String getB();
-    /**
-     * <code>string b = 2;</code>
-     * @return The bytes for b.
-     */
-    com.google.protobuf.ByteString
-        getBBytes();
-  }
-  /**
-   * Protobuf type {@code common.common.A}
-   */
-  public  static final class A extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:common.common.A)
-      AOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use A.newBuilder() to construct.
-    private A(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private A() {
-      a_ = "";
-      b_ = "";
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new A();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private A(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              a_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              b_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.example.proto.common.common.Common.internal_static_common_common_A_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.example.proto.common.common.Common.internal_static_common_common_A_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.example.proto.common.common.Common.A.class, com.example.proto.common.common.Common.A.Builder.class);
-    }
-
-    public static final int A_FIELD_NUMBER = 1;
-    private volatile java.lang.Object a_;
-    /**
-     * <code>string a = 1;</code>
-     * @return The a.
-     */
-    public java.lang.String getA() {
-      java.lang.Object ref = a_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        a_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string a = 1;</code>
-     * @return The bytes for a.
-     */
-    public com.google.protobuf.ByteString
-        getABytes() {
-      java.lang.Object ref = a_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        a_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int B_FIELD_NUMBER = 2;
-    private volatile java.lang.Object b_;
-    /**
-     * <code>string b = 2;</code>
-     * @return The b.
-     */
-    public java.lang.String getB() {
-      java.lang.Object ref = b_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        b_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string b = 2;</code>
-     * @return The bytes for b.
-     */
-    public com.google.protobuf.ByteString
-        getBBytes() {
-      java.lang.Object ref = b_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        b_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getABytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, a_);
-      }
-      if (!getBBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, b_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getABytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, a_);
-      }
-      if (!getBBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, b_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.example.proto.common.common.Common.A)) {
-        return super.equals(obj);
-      }
-      com.example.proto.common.common.Common.A other = (com.example.proto.common.common.Common.A) obj;
-
-      if (!getA()
-          .equals(other.getA())) return false;
-      if (!getB()
-          .equals(other.getB())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + A_FIELD_NUMBER;
-      hash = (53 * hash) + getA().hashCode();
-      hash = (37 * hash) + B_FIELD_NUMBER;
-      hash = (53 * hash) + getB().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.example.proto.common.common.Common.A parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.proto.common.common.Common.A parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.proto.common.common.Common.A parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.proto.common.common.Common.A parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.proto.common.common.Common.A parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.proto.common.common.Common.A parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.proto.common.common.Common.A parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.example.proto.common.common.Common.A parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.example.proto.common.common.Common.A parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.example.proto.common.common.Common.A parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.example.proto.common.common.Common.A parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.example.proto.common.common.Common.A parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.example.proto.common.common.Common.A prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code common.common.A}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:common.common.A)
-        com.example.proto.common.common.Common.AOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.example.proto.common.common.Common.internal_static_common_common_A_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.example.proto.common.common.Common.internal_static_common_common_A_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.example.proto.common.common.Common.A.class, com.example.proto.common.common.Common.A.Builder.class);
-      }
-
-      // Construct using com.example.proto.common.common.Common.A.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        a_ = "";
-
-        b_ = "";
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.example.proto.common.common.Common.internal_static_common_common_A_descriptor;
-      }
-
-      @java.lang.Override
-      public com.example.proto.common.common.Common.A getDefaultInstanceForType() {
-        return com.example.proto.common.common.Common.A.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.example.proto.common.common.Common.A build() {
-        com.example.proto.common.common.Common.A result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.example.proto.common.common.Common.A buildPartial() {
-        com.example.proto.common.common.Common.A result = new com.example.proto.common.common.Common.A(this);
-        result.a_ = a_;
-        result.b_ = b_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.example.proto.common.common.Common.A) {
-          return mergeFrom((com.example.proto.common.common.Common.A)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.example.proto.common.common.Common.A other) {
-        if (other == com.example.proto.common.common.Common.A.getDefaultInstance()) return this;
-        if (!other.getA().isEmpty()) {
-          a_ = other.a_;
-          onChanged();
-        }
-        if (!other.getB().isEmpty()) {
-          b_ = other.b_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.example.proto.common.common.Common.A parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.example.proto.common.common.Common.A) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object a_ = "";
-      /**
-       * <code>string a = 1;</code>
-       * @return The a.
-       */
-      public java.lang.String getA() {
-        java.lang.Object ref = a_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          a_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string a = 1;</code>
-       * @return The bytes for a.
-       */
-      public com.google.protobuf.ByteString
-          getABytes() {
-        java.lang.Object ref = a_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          a_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string a = 1;</code>
-       * @param value The a to set.
-       * @return This builder for chaining.
-       */
-      public Builder setA(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        a_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string a = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearA() {
-        
-        a_ = getDefaultInstance().getA();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string a = 1;</code>
-       * @param value The bytes for a to set.
-       * @return This builder for chaining.
-       */
-      public Builder setABytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        a_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object b_ = "";
-      /**
-       * <code>string b = 2;</code>
-       * @return The b.
-       */
-      public java.lang.String getB() {
-        java.lang.Object ref = b_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          b_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string b = 2;</code>
-       * @return The bytes for b.
-       */
-      public com.google.protobuf.ByteString
-          getBBytes() {
-        java.lang.Object ref = b_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          b_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string b = 2;</code>
-       * @param value The b to set.
-       * @return This builder for chaining.
-       */
-      public Builder setB(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        b_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string b = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearB() {
-        
-        b_ = getDefaultInstance().getB();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string b = 2;</code>
-       * @param value The bytes for b to set.
-       * @return This builder for chaining.
-       */
-      public Builder setBBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        b_ = value;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:common.common.A)
-    }
-
-    // @@protoc_insertion_point(class_scope:common.common.A)
-    private static final com.example.proto.common.common.Common.A DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.example.proto.common.common.Common.A();
-    }
-
-    public static com.example.proto.common.common.Common.A getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<A>
-        PARSER = new com.google.protobuf.AbstractParser<A>() {
-      @java.lang.Override
-      public A parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new A(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<A> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<A> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.example.proto.common.common.Common.A getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface BOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:common.common.B)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>repeated .common.common.A aList = 1;</code>
-     */
-    java.util.List<com.example.proto.common.common.Common.A> 
-        getAListList();
-    /**
-     * <code>repeated .common.common.A aList = 1;</code>
-     */
-    com.example.proto.common.common.Common.A getAList(int index);
-    /**
-     * <code>repeated .common.common.A aList = 1;</code>
-     */
-    int getAListCount();
-    /**
-     * <code>repeated .common.common.A aList = 1;</code>
-     */
-    java.util.List<? extends com.example.proto.common.common.Common.AOrBuilder> 
-        getAListOrBuilderList();
-    /**
-     * <code>repeated .common.common.A aList = 1;</code>
-     */
-    com.example.proto.common.common.Common.AOrBuilder getAListOrBuilder(
-        int index);
-  }
-  /**
-   * Protobuf type {@code common.common.B}
-   */
-  public  static final class B extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:common.common.B)
-      BOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use B.newBuilder() to construct.
-    private B(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private B() {
-      aList_ = java.util.Collections.emptyList();
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new B();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private B(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                aList_ = new java.util.ArrayList<com.example.proto.common.common.Common.A>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              aList_.add(
-                  input.readMessage(com.example.proto.common.common.Common.A.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          aList_ = java.util.Collections.unmodifiableList(aList_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.example.proto.common.common.Common.internal_static_common_common_B_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.example.proto.common.common.Common.internal_static_common_common_B_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.example.proto.common.common.Common.B.class, com.example.proto.common.common.Common.B.Builder.class);
-    }
-
-    public static final int ALIST_FIELD_NUMBER = 1;
-    private java.util.List<com.example.proto.common.common.Common.A> aList_;
-    /**
-     * <code>repeated .common.common.A aList = 1;</code>
-     */
-    public java.util.List<com.example.proto.common.common.Common.A> getAListList() {
-      return aList_;
-    }
-    /**
-     * <code>repeated .common.common.A aList = 1;</code>
-     */
-    public java.util.List<? extends com.example.proto.common.common.Common.AOrBuilder> 
-        getAListOrBuilderList() {
-      return aList_;
-    }
-    /**
-     * <code>repeated .common.common.A aList = 1;</code>
-     */
-    public int getAListCount() {
-      return aList_.size();
-    }
-    /**
-     * <code>repeated .common.common.A aList = 1;</code>
-     */
-    public com.example.proto.common.common.Common.A getAList(int index) {
-      return aList_.get(index);
-    }
-    /**
-     * <code>repeated .common.common.A aList = 1;</code>
-     */
-    public com.example.proto.common.common.Common.AOrBuilder getAListOrBuilder(
-        int index) {
-      return aList_.get(index);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      for (int i = 0; i < aList_.size(); i++) {
-        output.writeMessage(1, aList_.get(i));
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      for (int i = 0; i < aList_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, aList_.get(i));
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.example.proto.common.common.Common.B)) {
-        return super.equals(obj);
-      }
-      com.example.proto.common.common.Common.B other = (com.example.proto.common.common.Common.B) obj;
-
-      if (!getAListList()
-          .equals(other.getAListList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (getAListCount() > 0) {
-        hash = (37 * hash) + ALIST_FIELD_NUMBER;
-        hash = (53 * hash) + getAListList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.example.proto.common.common.Common.B parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.proto.common.common.Common.B parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.proto.common.common.Common.B parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.proto.common.common.Common.B parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.proto.common.common.Common.B parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.proto.common.common.Common.B parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.proto.common.common.Common.B parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.example.proto.common.common.Common.B parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.example.proto.common.common.Common.B parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.example.proto.common.common.Common.B parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.example.proto.common.common.Common.B parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.example.proto.common.common.Common.B parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.example.proto.common.common.Common.B prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code common.common.B}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:common.common.B)
-        com.example.proto.common.common.Common.BOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.example.proto.common.common.Common.internal_static_common_common_B_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.example.proto.common.common.Common.internal_static_common_common_B_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.example.proto.common.common.Common.B.class, com.example.proto.common.common.Common.B.Builder.class);
-      }
-
-      // Construct using com.example.proto.common.common.Common.B.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getAListFieldBuilder();
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (aListBuilder_ == null) {
-          aList_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          aListBuilder_.clear();
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.example.proto.common.common.Common.internal_static_common_common_B_descriptor;
-      }
-
-      @java.lang.Override
-      public com.example.proto.common.common.Common.B getDefaultInstanceForType() {
-        return com.example.proto.common.common.Common.B.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.example.proto.common.common.Common.B build() {
-        com.example.proto.common.common.Common.B result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.example.proto.common.common.Common.B buildPartial() {
-        com.example.proto.common.common.Common.B result = new com.example.proto.common.common.Common.B(this);
-        int from_bitField0_ = bitField0_;
-        if (aListBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            aList_ = java.util.Collections.unmodifiableList(aList_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.aList_ = aList_;
-        } else {
-          result.aList_ = aListBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.example.proto.common.common.Common.B) {
-          return mergeFrom((com.example.proto.common.common.Common.B)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.example.proto.common.common.Common.B other) {
-        if (other == com.example.proto.common.common.Common.B.getDefaultInstance()) return this;
-        if (aListBuilder_ == null) {
-          if (!other.aList_.isEmpty()) {
-            if (aList_.isEmpty()) {
-              aList_ = other.aList_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureAListIsMutable();
-              aList_.addAll(other.aList_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.aList_.isEmpty()) {
-            if (aListBuilder_.isEmpty()) {
-              aListBuilder_.dispose();
-              aListBuilder_ = null;
-              aList_ = other.aList_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              aListBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getAListFieldBuilder() : null;
-            } else {
-              aListBuilder_.addAllMessages(other.aList_);
-            }
-          }
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.example.proto.common.common.Common.B parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.example.proto.common.common.Common.B) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private java.util.List<com.example.proto.common.common.Common.A> aList_ =
-        java.util.Collections.emptyList();
-      private void ensureAListIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          aList_ = new java.util.ArrayList<com.example.proto.common.common.Common.A>(aList_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.example.proto.common.common.Common.A, com.example.proto.common.common.Common.A.Builder, com.example.proto.common.common.Common.AOrBuilder> aListBuilder_;
-
-      /**
-       * <code>repeated .common.common.A aList = 1;</code>
-       */
-      public java.util.List<com.example.proto.common.common.Common.A> getAListList() {
-        if (aListBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(aList_);
-        } else {
-          return aListBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <code>repeated .common.common.A aList = 1;</code>
-       */
-      public int getAListCount() {
-        if (aListBuilder_ == null) {
-          return aList_.size();
-        } else {
-          return aListBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .common.common.A aList = 1;</code>
-       */
-      public com.example.proto.common.common.Common.A getAList(int index) {
-        if (aListBuilder_ == null) {
-          return aList_.get(index);
-        } else {
-          return aListBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .common.common.A aList = 1;</code>
-       */
-      public Builder setAList(
-          int index, com.example.proto.common.common.Common.A value) {
-        if (aListBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureAListIsMutable();
-          aList_.set(index, value);
-          onChanged();
-        } else {
-          aListBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .common.common.A aList = 1;</code>
-       */
-      public Builder setAList(
-          int index, com.example.proto.common.common.Common.A.Builder builderForValue) {
-        if (aListBuilder_ == null) {
-          ensureAListIsMutable();
-          aList_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          aListBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .common.common.A aList = 1;</code>
-       */
-      public Builder addAList(com.example.proto.common.common.Common.A value) {
-        if (aListBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureAListIsMutable();
-          aList_.add(value);
-          onChanged();
-        } else {
-          aListBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .common.common.A aList = 1;</code>
-       */
-      public Builder addAList(
-          int index, com.example.proto.common.common.Common.A value) {
-        if (aListBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureAListIsMutable();
-          aList_.add(index, value);
-          onChanged();
-        } else {
-          aListBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .common.common.A aList = 1;</code>
-       */
-      public Builder addAList(
-          com.example.proto.common.common.Common.A.Builder builderForValue) {
-        if (aListBuilder_ == null) {
-          ensureAListIsMutable();
-          aList_.add(builderForValue.build());
-          onChanged();
-        } else {
-          aListBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .common.common.A aList = 1;</code>
-       */
-      public Builder addAList(
-          int index, com.example.proto.common.common.Common.A.Builder builderForValue) {
-        if (aListBuilder_ == null) {
-          ensureAListIsMutable();
-          aList_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          aListBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .common.common.A aList = 1;</code>
-       */
-      public Builder addAllAList(
-          java.lang.Iterable<? extends com.example.proto.common.common.Common.A> values) {
-        if (aListBuilder_ == null) {
-          ensureAListIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, aList_);
-          onChanged();
-        } else {
-          aListBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .common.common.A aList = 1;</code>
-       */
-      public Builder clearAList() {
-        if (aListBuilder_ == null) {
-          aList_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          aListBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .common.common.A aList = 1;</code>
-       */
-      public Builder removeAList(int index) {
-        if (aListBuilder_ == null) {
-          ensureAListIsMutable();
-          aList_.remove(index);
-          onChanged();
-        } else {
-          aListBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .common.common.A aList = 1;</code>
-       */
-      public com.example.proto.common.common.Common.A.Builder getAListBuilder(
-          int index) {
-        return getAListFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .common.common.A aList = 1;</code>
-       */
-      public com.example.proto.common.common.Common.AOrBuilder getAListOrBuilder(
-          int index) {
-        if (aListBuilder_ == null) {
-          return aList_.get(index);  } else {
-          return aListBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .common.common.A aList = 1;</code>
-       */
-      public java.util.List<? extends com.example.proto.common.common.Common.AOrBuilder> 
-           getAListOrBuilderList() {
-        if (aListBuilder_ != null) {
-          return aListBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(aList_);
-        }
-      }
-      /**
-       * <code>repeated .common.common.A aList = 1;</code>
-       */
-      public com.example.proto.common.common.Common.A.Builder addAListBuilder() {
-        return getAListFieldBuilder().addBuilder(
-            com.example.proto.common.common.Common.A.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .common.common.A aList = 1;</code>
-       */
-      public com.example.proto.common.common.Common.A.Builder addAListBuilder(
-          int index) {
-        return getAListFieldBuilder().addBuilder(
-            index, com.example.proto.common.common.Common.A.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .common.common.A aList = 1;</code>
-       */
-      public java.util.List<com.example.proto.common.common.Common.A.Builder> 
-           getAListBuilderList() {
-        return getAListFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.example.proto.common.common.Common.A, com.example.proto.common.common.Common.A.Builder, com.example.proto.common.common.Common.AOrBuilder> 
-          getAListFieldBuilder() {
-        if (aListBuilder_ == null) {
-          aListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.example.proto.common.common.Common.A, com.example.proto.common.common.Common.A.Builder, com.example.proto.common.common.Common.AOrBuilder>(
-                  aList_,
-                  ((bitField0_ & 0x00000001) != 0),
-                  getParentForChildren(),
-                  isClean());
-          aList_ = null;
-        }
-        return aListBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:common.common.B)
-    }
-
-    // @@protoc_insertion_point(class_scope:common.common.B)
-    private static final com.example.proto.common.common.Common.B DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.example.proto.common.common.Common.B();
-    }
-
-    public static com.example.proto.common.common.Common.B getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<B>
-        PARSER = new com.google.protobuf.AbstractParser<B>() {
-      @java.lang.Override
-      public B parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new B(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<B> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<B> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.example.proto.common.common.Common.B getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface COrBuilder extends
-      // @@protoc_insertion_point(interface_extends:common.common.C)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.common.common.A aList = 1;</code>
-     * @return Whether the aList field is set.
-     */
-    boolean hasAList();
-    /**
-     * <code>.common.common.A aList = 1;</code>
-     * @return The aList.
-     */
-    com.example.proto.common.common.Common.A getAList();
-    /**
-     * <code>.common.common.A aList = 1;</code>
-     */
-    com.example.proto.common.common.Common.AOrBuilder getAListOrBuilder();
-  }
-  /**
-   * Protobuf type {@code common.common.C}
-   */
-  public  static final class C extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:common.common.C)
-      COrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use C.newBuilder() to construct.
-    private C(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private C() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new C();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private C(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.example.proto.common.common.Common.A.Builder subBuilder = null;
-              if (aList_ != null) {
-                subBuilder = aList_.toBuilder();
-              }
-              aList_ = input.readMessage(com.example.proto.common.common.Common.A.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(aList_);
-                aList_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.example.proto.common.common.Common.internal_static_common_common_C_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.example.proto.common.common.Common.internal_static_common_common_C_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.example.proto.common.common.Common.C.class, com.example.proto.common.common.Common.C.Builder.class);
-    }
-
-    public static final int ALIST_FIELD_NUMBER = 1;
-    private com.example.proto.common.common.Common.A aList_;
-    /**
-     * <code>.common.common.A aList = 1;</code>
-     * @return Whether the aList field is set.
-     */
-    public boolean hasAList() {
-      return aList_ != null;
-    }
-    /**
-     * <code>.common.common.A aList = 1;</code>
-     * @return The aList.
-     */
-    public com.example.proto.common.common.Common.A getAList() {
-      return aList_ == null ? com.example.proto.common.common.Common.A.getDefaultInstance() : aList_;
-    }
-    /**
-     * <code>.common.common.A aList = 1;</code>
-     */
-    public com.example.proto.common.common.Common.AOrBuilder getAListOrBuilder() {
-      return getAList();
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (aList_ != null) {
-        output.writeMessage(1, getAList());
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (aList_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getAList());
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.example.proto.common.common.Common.C)) {
-        return super.equals(obj);
-      }
-      com.example.proto.common.common.Common.C other = (com.example.proto.common.common.Common.C) obj;
-
-      if (hasAList() != other.hasAList()) return false;
-      if (hasAList()) {
-        if (!getAList()
-            .equals(other.getAList())) return false;
-      }
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasAList()) {
-        hash = (37 * hash) + ALIST_FIELD_NUMBER;
-        hash = (53 * hash) + getAList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.example.proto.common.common.Common.C parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.proto.common.common.Common.C parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.proto.common.common.Common.C parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.proto.common.common.Common.C parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.proto.common.common.Common.C parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.proto.common.common.Common.C parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.proto.common.common.Common.C parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.example.proto.common.common.Common.C parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.example.proto.common.common.Common.C parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.example.proto.common.common.Common.C parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.example.proto.common.common.Common.C parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.example.proto.common.common.Common.C parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.example.proto.common.common.Common.C prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code common.common.C}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:common.common.C)
-        com.example.proto.common.common.Common.COrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.example.proto.common.common.Common.internal_static_common_common_C_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.example.proto.common.common.Common.internal_static_common_common_C_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.example.proto.common.common.Common.C.class, com.example.proto.common.common.Common.C.Builder.class);
-      }
-
-      // Construct using com.example.proto.common.common.Common.C.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (aListBuilder_ == null) {
-          aList_ = null;
-        } else {
-          aList_ = null;
-          aListBuilder_ = null;
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.example.proto.common.common.Common.internal_static_common_common_C_descriptor;
-      }
-
-      @java.lang.Override
-      public com.example.proto.common.common.Common.C getDefaultInstanceForType() {
-        return com.example.proto.common.common.Common.C.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.example.proto.common.common.Common.C build() {
-        com.example.proto.common.common.Common.C result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.example.proto.common.common.Common.C buildPartial() {
-        com.example.proto.common.common.Common.C result = new com.example.proto.common.common.Common.C(this);
-        if (aListBuilder_ == null) {
-          result.aList_ = aList_;
-        } else {
-          result.aList_ = aListBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.example.proto.common.common.Common.C) {
-          return mergeFrom((com.example.proto.common.common.Common.C)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.example.proto.common.common.Common.C other) {
-        if (other == com.example.proto.common.common.Common.C.getDefaultInstance()) return this;
-        if (other.hasAList()) {
-          mergeAList(other.getAList());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.example.proto.common.common.Common.C parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.example.proto.common.common.Common.C) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private com.example.proto.common.common.Common.A aList_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.proto.common.common.Common.A, com.example.proto.common.common.Common.A.Builder, com.example.proto.common.common.Common.AOrBuilder> aListBuilder_;
-      /**
-       * <code>.common.common.A aList = 1;</code>
-       * @return Whether the aList field is set.
-       */
-      public boolean hasAList() {
-        return aListBuilder_ != null || aList_ != null;
-      }
-      /**
-       * <code>.common.common.A aList = 1;</code>
-       * @return The aList.
-       */
-      public com.example.proto.common.common.Common.A getAList() {
-        if (aListBuilder_ == null) {
-          return aList_ == null ? com.example.proto.common.common.Common.A.getDefaultInstance() : aList_;
-        } else {
-          return aListBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.common.common.A aList = 1;</code>
-       */
-      public Builder setAList(com.example.proto.common.common.Common.A value) {
-        if (aListBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          aList_ = value;
-          onChanged();
-        } else {
-          aListBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.common.common.A aList = 1;</code>
-       */
-      public Builder setAList(
-          com.example.proto.common.common.Common.A.Builder builderForValue) {
-        if (aListBuilder_ == null) {
-          aList_ = builderForValue.build();
-          onChanged();
-        } else {
-          aListBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.common.common.A aList = 1;</code>
-       */
-      public Builder mergeAList(com.example.proto.common.common.Common.A value) {
-        if (aListBuilder_ == null) {
-          if (aList_ != null) {
-            aList_ =
-              com.example.proto.common.common.Common.A.newBuilder(aList_).mergeFrom(value).buildPartial();
-          } else {
-            aList_ = value;
-          }
-          onChanged();
-        } else {
-          aListBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.common.common.A aList = 1;</code>
-       */
-      public Builder clearAList() {
-        if (aListBuilder_ == null) {
-          aList_ = null;
-          onChanged();
-        } else {
-          aList_ = null;
-          aListBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.common.common.A aList = 1;</code>
-       */
-      public com.example.proto.common.common.Common.A.Builder getAListBuilder() {
-        
-        onChanged();
-        return getAListFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.common.common.A aList = 1;</code>
-       */
-      public com.example.proto.common.common.Common.AOrBuilder getAListOrBuilder() {
-        if (aListBuilder_ != null) {
-          return aListBuilder_.getMessageOrBuilder();
-        } else {
-          return aList_ == null ?
-              com.example.proto.common.common.Common.A.getDefaultInstance() : aList_;
-        }
-      }
-      /**
-       * <code>.common.common.A aList = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.example.proto.common.common.Common.A, com.example.proto.common.common.Common.A.Builder, com.example.proto.common.common.Common.AOrBuilder> 
-          getAListFieldBuilder() {
-        if (aListBuilder_ == null) {
-          aListBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.example.proto.common.common.Common.A, com.example.proto.common.common.Common.A.Builder, com.example.proto.common.common.Common.AOrBuilder>(
-                  getAList(),
-                  getParentForChildren(),
-                  isClean());
-          aList_ = null;
-        }
-        return aListBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:common.common.C)
-    }
-
-    // @@protoc_insertion_point(class_scope:common.common.C)
-    private static final com.example.proto.common.common.Common.C DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.example.proto.common.common.Common.C();
-    }
-
-    public static com.example.proto.common.common.Common.C getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<C>
-        PARSER = new com.google.protobuf.AbstractParser<C>() {
-      @java.lang.Override
-      public C parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new C(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<C> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<C> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.example.proto.common.common.Common.C getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_common_common_Msg_descriptor;
   private static final 
@@ -7554,21 +5630,6 @@ public final class Common {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_common_common_ErrorMsg_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_common_common_A_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_common_common_A_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_common_common_B_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_common_common_B_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_common_common_C_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_common_common_C_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -7580,38 +5641,35 @@ public final class Common {
     java.lang.String[] descriptorData = {
       "\n\023common/common.proto\022\rcommon.common\"K\n\003" +
       "Msg\022!\n\004head\030\001 \001(\0132\023.common.common.Head\022!" +
-      "\n\004body\030\002 \001(\0132\023.common.common.Body\"\027\n\004Bod" +
-      "y\022\017\n\007content\030\001 \001(\t\")\n\013ExtraHeader\022\013\n\003key" +
-      "\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"\360\001\n\004Head\022\016\n\006msg_id" +
-      "\030\001 \001(\003\022(\n\010msg_type\030\002 \001(\0162\026.common.common" +
-      ".MsgType\0227\n\020msg_content_type\030\003 \001(\0162\035.com" +
-      "mon.common.MsgContentType\022\017\n\007from_id\030\004 \001" +
-      "(\003\022\r\n\005to_id\030\005 \001(\003\022\021\n\ttimestamp\030\006 \001(\003\022\025\n\r" +
-      "status_report\030\007 \001(\005\022+\n\007extends\030\010 \003(\0132\032.c" +
-      "ommon.common.ExtraHeader\"C\n\010ErrorMsg\022*\n\n" +
-      "error_code\030\001 \001(\0162\026.common.common.ErrCode" +
-      "\022\013\n\003msg\030\002 \001(\t\"\031\n\001A\022\t\n\001a\030\001 \001(\t\022\t\n\001b\030\002 \001(\t" +
-      "\"$\n\001B\022\037\n\005aList\030\001 \003(\0132\020.common.common.A\"$" +
-      "\n\001C\022\037\n\005aList\030\001 \001(\0132\020.common.common.A*\226\001\n" +
-      "\007MsgType\022\020\n\014MSG_TYPE_NUL\020\000\022\016\n\nHAND_SHAKE" +
-      "\020\001\022\016\n\nHEART_BEAT\020\002\022\010\n\004KICK\020\003\022\017\n\013SINGLE_C" +
-      "HAT\020\004\022\016\n\nMULTI_CHAT\020\005\022\007\n\003BYE\020\006\022\021\n\rCHANGE" +
-      "_SERVER\020\007\022\022\n\016RECOVER_SERVER\020\010*/\n\016MsgCont" +
-      "entType\022\023\n\017MSG_CONTENT_NUL\020\000\022\010\n\004TEXT\020\001*\"" +
-      "\n\nReadStatus\022\n\n\006UNREAD\020\000\022\010\n\004READ\020\001*\315\003\n\007E" +
-      "rrCode\022\022\n\016ERRORCODE_NULL\020\000\022\013\n\007SUCCESS\020\001\022" +
-      "\021\n\004FAIL\020\377\377\377\377\377\377\377\377\377\001\022$\n SEND_MSG_INDIVIDUA" +
-      "LLY_TO_UID_NUL\020e\022!\n\035SEND_MSG_INDIVIDUALL" +
-      "Y_MSG_NUL\020f\022%\n!SEND_MSG_INDIVIDUALLY_FRO" +
-      "M_ID_NUL\020g\022\035\n\031SEND_MSG_GROUP_TO_UID_NUL\020" +
-      "h\022\032\n\026SEND_MSG_GROUP_MSG_NUL\020i\022\036\n\032SEND_MS" +
-      "G_GROUP_FROM_ID_NUL\020j\022\036\n\032GET_UNREAD_MSG_" +
-      "USER_ID_NUL\020o\022\030\n\024ACK_MSG_RESP_UID_NUL\020y\022" +
-      "\031\n\025ACK_MSG_RESP_GUID_NUL\020z\022\037\n\033ACK_MSG_RE" +
-      "SP_UPDATE_DB_FAIL\020{\022(\n$RELEASE_CONNECTIO" +
-      "NS_FAULTY_PARAMETER\020|\022#\n\037RECOVER_SERVER_" +
-      "FAULTY_PARAMETER\020}B+\n\037com.example.proto." +
-      "common.commonB\006CommonP\000b\006proto3"
+      "\n\004body\030\002 \001(\0132\023.common.common.Body\"3\n\004Bod" +
+      "y\022\r\n\005title\030\001 \001(\t\022\017\n\007content\030\002 \001(\t\022\013\n\003url" +
+      "\030\003 \001(\t\")\n\013ExtraHeader\022\013\n\003key\030\001 \001(\t\022\r\n\005va" +
+      "lue\030\002 \001(\t\"\331\001\n\004Head\022\016\n\006msg_id\030\001 \001(\003\022(\n\010ms" +
+      "g_type\030\002 \001(\0162\026.common.common.MsgType\0227\n\020" +
+      "msg_content_type\030\003 \001(\0162\035.common.common.M" +
+      "sgContentType\022\017\n\007from_id\030\004 \001(\003\022\r\n\005to_id\030" +
+      "\005 \001(\003\022\021\n\ttimestamp\030\006 \001(\003\022+\n\007extends\030\007 \003(" +
+      "\0132\032.common.common.ExtraHeader\"C\n\010ErrorMs" +
+      "g\022*\n\nerror_code\030\001 \001(\0162\026.common.common.Er" +
+      "rCode\022\013\n\003msg\030\002 \001(\t*\226\001\n\007MsgType\022\020\n\014MSG_TY" +
+      "PE_NUL\020\000\022\016\n\nHAND_SHAKE\020\001\022\016\n\nHEART_BEAT\020\002" +
+      "\022\010\n\004KICK\020\003\022\017\n\013SINGLE_CHAT\020\004\022\016\n\nMULTI_CHA" +
+      "T\020\005\022\007\n\003BYE\020\006\022\021\n\rCHANGE_SERVER\020\007\022\022\n\016RECOV" +
+      "ER_SERVER\020\010*/\n\016MsgContentType\022\023\n\017MSG_CON" +
+      "TENT_NUL\020\000\022\010\n\004TEXT\020\001*\315\003\n\007ErrCode\022\022\n\016ERRO" +
+      "RCODE_NULL\020\000\022\013\n\007SUCCESS\020\001\022\021\n\004FAIL\020\377\377\377\377\377\377" +
+      "\377\377\377\001\022$\n SEND_MSG_INDIVIDUALLY_TO_UID_NUL" +
+      "\020e\022!\n\035SEND_MSG_INDIVIDUALLY_MSG_NUL\020f\022%\n" +
+      "!SEND_MSG_INDIVIDUALLY_FROM_ID_NUL\020g\022\035\n\031" +
+      "SEND_MSG_GROUP_TO_UID_NUL\020h\022\032\n\026SEND_MSG_" +
+      "GROUP_MSG_NUL\020i\022\036\n\032SEND_MSG_GROUP_FROM_I" +
+      "D_NUL\020j\022\036\n\032GET_UNREAD_MSG_USER_ID_NUL\020o\022" +
+      "\030\n\024ACK_MSG_RESP_UID_NUL\020y\022\031\n\025ACK_MSG_RES" +
+      "P_GUID_NUL\020z\022\037\n\033ACK_MSG_RESP_UPDATE_DB_F" +
+      "AIL\020{\022(\n$RELEASE_CONNECTIONS_FAULTY_PARA" +
+      "METER\020|\022#\n\037RECOVER_SERVER_FAULTY_PARAMET" +
+      "ER\020}B+\n\037com.example.proto.common.commonB" +
+      "\006CommonP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -7628,7 +5686,7 @@ public final class Common {
     internal_static_common_common_Body_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_common_common_Body_descriptor,
-        new java.lang.String[] { "Content", });
+        new java.lang.String[] { "Title", "Content", "Url", });
     internal_static_common_common_ExtraHeader_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_common_common_ExtraHeader_fieldAccessorTable = new
@@ -7640,31 +5698,13 @@ public final class Common {
     internal_static_common_common_Head_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_common_common_Head_descriptor,
-        new java.lang.String[] { "MsgId", "MsgType", "MsgContentType", "FromId", "ToId", "Timestamp", "StatusReport", "Extends", });
+        new java.lang.String[] { "MsgId", "MsgType", "MsgContentType", "FromId", "ToId", "Timestamp", "Extends", });
     internal_static_common_common_ErrorMsg_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_common_common_ErrorMsg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_common_common_ErrorMsg_descriptor,
         new java.lang.String[] { "ErrorCode", "Msg", });
-    internal_static_common_common_A_descriptor =
-      getDescriptor().getMessageTypes().get(5);
-    internal_static_common_common_A_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_common_common_A_descriptor,
-        new java.lang.String[] { "A", "B", });
-    internal_static_common_common_B_descriptor =
-      getDescriptor().getMessageTypes().get(6);
-    internal_static_common_common_B_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_common_common_B_descriptor,
-        new java.lang.String[] { "AList", });
-    internal_static_common_common_C_descriptor =
-      getDescriptor().getMessageTypes().get(7);
-    internal_static_common_common_C_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_common_common_C_descriptor,
-        new java.lang.String[] { "AList", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

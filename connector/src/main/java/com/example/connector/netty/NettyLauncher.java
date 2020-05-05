@@ -62,7 +62,7 @@ public class NettyLauncher implements Runnable {
                     .channel(EpollServerSocketChannel.class)
                     .localAddress(new InetSocketAddress(port))
                     .option(ChannelOption.SO_BACKLOG, 1024)
-                    .childHandler(new SslInitializer());
+                    .childHandler(new DefaultInitializer());
             ChannelFuture future = b.bind().sync();
             future.addListener((ChannelFutureListener) future1 -> {
                 // 启动成功

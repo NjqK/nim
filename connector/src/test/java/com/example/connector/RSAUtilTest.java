@@ -1,6 +1,7 @@
 package com.example.connector;
 
 import com.example.common.secure.rsa.RSAUtils;
+import com.example.connector.common.KeyManager;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,6 +13,8 @@ import java.util.Map;
 public class RSAUtilTest {
     // 简单测试____________
     public static void main(String[] args) throws Exception {
+        System.out.println(KeyManager.SERVER_RSA_PRIVATE_KEY);
+        //createRSAKey();
         test1();
     }
 

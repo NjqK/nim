@@ -1,8 +1,11 @@
 package com.example.connector.netty.handler;
 
+import com.alibaba.fastjson.JSON;
 import com.example.common.CommonConstants;
 import com.example.common.redis.JedisUtil;
+import com.example.common.secure.rsa.RSAUtils;
 import com.example.common.util.ListUtil;
+import com.example.connector.common.KeyManager;
 import com.example.connector.common.RedisKeyUtil;
 import com.example.connector.common.SpringUtil;
 import com.example.connector.dao.manager.SessionManager;
@@ -15,7 +18,9 @@ import io.netty.util.Attribute;
 import io.netty.util.AttributeKey;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 业务处理
@@ -45,27 +50,41 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
 
         Common.Msg message = (Common.Msg) msg;
         log.info("BizHandler got msgBody:{}", message);
-        if (message.getHead().getMsgType().equals(Common.MsgType.HAND_SHAKE)) {
-            String uid = getUid(message, "uid");
-            if (uid != null) {
-                log.info("create redis session, uid:{}", uid);
-                if (JedisUtil.hset(CommonConstants.USERS_REDIS_KEY, uid, RedisKeyUtil.getApplicationRedisKey()) >= 0) {
-                    Channel channel = ctx.channel();
-                    if (!sessionManager.createIfAbsent(uid, channel)) {
-                        // 已经有别的了
-                        Channel origin = sessionManager.updateSession(uid, channel);
-                        origin.writeAndFlush(KICK_MSG);
-                        origin.close();
-                    }
-                    AttributeKey<String> key = AttributeKey.valueOf("uid");
-                    channel.attr(key).set(uid);
-
-                    JedisUtil.hincrby(RedisKeyUtil.getApplicationRedisKey(), "userCount", 1L);
-                }
-            } else {
-                log.error("uid is null");
-                ctx.close();
+        if (Common.MsgType.HAND_SHAKE.equals(message.getHead().getMsgType())) {
+            Map<String, String> extraHeader = getExtraHeader(message);
+            log.info("extraHeader:{}", JSON.toJSONString(extraHeader, true));
+            String uid = extraHeader.get("uid");
+            if (!extraHeader.containsKey("clientAESKey")) {
+                log.error("没有客户端密钥");
+                ctx.writeAndFlush(KICK_MSG);
             }
+            if (uid == null) {
+                log.error("用户id空");
+                ctx.writeAndFlush(KICK_MSG);
+            }
+            // 解密客户端密钥，并保存
+            String clientAESKey = RSAUtils.privateDecrypt(extraHeader.get("clientAESKey"),
+                    RSAUtils.getPrivateKey(KeyManager.SERVER_RSA_PRIVATE_KEY));
+            // TODO 因为目前只有服务端发送消息给客户端，那么不需要把服务端的AES密钥也发送给客户端，如果以后有需求可以在这里改
+            // 生成服务端AES密钥
+            //String serverAESKey = AESUtil.createKeys();
+            //SecretKey secretKeyDto = new SecretKey(clientAESKey, serverAESKey);
+            //JedisUtil.hset(CommonConstants.CONNECTOR_SECRET_REDIS_KEY, uid, JSON.toJSONString(secretKeyDto));
+            JedisUtil.hset(CommonConstants.CONNECTOR_SECRET_REDIS_KEY, uid, clientAESKey);
+            log.info("create redis session, uid:{}", uid);
+            if (JedisUtil.hset(CommonConstants.USERS_REDIS_KEY, uid, RedisKeyUtil.getApplicationRedisKey()) >= 0) {
+                Channel channel = ctx.channel();
+                if (!sessionManager.createIfAbsent(uid, channel)) {
+                    // 已经有别的了
+                    Channel origin = sessionManager.updateSession(uid, channel);
+                    origin.writeAndFlush(KICK_MSG);
+                    origin.close();
+                }
+                AttributeKey<String> key = AttributeKey.valueOf("uid");
+                channel.attr(key).set(uid);
+                JedisUtil.hincrby(RedisKeyUtil.getApplicationRedisKey(), "userCount", 1L);
+            }
+            // 使用客户端密钥加密服务端密钥，并返回给客户端
         }
     }
 
@@ -73,21 +92,19 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
      * 获取握手消息携带的用户id
      *
      * @param message
-     * @param key
      * @return
      */
-    private String getUid(Common.Msg message, String key) {
+    private Map<String, String> getExtraHeader(Common.Msg message) {
+        Map<String, String> handShakeMap = new HashMap<>(4);
         List<Common.ExtraHeader> extendsList = message.getHead().getExtendsList();
         if (ListUtil.isEmpty(extendsList)) {
             log.error("握手的消息包有误.");
             return null;
         }
         for (Common.ExtraHeader extraHeader : extendsList) {
-            if (extraHeader.getKey().equals(key)) {
-                return extraHeader.getValue();
-            }
+            handShakeMap.put(extraHeader.getKey(), extraHeader.getValue());
         }
-        return null;
+        return handShakeMap;
     }
 
     @Override

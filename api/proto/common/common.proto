@@ -12,7 +12,7 @@ enum MsgType {
     HAND_SHAKE = 1;
     // 心跳
     HEART_BEAT = 2;
-    // 抢占线
+    // boot user
     KICK = 3;
     // 单聊
     SINGLE_CHAT = 4;
