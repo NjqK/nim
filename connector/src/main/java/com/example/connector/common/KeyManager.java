@@ -15,9 +15,9 @@ public class KeyManager {
     /**
      * 服务端RSA 密钥
      */
-    public static final String SERVER_RSA_PRIVATE_KEY;
+    public static String SERVER_RSA_PRIVATE_KEY;
 
-    static {
+    public KeyManager() {
         SERVER_RSA_PRIVATE_KEY = getServerRsaPrivateKey();
     }
 

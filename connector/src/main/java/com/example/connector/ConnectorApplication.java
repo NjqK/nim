@@ -7,6 +7,7 @@ import com.example.common.redis.JedisUtil;
 import com.example.common.zk.ZkUtil;
 import com.example.connector.common.ConnectorThreadFactory;
 import com.example.connector.common.DubboRouterUtil;
+import com.example.connector.common.KeyManager;
 import com.example.connector.common.RedisKeyUtil;
 import com.example.connector.dao.manager.ClusterNodeManager;
 import com.example.connector.dao.manager.SessionManager;
@@ -117,6 +118,7 @@ public class ConnectorApplication {
         ClusterNode localNode = clusterNodeManager.getLocalNode();
         log.info("get local node for netty:{}", localNode);
         // init netty
+        new KeyManager();
         NettyServerManager instance = NettyServerManager.getInstance();
         instance.init(localNode);
         RedisKeyUtil.createApplicationRedisKey(applicationName, localNode);
