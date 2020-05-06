@@ -1,6 +1,7 @@
 package com.example.connector;
 
 import com.example.common.CommonConstants;
+import com.example.common.ServiceStatusEnum;
 import com.example.common.kafka.KafkaConsumerUtil;
 import com.example.common.kafka.KafkaProducerUtil;
 import com.example.common.redis.JedisUtil;
@@ -18,7 +19,6 @@ import com.example.connector.entity.domain.RatePolicy;
 import com.example.connector.netty.NettyServerManager;
 import com.example.connector.task.UpdateServerLoadTask;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.common.metrics.stats.Rate;
 import org.apache.zookeeper.CreateMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -93,7 +93,8 @@ public class ConnectorApplication {
         // 添加这个节点到redis，分别为connector，服务器key，权重
         JedisUtil.hsetnx(CommonConstants.CONNECTOR_REDIS_KEY, RedisKeyUtil.getApplicationRedisKey(), "0");
         JedisUtil.hsetnx(RedisKeyUtil.getApplicationRedisKey(), "weight", "0");
-        JedisUtil.hsetnx(RedisKeyUtil.getApplicationRedisKey(), "userCount", "0");
+        JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "userCount", "0");
+        JedisUtil.hsetnx(RedisKeyUtil.getApplicationRedisKey(), "status", String.valueOf(ServiceStatusEnum.IN_SERVICE.getStatus()));
         DubboRouterUtil.init(zkUrl);
         // 添加定时更新负载的任务
         RatePolicy ratePolicy = RatePolicy.DEFAULT;

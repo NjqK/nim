@@ -2,6 +2,7 @@ package com.example.connector.task;
 
 import com.alibaba.fastjson.JSON;
 import com.example.common.CommonConstants;
+import com.example.common.ServiceStatusEnum;
 import com.example.common.redis.JedisUtil;
 import com.example.common.util.ListUtil;
 import com.example.common.zk.ZkUtil;
@@ -47,6 +48,7 @@ public class ReleaseConnectionsTask implements Runnable {
             }
             // 更改路由规则，防止进来新的连接请求
             blockService(applicationRedisKey);
+            JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "status", String.valueOf(ServiceStatusEnum.OUT_OF_SERVICE.getStatus()));
             int uidCount = allUid.size();
             if (uidCount == 0) {
                 log.info("no user on this node");

@@ -1,9 +1,15 @@
 package com.example.chat.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.example.api.outer.outer.ChatService;
 import com.example.chat.entity.vo.RecoverServiceReqVO;
 import com.example.chat.entity.vo.ReleaseConnectionsReqVO;
 import com.example.chat.entity.vo.SendGroupMsgReq;
+import com.example.common.CommonConstants;
+import com.example.common.ServiceStatusEnum;
+import com.example.common.redis.JedisUtil;
+import com.example.common.util.ListUtil;
+import com.example.common.zk.ZkUtil;
 import com.example.proto.common.common.Common;
 import com.example.proto.outer.outer.Outer;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -11,14 +17,12 @@ import com.google.protobuf.util.JsonFormat;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author kuro
@@ -61,6 +65,24 @@ public class ChatController {
         return JsonFormat.printer().print(resp);
     }
 
+    @GetMapping("/getConnectorStatus")
+    public String getConnectorStatus()  {
+        List<String> child = ZkUtil.getChild(CommonConstants.CONNECTOR_ZK_BASE_PATH);
+        if (ListUtil.isEmpty(child)) {
+            return "没有可用的Connector服务";
+        }
+        Map<String, String> statusMap = new HashMap<>(child.size());
+        for (String key : child) {
+            String status = JedisUtil.hget(key, "status");
+            ServiceStatusEnum statusEnum = ServiceStatusEnum.valueOf(Integer.parseInt(status));
+            if (statusEnum != null) {
+                statusMap.put(key, statusEnum.getDesc());
+            }
+        }
+        return JSON.toJSONString(statusMap);
+    }
+
+
     @GetMapping("/sendMsg")
     public String sendMsg(@RequestParam("uid") String uid, @RequestParam("msg") String msg) {
         // TODO 转化对象
@@ -79,7 +101,7 @@ public class ChatController {
     public String sendMsg(@RequestBody SendGroupMsgReq req) throws InvalidProtocolBufferException {
         Outer.DoGroupSendingReq.Builder builder = Outer.DoGroupSendingReq.newBuilder();
         String toUids = req.getToUids();
-        // TODO 当uidList太大需要分批次做，以免大块内存导致FULL GC
+        // TODO 当uidList太大需要分批次做，以免大块内存导致FULL GC或者OOM
         if (StringUtils.isNoneEmpty(toUids)) {
             String[] split = toUids.split(",");
             ArrayList<String> strings = new ArrayList<>(split.length);

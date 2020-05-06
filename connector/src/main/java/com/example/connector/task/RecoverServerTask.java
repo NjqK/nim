@@ -1,6 +1,7 @@
 package com.example.connector.task;
 
 import com.example.common.CommonConstants;
+import com.example.common.ServiceStatusEnum;
 import com.example.common.redis.JedisUtil;
 import com.example.connector.common.DubboRouterUtil;
 import com.example.connector.common.GetSystemInfoUtil;
@@ -25,7 +26,8 @@ public class RecoverServerTask implements Runnable {
         long weight = Math.max(weightCalculator.calculateServiceWeight(serviceLoad), 1L);
         String value = String.valueOf(weight);
         String applicationRedisKey = RedisKeyUtil.getApplicationRedisKey();
-        JedisUtil.hsetnx(CommonConstants.CONNECTOR_REDIS_KEY, applicationRedisKey, value);
+        JedisUtil.hset(CommonConstants.CONNECTOR_REDIS_KEY, applicationRedisKey, value);
+        JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "status", String.valueOf(ServiceStatusEnum.IN_SERVICE.getStatus()));
         recoverServer(applicationRedisKey);
     }
 
