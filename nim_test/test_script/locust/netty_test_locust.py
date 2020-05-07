@@ -98,10 +98,8 @@ class SocketClient(object):
 
 
 class UserBehavior(TaskSet):
-    def __init__(self):
-        self._client = SocketClient()
-
     def on_start(self):
+        self._client = SocketClient()
         self._client.connect((self.locust.host, self.locust.port))
 
     def on_stop(self):
@@ -120,7 +118,7 @@ class SocketLocust(Locust):
 
 class SocketUser(SocketLocust):
     host = "192.168.0.106"
-    port = 16423
+    port = 20851
     task_set = UserBehavior
     wait_time = between(1, 10)
 
@@ -134,3 +132,4 @@ if __name__ == "__main__":
     # client = SocketClient()
     # client.connect(("192.168.0.106", 10859))
     # client.send(bytes([4, 10, 2, 16, 2]))
+
