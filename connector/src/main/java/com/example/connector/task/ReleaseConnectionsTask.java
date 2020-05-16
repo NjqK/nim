@@ -84,6 +84,7 @@ public class ReleaseConnectionsTask implements Runnable {
                     .setMsgType(Common.MsgType.CHANGE_SERVER)
                     .setMsgContentType(Common.MsgContentType.TEXT)
                     .build();
+            String uid = allUid.get(current);
             if (uidCount >= totalWeight) {
                 while (current < uidCount) {
                     for (String serverInfo : allAvailableServers.keySet()) {
@@ -97,7 +98,8 @@ public class ReleaseConnectionsTask implements Runnable {
                         int weight = allAvailableServers.get(serverInfo);
                         for (int i = 0; i < weight; i++) {
                             if (current < uidCount) {
-                                instance.sendMsg(sessionManager.getChannel(allUid.get(current)), changeServerMsg);
+                                instance.sendMsg(sessionManager.getChannel(uid), changeServerMsg);
+                                sessionManager.destroySession(uid);
                                 current++;
                             }
                         }
@@ -118,7 +120,8 @@ public class ReleaseConnectionsTask implements Runnable {
                         int proportion = new Double(Math.max(v, 1)).intValue();
                         for (int i = 0; i < proportion; i++) {
                             if (current < uidCount) {
-                                instance.sendMsg(sessionManager.getChannel(allUid.get(current)), changeServerMsg);
+                                instance.sendMsg(sessionManager.getChannel(uid), changeServerMsg);
+                                sessionManager.destroySession(uid);
                                 current++;
                             }
                         }

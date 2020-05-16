@@ -1,7 +1,6 @@
 package com.example.chat.service.impl;
 
 import com.example.api.inner.inner.ConnectorService;
-import com.example.api.inner.inner.PushService;
 import com.example.api.outer.outer.ChatService;
 import com.example.chat.manager.ChatServiceManager;
 import com.example.common.CommonConstants;
@@ -9,7 +8,6 @@ import com.example.common.util.ListUtil;
 import com.example.proto.common.common.Common;
 import com.example.proto.inner.inner.Inner;
 import com.example.proto.outer.outer.Outer;
-import com.google.protobuf.util.JsonFormat;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;

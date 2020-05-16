@@ -65,21 +65,23 @@ public class ChatController {
         return JsonFormat.printer().print(resp);
     }
 
-    @GetMapping("/getConnectorStatus")
-    public String getConnectorStatus()  {
+    @GetMapping("/getConnectorInfo")
+    public String getConnectorInfo()  {
         List<String> child = ZkUtil.getChild(CommonConstants.CONNECTOR_ZK_BASE_PATH);
         if (ListUtil.isEmpty(child)) {
             return "没有可用的Connector服务";
         }
-        Map<String, String> statusMap = new HashMap<>(child.size());
+        Map<String, Map<String, String>> result = new HashMap<>(child.size());
         for (String key : child) {
-            String status = JedisUtil.hget(key, "status");
-            ServiceStatusEnum statusEnum = ServiceStatusEnum.valueOf(Integer.parseInt(status));
-            if (statusEnum != null) {
-                statusMap.put(key, statusEnum.getDesc());
+            Map<String, String> serverInfo = JedisUtil.hgetall(key);
+            String status = serverInfo.get("status");
+            if (status != null) {
+                ServiceStatusEnum statusEnum = ServiceStatusEnum.valueOf(Integer.parseInt(status));
+                serverInfo.put("status", statusEnum.getDesc());
             }
+            result.put(key, serverInfo);
         }
-        return JSON.toJSONString(statusMap);
+        return JSON.toJSONString(result, true);
     }
 
 
