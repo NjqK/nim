@@ -51,5 +51,5 @@ redis:
 
 kafka:
   cluster:
-    nodes: kafka:port
+    nodes: ubuntu:port
 

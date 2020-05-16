@@ -4,7 +4,7 @@ spring:
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/chat?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+      url: jdbc:mysql://ubuntu:3306/chat?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
       username: root
       password: 123456
       min-idle: 5
@@ -18,7 +18,7 @@ dubbo:
     port: 20880
     serialization: myprotobuf
   registry:
-    address: zookeeper://192.168.0.108:2181
+    address: zookeeper://ubuntu:2181
     client: curator
   scan:
     base-packages: com.example.connector.service
@@ -31,11 +31,11 @@ mybatis:
   type-aliases-package: com.example.connector.entity.domain
 
 zookeeper:
-  url: 192.168.0.108:2181
+  url: ubuntu:2181
 
 redis:
   pool:
-    host: 192.168.0.108
+    host: ubuntu
     port: 6379
     password:
     maxTotal: 8
@@ -43,6 +43,6 @@ redis:
     maxWaitMillis: -1
 
 kafka:
-  nodes: 192.168.0.108:9092
+  nodes: ubuntu:9092
   group: push_task_group
 
