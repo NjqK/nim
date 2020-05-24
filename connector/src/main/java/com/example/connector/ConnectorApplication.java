@@ -96,6 +96,10 @@ public class ConnectorApplication {
         JedisUtil.hsetnx(CommonConstants.CONNECTOR_REDIS_KEY, RedisKeyUtil.getApplicationRedisKey(), "0");
         JedisUtil.hsetnx(RedisKeyUtil.getApplicationRedisKey(), "weight", "0");
         JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "userCount", "0");
+        JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "name", applicationName);
+        ClusterNode localNode = clusterNodeManager.getLocalNode();
+        JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "ip", localNode.getIp());
+        JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "port", localNode.getPort());
         JedisUtil.hsetnx(RedisKeyUtil.getApplicationRedisKey(), "status", String.valueOf(ServiceStatusEnum.IN_SERVICE.getStatus()));
         DubboRouterUtil.init(zkUrl);
         // 添加定时更新负载的任务

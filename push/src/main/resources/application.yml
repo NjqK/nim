@@ -35,6 +35,9 @@ redis:
     maxIdle: 8
     maxWaitMillis: -1
 
+zookeeper:
+  url: ubuntu:2181
+
 kafka:
   nodes: ubuntu:9092
   group: push_task_group
