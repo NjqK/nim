@@ -46,12 +46,14 @@ public class ReleaseConnectionsTask implements Runnable {
             } else {
                 return;
             }
+            JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "releasing", "1");
             // 更改路由规则，防止进来新的连接请求
             blockService(applicationRedisKey);
             JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "status", String.valueOf(ServiceStatusEnum.OUT_OF_SERVICE.getStatus()));
             int uidCount = allUid.size();
             if (uidCount == 0) {
                 log.info("no user on this node");
+                JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "releasing", "0");
                 return;
             }
             Map<String, String> allServers = JedisUtil.hgetall(CommonConstants.CONNECTOR_REDIS_KEY);
@@ -60,6 +62,7 @@ public class ReleaseConnectionsTask implements Runnable {
             Map<String, Integer> allAvailableServers = new HashMap<>(16);
             if (allServers == null || allServers.size() == 0 || ListUtil.isEmpty(child)) {
                 log.error("ConnectorServiceImpl removeConnections, no available node");
+                JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "releasing", "0");
                 return;
             }
             int current = 0;
@@ -76,6 +79,7 @@ public class ReleaseConnectionsTask implements Runnable {
             }
             if (totalWeight == 0) {
                 log.error("ConnectorServiceImpl removeConnections total weight is 0");
+                JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "releasing", "0");
                 return;
             }
             log.info("allAvailableServers:{}", JSON.toJSONString(allAvailableServers, true));
@@ -128,6 +132,7 @@ public class ReleaseConnectionsTask implements Runnable {
                     }
                 }
             }
+            JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "releasing", "0");
         } catch (Exception e) {
             log.info("removeConnections occur error: {}", e);
         }

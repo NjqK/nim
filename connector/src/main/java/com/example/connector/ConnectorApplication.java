@@ -101,6 +101,7 @@ public class ConnectorApplication {
         JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "ip", localNode.getIp());
         JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "port", localNode.getPort());
         JedisUtil.hsetnx(RedisKeyUtil.getApplicationRedisKey(), "status", String.valueOf(ServiceStatusEnum.IN_SERVICE.getStatus()));
+        JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "releasing", "0");
         DubboRouterUtil.init(zkUrl);
         // 添加定时更新负载的任务
         RatePolicy ratePolicy = RatePolicy.DEFAULT;
