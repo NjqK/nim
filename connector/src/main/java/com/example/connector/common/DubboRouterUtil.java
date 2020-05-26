@@ -53,7 +53,7 @@ public class DubboRouterUtil {
         registry.register(url);
     }
 
-    public void deleteRouteRule(String ip, String serviceName, String serviceVersion, String routeRule) {
+    public void deleteRouteRule(String serviceName, String serviceVersion, String routeRule) {
         Registry registry = REGISTRY_FACTORY.getRegistry(zkUrl);
         URL url = URL.valueOf("condition://0.0.0.0/" +  serviceName
                 + "?category=routers&dynamic=false&version=" + serviceVersion

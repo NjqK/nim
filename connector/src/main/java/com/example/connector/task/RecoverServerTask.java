@@ -3,6 +3,7 @@ package com.example.connector.task;
 import com.example.common.CommonConstants;
 import com.example.common.ServiceStatusEnum;
 import com.example.common.redis.JedisUtil;
+import com.example.connector.common.Constants;
 import com.example.connector.common.DubboRouterUtil;
 import com.example.connector.common.GetSystemInfoUtil;
 import com.example.connector.common.RedisKeyUtil;
@@ -38,9 +39,7 @@ public class RecoverServerTask implements Runnable {
     private void recoverServer(String applicationRedisKey) {
         DubboRouterUtil dubboRouterUtil = DubboRouterUtil.getINSTANCE();
         String ip = RedisKeyUtil.getIp(applicationRedisKey);
-        String serviceName = "com.example.api.inner.inner.ConnectorService";
-        String serviceVersion = "1.0.0";
         String routeRule = "host != " + ip;
-        dubboRouterUtil.deleteRouteRule(ip, serviceName, serviceVersion, routeRule);
+        dubboRouterUtil.deleteRouteRule(Constants.CONNECTOR_SERVICE_NAME, Constants.SERVICE_VERSION, routeRule);
     }
 }

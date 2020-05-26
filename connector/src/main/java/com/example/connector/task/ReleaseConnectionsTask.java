@@ -6,6 +6,7 @@ import com.example.common.ServiceStatusEnum;
 import com.example.common.redis.JedisUtil;
 import com.example.common.util.ListUtil;
 import com.example.common.zk.ZkUtil;
+import com.example.connector.common.Constants;
 import com.example.connector.common.DubboRouterUtil;
 import com.example.connector.common.RedisKeyUtil;
 import com.example.connector.dao.manager.SessionManager;
@@ -41,6 +42,7 @@ public class ReleaseConnectionsTask implements Runnable {
             NettyServerManager instance = NettyServerManager.getInstance();
             // 删除key，防止别的节点的转移任务到这来
             String applicationRedisKey = RedisKeyUtil.getApplicationRedisKey();
+            String originalWeight = JedisUtil.hget(CommonConstants.CONNECTOR_REDIS_KEY, applicationRedisKey);
             if (JedisUtil.hexists(CommonConstants.CONNECTOR_REDIS_KEY, applicationRedisKey)) {
                 JedisUtil.hdel(CommonConstants.CONNECTOR_REDIS_KEY, applicationRedisKey);
             } else {
@@ -49,20 +51,15 @@ public class ReleaseConnectionsTask implements Runnable {
             JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "releasing", "1");
             // 更改路由规则，防止进来新的连接请求
             blockService(applicationRedisKey);
-            JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "status", String.valueOf(ServiceStatusEnum.OUT_OF_SERVICE.getStatus()));
-            int uidCount = allUid.size();
-            if (uidCount == 0) {
-                log.info("no user on this node");
-                JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "releasing", "0");
-                return;
-            }
+            JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "status",
+                    String.valueOf(ServiceStatusEnum.OUT_OF_SERVICE.getStatus()));
             Map<String, String> allServers = JedisUtil.hgetall(CommonConstants.CONNECTOR_REDIS_KEY);
             List<String> child = ZkUtil.getChild(CommonConstants.CONNECTOR_ZK_BASE_PATH);
             log.info("可用服务节点:{}", JSON.toJSONString(child, true));
             Map<String, Integer> allAvailableServers = new HashMap<>(16);
             if (allServers == null || allServers.size() == 0 || ListUtil.isEmpty(child)) {
                 log.error("ConnectorServiceImpl removeConnections, no available node");
-                JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "releasing", "0");
+                unlock(applicationRedisKey, originalWeight);
                 return;
             }
             int current = 0;
@@ -77,12 +74,23 @@ public class ReleaseConnectionsTask implements Runnable {
                     }
                 }
             }
+            if (allAvailableServers.size() == 0) {
+                // 系统只有本服务，添加的路由规则无效
+                unlock(applicationRedisKey, originalWeight);
+                return;
+            }
             if (totalWeight == 0) {
                 log.error("ConnectorServiceImpl removeConnections total weight is 0");
                 JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "releasing", "0");
                 return;
             }
             log.info("allAvailableServers:{}", JSON.toJSONString(allAvailableServers, true));
+            int uidCount = allUid.size();
+            if (uidCount == 0) {
+                log.info("no user on this node, job finished");
+                JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "releasing", "0");
+                return;
+            }
             // assign job 分配任务
             Common.Head header = Common.Head.newBuilder()
                     .setMsgType(Common.MsgType.CHANGE_SERVER)
@@ -138,6 +146,14 @@ public class ReleaseConnectionsTask implements Runnable {
         }
     }
 
+    private void unlock(String applicationRedisKey, String originalWeight) {
+        unlockService(applicationRedisKey);
+        JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "status",
+                String.valueOf(ServiceStatusEnum.IN_SERVICE.getStatus()));
+        JedisUtil.hset(RedisKeyUtil.getApplicationRedisKey(), "releasing", "0");
+        JedisUtil.hset(CommonConstants.CONNECTOR_REDIS_KEY, applicationRedisKey, originalWeight);
+    }
+
     /**
      * 修改route规则，屏蔽这个ip的这个服务，防止有新的连接进入
      * @param applicationRedisKey String
@@ -149,5 +165,12 @@ public class ReleaseConnectionsTask implements Runnable {
         String serviceVersion = "1.0.0";
         String routeRule = "host != " + ip;
         dubboRouterUtil.addRouteRule(serviceName, serviceVersion, routeRule);
+    }
+
+    private void unlockService(String applicationRedisKey) {
+        DubboRouterUtil dubboRouterUtil = DubboRouterUtil.getINSTANCE();
+        String ip = RedisKeyUtil.getIp(applicationRedisKey);
+        String routeRule = "host != " + ip;
+        dubboRouterUtil.deleteRouteRule(Constants.CONNECTOR_SERVICE_NAME, Constants.SERVICE_VERSION, routeRule);
     }
 }
