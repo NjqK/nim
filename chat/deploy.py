@@ -17,7 +17,7 @@ def loadSettings():
     xmx = settings["dev"]["Xmx"]
     xms = settings["dev"]["Xms"]
     # xmn = settings["dev"]["Xmn"]
-    cmd = "java -jar "+"-Xmx"+xmx+" -Xms"+xms +" target/"+jar
+    cmd = "java -jar "+"-Xmx"+xmx+" -Xms"+xms +" target/"+jar + " >/dev/null 2>&1 &"
     return cmd
 
 
