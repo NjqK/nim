@@ -6,19 +6,19 @@ import os
 
 
 def loadSettings():
-    f = open("boot.json", encoding='utf-8') 
-    settings = json.load(f)
-    path = os.path.abspath(".") + "/target"
-    jar = ""
-    for i in os.listdir(path):
-        if os.path.splitext(i)[1] == ".jar":
-            jar = i
-            break
-    xmx = settings["dev"]["Xmx"]
-    xms = settings["dev"]["Xms"]
-    # xmn = settings["dev"]["Xmn"]
-    cmd = "java -jar "+"-Xmx"+xmx+" -Xms"+xms +" target/"+jar + " >/dev/null 2>&1 &"
-    return cmd
+    with open('boot.json', 'r') as f:
+        settings = json.load(f)
+        path = os.path.abspath(".") + "/target"
+        jar = ""
+        for i in os.listdir(path):
+            if os.path.splitext(i)[1] == ".jar":
+                jar = i
+                break
+        xmx = settings["dev"]["Xmx"]
+        xms = settings["dev"]["Xms"]
+        # xmn = settings["dev"]["Xmn"]
+        cmd = "java -jar "+"-Xmx"+xmx+" -Xms"+xms +" target/"+jar + " >/dev/null 2>&1 &"
+        return cmd
 
 
 if __name__ == "__main__":
