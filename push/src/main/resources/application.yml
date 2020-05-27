@@ -30,7 +30,7 @@ redis:
   pool:
     host: ubuntu
     port: 6379
-    password:
+    password: Nijiaqi123.com
     maxTotal: 8
     maxIdle: 8
     maxWaitMillis: -1
