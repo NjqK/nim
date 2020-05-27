@@ -5,8 +5,8 @@ spring:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://mysql:3306/chat?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
-      username: root
-      password: 123456
+      username: njq
+      password: Nijiaqi123
       min-idle: 5
       max-active: 20
 
