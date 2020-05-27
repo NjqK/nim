@@ -19,7 +19,7 @@ import java.net.ServerSocket;
 @Component
 public class ClusterNodeManagerImpl implements ClusterNodeManager {
 
-    @Value("n-server.port")
+    @Value("${n-server.port}")
     private String port;
 
     private volatile ClusterNode localNode = null;
