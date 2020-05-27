@@ -16,8 +16,8 @@ def loadSettings():
             break
     xmx = settings["dev"]["Xmx"]
     xms = settings["dev"]["Xms"]
-    xmn = settings["dev"]["Xmn"]
-    cmd = "java -jar "+"-Xmx"+xmx+" -Xms"+xms+" -Xmn"+xmn+" target/"+jar 
+    # xmn = settings["dev"]["Xmn"]
+    cmd = "java -jar "+"-Xmx"+xmx+" -Xms"+xms +" target/"+jar
     return cmd
 
 
