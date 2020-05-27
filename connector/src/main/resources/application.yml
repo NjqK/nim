@@ -26,6 +26,9 @@ dubbo:
 server:
   port: 8081
 
+n-server:
+  port: 9999
+
 mybatis:
   mapper-locations: classpath*:com/example/connector/dao/mappers/*.xml
   type-aliases-package: com.example.connector.entity.domain

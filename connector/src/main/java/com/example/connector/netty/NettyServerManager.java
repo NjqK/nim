@@ -3,6 +3,7 @@ package com.example.connector.netty;
 import com.example.common.util.ExecutorFactory;
 import com.example.connector.common.ConnectorThreadFactory;
 import com.example.connector.entity.domain.ClusterNode;
+import com.example.connector.exceptions.LocalNodeNullException;
 import com.example.connector.netty.listener.SendMsgListener;
 import com.example.proto.common.common.Common;
 import io.netty.channel.Channel;
@@ -25,8 +26,10 @@ public class NettyServerManager {
     private boolean init = false;
 
     public synchronized void init(ClusterNode localNode) {
-        if (!init && localNode != null) {
-            ExecutorService executorService = ExecutorFactory.singleExecutor("NettyLauncherThread");
+        if (localNode == null) {
+            throw new LocalNodeNullException();
+        }
+        if (!init) {
             NettyLauncher nettyLauncherWork = new NettyLauncher(localNode);
             ConnectorThreadFactory.addJob(nettyLauncherWork);
             while (!nettyLauncherWork.isStart()) {
@@ -35,7 +38,7 @@ public class NettyServerManager {
             init = true;
             log.info("Netty初始化完成");
         } else {
-            log.info("Netty初始化失败");
+            log.info("Netty已经初始化");
         }
     }
 
