@@ -33,7 +33,7 @@ public class IdleTrigger extends ChannelInboundHandlerAdapter {
                 Channel channel = ctx.channel();
                 log.info("Lost connection with the client which channel id is :{}, then close it.", channel.id());
                 // 传到后面去执行channel关闭逻辑
-                ctx.fireChannelInactive();
+		ctx.channel().close();
             } else {
                 super.userEventTriggered(ctx, evt);
             }
