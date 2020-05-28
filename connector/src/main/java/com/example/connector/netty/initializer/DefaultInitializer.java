@@ -24,7 +24,6 @@ public class DefaultInitializer extends ChannelInitializer<Channel> {
         ChannelPipeline pipeline = ch.pipeline();
         // 超过60s没有收到客户端消息，TODO 时间改为配置
         pipeline.addLast(new IdleStateHandler(60, 0, 0));
-        pipeline.addLast("IdleTriggerHandler", new IdleTrigger());
         // 半包处理
         pipeline.addLast(new ProtobufVarint32FrameDecoder());
         // 解码的目标类
@@ -33,6 +32,7 @@ public class DefaultInitializer extends ChannelInitializer<Channel> {
         pipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
         // 编码器
         pipeline.addLast("encode", new ProtobufEncoder());
+        pipeline.addLast("IdleTriggerHandler", new IdleTrigger());
         pipeline.addLast("HeartBeatHandler", new HeartBeatHandler());
         // 逻辑handler
         pipeline.addLast("BizHandler", new BizHandler());
