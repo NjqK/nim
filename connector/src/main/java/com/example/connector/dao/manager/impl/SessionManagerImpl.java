@@ -66,8 +66,7 @@ public class SessionManagerImpl implements SessionManager {
 
     @Override
     public boolean createIfAbsent(String uid, Channel channel) {
-        session.putIfAbsent(uid, channel);
-        return true;
+        return session.putIfAbsent(uid, channel) == null;
     }
 
     @Override

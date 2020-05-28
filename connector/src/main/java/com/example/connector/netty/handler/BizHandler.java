@@ -71,14 +71,17 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
             //SecretKey secretKeyDto = new SecretKey(clientAESKey, serverAESKey);
             //JedisUtil.hset(CommonConstants.CONNECTOR_SECRET_REDIS_KEY, uid, JSON.toJSONString(secretKeyDto));
             JedisUtil.hset(CommonConstants.CONNECTOR_SECRET_REDIS_KEY, uid, clientAESKey);
-            log.info("create redis session, uid:{}", uid);
+            log.info("creating user's session, uid:{}", uid);
             if (JedisUtil.hset(CommonConstants.USERS_REDIS_KEY, uid, RedisKeyUtil.getApplicationRedisKey()) >= 0) {
                 Channel channel = ctx.channel();
                 if (!sessionManager.createIfAbsent(uid, channel)) {
+                    log.info("已经有别的Channel");
                     // 已经有别的了
                     Channel origin = sessionManager.updateSession(uid, channel);
                     origin.writeAndFlush(KICK_MSG);
                     origin.close();
+                    // TODO there is a bug that origin.close() will trigger channelInactive
+                    // TODO to delete new user's session
                 }
                 AttributeKey<String> key = AttributeKey.valueOf("uid");
                 channel.attr(key).set(uid);
@@ -114,12 +117,15 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
         String uid = attr.get();
         if (uid != null) {
             log.info("delete redis session, uid:{}", uid);
-            JedisUtil.hdel(CommonConstants.USERS_REDIS_KEY, uid);
-            if (!sessionManager.destroySession(uid)) {
-                log.error("deleting session is failed, uid:{}", uid);
-            } else {
-                // 删除成功才减
-                JedisUtil.hincrby(RedisKeyUtil.getApplicationRedisKey(), "userCount", -1L);
+            Channel nowChannel = sessionManager.getChannel(uid);
+            if (nowChannel != null && nowChannel.equals(channel)) {
+                JedisUtil.hdel(CommonConstants.USERS_REDIS_KEY, uid);
+                if (!sessionManager.destroySession(uid)) {
+                    log.error("deleting session is failed, uid:{}", uid);
+                } else {
+                    // 删除成功才减
+                    JedisUtil.hincrby(RedisKeyUtil.getApplicationRedisKey(), "userCount", -1L);
+                }
             }
         }
         channel.close();
