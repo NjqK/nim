@@ -41,8 +41,7 @@ public class SessionManagerImpl implements SessionManager {
             log.error("destroySession, uid is null");
             return false;
         }
-        session.remove(uid);
-        return true;
+        return session.remove(uid) != null;
     }
 
     @Override

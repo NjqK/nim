@@ -108,7 +108,7 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
     }
 
     @Override
-    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+    public void channelInactive(ChannelHandlerContext ctx) {
         Channel channel = ctx.channel();
         Attribute<String> attr = channel.attr(AttributeKey.<String>valueOf("uid"));
         String uid = attr.get();
@@ -117,15 +117,17 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
             JedisUtil.hdel(CommonConstants.USERS_REDIS_KEY, uid);
             if (!sessionManager.destroySession(uid)) {
                 log.error("deleting session is failed, uid:{}", uid);
+            } else {
+                // 删除成功才减
+                JedisUtil.hincrby(RedisKeyUtil.getApplicationRedisKey(), "userCount", -1L);
             }
-            JedisUtil.hincrby(RedisKeyUtil.getApplicationRedisKey(), "userCount", -1L);
         }
         channel.close();
     }
 
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        log.error("error:{}", cause.getMessage());
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+        log.error("error:{}", cause.getStackTrace());
         String uid = ctx.channel().attr(AttributeKey.<String>valueOf("uid")).get();
         if (uid != null) {
             JedisUtil.hdel(CommonConstants.USERS_REDIS_KEY, uid);

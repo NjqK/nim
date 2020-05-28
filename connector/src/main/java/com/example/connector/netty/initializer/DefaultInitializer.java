@@ -20,7 +20,7 @@ import io.netty.handler.timeout.IdleStateHandler;
  **/
 public class DefaultInitializer extends ChannelInitializer<Channel> {
     @Override
-    protected void initChannel(Channel ch) throws Exception {
+    protected void initChannel(Channel ch) {
         ChannelPipeline pipeline = ch.pipeline();
         // 超过60s没有收到客户端消息，TODO 时间改为配置
         pipeline.addLast(new IdleStateHandler(60, 0, 0));
@@ -29,7 +29,7 @@ public class DefaultInitializer extends ChannelInitializer<Channel> {
         pipeline.addLast(new ProtobufVarint32FrameDecoder());
         // 解码的目标类
         pipeline.addLast("decoder", new ProtobufDecoder(Common.Msg.getDefaultInstance()));
-        // 必修要在encoder前
+        // 必需要在encoder前
         pipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
         // 编码器
         pipeline.addLast("encode", new ProtobufEncoder());
