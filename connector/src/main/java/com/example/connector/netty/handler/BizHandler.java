@@ -112,6 +112,7 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
+        log.error("inactive");
         Channel channel = ctx.channel();
         Attribute<String> attr = channel.attr(AttributeKey.<String>valueOf("uid"));
         String uid = attr.get();
@@ -127,6 +128,7 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
             JedisUtil.hincrby(RedisKeyUtil.getApplicationRedisKey(), "userCount", -1L);
         }
         channel.close();
+        log.error("invoke inactive");
     }
 
     @Override
