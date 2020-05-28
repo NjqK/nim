@@ -32,8 +32,8 @@ public class ZkUtil {
             if (sessionTimeout == null) {
                 sessionTimeout = 60000;
             }
-            zk = new ZooKeeper(url, sessionTimeout,
-                    event -> log.debug(" receive event : {}", event.getType().name()));
+            zk = new ZooKeeper(url, sessionTimeout, event ->
+                    System.out.println(" receive event: " + event.getType().name()));
         } catch (IOException e) {
             e.printStackTrace();
             return false;
