@@ -55,7 +55,6 @@ public class NettyServerManager {
                 log.error("发送消息失败，channel或者msg为空.");
                 return false;
             }
-            // TODO 消息加密
             ChannelFuture channelFuture = channel.writeAndFlush(msg);
             channelFuture.addListener(new SendMsgListener(msg));
             return true;

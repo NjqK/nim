@@ -60,8 +60,8 @@ public class ConnectorProcessor implements ReceiveMessageCallback<String, String
 
         for (ConsumerRecord<String, String> record : consumerRecords) {
             log.info("<=== Start process a batch push task got from kafka, batch size:{} ===>", consumerRecords.count());
-            log.info("Got push task from kafka, topic:{}, partition:{}, offset:{}, key:{}, value:{}", record.topic(),
-                    record.partition(), record.offset(), record.key(), record.value());
+//            log.info("Got push task from kafka, topic:{}, partition:{}, offset:{}, key:{}, value:{}", record.topic(),
+//                    record.partition(), record.offset(), record.key(), record.value());
             Common.Msg.Builder msgBuilder = Common.Msg.newBuilder();
             try {
                 JsonFormat.parser().merge(record.value(), msgBuilder);
