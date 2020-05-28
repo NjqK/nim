@@ -122,11 +122,9 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
                 JedisUtil.hdel(CommonConstants.USERS_REDIS_KEY, uid);
                 if (!sessionManager.destroySession(uid)) {
                     log.error("deleting session is failed, uid:{}", uid);
-                } else {
-                    // 删除成功才减
-                    JedisUtil.hincrby(RedisKeyUtil.getApplicationRedisKey(), "userCount", -1L);
                 }
             }
+            JedisUtil.hincrby(RedisKeyUtil.getApplicationRedisKey(), "userCount", -1L);
         }
         channel.close();
     }
