@@ -131,13 +131,8 @@ public class BizHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        log.error("error:{}", cause.getStackTrace());
-        String uid = ctx.channel().attr(AttributeKey.<String>valueOf("uid")).get();
-        if (uid != null) {
-            JedisUtil.hdel(CommonConstants.USERS_REDIS_KEY, uid);
-            sessionManager.destroySession(uid);
-            JedisUtil.hincrby(RedisKeyUtil.getApplicationRedisKey(), "userCount", -1L);
-        }
+        cause.printStackTrace();
+        log.error("error:{}", cause.fillInStackTrace());
         ctx.close();
     }
 }
