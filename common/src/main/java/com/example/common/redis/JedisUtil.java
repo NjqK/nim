@@ -393,8 +393,8 @@ public class JedisUtil {
      * @return
      */
     public static Long hincrby(String key, String field, Long value) {
+        log.info("hincrby, key:{}, field:{}, value:{}", key, field, value);
         try (Jedis jedis = getJedis()) {
-
             return jedis.hincrBy(key, field, value);
         }
 
